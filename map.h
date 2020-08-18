@@ -375,5 +375,7 @@ private:
   Submap* submaps[MAP_SIZE][MAP_SIZE][VERTICAL_MAP_SIZE * 2 + 1];
   Tile tile_oob;
   std::vector<Tripoint> field_points;
+
+	void build_tile_sight_map(int tile_x, int tile_y, int tile_z, int range);
 };
 #endif
