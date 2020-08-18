@@ -8,7 +8,10 @@ objwin/
 save/
 *.swp
 *.txt
+!CMakeLists.txt
 !data/*.txt
 !data/help/*.txt
 *.prof
 .idea/
+
+cmake-build-debug/
