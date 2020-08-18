@@ -11,3 +11,4 @@ save/
 !data/*.txt
 !data/help/*.txt
 *.prof
+.idea/
