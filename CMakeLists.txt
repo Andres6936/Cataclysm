@@ -14,6 +14,15 @@ ADD_LIBRARY(Cuss
 
 TARGET_LINK_LIBRARIES(Cuss PRIVATE ncurses)
 
+# Content Package Manager
+INCLUDE(CMakeModules/CPM.cmake)
+
+CPMAddPackage(
+        NAME Doryen
+        GITHUB_REPOSITORY Andres6936/Doryen
+        VERSION 2020.0807
+)
+
 ADD_EXECUTABLE(Cataclysm
         attack.cpp
         field.cpp
@@ -64,6 +73,7 @@ ADD_EXECUTABLE(Cataclysm
         status_effect.cpp
         )
 
+TARGET_LINK_LIBRARIES(Cataclysm PRIVATE Doryen::Framework)
 TARGET_LINK_LIBRARIES(Cataclysm PRIVATE Cuss)
 TARGET_LINK_LIBRARIES(Cataclysm PRIVATE ncurses)
 
