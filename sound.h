@@ -3,10 +3,17 @@
 
 struct Sound
 {
-  Sound(std::string D = "", int V = 0) : description (D), volume (V) {}
-  std::string description;
-  int volume;
-  bool valid() { return (volume > 0 && !description.empty()); }
+	Sound(std::string D = "", int V = 0) : description(D), volume(V)
+	{
+	}
+
+	std::string description;
+	int volume;
+
+	bool valid()
+	{
+		return (volume > 0 && !description.empty());
+	}
 };
 
 #endif

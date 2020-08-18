@@ -8,25 +8,37 @@
 
 struct glyph
 {
-  long symbol;
-  nc_color fg;
-  nc_color bg;
+	long symbol;
+	nc_color fg;
+	nc_color bg;
 
-  glyph() { symbol = 'x'; fg = c_red; bg = c_white; }
-  glyph(long S, nc_color F, nc_color B) : symbol (S), fg (F), bg (B) { }
+	glyph()
+	{
+		symbol = 'x';
+		fg = c_red;
+		bg = c_white;
+	}
 
-  glyph invert();
-  glyph hilite(nc_color back = HILITE_COLOR);
-  std::string text_formatted();
+	glyph(long S, nc_color F, nc_color B) : symbol(S), fg(F), bg(B)
+	{
+	}
 
-  bool operator==(const glyph &rhs);
+	glyph invert();
 
-  void make_line_drawing(bool north, bool east, bool south, bool west);
+	glyph hilite(nc_color back = HILITE_COLOR);
 
-  std::string save_data();
-  void load_data(std::istream &datastream);
-  void load_data_text(std::istream &datastream, // For human-readable data
-                      std::string owner_name = "Unknown");
+	std::string text_formatted();
+
+	bool operator==(const glyph& rhs);
+
+	void make_line_drawing(bool north, bool east, bool south, bool west);
+
+	std::string save_data();
+
+	void load_data(std::istream& datastream);
+
+	void load_data_text(std::istream& datastream, // For human-readable data
+			std::string owner_name = "Unknown");
 };
 
 #endif

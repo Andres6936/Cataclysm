@@ -7,53 +7,61 @@
 
 struct Dice
 {
-  int number;
-  int sides;
-  int bonus;
+	int number;
+	int sides;
+	int bonus;
 
-  bool negative;  // Used in others; if true, we SUBTRACT this!
+	bool negative;  // Used in others; if true, we SUBTRACT this!
 
-  std::vector<Dice> others;
+	std::vector<Dice> others;
 
-  Dice(int N = 0, int S = 1, int B = 0, bool G = false);
-  ~Dice() { }
+	Dice(int N = 0, int S = 1, int B = 0, bool G = false);
 
-  int roll();
-  Dice base() const;  // Strip off all others
-  Dice& operator= (const Dice& rhs);
-  Dice& operator+=(const Dice& rhs);
-  Dice& operator-=(const Dice& rhs);
-  Dice& operator+=(const int& rhs);
-  Dice& operator-=(const int& rhs);
+	~Dice()
+	{
+	}
 
-  std::string str();
+	int roll();
 
-  bool load_data(std::istream &data, std::string owner = "Unknown");
+	Dice base() const;  // Strip off all others
+	Dice& operator=(const Dice& rhs);
+
+	Dice& operator+=(const Dice& rhs);
+
+	Dice& operator-=(const Dice& rhs);
+
+	Dice& operator+=(const int& rhs);
+
+	Dice& operator-=(const int& rhs);
+
+	std::string str();
+
+	bool load_data(std::istream& data, std::string owner = "Unknown");
 
 };
 
 inline Dice operator+(Dice lhs, const Dice& rhs)
 {
-  lhs += rhs;
-  return lhs;
+	lhs += rhs;
+	return lhs;
 }
 
 inline Dice operator-(Dice lhs, const Dice& rhs)
 {
-  lhs -= rhs;
-  return lhs;
+	lhs -= rhs;
+	return lhs;
 }
 
 inline Dice operator-(Dice lhs, const int& rhs)
 {
-  lhs -= rhs;
-  return lhs;
+	lhs -= rhs;
+	return lhs;
 }
 
 inline Dice operator+(Dice lhs, const int& rhs)
 {
-  lhs += rhs;
-  return lhs;
+	lhs += rhs;
+	return lhs;
 }
 
 #endif

@@ -6,28 +6,37 @@
 
 struct String_chance
 {
-  String_chance(int C = 10, std::string N = "") : chance (C), string (N) {}
-  int chance;
-  std::string string;
+	String_chance(int C = 10, std::string N = "") : chance(C), string(N)
+	{
+	}
+
+	int chance;
+	std::string string;
 };
 
 struct Variable_string
 {
 public:
-  Variable_string();
-  ~Variable_string(){}
+	Variable_string();
 
-  Variable_string& operator=(const Variable_string& rhs);
+	~Variable_string()
+	{
+	}
 
-  bool empty();
-  std::string pick();
+	Variable_string& operator=(const Variable_string& rhs);
 
-  void add_string(int chance, std::string string);
-  void add_string(String_chance string);
-  bool load_data(std::istream &data, std::string owner = "unknown");
+	bool empty();
 
-  std::vector<String_chance> strings;
-  int total_chance;
+	std::string pick();
+
+	void add_string(int chance, std::string string);
+
+	void add_string(String_chance string);
+
+	bool load_data(std::istream& data, std::string owner = "unknown");
+
+	std::vector<String_chance> strings;
+	int total_chance;
 };
 
 #endif

@@ -5,31 +5,38 @@
 
 struct Damage_set
 {
-  Damage_set();
-  ~Damage_set();
+	Damage_set();
 
-  void set_damage(Damage_type type, int amount);
-  void set_damage(int index, int amount);
-  int  get_damage(Damage_type type) const;
-  int  get_damage(int index) const;
+	~Damage_set();
 
-  int  total_damage();
+	void set_damage(Damage_type type, int amount);
 
-  Damage_set& operator+=(const Damage_set& rhs);
-  Damage_set& operator-=(const Damage_set& rhs);
+	void set_damage(int index, int amount);
+
+	int get_damage(Damage_type type) const;
+
+	int get_damage(int index) const;
+
+	int total_damage();
+
+	Damage_set& operator+=(const Damage_set& rhs);
+
+	Damage_set& operator-=(const Damage_set& rhs);
 
 private:
-  int damage[DAMAGE_MAX];
+	int damage[DAMAGE_MAX];
 };
+
 inline Damage_set operator+(Damage_set lhs, const Damage_set& rhs)
 {
-  lhs += rhs;
-  return lhs;
+	lhs += rhs;
+	return lhs;
 }
+
 inline Damage_set operator-(Damage_set lhs, const Damage_set& rhs)
 {
-  lhs -= rhs;
-  return lhs;
+	lhs -= rhs;
+	return lhs;
 }
 
 #endif

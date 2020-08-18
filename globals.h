@@ -13,29 +13,33 @@
 #include "mission.h"
 
 class Game;
+
 class Submap_pool;
+
 class Field_type;
 
 extern int TESTING_MODE;
 
-extern Game                         GAME;
-extern Data_pool<Terrain>           TERRAIN;
-extern Data_pool<World_terrain>     WORLD_TERRAIN;
-extern Data_pool<Item_type>         ITEM_TYPES;
-extern Data_pool<Item_group>        ITEM_GROUPS;
-extern Data_pool<Monster_genus>     MONSTER_GENERA;
-extern Data_pool<Monster_type>      MONSTER_TYPES;
-extern Data_pool<Biome>             BIOMES;
-extern Data_pool<Field_type>        FIELDS;
-extern Data_pool<Furniture_type>    FURNITURE_TYPES;
-extern Data_pool<Profession>        PROFESSIONS;
-extern Submap_pool                  SUBMAP_POOL;
-extern Mapgen_spec_pool             MAPGEN_SPECS;
-extern Keybinding_pool              KEYBINDINGS;
-extern Data_pool<Mission_template>  MISSIONS;
+extern Game GAME;
+extern Data_pool<Terrain> TERRAIN;
+extern Data_pool<World_terrain> WORLD_TERRAIN;
+extern Data_pool<Item_type> ITEM_TYPES;
+extern Data_pool<Item_group> ITEM_GROUPS;
+extern Data_pool<Monster_genus> MONSTER_GENERA;
+extern Data_pool<Monster_type> MONSTER_TYPES;
+extern Data_pool<Biome> BIOMES;
+extern Data_pool<Field_type> FIELDS;
+extern Data_pool<Furniture_type> FURNITURE_TYPES;
+extern Data_pool<Profession> PROFESSIONS;
+extern Submap_pool SUBMAP_POOL;
+extern Mapgen_spec_pool MAPGEN_SPECS;
+extern Keybinding_pool KEYBINDINGS;
+extern Data_pool<Mission_template> MISSIONS;
 
 void load_global_data();
+
 void load_mapgen_specs();
+
 void init_missions(); // Autogenerate missions pool from existing items/monsters
 void init_default_keybindings();
 

@@ -9,25 +9,28 @@
 
 struct Profession
 {
-  Profession();
-  ~Profession();
+	Profession();
+
+	~Profession();
 
 // Functions for Datapool
-  void assign_uid(int id);
-  std::string get_data_name();
-  bool load_data(std::istream& data);
+	void assign_uid(int id);
 
-  int uid;
-  std::string name;
-  std::string description;
+	std::string get_data_name();
+
+	bool load_data(std::istream& data);
+
+	int uid;
+	std::string name;
+	std::string description;
 
 /* We won't use most features of Item_group (like chances or a name); all we
  * really need is a list of quantities of items.  But Item_group handles that,
  * AND has a built-in loading function!
  */
-  Item_group items;
+	Item_group items;
 
-  Skill_set skills;
+	Skill_set skills;
 };
 
 #endif
