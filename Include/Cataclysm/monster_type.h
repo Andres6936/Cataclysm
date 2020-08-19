@@ -1,18 +1,17 @@
 #ifndef _MONSTER_TYPE_H_
 #define _MONSTER_TYPE_H_
 
-#include "glyph.h"
-#include "enum.h"
 #include "entity_ai.h"
-#include "dice.h"
 #include "var_string.h"
 #include "sound.h"
+
 #include <string>
 #include <istream>
 #include <vector>
 
 #include "Cataclysm/Attack/Ranged.hpp"
 #include <Cataclysm/Attack/attack.h>
+#include <Cataclysm/Enum/SenseType.hpp>
 
 enum Monster_size
 {

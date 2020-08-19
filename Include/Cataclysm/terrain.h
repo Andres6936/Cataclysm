@@ -1,12 +1,16 @@
 #ifndef _TERRAIN_H_
 #define _TERRAIN_H_
 
-#include "glyph.h"
-#include "enum.h"
-#include "dice.h"
 #include <vector>
 #include <map>
 #include <list>
+
+#include <Cataclysm/Enum/TerrainFlag.hpp>
+#include <Cataclysm/Enum/DamageType.hpp>
+#include <Cataclysm/Enum/StatType.hpp>
+#include <Cataclysm/Enum/MathOperator.hpp>
+#include "Cataclysm/dice.h"
+#include "Cataclysm/glyph.h"
 
 Terrain_flag lookup_terrain_flag(std::string name);
 

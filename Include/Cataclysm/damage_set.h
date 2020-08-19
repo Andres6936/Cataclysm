@@ -1,7 +1,7 @@
 #ifndef _DAMAGE_SET_H_
 #define _DAMAGE_SET_H_
 
-#include "enum.h" // For DAMAGE_MAX
+#include <Cataclysm/Enum/DamageType.hpp>
 
 struct Damage_set
 {

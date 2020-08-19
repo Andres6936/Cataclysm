@@ -1,18 +1,19 @@
 #ifndef _FIELD_H_
 #define _FIELD_H_
 
-#include "enum.h"       // For Body_part
-#include "damage_set.h"
-#include "enum.h"       // For Terrain_flag
-#include "enum.h"       // For Item_flag
 #include "glyph.h"
 #include "terrain.h"    // For Terrain*
 #include "geometry.h"   // For Tripoint
 #include "explosion.h"  // For fuel explosions
+#include "damage_set.h"
+
 #include <string>
 #include <vector>
 #include <list>
 #include <istream>
+
+#include <Cataclysm/Enum/ItemFlag.hpp>
+#include <Cataclysm/Enum/BodyPart.hpp>
 
 class Entity;
 

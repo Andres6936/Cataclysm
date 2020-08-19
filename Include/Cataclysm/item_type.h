@@ -1,15 +1,13 @@
 #ifndef _ITEM_TYPE_H_
 #define _ITEM_TYPE_H_
 
-#include "glyph.h"
-#include "enum.h"
-#include "dice.h"
-#include "tool.h"
-#include "status_effect.h"
-#include "skill.h"  // For launcher skill (handgun, rifle, etc) and books
 #include <string>
 #include <istream>
 #include <vector>
+
+#include "Cataclysm/tool.h"
+#include "Cataclysm/status_effect.h"
+#include <Cataclysm/Enum/ItemAction.hpp>
 
 /* After adding an Item_class, be sure to edit Item_type.cpp and add the class
  * to the function item_class_name().

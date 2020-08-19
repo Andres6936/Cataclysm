@@ -34,6 +34,11 @@ ADD_EXECUTABLE(Cataclysm
         Source/Attack/attack.cpp
         Source/Attack/Ranged.cpp
         Source/Attack/Verbs.cpp
+        Source/Enum/BodyPart.cpp
+        Source/Enum/DamageType.cpp
+        Source/Enum/MathOperator.cpp
+        Source/Enum/SenseType.cpp
+        Source/Enum/StatType.cpp
         Source/field.cpp
         Source/mission.cpp
         Source/stringfunc.cpp
