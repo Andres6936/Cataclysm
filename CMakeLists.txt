@@ -34,6 +34,9 @@ ADD_EXECUTABLE(Cataclysm
         Source/Attack/Verbs.cpp
         Source/Attack/attack.cpp
         Source/Attack/Ranged.cpp
+        Source/Entity/Monster/Type.cpp
+        Source/Entity/Monster/Genus.cpp
+        Source/Entity/Monster/monster_type.cpp
         Source/Enum/BodyPart.cpp
         Source/Enum/StatType.cpp
         Source/Enum/SenseType.cpp
@@ -66,7 +69,6 @@ ADD_EXECUTABLE(Cataclysm
         Source/tool.cpp
         Source/cuss.cpp
         Source/globals.cpp
-        Source/monster_type.cpp
         Source/trait.cpp
         Source/glyph.cpp
         Source/newcharacter.cpp

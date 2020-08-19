@@ -1,9 +1,7 @@
 #include "Cataclysm/entity.h"
 #include "Cataclysm/rng.h"
-#include "Cataclysm/game.h"
 #include "Cataclysm/geometry.h"
-#include "Cataclysm/map.h"
-#include <sstream>
+#include "Cataclysm/globals.h"
 
 Stats::Stats()
 {

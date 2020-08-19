@@ -3,14 +3,9 @@
 #include "Cataclysm/rng.h"
 #include "Cataclysm/globals.h"
 #include "Cataclysm/monster.h"
-#include "Cataclysm/game.h"
 
 #include "Cataclysm/entity.h"
-#include "Cataclysm/enum.h"
-#include "Cataclysm/worldmap.h"
 #include "Cataclysm/files.h"    // For SAVE_DIR
-
-#include <sstream>
 
 Furniture::Furniture()
 {

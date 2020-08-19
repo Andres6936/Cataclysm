@@ -1,10 +1,8 @@
 #include "Cataclysm/entity.h"
-#include "Cataclysm/player.h"
-#include "Cataclysm/cuss.h"
-#include "Cataclysm/trait.h"
 #include "Cataclysm/files.h"  // For CUSS_DIR
 #include "Cataclysm/window.h"
-#include <string>
+#include "Cataclysm/globals.h"
+
 #include <sstream>
 #include <stdlib.h> // For abs()
 

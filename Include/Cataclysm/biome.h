@@ -1,11 +1,11 @@
 #ifndef _BIOME_H_
 #define _BIOME_H_
 
-#include "monster_type.h"
 #include <istream>
 
 #include <Cataclysm/World/world_terrain.h>
 #include <Cataclysm/World/VariableTerrain.hpp>
+#include <Cataclysm/Entity/Monster/Genus.hpp>
 
 // TODO: Move this to monster_type.h?
 

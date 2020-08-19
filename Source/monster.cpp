@@ -1,9 +1,5 @@
 #include "Cataclysm/monster.h"
-#include "Cataclysm/rng.h"
-#include "Cataclysm/game.h"
-#include "Cataclysm/player.h"
-#include "Cataclysm/monster_ability.h"
-#include <sstream>
+#include "Cataclysm/globals.h"
 
 Monster::Monster()
 {

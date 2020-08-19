@@ -4,13 +4,11 @@
 #include "datapool.h"
 #include "mapgen.h"
 #include "item_type.h"
-#include "monster_type.h"
 #include "keybind.h"
 #include "biome.h"
 #include "profession.h"
 #include "mission.h"
-
-class Game;
+#include "game.h"
 
 class Submap_pool;
 

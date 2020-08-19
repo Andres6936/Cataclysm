@@ -1,13 +1,7 @@
 #include "Cataclysm/field.h"
 #include "Cataclysm/window.h"     // For debugmsg
 #include "Cataclysm/stringfunc.h" // For no_caps and trim
-#include "Cataclysm/terrain.h"    // For Terrain_flag
 #include "Cataclysm/globals.h"    // For TERRAIN and FIELDS
-#include "Cataclysm/rng.h"
-#include "Cataclysm/map.h"
-#include "Cataclysm/entity.h"
-#include "Cataclysm/game.h"
-#include <sstream>
 
 Field_fuel::Field_fuel(Terrain_flag TF, Item_flag IF, int _fuel, Dice _damage)
 {

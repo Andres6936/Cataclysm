@@ -1,36 +1,22 @@
-#ifndef _MONSTER_TYPE_H_
-#define _MONSTER_TYPE_H_
+// Joan Andrés (@Andres6936) Github.
 
-#include "entity_ai.h"
-#include "var_string.h"
-#include "sound.h"
+#ifndef CATACLYSM_TYPE_HPP
+#define CATACLYSM_TYPE_HPP
+
 
 #include <string>
-#include <istream>
-#include <vector>
 
-#include "Cataclysm/Attack/Ranged.hpp"
+#include <Cataclysm/dice.h>
+#include <Cataclysm/sound.h>
+#include <Cataclysm/glyph.h>
+#include <Cataclysm/entity_ai.h>
 #include <Cataclysm/Attack/attack.h>
+#include <Cataclysm/Attack/Ranged.hpp>
+#include <Cataclysm/monster_ability.h>
 #include <Cataclysm/Enum/SenseType.hpp>
+#include "Cataclysm/Entity/Monster/monster_type.h"
 
-enum Monster_size
-{
-	MON_SIZE_NULL = 0,
-	MON_SIZE_TINY,      // Up to cat size
-	MON_SIZE_SMALL,     // Up to wolf size
-	MON_SIZE_MEDIUM,    // Human-size
-	MON_SIZE_LARGE,     // Cow-size
-	MON_SIZE_HUGE,      // Elephant-size
-	MON_SIZE_MAX
-};
-
-Monster_size lookup_monster_size(std::string name);
-
-std::string monster_size_name(Monster_size size);
-
-struct Monster_genus;
-
-struct Monster_ability;
+class Monster_genus;
 
 struct Monster_type
 {
@@ -104,33 +90,4 @@ private:
 
 };
 
-struct Monster_genus
-{
-	Monster_genus();
-
-	~Monster_genus();
-
-	std::string name;
-	std::string display_name;
-	int uid;
-
-	Monster_type default_values; // Default values for monsters in this genus
-// Spawning stuff
-	std::vector<Monster_type*> members;
-	int total_chance;
-
-	void add_member(Monster_type* member);
-
-	Monster_type* random_member();
-
-	void assign_uid(int id);
-
-	std::string get_data_name();
-
-	std::string get_name();
-
-	bool load_data(std::istream& data);
-
-};
-
-#endif
+#endif //CATACLYSM_TYPE_HPP

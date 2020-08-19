@@ -1,7 +1,6 @@
+#include "Cataclysm/stringfunc.h"
 #include "Cataclysm/mission.h"
-#include "Cataclysm/rng.h"
-#include "Cataclysm/game.h"
-#include <sstream>
+#include "Cataclysm/globals.h"
 
 void Mission_template::assign_uid(int ID)
 {

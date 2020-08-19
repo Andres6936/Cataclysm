@@ -1,10 +1,7 @@
-#include "Cataclysm/worldmap.h"
+#include <Cataclysm/World/worldmap.h>
+#include "Cataclysm/globals.h"
 #include "Cataclysm/biome.h"
 #include "Cataclysm/rng.h"
-#include "Cataclysm/globals.h"
-#include "Cataclysm/window.h"
-#include <math.h>
-#include <sstream>
 
 void Worldmap::generate()
 {

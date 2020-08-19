@@ -1,6 +1,9 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include "Cataclysm/World/VariableTerrain.hpp"
+#include "Cataclysm/stringfunc.h"
+#include "Cataclysm/window.h"
+#include "Cataclysm/globals.h"
 
 Variable_world_terrain::Variable_world_terrain()
 {

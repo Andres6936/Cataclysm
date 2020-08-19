@@ -3,6 +3,7 @@
 
 #include <string>
 
+#include <Cataclysm/item.h>
 #include <Cataclysm/enum.h>
 #include <Cataclysm/skill.h>
 #include <Cataclysm/damage_set.h>
@@ -11,8 +12,6 @@
 Body_part random_body_part_to_hit();
 
 struct Stats;
-
-class Item;
 
 /* TODO:  Special effects.  It'd be nice to specify that an attack (or an item
  *        from which attacks are derived) has the ability to knock the target

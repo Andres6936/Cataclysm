@@ -1,12 +1,8 @@
 #include "Cataclysm/explosion.h"
 #include "Cataclysm/window.h" // For debugmsg
 #include "Cataclysm/stringfunc.h" // For no_caps() and trim()
-#include "Cataclysm/entity.h"
-#include "Cataclysm/game.h"
 #include "Cataclysm/damage_set.h" // For damaging terrain
-
-#include "Cataclysm/rng.h"
-#include <sstream>  // For setting the creator of any fields we create!
+#include "Cataclysm/globals.h"
 
 Explosion::Explosion()
 {

@@ -5,6 +5,7 @@
 #include "trait.h"
 #include "map.h"
 #include "player_activity.h"
+#include "item.h"
 
 #include <string>
 #include <map>

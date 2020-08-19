@@ -3,6 +3,8 @@
 #ifndef CATACLYSM_TERRAINCHANCE_HPP
 #define CATACLYSM_TERRAINCHANCE_HPP
 
+class World_terrain;
+
 struct World_terrain_chance
 {
 	World_terrain_chance(int C = 100, World_terrain* WT = NULL) :

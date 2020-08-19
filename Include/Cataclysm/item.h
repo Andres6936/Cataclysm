@@ -1,18 +1,15 @@
 #ifndef _ITEM_H_
 #define _ITEM_H_
 
-#include "item_type.h"
-#include "enum.h"
-#include "monster_type.h"
 #include <string>
 #include <vector>
 #include <istream>
 
-class Stats;
+#include "Cataclysm/item_type.h"
+#include <Cataclysm/Attack/Ranged.hpp>
+#include "Cataclysm/Entity/Monster/monster_type.h"
 
-class Entity;
-
-struct Ranged_attack;
+class Monster_type;
 
 enum Item_active_type
 {

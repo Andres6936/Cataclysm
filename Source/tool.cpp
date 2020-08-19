@@ -1,12 +1,7 @@
 #include "Cataclysm/tool.h"
 #include "Cataclysm/stringfunc.h" // For trim() and no_caps()
 #include "Cataclysm/window.h" // For debugmsg()
-#include "Cataclysm/enum.h" // For HP_part etc
-#include "Cataclysm/entity.h"
-#include "Cataclysm/player.h"
-#include "Cataclysm/field.h"
-#include "Cataclysm/game.h"
-#include <sstream>
+#include "Cataclysm/globals.h"
 
 Tool_special_explosion::Tool_special_explosion()
 {
