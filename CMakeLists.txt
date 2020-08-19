@@ -31,7 +31,9 @@ TARGET_LINK_LIBRARIES(Cuss PRIVATE Doryen::Framework)
 TARGET_LINK_LIBRARIES(Cuss PRIVATE ncurses)
 
 ADD_EXECUTABLE(Cataclysm
-        Source/attack.cpp
+        Source/Attack/attack.cpp
+        Source/Attack/Ranged.cpp
+        Source/Attack/Verbs.cpp
         Source/field.cpp
         Source/mission.cpp
         Source/stringfunc.cpp

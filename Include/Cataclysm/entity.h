@@ -7,7 +7,7 @@
 #include "geometry.h"
 #include "enum.h"
 #include "pathfind.h"
-#include "attack.h"
+
 #include "entity_ai.h"
 #include "status_effect.h"
 #include "map.h"

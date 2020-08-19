@@ -4,7 +4,7 @@
 #include "Cataclysm/globals.h"
 #include "Cataclysm/cuss.h"
 #include "Cataclysm/entity.h"
-#include "Cataclysm/attack.h"
+
 #include "Cataclysm/files.h"    // For CUSS_DIR
 #include "Cataclysm/rng.h"
 #include <sstream>

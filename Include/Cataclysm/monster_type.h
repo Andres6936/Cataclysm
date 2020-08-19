@@ -3,7 +3,6 @@
 
 #include "glyph.h"
 #include "enum.h"
-#include "attack.h"
 #include "entity_ai.h"
 #include "dice.h"
 #include "var_string.h"
@@ -11,6 +10,9 @@
 #include <string>
 #include <istream>
 #include <vector>
+
+#include "Cataclysm/Attack/Ranged.hpp"
+#include <Cataclysm/Attack/attack.h>
 
 enum Monster_size
 {

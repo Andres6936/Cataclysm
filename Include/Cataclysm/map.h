@@ -13,7 +13,7 @@
 #include "item.h"
 #include "enum.h"
 #include "geometry.h"
-#include "attack.h"
+
 #include "pathfind.h"
 #include "field.h"
 #include <istream>

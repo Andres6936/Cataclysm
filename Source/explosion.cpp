@@ -4,7 +4,7 @@
 #include "Cataclysm/entity.h"
 #include "Cataclysm/game.h"
 #include "Cataclysm/damage_set.h" // For damaging terrain
-#include "Cataclysm/attack.h" // For shrapnel Ranged_attack
+
 #include "Cataclysm/rng.h"
 #include <sstream>  // For setting the creator of any fields we create!
 
