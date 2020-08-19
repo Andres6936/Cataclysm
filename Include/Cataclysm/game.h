@@ -3,7 +3,6 @@
 
 #include "map.h"
 #include "cuss.h"
-#include "worldmap.h"
 #include "monster.h"
 #include "player.h"
 #include "keybind.h"

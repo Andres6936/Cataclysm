@@ -2,7 +2,6 @@
 #define _FIELD_H_
 
 #include "glyph.h"
-#include "terrain.h"    // For Terrain*
 #include "geometry.h"   // For Tripoint
 #include "explosion.h"  // For fuel explosions
 #include "damage_set.h"
@@ -12,6 +11,7 @@
 #include <list>
 #include <istream>
 
+#include <Cataclysm/World/Terrain/terrain.h>    // For Terrain*
 #include <Cataclysm/Enum/ItemFlag.hpp>
 #include <Cataclysm/Enum/BodyPart.hpp>
 

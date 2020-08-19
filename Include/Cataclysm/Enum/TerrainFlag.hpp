@@ -1,7 +1,6 @@
 // Joan Andrés (@Andres6936) Github.
 
-#ifndef CATACLYSM_TERRAINFLAG_HPP
-#define CATACLYSM_TERRAINFLAG_HPP
+#pragma once
 
 // Terrain_flag has its lookup and name functions in terrain.cpp
 enum Terrain_flag
@@ -24,4 +23,6 @@ enum Terrain_flag
 	TF_MAX
 };
 
-#endif //CATACLYSM_TERRAINFLAG_HPP
+Terrain_flag lookup_terrain_flag(std::string name);
+
+std::string terrain_flag_name(Terrain_flag flag);

@@ -5,18 +5,9 @@
 #define MAP_SIZE 13
 #define VERTICAL_MAP_SIZE 3
 
-#include "window.h"
-#include "terrain.h"
-#include "world_terrain.h"
-#include "mapgen.h"
-#include "worldmap.h"
-#include "item.h"
-#include "enum.h"
-#include "geometry.h"
-
-#include "pathfind.h"
-#include "field.h"
-#include <istream>
+#include "Cataclysm/mapgen.h"
+#include <Cataclysm/World/worldmap.h>
+#include "Cataclysm/World/Terrain/terrain.h"
 
 class Entity_pool;
 

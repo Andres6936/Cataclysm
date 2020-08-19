@@ -1,36 +1,17 @@
 #ifndef _WORLDMAP_H_
 #define _WORLDMAP_H_
 
-#include "world_terrain.h"
-#include "window.h"
-#include "globals.h"
-#include "worldmap.h"
-#include "cuss.h"
-#include "pathfind.h"
-#include "monster_spawn.h"
 #include <string>
-#include <istream>
+
+#include <Cataclysm/cuss.h>
+#include <Cataclysm/monster_spawn.h>
+#include <Cataclysm/pathfind.h>
+#include <Cataclysm/biome.h>
+#include <Cataclysm/World/world_terrain.h>
+#include "Cataclysm/World/Tile.hpp"
 
 #define WORLDMAP_SIZE 150
 #define BONUS_SPACING   8
-
-struct Worldmap_tile
-{
-	World_terrain* terrain;
-	std::vector<Monster_spawn> monsters;
-
-	glyph top_glyph();
-
-	std::string get_name();
-
-	bool has_flag(World_terrain_flag flag);
-
-	void set_terrain(std::string name);
-
-	std::string save_data();
-
-	void load_data(std::istream& data);
-};
 
 class Worldmap
 {

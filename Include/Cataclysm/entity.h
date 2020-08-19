@@ -1,17 +1,11 @@
 #ifndef _ENTITY_H_
 #define _ENTITY_H_
 
-#include "glyph.h"
-#include "item.h"
-#include "player_activity.h"
-#include "geometry.h"
-#include "enum.h"
-#include "pathfind.h"
-
-#include "entity_ai.h"
-#include "status_effect.h"
-#include "map.h"
+#include "mission.h"
 #include "trait.h"
+#include "map.h"
+#include "player_activity.h"
+
 #include <string>
 #include <map>
 #include <list>

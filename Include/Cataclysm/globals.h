@@ -2,8 +2,6 @@
 #define _GLOBALS_H_
 
 #include "datapool.h"
-#include "terrain.h"
-#include "world_terrain.h"
 #include "mapgen.h"
 #include "item_type.h"
 #include "monster_type.h"

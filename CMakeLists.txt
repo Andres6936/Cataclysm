@@ -31,21 +31,31 @@ TARGET_LINK_LIBRARIES(Cuss PRIVATE Doryen::Framework)
 TARGET_LINK_LIBRARIES(Cuss PRIVATE ncurses)
 
 ADD_EXECUTABLE(Cataclysm
+        Source/Attack/Verbs.cpp
         Source/Attack/attack.cpp
         Source/Attack/Ranged.cpp
-        Source/Attack/Verbs.cpp
         Source/Enum/BodyPart.cpp
+        Source/Enum/StatType.cpp
+        Source/Enum/SenseType.cpp
         Source/Enum/DamageType.cpp
         Source/Enum/MathOperator.cpp
-        Source/Enum/SenseType.cpp
-        Source/Enum/StatType.cpp
+        Source/World/Tile.cpp
+        Source/World/worldmap.cpp
+        Source/World/world_terrain.cpp
+        Source/World/VariableTerrain.cpp
+        Source/World/Enum/SpreadType.cpp
+        Source/World/Enum/TerrainFlag.cpp
+        Source/World/Terrain/Bonus.cpp
+        Source/World/Terrain/Smash.cpp
+        Source/World/Terrain/terrain.cpp
+        Source/World/Terrain/FlagBonus.cpp
+        Source/World/Terrain/SignalHandler.cpp
         Source/field.cpp
         Source/mission.cpp
         Source/stringfunc.cpp
         Source/biome.cpp
         Source/files.cpp
         Source/monster_ability.cpp
-        Source/terrain.cpp
         Source/catacurse.cpp
         Source/game.cpp
         Source/monster.cpp
@@ -67,7 +77,6 @@ ADD_EXECUTABLE(Cataclysm
         Source/damage_set.cpp
         Source/item.cpp
         Source/player_activity.cpp
-        Source/worldmap.cpp
         Source/dice.cpp
         Source/item_type.cpp
         Source/player.cpp
@@ -75,7 +84,6 @@ ADD_EXECUTABLE(Cataclysm
         Source/entity_ai.cpp
         Source/keybind.cpp
         Source/profession.cpp
-        Source/world_terrain.cpp
         Source/entity.cpp
         Source/main.cpp
         Source/rng.cpp
