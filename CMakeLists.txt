@@ -2,6 +2,15 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.15 FATAL_ERROR)
 
 PROJECT(Cataclysm LANGUAGES CXX)
 
+# Content Package Manager
+INCLUDE(CMakeModules/CPM.cmake)
+
+CPMAddPackage(
+        NAME Doryen
+        GITHUB_REPOSITORY Andres6936/Doryen
+        VERSION 2020.0819
+)
+
 ADD_LIBRARY(Cuss
         Source/cuss.cpp
         Source/cuss_editor.cpp
@@ -12,16 +21,14 @@ ADD_LIBRARY(Cuss
         Source/files.cpp
         )
 
+# Compile Cataclysm with Support to C++17
+SET_TARGET_PROPERTIES(Cuss PROPERTIES CXX_STANDARD 17)
+# Find the headers in the directory Cataclysm without path to Include
+TARGET_INCLUDE_DIRECTORIES(Cuss PRIVATE
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Include/>
+        $<INSTALL_INTERFACE:/Include/>)
+TARGET_LINK_LIBRARIES(Cuss PRIVATE Doryen::Framework)
 TARGET_LINK_LIBRARIES(Cuss PRIVATE ncurses)
-
-# Content Package Manager
-INCLUDE(CMakeModules/CPM.cmake)
-
-CPMAddPackage(
-        NAME Doryen
-        GITHUB_REPOSITORY Andres6936/Doryen
-        VERSION 2020.0819
-)
 
 ADD_EXECUTABLE(Cataclysm
         Source/attack.cpp
