@@ -1,8 +1,9 @@
-#include "globals.h"
-#include "window.h"
-#include "rng.h"
-#include "game.h"
-#include "files.h"
+#include "Cataclysm/globals.h"
+#include "Cataclysm/window.h"
+#include "Cataclysm/rng.h"
+#include "Cataclysm/game.h"
+#include "Cataclysm/files.h"
+
 #include <ctime>
 #include <stdio.h>  // Output errors on bad command line options
 #include <getopt.h>

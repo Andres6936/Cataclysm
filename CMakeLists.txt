@@ -76,7 +76,9 @@ ADD_EXECUTABLE(Cataclysm
 # Compile Cataclysm with Support to C++17
 SET_TARGET_PROPERTIES(Cataclysm PROPERTIES CXX_STANDARD 17)
 # Find the headers in the directory Cataclysm without path to Include
-TARGET_INCLUDE_DIRECTORIES(Cataclysm PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Include/>)
+TARGET_INCLUDE_DIRECTORIES(Cataclysm PRIVATE
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Include/>
+        $<INSTALL_INTERFACE:/Include/>)
 # Link the libraries needed
 TARGET_LINK_LIBRARIES(Cataclysm PRIVATE Doryen::Framework)
 TARGET_LINK_LIBRARIES(Cataclysm PRIVATE Cuss)
