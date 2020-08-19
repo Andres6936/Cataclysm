@@ -1,5 +1,5 @@
-#include "cuss.h"
-#include "stringfunc.h"
+#include "Cataclysm/cuss.h"
+#include "Cataclysm/stringfunc.h"
 #include <sstream>
 #include <fstream>
 

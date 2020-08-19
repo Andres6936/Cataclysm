@@ -1,5 +1,5 @@
-#include "trait.h"
-#include "stringfunc.h"
+#include "Cataclysm/trait.h"
+#include "Cataclysm/stringfunc.h"
 #include <string>
 
 Trait_id lookup_trait_id(std::string name)

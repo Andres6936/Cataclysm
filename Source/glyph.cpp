@@ -1,6 +1,6 @@
-#include "glyph.h"
-#include "options.h"
-#include "window.h"
+#include "Cataclysm/glyph.h"
+#include "Cataclysm/options.h"
+#include "Cataclysm/window.h"
 #include <sstream>
 
 std::string glyph::save_data()

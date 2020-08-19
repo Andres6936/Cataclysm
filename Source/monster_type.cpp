@@ -1,9 +1,9 @@
-#include "window.h"
-#include "stringfunc.h"
-#include "monster_type.h"
-#include "globals.h"
-#include "rng.h"
-#include "monster_ability.h"
+#include "Cataclysm/window.h"
+#include "Cataclysm/stringfunc.h"
+#include "Cataclysm/monster_type.h"
+#include "Cataclysm/globals.h"
+#include "Cataclysm/rng.h"
+#include "Cataclysm/monster_ability.h"
 #include <sstream>
 
 Monster_type::Monster_type()

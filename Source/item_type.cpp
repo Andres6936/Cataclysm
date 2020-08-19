@@ -1,6 +1,6 @@
-#include "item_type.h"
-#include "stringfunc.h"
-#include "window.h"
+#include "Cataclysm/item_type.h"
+#include "Cataclysm/stringfunc.h"
+#include "Cataclysm/window.h"
 #include <sstream>
 
 Item_type::Item_type()

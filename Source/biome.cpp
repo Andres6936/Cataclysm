@@ -1,6 +1,6 @@
-#include "biome.h"
-#include "globals.h"
-#include "rng.h"
+#include "Cataclysm/biome.h"
+#include "Cataclysm/globals.h"
+#include "Cataclysm/rng.h"
 #include <sstream>
 
 Variable_monster_genus::Variable_monster_genus()

@@ -1,9 +1,9 @@
-#include "field.h"
-#include "globals.h"
-#include "datapool.h"
-#include "files.h"
-#include "game.h"
-#include "map.h"
+#include "Cataclysm/field.h"
+#include "Cataclysm/globals.h"
+#include "Cataclysm/datapool.h"
+#include "Cataclysm/files.h"
+#include "Cataclysm/game.h"
+#include "Cataclysm/map.h"
 
 int TESTING_MODE;
 

@@ -1,6 +1,6 @@
-#include "dice.h"
-#include "rng.h"
-#include "window.h"
+#include "Cataclysm/dice.h"
+#include "Cataclysm/rng.h"
+#include "Cataclysm/window.h"
 #include <sstream>
 
 Dice::Dice(int N, int S, int B, bool G)

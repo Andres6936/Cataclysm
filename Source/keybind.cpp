@@ -1,7 +1,7 @@
-#include "keybind.h"
-#include "stringfunc.h"
-#include "window.h" // For debugmsg() and key_name()
-#include "globals.h"
+#include "Cataclysm/keybind.h"
+#include "Cataclysm/stringfunc.h"
+#include "Cataclysm/window.h" // For debugmsg() and key_name()
+#include "Cataclysm/globals.h"
 #include <fstream>
 #include <vector>
 #include <sstream>

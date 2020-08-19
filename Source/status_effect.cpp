@@ -1,7 +1,7 @@
-#include "status_effect.h"
-#include "stringfunc.h" // For no_caps and trim
-#include "window.h" // For debugmsg
-#include "entity.h" // For Stats
+#include "Cataclysm/status_effect.h"
+#include "Cataclysm/stringfunc.h" // For no_caps and trim
+#include "Cataclysm/window.h" // For debugmsg
+#include "Cataclysm/entity.h" // For Stats
 #include <sstream>
 
 Status_effect::Status_effect()

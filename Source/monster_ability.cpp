@@ -1,9 +1,9 @@
-#include "monster_ability.h"
-#include "geometry.h" // For Tripoint
-#include "monster.h"
-#include "game.h"
-#include "globals.h"
-#include "rng.h"
+#include "Cataclysm/monster_ability.h"
+#include "Cataclysm/geometry.h" // For Tripoint
+#include "Cataclysm/monster.h"
+#include "Cataclysm/game.h"
+#include "Cataclysm/globals.h"
+#include "Cataclysm/rng.h"
 #include <sstream>
 #include <map> // To help with messages
 

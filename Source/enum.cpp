@@ -1,6 +1,6 @@
-#include "enum.h"
-#include "stringfunc.h"
-#include "rng.h"  // For random body part functions
+#include "Cataclysm/enum.h"
+#include "Cataclysm/stringfunc.h"
+#include "Cataclysm/rng.h"  // For random body part functions
 
 Sense_type lookup_sense_type(std::string name)
 {

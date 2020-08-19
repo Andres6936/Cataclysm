@@ -1,6 +1,6 @@
-#include "profession.h"
-#include "stringfunc.h"
-#include "window.h" // For debugmsg()
+#include "Cataclysm/profession.h"
+#include "Cataclysm/stringfunc.h"
+#include "Cataclysm/window.h" // For debugmsg()
 #include <string>
 #include <istream>
 

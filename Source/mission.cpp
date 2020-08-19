@@ -1,6 +1,6 @@
-#include "mission.h"
-#include "rng.h"
-#include "game.h"
+#include "Cataclysm/mission.h"
+#include "Cataclysm/rng.h"
+#include "Cataclysm/game.h"
 #include <sstream>
 
 void Mission_template::assign_uid(int ID)

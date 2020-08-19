@@ -1,9 +1,9 @@
-#include "player.h"
-#include "cuss.h"
-#include "game.h"
-#include "files.h"  // For CUSS_DIR
-#include "rng.h"
-#include "help.h"   // For help_skill_desc()
+#include "Cataclysm/player.h"
+#include "Cataclysm/cuss.h"
+#include "Cataclysm/game.h"
+#include "Cataclysm/files.h"  // For CUSS_DIR
+#include "Cataclysm/rng.h"
+#include "Cataclysm/help.h"   // For help_skill_desc()
 #include <sstream>
 
 void populate_item_lists(Player* p, int offset_size,

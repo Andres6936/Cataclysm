@@ -1,11 +1,11 @@
-#include "game.h"
-#include "window.h"
-#include "stringfunc.h"
-#include "map.h"
-#include "rng.h"
-#include "pathfind.h"
-#include "files.h"      // For CUSS_DIR
-#include "help.h"
+#include "Cataclysm/game.h"
+#include "Cataclysm/window.h"
+#include "Cataclysm/stringfunc.h"
+#include "Cataclysm/map.h"
+#include "Cataclysm/rng.h"
+#include "Cataclysm/pathfind.h"
+#include "Cataclysm/files.h"      // For CUSS_DIR
+#include "Cataclysm/help.h"
 #include <stdarg.h>
 #include <math.h>
 #include <sstream>

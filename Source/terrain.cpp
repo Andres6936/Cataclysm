@@ -1,9 +1,9 @@
-#include "terrain.h"
-#include "stringfunc.h"
-#include "files.h"
-#include "window.h"
-#include "globals.h"
-#include "mapgen.h" // For Item_group (Furniture_type::components)
+#include "Cataclysm/terrain.h"
+#include "Cataclysm/stringfunc.h"
+#include "Cataclysm/files.h"
+#include "Cataclysm/window.h"
+#include "Cataclysm/globals.h"
+#include "Cataclysm/mapgen.h" // For Item_group (Furniture_type::components)
 #include <sstream>
 
 Terrain_smash::Terrain_smash()

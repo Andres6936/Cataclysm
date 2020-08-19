@@ -1,5 +1,5 @@
-#include "files.h"
-#include "stringfunc.h" // for no_upper() etc
+#include "Cataclysm/files.h"
+#include "Cataclysm/stringfunc.h" // for no_upper() etc
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <dirent.h>

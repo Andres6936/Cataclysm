@@ -1,8 +1,8 @@
-#include "world_terrain.h"
-#include "stringfunc.h"
-#include "window.h"
-#include "globals.h"
-#include "rng.h"
+#include "Cataclysm/world_terrain.h"
+#include "Cataclysm/stringfunc.h"
+#include "Cataclysm/window.h"
+#include "Cataclysm/globals.h"
+#include "Cataclysm/rng.h"
 #include <sstream>
 
 Variable_world_terrain::Variable_world_terrain()

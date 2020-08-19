@@ -1,9 +1,9 @@
-#include "worldmap.h"
-#include "rng.h"
-#include "map.h"
-#include "files.h"  // for SAVE_DIR
-#include "stringfunc.h" // For name randomization
-#include "game.h"
+#include "Cataclysm/worldmap.h"
+#include "Cataclysm/rng.h"
+#include "Cataclysm/map.h"
+#include "Cataclysm/files.h"  // for SAVE_DIR
+#include "Cataclysm/stringfunc.h" // For name randomization
+#include "Cataclysm/game.h"
 #include <fstream>
 #include <sstream>
 

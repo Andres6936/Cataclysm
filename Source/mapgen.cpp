@@ -1,8 +1,8 @@
-#include "mapgen.h"
-#include "window.h"
-#include "globals.h"
-#include "stringfunc.h"
-#include "rng.h"
+#include "Cataclysm/mapgen.h"
+#include "Cataclysm/window.h"
+#include "Cataclysm/globals.h"
+#include "Cataclysm/stringfunc.h"
+#include "Cataclysm/rng.h"
 #include <stdlib.h>
 #include <sstream>
 #include <fstream>

@@ -1,8 +1,8 @@
-#include "worldmap.h"
-#include "biome.h"
-#include "rng.h"
-#include "globals.h"
-#include "window.h"
+#include "Cataclysm/worldmap.h"
+#include "Cataclysm/biome.h"
+#include "Cataclysm/rng.h"
+#include "Cataclysm/globals.h"
+#include "Cataclysm/window.h"
 #include <math.h>
 #include <sstream>
 

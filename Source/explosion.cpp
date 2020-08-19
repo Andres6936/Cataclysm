@@ -1,11 +1,11 @@
-#include "explosion.h"
-#include "window.h" // For debugmsg
-#include "stringfunc.h" // For no_caps() and trim()
-#include "entity.h"
-#include "game.h"
-#include "damage_set.h" // For damaging terrain
-#include "attack.h" // For shrapnel Ranged_attack
-#include "rng.h"
+#include "Cataclysm/explosion.h"
+#include "Cataclysm/window.h" // For debugmsg
+#include "Cataclysm/stringfunc.h" // For no_caps() and trim()
+#include "Cataclysm/entity.h"
+#include "Cataclysm/game.h"
+#include "Cataclysm/damage_set.h" // For damaging terrain
+#include "Cataclysm/attack.h" // For shrapnel Ranged_attack
+#include "Cataclysm/rng.h"
 #include <sstream>  // For setting the creator of any fields we create!
 
 Explosion::Explosion()

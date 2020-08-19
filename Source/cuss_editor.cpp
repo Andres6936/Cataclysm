@@ -2,9 +2,9 @@
 #include <sstream>
 #include <unistd.h>
 #include <iostream> // For displaying messages to the terminal
-#include "cuss.h"
-#include "files.h"
-#include "stringfunc.h"
+#include "Cataclysm/cuss.h"
+#include "Cataclysm/files.h"
+#include "Cataclysm/stringfunc.h"
 
 using namespace cuss;
 

@@ -1,9 +1,9 @@
-#include "entity.h"
-#include "player.h"
-#include "cuss.h"
-#include "trait.h"
-#include "files.h"  // For CUSS_DIR
-#include "window.h"
+#include "Cataclysm/entity.h"
+#include "Cataclysm/player.h"
+#include "Cataclysm/cuss.h"
+#include "Cataclysm/trait.h"
+#include "Cataclysm/files.h"  // For CUSS_DIR
+#include "Cataclysm/window.h"
 #include <string>
 #include <sstream>
 #include <stdlib.h> // For abs()

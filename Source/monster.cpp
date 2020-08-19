@@ -1,8 +1,8 @@
-#include "monster.h"
-#include "rng.h"
-#include "game.h"
-#include "player.h"
-#include "monster_ability.h"
+#include "Cataclysm/monster.h"
+#include "Cataclysm/rng.h"
+#include "Cataclysm/game.h"
+#include "Cataclysm/player.h"
+#include "Cataclysm/monster_ability.h"
 #include <sstream>
 
 Monster::Monster()

@@ -1,12 +1,12 @@
-#include "field.h"
-#include "attack.h"
-#include "rng.h"
-#include "stringfunc.h"
-#include "window.h"
-#include "entity.h" // For Stats
-#include "item.h"
-#include "globals.h" // For FIELDS
-#include "game.h"
+#include "Cataclysm/field.h"
+#include "Cataclysm/attack.h"
+#include "Cataclysm/rng.h"
+#include "Cataclysm/stringfunc.h"
+#include "Cataclysm/window.h"
+#include "Cataclysm/entity.h" // For Stats
+#include "Cataclysm/item.h"
+#include "Cataclysm/globals.h" // For FIELDS
+#include "Cataclysm/game.h"
 #include <sstream>
 
 bool load_verbs(std::istream& data, std::string& verb_second,

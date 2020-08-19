@@ -1,14 +1,14 @@
-#include "field.h"
-#include "map.h"
-#include "rng.h"
-#include "globals.h"
-#include "monster.h"
-#include "game.h"
-#include "attack.h"
-#include "entity.h"
-#include "enum.h"
-#include "worldmap.h"
-#include "files.h"    // For SAVE_DIR
+#include "Cataclysm/field.h"
+#include "Cataclysm/map.h"
+#include "Cataclysm/rng.h"
+#include "Cataclysm/globals.h"
+#include "Cataclysm/monster.h"
+#include "Cataclysm/game.h"
+#include "Cataclysm/attack.h"
+#include "Cataclysm/entity.h"
+#include "Cataclysm/enum.h"
+#include "Cataclysm/worldmap.h"
+#include "Cataclysm/files.h"    // For SAVE_DIR
 #include <fstream>
 #include <sstream>
 

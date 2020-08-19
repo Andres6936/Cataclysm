@@ -1,8 +1,8 @@
-#include "entity.h"
-#include "rng.h"
-#include "game.h"
-#include "geometry.h"
-#include "map.h"
+#include "Cataclysm/entity.h"
+#include "Cataclysm/rng.h"
+#include "Cataclysm/game.h"
+#include "Cataclysm/geometry.h"
+#include "Cataclysm/map.h"
 #include <sstream>
 
 Stats::Stats()

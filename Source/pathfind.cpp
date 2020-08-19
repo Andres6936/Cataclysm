@@ -1,7 +1,7 @@
-#include "pathfind.h"
-#include "rng.h"
-#include "window.h"
-#include "map.h"  // For SUBMAP_SIZE
+#include "Cataclysm/pathfind.h"
+#include "Cataclysm/rng.h"
+#include "Cataclysm/window.h"
+#include "Cataclysm/map.h"  // For SUBMAP_SIZE
 #include <math.h>
 #include <algorithm>
 
