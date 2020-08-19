@@ -3,13 +3,13 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.15 FATAL_ERROR)
 PROJECT(Cataclysm LANGUAGES CXX)
 
 ADD_LIBRARY(Cuss
-        cuss.cpp
-        cuss_editor.cpp
-        window.cpp
-        glyph.cpp
-        color.cpp
-        stringfunc.cpp
-        files.cpp
+        Source/cuss.cpp
+        Source/cuss_editor.cpp
+        Source/window.cpp
+        Source/glyph.cpp
+        Source/color.cpp
+        Source/stringfunc.cpp
+        Source/files.cpp
         )
 
 TARGET_LINK_LIBRARIES(Cuss PRIVATE ncurses)
@@ -24,56 +24,60 @@ CPMAddPackage(
 )
 
 ADD_EXECUTABLE(Cataclysm
-        attack.cpp
-        field.cpp
-        mission.cpp
-        stringfunc.cpp
-        biome.cpp
-        files.cpp
-        monster_ability.cpp
-        terrain.cpp
-        catacurse.cpp
-        game.cpp
-        monster.cpp
-        time.cpp
-        color.cpp
-        geometry.cpp
-        monster_spawn.cpp
-        tool.cpp
-        cuss.cpp
-        globals.cpp
-        monster_type.cpp
-        trait.cpp
-        glyph.cpp
-        newcharacter.cpp
-        var_string.cpp
-        help.cpp
-        pathfind.cpp
-        window.cpp
-        damage_set.cpp
-        item.cpp
-        player_activity.cpp
-        worldmap.cpp
-        dice.cpp
-        item_type.cpp
-        player.cpp
-        worldmap_generate.cpp
-        entity_ai.cpp
-        keybind.cpp
-        profession.cpp
-        world_terrain.cpp
-        entity.cpp
-        main.cpp
-        rng.cpp
-        enum.cpp
-        map.cpp
-        skill.cpp
-        explosion.cpp
-        mapgen.cpp
-        status_effect.cpp
+        Source/attack.cpp
+        Source/field.cpp
+        Source/mission.cpp
+        Source/stringfunc.cpp
+        Source/biome.cpp
+        Source/files.cpp
+        Source/monster_ability.cpp
+        Source/terrain.cpp
+        Source/catacurse.cpp
+        Source/game.cpp
+        Source/monster.cpp
+        Source/time.cpp
+        Source/color.cpp
+        Source/geometry.cpp
+        Source/monster_spawn.cpp
+        Source/tool.cpp
+        Source/cuss.cpp
+        Source/globals.cpp
+        Source/monster_type.cpp
+        Source/trait.cpp
+        Source/glyph.cpp
+        Source/newcharacter.cpp
+        Source/var_string.cpp
+        Source/help.cpp
+        Source/pathfind.cpp
+        Source/window.cpp
+        Source/damage_set.cpp
+        Source/item.cpp
+        Source/player_activity.cpp
+        Source/worldmap.cpp
+        Source/dice.cpp
+        Source/item_type.cpp
+        Source/player.cpp
+        Source/worldmap_generate.cpp
+        Source/entity_ai.cpp
+        Source/keybind.cpp
+        Source/profession.cpp
+        Source/world_terrain.cpp
+        Source/entity.cpp
+        Source/main.cpp
+        Source/rng.cpp
+        Source/enum.cpp
+        Source/map.cpp
+        Source/skill.cpp
+        Source/explosion.cpp
+        Source/mapgen.cpp
+        Source/status_effect.cpp
         )
 
+# Compile Cataclysm with Support to C++17
 SET_TARGET_PROPERTIES(Cataclysm PROPERTIES CXX_STANDARD 17)
+# Find the headers in the directory Cataclysm without path to Include
+TARGET_INCLUDE_DIRECTORIES(Cataclysm PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Include/>)
+# Link the libraries needed
 TARGET_LINK_LIBRARIES(Cataclysm PRIVATE Doryen::Framework)
 TARGET_LINK_LIBRARIES(Cataclysm PRIVATE Cuss)
 TARGET_LINK_LIBRARIES(Cataclysm PRIVATE ncurses)
