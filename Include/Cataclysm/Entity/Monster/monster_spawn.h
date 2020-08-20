@@ -1,9 +1,8 @@
 #ifndef _MONSTER_SPAWN_H_
 #define _MONSTER_SPAWN_H_
 
-class Monster;
-
 class Monster_genus;
+class Monster;
 
 struct Monster_spawn
 {

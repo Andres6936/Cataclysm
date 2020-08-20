@@ -44,6 +44,7 @@ ADD_EXECUTABLE(Cataclysm
         Source/Entity/Monster/Genus.cpp
         Source/Entity/Monster/Ability.cpp
         Source/Entity/Monster/monster.cpp
+        Source/Entity/Monster/monster_spawn.cpp
         Source/Entity/Monster/AbilityFields.cpp
         Source/Entity/Monster/AbilitySignal.cpp
         Source/Entity/Monster/AbilityStatus.cpp
@@ -80,7 +81,6 @@ ADD_EXECUTABLE(Cataclysm
         Source/time.cpp
         Source/color.cpp
         Source/geometry.cpp
-        Source/monster_spawn.cpp
         Source/tool.cpp
         Source/cuss.cpp
         Source/globals.cpp

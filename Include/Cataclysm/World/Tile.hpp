@@ -4,9 +4,9 @@
 #define CATACLYSM_TILE_HPP
 
 #include <Cataclysm/glyph.h>
-#include <Cataclysm/monster_spawn.h>
 #include "Cataclysm/World/world_terrain.h"
 #include <Cataclysm/Enum/TerrainFlag.hpp>
+#include <Cataclysm/Entity/Monster/monster_spawn.h>
 
 struct Worldmap_tile
 {
