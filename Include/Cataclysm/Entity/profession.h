@@ -1,11 +1,8 @@
 #ifndef _PROFESSION_H_
 #define _PROFESSION_H_
 
-#include "skill.h"
-#include "mapgen.h" // For Item_type_chance
 #include <string>
-#include <vector>
-#include <istream>
+#include "Cataclysm/mapgen.h"
 
 struct Profession
 {
