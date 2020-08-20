@@ -8,7 +8,7 @@ INCLUDE(CMakeModules/CPM.cmake)
 CPMAddPackage(
         NAME Doryen
         GITHUB_REPOSITORY Andres6936/Doryen
-        VERSION 2020.0819
+        VERSION 2020.0820
 )
 
 ADD_LIBRARY(Cuss
