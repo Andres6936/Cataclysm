@@ -36,7 +36,15 @@ ADD_EXECUTABLE(Cataclysm
         Source/Attack/Ranged.cpp
         Source/Entity/Monster/Type.cpp
         Source/Entity/Monster/Genus.cpp
-        Source/Entity/Monster/monster_type.cpp
+        Source/Entity/Monster/Size.cpp
+        Source/Entity/Monster/Ability.cpp
+        Source/Entity/Monster/AbilityFields.cpp
+        Source/Entity/Monster/AbilitySignal.cpp
+        Source/Entity/Monster/AbilityStatus.cpp
+        Source/Entity/Monster/AbilitySummon.cpp
+        Source/Entity/Monster/AbilityTerrain.cpp
+        Source/Entity/Monster/AbilityTeleport.cpp
+        Source/Entity/Monster/Enum/AbilityType.cpp
         Source/Enum/BodyPart.cpp
         Source/Enum/StatType.cpp
         Source/Enum/SenseType.cpp
@@ -58,7 +66,6 @@ ADD_EXECUTABLE(Cataclysm
         Source/stringfunc.cpp
         Source/biome.cpp
         Source/files.cpp
-        Source/monster_ability.cpp
         Source/catacurse.cpp
         Source/game.cpp
         Source/monster.cpp

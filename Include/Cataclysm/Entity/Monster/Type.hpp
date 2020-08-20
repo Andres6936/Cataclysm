@@ -10,11 +10,11 @@
 #include <Cataclysm/sound.h>
 #include <Cataclysm/glyph.h>
 #include <Cataclysm/entity_ai.h>
+#include <Cataclysm/var_string.h>
 #include <Cataclysm/Attack/attack.h>
 #include <Cataclysm/Attack/Ranged.hpp>
-#include <Cataclysm/monster_ability.h>
 #include <Cataclysm/Enum/SenseType.hpp>
-#include "Cataclysm/Entity/Monster/monster_type.h"
+#include <Cataclysm/Entity/Monster/Ability.hpp>
 
 class Monster_genus;
 

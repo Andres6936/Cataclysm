@@ -7,7 +7,7 @@
 
 #include "Cataclysm/item_type.h"
 #include <Cataclysm/Attack/Ranged.hpp>
-#include "Cataclysm/Entity/Monster/monster_type.h"
+#include "Cataclysm/Entity/Monster/Size.h"
 
 class Monster_type;
 

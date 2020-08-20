@@ -1,5 +1,10 @@
 // Joan Andrés (@Andres6936) Github.
 
+#include <Cataclysm/Entity/Monster/AbilitySummon.hpp>
+#include <Cataclysm/Entity/Monster/AbilitySignal.hpp>
+#include <Cataclysm/Entity/Monster/AbilityTerrain.hpp>
+#include <Cataclysm/Entity/Monster/AbilityTeleport.hpp>
+#include <Cataclysm/Entity/Monster/AbilityFields.hpp>
 #include "Cataclysm/Entity/Monster/Type.hpp"
 #include "Cataclysm/Entity/Monster/Genus.hpp"
 #include "Cataclysm/stringfunc.h"
