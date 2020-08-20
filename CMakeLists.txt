@@ -49,6 +49,9 @@ ADD_EXECUTABLE(Cataclysm
         Source/Entity/Monster/AbilityTerrain.cpp
         Source/Entity/Monster/AbilityTeleport.cpp
         Source/Entity/Monster/Enum/AbilityType.cpp
+        Source/Entity/Player/player.cpp
+        Source/Entity/Player/player_activity.cpp
+        Source/Entity/Player/Enum/ActivityType.cpp
         Source/Enum/BodyPart.cpp
         Source/Enum/StatType.cpp
         Source/Enum/SenseType.cpp
@@ -89,10 +92,8 @@ ADD_EXECUTABLE(Cataclysm
         Source/window.cpp
         Source/damage_set.cpp
         Source/item.cpp
-        Source/player_activity.cpp
         Source/dice.cpp
         Source/item_type.cpp
-        Source/player.cpp
         Source/worldmap_generate.cpp
         Source/entity_ai.cpp
         Source/keybind.cpp

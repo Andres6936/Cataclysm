@@ -2,20 +2,8 @@
 #define _PLAYER_activity_H_
 
 #include <string>
-#include <vector>
 
-enum Player_activity_type
-{
-	PLAYER_ACTIVITY_NULL,
-	PLAYER_ACTIVITY_WAIT,
-	PLAYER_ACTIVITY_RELOAD,
-	PLAYER_ACTIVITY_READ,
-	PLAYER_ACTIVITY_MAX
-};
-
-std::string get_activity_name(Player_activity_type type);
-
-std::string get_activity_participle(Player_activity_type type);
+#include <Cataclysm/Entity/Player/Enum/ActivityType.hpp>
 
 struct Player_activity
 {

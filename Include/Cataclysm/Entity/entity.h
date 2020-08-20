@@ -6,6 +6,7 @@
 #include <Cataclysm/map.h>
 #include <Cataclysm/item.h>
 #include <Cataclysm/glyph.h>
+#include <Cataclysm/trait.h>
 #include <Cataclysm/mission.h>
 #include <Cataclysm/geometry.h>
 #include <Cataclysm/Attack/attack.h>
@@ -13,9 +14,9 @@
 #include "Cataclysm/Entity/Stats.hpp"
 #include "Cataclysm/Entity/Plan.hpp"
 #include <Cataclysm/Enum/BodyPart.hpp>
-#include <Cataclysm/player_activity.h>
 #include <Cataclysm/Enum/SenseType.hpp>
-#include <Cataclysm/trait.h>
+#include <Cataclysm/Entity/Player/player_activity.h>
+#include <Cataclysm/Entity/Player/Enum/ActivityType.hpp>
 
 class Entity
 {

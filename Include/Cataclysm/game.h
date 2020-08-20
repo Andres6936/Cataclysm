@@ -2,7 +2,7 @@
 #define _GAME_H_
 
 #include <Cataclysm/Entity/Pool.hpp>
-#include "Cataclysm/player.h"
+#include "Cataclysm/Entity/Player/player.h"
 
 // Identical messages within MESSAGE_GAP turns of each other are combined
 #define MESSAGE_GAP 3

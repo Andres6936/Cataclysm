@@ -1,14 +1,7 @@
-#include "Cataclysm/player_activity.h"
+// Joan Andrés (@Andres6936) Github.
 
-std::string Player_activity::get_name()
-{
-	return get_activity_name(type);
-}
+#include "Cataclysm/Entity/Player/Enum/ActivityType.hpp"
 
-std::string Player_activity::get_participle()
-{
-	return get_activity_participle(type);
-}
 
 std::string get_activity_name(Player_activity_type type)
 {
@@ -51,3 +44,5 @@ std::string get_activity_participle(Player_activity_type type)
 	}
 	return "BUG - Escaped switch (get_activity_participle())";
 }
+
+
