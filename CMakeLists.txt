@@ -40,9 +40,10 @@ ADD_EXECUTABLE(Cataclysm
         Source/Entity/entity.cpp
         Source/Entity/profession.cpp
         Source/Entity/Monster/Type.cpp
-        Source/Entity/Monster/Genus.cpp
         Source/Entity/Monster/Size.cpp
+        Source/Entity/Monster/Genus.cpp
         Source/Entity/Monster/Ability.cpp
+        Source/Entity/Monster/monster.cpp
         Source/Entity/Monster/AbilityFields.cpp
         Source/Entity/Monster/AbilitySignal.cpp
         Source/Entity/Monster/AbilityStatus.cpp
@@ -76,7 +77,6 @@ ADD_EXECUTABLE(Cataclysm
         Source/files.cpp
         Source/catacurse.cpp
         Source/game.cpp
-        Source/monster.cpp
         Source/time.cpp
         Source/color.cpp
         Source/geometry.cpp

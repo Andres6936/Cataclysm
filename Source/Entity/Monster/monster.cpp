@@ -1,4 +1,4 @@
-#include "Cataclysm/monster.h"
+#include "Cataclysm/Entity/Monster/monster.h"
 #include "Cataclysm/globals.h"
 
 Monster::Monster()
