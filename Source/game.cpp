@@ -3,6 +3,7 @@
 #include "Cataclysm/globals.h"
 #include "Cataclysm/files.h"
 #include "Cataclysm/help.h"
+#include <Cataclysm/monster.h>
 
 #include <stdarg.h>
 #include <math.h>

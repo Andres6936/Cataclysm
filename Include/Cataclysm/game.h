@@ -1,14 +1,8 @@
 #ifndef _GAME_H_
 #define _GAME_H_
 
-#include "map.h"
-#include "cuss.h"
-#include "monster.h"
-#include "player.h"
-#include "keybind.h"
-#include "pathfind.h"
-#include "time.h"
-#include "sound.h"
+#include <Cataclysm/Entity/Pool.hpp>
+#include "Cataclysm/player.h"
 
 // Identical messages within MESSAGE_GAP turns of each other are combined
 #define MESSAGE_GAP 3

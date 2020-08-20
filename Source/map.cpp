@@ -1,10 +1,7 @@
 #include "Cataclysm/field.h"
 #include "Cataclysm/map.h"
-#include "Cataclysm/rng.h"
 #include "Cataclysm/globals.h"
 #include "Cataclysm/monster.h"
-
-#include "Cataclysm/entity.h"
 #include "Cataclysm/files.h"    // For SAVE_DIR
 
 Furniture::Furniture()

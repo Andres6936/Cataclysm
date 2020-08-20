@@ -1,14 +1,16 @@
 #ifndef _PLAYER_H_
 #define _PLAYER_H_
 
-#include "entity.h"
 #include "map.h"
 #include "enum.h"
 #include "player_activity.h"
 #include "profession.h"
 #include "mission.h"
+
 #include <string>
 #include <map>
+
+#include "Cataclysm/Entity/entity.h"
 
 class Player : public Entity
 {

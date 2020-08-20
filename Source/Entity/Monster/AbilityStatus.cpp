@@ -2,7 +2,7 @@
 #include <Cataclysm/stringfunc.h>
 #include <Cataclysm/globals.h>
 #include <Cataclysm/window.h>
-#include <Cataclysm/entity.h>
+#include <Cataclysm/monster.h>
 
 Monster_ability_status::Monster_ability_status()
 {

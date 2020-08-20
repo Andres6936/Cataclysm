@@ -1,6 +1,6 @@
 // Joan Andrés (@Andres6936) Github.
 
-#include <sstream>
+#include <Cataclysm/monster.h>
 #include <Cataclysm/globals.h>
 #include "Cataclysm/Entity/Monster/AbilityTerrain.hpp"
 

@@ -1,13 +1,7 @@
 #include "Cataclysm/item.h"
 #include "Cataclysm/item_type.h"
-#include "Cataclysm/game.h"
 #include "Cataclysm/globals.h"
-#include "Cataclysm/cuss.h"
-#include "Cataclysm/entity.h"
-
 #include "Cataclysm/files.h"    // For CUSS_DIR
-#include "Cataclysm/rng.h"
-#include <sstream>
 
 Item::Item(Item_type* T)
 {

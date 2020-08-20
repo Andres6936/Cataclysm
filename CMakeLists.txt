@@ -34,6 +34,10 @@ ADD_EXECUTABLE(Cataclysm
         Source/Attack/Verbs.cpp
         Source/Attack/attack.cpp
         Source/Attack/Ranged.cpp
+        Source/Entity/Plan.cpp
+        Source/Entity/Pool.cpp
+        Source/Entity/Stats.cpp
+        Source/Entity/entity.cpp
         Source/Entity/Monster/Type.cpp
         Source/Entity/Monster/Genus.cpp
         Source/Entity/Monster/Size.cpp
@@ -93,7 +97,6 @@ ADD_EXECUTABLE(Cataclysm
         Source/entity_ai.cpp
         Source/keybind.cpp
         Source/profession.cpp
-        Source/entity.cpp
         Source/main.cpp
         Source/rng.cpp
         Source/enum.cpp

@@ -1,5 +1,5 @@
 #include <Cataclysm/item.h>
-#include <Cataclysm/entity.h>
+#include <Cataclysm/Entity/Stats.hpp>
 #include "Cataclysm/Attack/attack.h"
 #include "Cataclysm/Attack/Verbs.hpp"
 #include "Cataclysm/stringfunc.h"

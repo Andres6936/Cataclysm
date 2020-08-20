@@ -1,4 +1,3 @@
-#include "Cataclysm/entity.h"
 #include "Cataclysm/files.h"  // For CUSS_DIR
 #include "Cataclysm/window.h"
 #include "Cataclysm/globals.h"

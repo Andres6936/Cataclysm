@@ -3,6 +3,7 @@
 #include <Cataclysm/window.h>
 #include <Cataclysm/globals.h>
 #include <Cataclysm/geometry.h>
+#include <Cataclysm/monster.h>
 #include "Cataclysm/Entity/Monster/AbilityTeleport.hpp"
 
 Monster_ability_teleport::Monster_ability_teleport()

@@ -1,8 +1,8 @@
 // Joan Andrés (@Andres6936) Github.
 
-#include <sstream>
 #include <Cataclysm/globals.h>
 #include <Cataclysm/geometry.h>
+#include <Cataclysm/monster.h>
 #include "Cataclysm/Entity/Monster/AbilityFields.hpp"
 
 Monster_ability_fields::Monster_ability_fields()

@@ -1,86 +1,21 @@
 #ifndef _ENTITY_H_
 #define _ENTITY_H_
 
-#include "mission.h"
-#include "trait.h"
-#include "map.h"
-#include "player_activity.h"
-#include "item.h"
-
 #include <string>
-#include <map>
-#include <list>
 
-class Map;
-
-struct Stats
-{
-	Stats();
-
-	Stats(int S, int D, int I, int P) :
-			strength(S), dexterity(D), intelligence(I), perception(P)
-	{
-	}
-
-	~Stats();
-
-	void reset(); // Set SDIP to maxes
-
-	Stats& operator=(const Stats& rhs);
-
-	Stats& operator+=(const Stats& rhs);
-
-	Stats& operator-=(const Stats& rhs);
-
-	int strength, dexterity, intelligence, perception;
-	int strength_max, dexterity_max, intelligence_max, perception_max;
-};
-
-inline Stats operator+(Stats lhs, const Stats& rhs)
-{
-	lhs += rhs;
-	return lhs;
-}
-
-inline Stats operator-(Stats lhs, const Stats& rhs)
-{
-	lhs -= rhs;
-	return lhs;
-}
-
-struct Entity_plan
-{
-	Entity_plan();
-
-	~Entity_plan();
-
-	void set_target(AI_goal goal, Tripoint target, int att = -1);
-
-	void set_target(AI_goal goal, Entity* target, int att = -1);
-
-	void generate_path_to_target(Entity_AI AI, Tripoint origin);
-
-	void update();  // Decrement attention, reset target_entity if <= 0
-
-	bool is_active();
-
-	Tripoint get_target();
-
-	Tripoint next_step();
-
-	void erase_step();
-
-	void clear();
-
-	void shift(int shiftx, int shifty);
-
-	Tripoint target_point;
-	Entity* target_entity;
-	Pathfinder pf;
-	Path path;
-	int attention;
-	AI_goal goal_type;
-};
+#include <Cataclysm/map.h>
+#include <Cataclysm/item.h>
+#include <Cataclysm/glyph.h>
+#include <Cataclysm/mission.h>
+#include <Cataclysm/geometry.h>
+#include <Cataclysm/Attack/attack.h>
+#include <Cataclysm/status_effect.h>
+#include "Cataclysm/Entity/Stats.hpp"
+#include "Cataclysm/Entity/Plan.hpp"
+#include <Cataclysm/Enum/BodyPart.hpp>
+#include <Cataclysm/player_activity.h>
+#include <Cataclysm/Enum/SenseType.hpp>
+#include <Cataclysm/trait.h>
 
 class Entity
 {
@@ -477,45 +412,5 @@ private:
 	int morale;
 };
 
-/* For now, Entity_pool does NOT include a map which uses location as a key.
- * Originally I thought this would speed up Game::entity_at(int x, int y), but
- * in order for this map to be useful, we'd have to update it every turn, which
- * means it'd probably be more trouble than it's worth, except when the map is
- * being called several times per turn.  We'd also have to update it after
- * every monster moves, which is a lot.
- * This means that monster_at() has to iterate over all monsters, which is
- * potentially slow, but what can you do.
- */
-
-class Entity_pool
-{
-public:
-	Entity_pool();
-
-	~Entity_pool();
-
-	void add_entity(Entity* ent); // Assigns a UID
-	void push_back(Entity* ent); // Same, except don't re-assign UID
-	void clear();
-
-	std::list<Entity*>::iterator erase(std::list<Entity*>::iterator it);
-
-	bool empty();
-
-	Entity* lookup_uid(int uid);
-
-	Entity* entity_at(int posx, int posy);
-
-	Entity* entity_at(Tripoint pos);
-
-	Entity* entity_at(int posx, int posy, int posz);
-
-	Entity* closest_seen_by(Entity* observer, int range = -1);
-
-	std::list<Entity*> instances;
-private:
-	std::map<int, Entity*> uid_map;
-	int next_uid;
-};
 
 #endif

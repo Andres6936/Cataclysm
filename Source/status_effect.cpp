@@ -1,8 +1,8 @@
 #include "Cataclysm/status_effect.h"
 #include "Cataclysm/stringfunc.h" // For no_caps and trim
 #include "Cataclysm/window.h" // For debugmsg
-#include "Cataclysm/entity.h" // For Stats
 #include <sstream>
+#include <Cataclysm/Entity/Stats.hpp>
 
 Status_effect::Status_effect()
 {
