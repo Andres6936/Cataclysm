@@ -1,5 +1,4 @@
 #include "Cataclysm/field.h"
-#include "Cataclysm/window.h"     // For debugmsg
 #include "Cataclysm/stringfunc.h" // For no_caps and trim
 #include "Cataclysm/globals.h"    // For TERRAIN and FIELDS
 

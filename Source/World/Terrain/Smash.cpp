@@ -1,8 +1,8 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include "Cataclysm/World/Terrain/Smash.hpp"
+#include <Cataclysm/Screen/Debugger.hpp>
 #include "Cataclysm/stringfunc.h"
-#include "Cataclysm/window.h"
 
 Terrain_smash::Terrain_smash()
 {

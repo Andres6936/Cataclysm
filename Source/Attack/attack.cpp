@@ -1,9 +1,9 @@
-#include <Cataclysm/item.h>
+#include "Cataclysm/Screen/Debugger.hpp"
 #include <Cataclysm/Entity/Stats.hpp>
 #include "Cataclysm/Attack/attack.h"
 #include "Cataclysm/Attack/Verbs.hpp"
 #include "Cataclysm/stringfunc.h"
-#include "Cataclysm/window.h"
+#include <Cataclysm/item.h>
 #include "Cataclysm/rng.h"
 
 Attack::Attack()

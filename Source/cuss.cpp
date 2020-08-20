@@ -1,5 +1,6 @@
 #include "Cataclysm/cuss.h"
 #include "Cataclysm/stringfunc.h"
+#include <Cataclysm/Screen/Debugger.hpp>
 #include <sstream>
 #include <fstream>
 

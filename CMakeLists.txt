@@ -60,6 +60,7 @@ ADD_EXECUTABLE(Cataclysm
         Source/Enum/SenseType.cpp
         Source/Enum/DamageType.cpp
         Source/Enum/MathOperator.cpp
+        Source/Screen/Debugger.cpp
         Source/World/Tile.cpp
         Source/World/worldmap.cpp
         Source/World/world_terrain.cpp

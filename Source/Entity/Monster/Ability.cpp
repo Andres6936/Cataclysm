@@ -1,8 +1,8 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include "Cataclysm/Entity/Monster/Ability.hpp"
+#include "Cataclysm/Screen/Debugger.hpp"
 #include "Cataclysm/stringfunc.h"
-#include "Cataclysm/window.h"
 
 Monster_ability::Monster_ability()
 {

@@ -3,7 +3,7 @@
 #include <sstream>
 
 #include "Cataclysm/Attack/Verbs.hpp"
-#include "Cataclysm/window.h" // For debugmsg
+#include <Cataclysm/Screen/Debugger.hpp>
 
 bool load_verbs(std::istream& data, std::string& verb_second,
 		std::string& verb_third, std::string owner_name)

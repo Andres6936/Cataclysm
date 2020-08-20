@@ -1,6 +1,6 @@
 #include "Cataclysm/glyph.h"
 #include "Cataclysm/options.h"
-#include "Cataclysm/window.h"
+#include <Cataclysm/Screen/Debugger.hpp>
 #include <sstream>
 
 std::string glyph::save_data()

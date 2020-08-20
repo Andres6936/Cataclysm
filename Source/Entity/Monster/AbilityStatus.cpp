@@ -1,6 +1,6 @@
 #include <Cataclysm/stringfunc.h>
 #include <Cataclysm/globals.h>
-#include <Cataclysm/window.h>
+#include "Cataclysm/Screen/Debugger.hpp"
 #include <Cataclysm/Entity/Monster/monster.h>
 #include "Cataclysm/Entity/Monster/AbilityStatus.h"
 

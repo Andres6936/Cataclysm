@@ -1,9 +1,5 @@
 #include "Cataclysm/files.h"  // For CUSS_DIR
-#include "Cataclysm/window.h"
 #include "Cataclysm/globals.h"
-
-#include <sstream>
-#include <stdlib.h> // For abs()
 
 enum New_char_screen
 {

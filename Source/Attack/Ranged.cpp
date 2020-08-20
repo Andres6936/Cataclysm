@@ -3,7 +3,7 @@
 #include "Cataclysm/Attack/Ranged.hpp"
 #include "Cataclysm/Attack/Verbs.hpp"
 #include "Cataclysm/stringfunc.h" // For no_caps
-#include "Cataclysm/window.h" // For debugmsg
+#include <Cataclysm/Screen/Debugger.hpp>
 #include "Cataclysm/rng.h" // For rng
 
 Ranged_attack::Ranged_attack()

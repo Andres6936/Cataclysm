@@ -1,6 +1,6 @@
 #include "Cataclysm/entity_ai.h"
 #include "Cataclysm/stringfunc.h"
-#include "Cataclysm/window.h"
+#include <Cataclysm/Screen/Debugger.hpp>
 
 Entity_AI::Entity_AI()
 {

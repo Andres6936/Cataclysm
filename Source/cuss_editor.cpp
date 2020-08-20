@@ -5,6 +5,7 @@
 #include "Cataclysm/cuss.h"
 #include "Cataclysm/files.h"
 #include "Cataclysm/stringfunc.h"
+#include <Cataclysm/Screen/Debugger.hpp>
 
 using namespace cuss;
 

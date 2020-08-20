@@ -1,5 +1,4 @@
 #include "Cataclysm/help.h"
-#include "Cataclysm/window.h"
 #include "Cataclysm/cuss.h"
 #include "Cataclysm/files.h"
 #include "Cataclysm/stringfunc.h"

@@ -1,6 +1,6 @@
 #include "Cataclysm/Entity/profession.h"
 #include "Cataclysm/stringfunc.h"
-#include "Cataclysm/window.h" // For debugmsg()
+#include <Cataclysm/Screen/Debugger.hpp>
 
 
 Profession::Profession()

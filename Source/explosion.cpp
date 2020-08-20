@@ -1,7 +1,5 @@
 #include "Cataclysm/explosion.h"
-#include "Cataclysm/window.h" // For debugmsg
 #include "Cataclysm/stringfunc.h" // For no_caps() and trim()
-#include "Cataclysm/damage_set.h" // For damaging terrain
 #include "Cataclysm/globals.h"
 
 Explosion::Explosion()

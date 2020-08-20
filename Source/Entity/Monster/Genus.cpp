@@ -1,8 +1,8 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include "Cataclysm/Entity/Monster/Genus.hpp"
+#include <Cataclysm/Screen/Debugger.hpp>
 #include "Cataclysm/stringfunc.h"
-#include "Cataclysm/window.h"
 #include "Cataclysm/rng.h"
 
 Monster_genus::Monster_genus()

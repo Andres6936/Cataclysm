@@ -1,7 +1,6 @@
 #include "Cataclysm/item_type.h"
 #include "Cataclysm/stringfunc.h"
-#include "Cataclysm/window.h"
-#include <sstream>
+#include <Cataclysm/Screen/Debugger.hpp>
 
 Item_type::Item_type()
 {

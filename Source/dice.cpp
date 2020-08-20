@@ -1,7 +1,7 @@
+#include <sstream>
 #include "Cataclysm/dice.h"
 #include "Cataclysm/rng.h"
-#include "Cataclysm/window.h"
-#include <sstream>
+#include <Cataclysm/Screen/Debugger.hpp>
 
 Dice::Dice(int N, int S, int B, bool G)
 {

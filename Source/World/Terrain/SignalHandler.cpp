@@ -1,8 +1,8 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include "Cataclysm/World/Terrain/SignalHandler.hpp"
+#include <Cataclysm/Screen/Debugger.hpp>
 #include "Cataclysm/stringfunc.h"
-#include "Cataclysm/window.h"
 
 Terrain_signal_handler::Terrain_signal_handler()
 {

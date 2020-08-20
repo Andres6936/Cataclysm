@@ -1,11 +1,6 @@
 #include "Cataclysm/mapgen.h"
-#include "Cataclysm/window.h"
 #include "Cataclysm/globals.h"
 #include "Cataclysm/stringfunc.h"
-#include "Cataclysm/rng.h"
-#include <stdlib.h>
-#include <sstream>
-#include <fstream>
 
 Variable_terrain::Variable_terrain()
 {

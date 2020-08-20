@@ -1,7 +1,6 @@
 #ifndef _DATAPOOL_H_
 #define _DATAPOOL_H_
 
-#include "window.h"
 #include "item_type.h"
 #include "stringfunc.h"
 #include "rng.h"
@@ -10,6 +9,8 @@
 #include <list>
 #include <map>
 #include <fstream>
+
+#include <Cataclysm/Screen/Debugger.hpp>
 
 /* Important notes:
  * All classes to be used with Data_pool must have the following functions:

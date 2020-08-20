@@ -1,4 +1,4 @@
-#include "Cataclysm/window.h"
+
 #include "Cataclysm/stringfunc.h"
 #include "Cataclysm/globals.h"
 #include "Cataclysm/files.h"
@@ -7,7 +7,6 @@
 
 #include <stdarg.h>
 #include <math.h>
-#include <sstream>
 
 std::vector<std::string> get_pickup_strings(std::vector<Item>* items,
 		std::vector<bool>* picking_up);

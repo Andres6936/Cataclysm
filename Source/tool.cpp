@@ -1,6 +1,5 @@
 #include "Cataclysm/tool.h"
 #include "Cataclysm/stringfunc.h" // For trim() and no_caps()
-#include "Cataclysm/window.h" // For debugmsg()
 #include "Cataclysm/globals.h"
 
 Tool_special_explosion::Tool_special_explosion()

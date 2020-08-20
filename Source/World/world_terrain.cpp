@@ -3,7 +3,6 @@
 #include "Cataclysm/World/world_terrain.h"
 #include "Cataclysm/stringfunc.h"
 #include "Cataclysm/globals.h"
-#include "Cataclysm/window.h"
 
 World_terrain::World_terrain()
 {

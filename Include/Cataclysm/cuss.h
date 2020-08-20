@@ -2,8 +2,6 @@
 #define _CUSS_H_
 
 #include <string>
-#include <vector>
-#include <istream>
 #include <map>
 #include "window.h"
 #include "geometry.h"

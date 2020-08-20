@@ -1,6 +1,6 @@
 #include "Cataclysm/skill.h"
 #include "Cataclysm/stringfunc.h"
-#include "Cataclysm/window.h" // For debugmsg()
+#include <Cataclysm/Screen/Debugger.hpp>
 
 #include <string>
 

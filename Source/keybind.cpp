@@ -1,10 +1,7 @@
 #include "Cataclysm/keybind.h"
 #include "Cataclysm/stringfunc.h"
-#include "Cataclysm/window.h" // For debugmsg() and key_name()
 #include "Cataclysm/globals.h"
-#include <fstream>
 #include <vector>
-#include <sstream>
 
 bool Keybinding_pool::bind_key(long key, Interface_action action)
 {
