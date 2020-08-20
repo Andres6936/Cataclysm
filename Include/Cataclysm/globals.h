@@ -6,9 +6,10 @@
 #include "item_type.h"
 #include "keybind.h"
 #include "biome.h"
-#include "profession.h"
 #include "mission.h"
 #include "game.h"
+
+#include "Cataclysm/Entity/profession.h"
 
 class Submap_pool;
 

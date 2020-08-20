@@ -2,7 +2,7 @@
 
 #include <Cataclysm/globals.h>
 #include <Cataclysm/geometry.h>
-#include <Cataclysm/monster.h>
+#include <Cataclysm/Entity/Monster/monster.h>
 #include "Cataclysm/Entity/Monster/AbilityFields.hpp"
 
 Monster_ability_fields::Monster_ability_fields()

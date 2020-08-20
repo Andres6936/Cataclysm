@@ -1,7 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
-#include <Cataclysm/monster.h>
 #include <Cataclysm/globals.h>
+#include <Cataclysm/Entity/Monster/monster.h>
 #include "Cataclysm/Entity/Monster/AbilityTerrain.hpp"
 
 Monster_ability_terrain::Monster_ability_terrain()

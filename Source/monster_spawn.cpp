@@ -1,5 +1,5 @@
 #include "Cataclysm/monster_spawn.h"
-#include "Cataclysm/monster.h"
+#include <Cataclysm/Entity/Monster/monster.h>
 
 Monster_spawn::Monster_spawn()
 {

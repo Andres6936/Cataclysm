@@ -1,8 +1,8 @@
 // Joan Andrés (@Andres6936) Github.
 
-#include <Cataclysm/monster.h>
 #include <Cataclysm/globals.h>
 #include <Cataclysm/geometry.h>
+#include <Cataclysm/Entity/Monster/monster.h>
 #include "Cataclysm/Entity/Monster/AbilitySignal.hpp"
 
 Monster_ability_signal::Monster_ability_signal()

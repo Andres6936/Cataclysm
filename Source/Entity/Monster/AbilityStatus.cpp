@@ -1,8 +1,8 @@
-#include "Cataclysm/Entity/Monster/AbilityStatus.h"
 #include <Cataclysm/stringfunc.h>
 #include <Cataclysm/globals.h>
 #include <Cataclysm/window.h>
-#include <Cataclysm/monster.h>
+#include <Cataclysm/Entity/Monster/monster.h>
+#include "Cataclysm/Entity/Monster/AbilityStatus.h"
 
 Monster_ability_status::Monster_ability_status()
 {

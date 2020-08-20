@@ -2,10 +2,9 @@
 #define _PLAYER_H_
 
 #include <string>
-#include <map>
 
 #include "Cataclysm/Entity/entity.h"
-#include "Cataclysm/profession.h"
+#include "Cataclysm/Entity/profession.h"
 
 class Player : public Entity
 {
