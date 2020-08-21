@@ -66,9 +66,22 @@ ADD_EXECUTABLE(Cataclysm
         Source/Entity/Player/Enum/ActivityType.cpp
         Source/Enum/BodyPart.cpp
         Source/Enum/StatType.cpp
+        Source/Enum/ItemFlag.cpp
         Source/Enum/SenseType.cpp
         Source/Enum/DamageType.cpp
         Source/Enum/MathOperator.cpp
+        Source/Item/Enum/Class.cpp
+        Source/Item/Enum/BookGenre.cpp
+        Source/Item/item.cpp
+        Source/Item/TypeAmmo.cpp
+        Source/Item/TypeBook.cpp
+        Source/Item/TypeFood.cpp
+        Source/Item/TypeTool.cpp
+        Source/Item/item_type.cpp
+        Source/Item/TypeCorpse.cpp
+        Source/Item/TypeClothing.cpp
+        Source/Item/TypeLauncher.cpp
+        Source/Item/TypeContainer.cpp
         Source/Screen/Debugger.cpp
         Source/World/Tile.cpp
         Source/World/worldmap.cpp
@@ -101,9 +114,7 @@ ADD_EXECUTABLE(Cataclysm
         Source/pathfind.cpp
         Source/window.cpp
         Source/damage_set.cpp
-        Source/item.cpp
         Source/dice.cpp
-        Source/item_type.cpp
         Source/worldmap_generate.cpp
         Source/entity_ai.cpp
         Source/keybind.cpp

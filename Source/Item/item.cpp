@@ -1,5 +1,4 @@
-#include "Cataclysm/item.h"
-#include "Cataclysm/item_type.h"
+#include "Cataclysm/Item/item.h"
 #include "Cataclysm/globals.h"
 #include "Cataclysm/files.h"    // For CUSS_DIR
 

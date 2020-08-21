@@ -3,21 +3,14 @@
 
 #include <string>
 #include <vector>
-#include <istream>
 
-#include "Cataclysm/item_type.h"
 #include <Cataclysm/Attack/Ranged.hpp>
+#include <Cataclysm/item_type.h>
+#include <Cataclysm/Enum/ItemAction.hpp>
+#include <Cataclysm/Item/Enum/ActvityType.hpp>
 #include "Cataclysm/Entity/Monster/Size.h"
 
 class Monster_type;
-
-enum Item_active_type
-{
-	ITEM_ACTIVE_OFF = 0,  // Not active
-	ITEM_ACTIVE_POWERED,  // Powered on, like a flashlight
-	ITEM_ACTIVE_TIMER,    // Counting down, like a grenade
-	ITEM_ACTIVE_MAX
-};
 
 class Item
 {

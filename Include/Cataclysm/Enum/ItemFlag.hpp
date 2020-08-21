@@ -3,6 +3,8 @@
 #ifndef CATACLYSM_ITEMFLAG_HPP
 #define CATACLYSM_ITEMFLAG_HPP
 
+#include <string>
+
 enum Item_flag
 {
 	ITEM_FLAG_NULL = 0,
@@ -16,5 +18,9 @@ enum Item_flag
 	ITEM_FLAG_RELOAD_STR, // "reload_strength" - Reduce reload_ap by Str * 30
 	ITEM_FLAG_MAX
 };
+
+Item_flag lookup_item_flag(std::string name);
+
+std::string item_flag_name(Item_flag flag);
 
 #endif //CATACLYSM_ITEMFLAG_HPP
