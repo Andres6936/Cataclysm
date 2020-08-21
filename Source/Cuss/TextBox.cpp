@@ -34,6 +34,47 @@ void print_scrollbar(Window* win, int posx, int posy, int length, int offset,
 	}
 }
 
+void ele_textbox::draw(Doryen::Console& _console)
+{
+	std::vector<std::string> broken = break_into_lines(*text, sizex);
+
+	// TODO: Clear Area
+	//win->clear_area(posx, posy, posx + sizex - 1, posy + sizey - 1);
+
+	for (int i = 0; i + offset <= broken.size() && i < sizey; i++)
+	{
+		int ypos, index;
+		if (v_align == ALIGN_BOTTOM)
+		{
+			ypos = posy + sizey - 1 - i;
+			index = broken.size() - 1 - i - offset;
+		}
+		else
+		{ // Default to top-aligned
+			ypos = posy + i;
+			index = i + offset;
+		}
+		if (index >= 0 && index < broken.size())
+		{
+			if (align == ALIGN_RIGHT)
+			{
+				_console.write(posx, ypos, broken[index]);
+			}
+			else if (align == ALIGN_CENTER)
+			{
+				_console.write(posx, ypos, broken[index]);
+			}
+			else
+			{
+				_console.write(posx, ypos, broken[index]);
+			}
+		}
+	}
+
+//	if (selectable)
+//		print_scrollbar(win, posx + sizex - 1, posy, sizey, offset, broken.size(),selected);
+}
+
 // *** TEXTBOX ELEMENT ***
 void ele_textbox::draw(Window* win)
 {

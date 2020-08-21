@@ -9,6 +9,25 @@ using namespace cuss;
 
 #define SELECTCOLOR c_blue
 
+void ele_textentry::draw(Doryen::Console& _console)
+{
+	nc_color hilite = (selected ? SELECTCOLOR : bg);
+// Ensure we see the end of the word--and a blank space
+	int start = (selected ? text->size() + 1 - sizex : 0);
+	if (start < 0)
+		start = 0;
+	int length = (selected ? sizex - 1 : sizex);
+
+	std::string print = text->substr(start, length);
+
+	_console.write(posx, posy, print);
+
+	for (int x = posx + print.length(); x < posx + sizex; x++)
+	{
+		_console.writeChar(x, posy, '-');
+	}
+}
+
 // *** TEXT ENTRY ELEMENT ***
 void ele_textentry::draw(Window* win)
 {
