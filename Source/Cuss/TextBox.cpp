@@ -83,9 +83,24 @@ void ele_textbox::draw(Doryen::Console& _console)
 
 				std::vector<std::string> segments;
 				std::vector<long> color_pairs;
-				Utility::parseColorTags(broken[index], segments, color_pairs, fg, bg);
 
-				_console.write(posx, ypos, tagLess);
+				const auto colors = Utility::parseColorTags(broken[index], segments, color_pairs, fg, bg);
+
+				std::uint32_t positionX = posx;
+				std::uint32_t indexActualString = 0;
+
+				for (const auto& [foreground, background] : colors)
+				{
+					_console.setDefaultForeground(foreground);
+					_console.setDefaultBackground(background);
+
+					_console.write(positionX, ypos, segments[indexActualString]);
+
+					// Move the position of x for avoid overlap
+					positionX += segments[indexActualString].size();
+					// Move to next string to print
+					indexActualString += 1;
+				}
 			}
 		}
 	}
