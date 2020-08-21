@@ -1,6 +1,13 @@
 #ifndef _ITEM_TYPE_H_
 #define _ITEM_TYPE_H_
 
+#include <string>
+#include <Cataclysm/Enum/DamageType.hpp>
+#include <Cataclysm/glyph.h>
+#include <Cataclysm/dice.h>
+#include <Cataclysm/Item/Enum/Class.hpp>
+#include <Cataclysm/Enum/ItemAction.hpp>
+#include <Cataclysm/Enum/ItemFlag.hpp>
 
 class Item_type
 {

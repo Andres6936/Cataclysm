@@ -3,6 +3,7 @@
 #ifndef CATACLYSM_TYPECONTAINER_HPP
 #define CATACLYSM_TYPECONTAINER_HPP
 
+#include "Cataclysm/Item/item_type.h"
 
 class Item_type_container : public Item_type
 {

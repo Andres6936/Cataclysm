@@ -3,6 +3,8 @@
 #ifndef CATACLYSM_TYPEFOOD_HPP
 #define CATACLYSM_TYPEFOOD_HPP
 
+#include <Cataclysm/status_effect.h>
+#include "Cataclysm/Item/item_type.h"
 
 class Item_type_food : public Item_type
 {

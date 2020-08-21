@@ -5,10 +5,11 @@
 #include <vector>
 
 #include <Cataclysm/Attack/Ranged.hpp>
-#include <Cataclysm/item_type.h>
+#include <Cataclysm/Item/item_type.h>
 #include <Cataclysm/Enum/ItemAction.hpp>
+#include <Cataclysm/Item/Enum/Class.hpp>
+#include <Cataclysm/Entity/Stats.hpp>
 #include <Cataclysm/Item/Enum/ActvityType.hpp>
-#include "Cataclysm/Entity/Monster/Size.h"
 
 class Monster_type;
 

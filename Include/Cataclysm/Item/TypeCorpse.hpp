@@ -3,6 +3,8 @@
 #ifndef CATACLYSM_TYPECORPSE_HPP
 #define CATACLYSM_TYPECORPSE_HPP
 
+#include "Cataclysm/Item/item_type.h"
+
 class Item_type_corpse : public Item_type
 {
 public:

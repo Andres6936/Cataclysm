@@ -3,6 +3,8 @@
 #ifndef CATACLYSM_TYPECLOTHING_HPP
 #define CATACLYSM_TYPECLOTHING_HPP
 
+#include <Cataclysm/Enum/BodyPart.hpp>
+#include "Cataclysm/Item/item_type.h"
 
 class Item_type_clothing : public Item_type
 {

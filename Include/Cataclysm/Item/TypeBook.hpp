@@ -3,6 +3,9 @@
 #ifndef CATACLYSM_TYPEBOOK_HPP
 #define CATACLYSM_TYPEBOOK_HPP
 
+#include <Cataclysm/skill.h>
+#include <Cataclysm/Item/Enum/BookGenre.hpp>
+#include "Cataclysm/Item/item_type.h"
 
 class Item_type_book : public Item_type
 {

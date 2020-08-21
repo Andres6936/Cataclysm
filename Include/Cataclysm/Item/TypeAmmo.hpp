@@ -4,6 +4,8 @@
 #define CATACLYSM_TYPEAMMO_HPP
 
 
+#include "Cataclysm/Item/item_type.h"
+
 class Item_type_ammo : public Item_type
 {
 public:
