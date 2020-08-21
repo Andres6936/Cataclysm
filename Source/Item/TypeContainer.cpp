@@ -2,6 +2,7 @@
 
 #include <Cataclysm/stringfunc.h>
 #include <Cataclysm/Screen/Debugger.hpp>
+#include <sstream>
 #include "Cataclysm/Item/TypeContainer.hpp"
 
 

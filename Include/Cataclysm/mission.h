@@ -2,9 +2,9 @@
 #define _MISSION_H_
 
 #include "time.h"
-#include "item_type.h"
 #include <string>
 #include <istream>
+#include <Cataclysm/Item/item_type.h>
 
 enum Mission_type
 {

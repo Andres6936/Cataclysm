@@ -2,6 +2,7 @@
 #define _PROFESSION_H_
 
 #include <string>
+#include <Cataclysm/skill.h>
 #include "Cataclysm/mapgen.h"
 
 struct Profession

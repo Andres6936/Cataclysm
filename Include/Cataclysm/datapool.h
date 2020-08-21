@@ -1,7 +1,6 @@
 #ifndef _DATAPOOL_H_
 #define _DATAPOOL_H_
 
-#include "item_type.h"
 #include "stringfunc.h"
 #include "rng.h"
 #include <string>
@@ -11,6 +10,15 @@
 #include <fstream>
 
 #include <Cataclysm/Screen/Debugger.hpp>
+#include <Cataclysm/Item/item_type.h>
+#include <Cataclysm/Item/TypeClothing.hpp>
+#include <Cataclysm/Item/TypeAmmo.hpp>
+#include <Cataclysm/Item/TypeLauncher.hpp>
+#include <Cataclysm/Item/TypeFood.hpp>
+#include <Cataclysm/Item/TypeTool.hpp>
+#include <Cataclysm/Item/TypeBook.hpp>
+#include <Cataclysm/Item/TypeContainer.hpp>
+#include <Cataclysm/Item/TypeCorpse.hpp>
 
 /* Important notes:
  * All classes to be used with Data_pool must have the following functions:

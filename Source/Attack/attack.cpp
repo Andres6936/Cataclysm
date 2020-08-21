@@ -3,7 +3,6 @@
 #include "Cataclysm/Attack/attack.h"
 #include "Cataclysm/Attack/Verbs.hpp"
 #include "Cataclysm/stringfunc.h"
-#include <Cataclysm/item.h>
 #include "Cataclysm/rng.h"
 
 Attack::Attack()

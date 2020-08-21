@@ -4,7 +4,6 @@
 #include <string>
 
 #include <Cataclysm/map.h>
-#include <Cataclysm/item.h>
 #include <Cataclysm/glyph.h>
 #include <Cataclysm/trait.h>
 #include <Cataclysm/mission.h>
@@ -17,6 +16,7 @@
 #include <Cataclysm/Enum/SenseType.hpp>
 #include <Cataclysm/Entity/Player/player_activity.h>
 #include <Cataclysm/Entity/Player/Enum/ActivityType.hpp>
+#include <Cataclysm/tool.h>
 
 class Entity
 {

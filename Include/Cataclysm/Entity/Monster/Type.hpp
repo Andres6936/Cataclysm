@@ -15,6 +15,7 @@
 #include <Cataclysm/Attack/Ranged.hpp>
 #include <Cataclysm/Enum/SenseType.hpp>
 #include <Cataclysm/Entity/Monster/Ability.hpp>
+#include "Size.h"
 
 class Monster_genus;
 

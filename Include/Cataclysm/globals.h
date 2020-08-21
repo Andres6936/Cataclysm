@@ -3,7 +3,6 @@
 
 #include "datapool.h"
 #include "mapgen.h"
-#include "item_type.h"
 #include "keybind.h"
 #include "biome.h"
 #include "mission.h"

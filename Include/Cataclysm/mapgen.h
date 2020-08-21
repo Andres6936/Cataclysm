@@ -6,9 +6,10 @@
 #include <list>
 #include <string>
 
-#include "Cataclysm/item_type.h"
 #include "Cataclysm/var_string.h"
+#include "geometry.h"
 #include <Cataclysm/World/Terrain/terrain.h>
+#include <Cataclysm/Item/item_type.h>
 
 // MAPGEN_SIZE must be a divisor of SUBMAP_SIZE (specified in map.h)!
 // Also, changing MAPGEN_SIZE will break all of the already-written mapgen specs

@@ -3,10 +3,10 @@
 
 #include <string>
 
-#include <Cataclysm/item.h>
 #include <Cataclysm/enum.h>
 #include <Cataclysm/skill.h>
 #include <Cataclysm/damage_set.h>
+#include <Cataclysm/Item/item.h>
 #include "Cataclysm/Attack/Enum/MeleHitType.hpp"
 
 Body_part random_body_part_to_hit();
