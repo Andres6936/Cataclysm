@@ -60,16 +60,31 @@ void ele_textbox::draw(Doryen::Console& _console)
 			if (align == ALIGN_RIGHT)
 			{
 				const std::string tagLess = Utility::stripTags(broken[index]);
+
+				std::vector<std::string> segments;
+				std::vector<long> color_pairs;
+				Utility::parseColorTags(broken[index], segments, color_pairs, fg, bg);
+
 				_console.write(posx, ypos, tagLess);
 			}
 			else if (align == ALIGN_CENTER)
 			{
 				const std::string tagLess = Utility::stripTags(broken[index]);
+
+				std::vector<std::string> segments;
+				std::vector<long> color_pairs;
+				Utility::parseColorTags(broken[index], segments, color_pairs, fg, bg);
+
 				_console.write(posx, ypos, tagLess);
 			}
 			else
 			{
 				const std::string tagLess = Utility::stripTags(broken[index]);
+
+				std::vector<std::string> segments;
+				std::vector<long> color_pairs;
+				Utility::parseColorTags(broken[index], segments, color_pairs, fg, bg);
+
 				_console.write(posx, ypos, tagLess);
 			}
 		}

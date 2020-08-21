@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <Doryen/Doryen.hpp>
+#include <Cataclysm/color.h>
 
 namespace cuss
 {
@@ -16,6 +17,10 @@ namespace cuss
 	public:
 
 		static std::string stripTags(std::string _text);
+
+		static bool parseColorTags(std::string text,
+				std::vector<std::string>& segments,
+				std::vector<long>& color_pairs, nc_color fg, nc_color bg);
 
 	};
 
