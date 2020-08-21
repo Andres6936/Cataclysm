@@ -10,7 +10,7 @@ using namespace cuss;
 #define SELECTCOLOR c_blue
 
 
-void print_scrollbar(Window* win, int posx, int posy, int length, int offset,
+void _print_scrollbar(Window* win, int posx, int posy, int length, int offset,
 		int size, bool selected)
 {
 	nc_color barcol = (selected ? SELECTCOLOR : c_ltgray);
@@ -82,7 +82,7 @@ void ele_list::draw(Window* win)
 	}
 
 	if (selectable)
-		print_scrollbar(win, posx + sizex - 1, posy, sizey, offset, list->size(),
+		_print_scrollbar(win, posx + sizex - 1, posy, sizey, offset, list->size(),
 				selected);
 }
 
