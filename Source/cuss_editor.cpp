@@ -2,10 +2,15 @@
 #include <sstream>
 #include <unistd.h>
 #include <iostream> // For displaying messages to the terminal
-#include "Cataclysm/cuss.h"
 #include "Cataclysm/files.h"
 #include "Cataclysm/stringfunc.h"
 #include <Cataclysm/Screen/Debugger.hpp>
+#include <Cuss/Interface.hpp>
+#include <Cuss/TextEntry.hpp>
+#include <Cuss/Menu.hpp>
+#include <Cuss/TextBox.hpp>
+#include <Cuss/List.hpp>
+#include <Cuss/Drawing.hpp>
 
 using namespace cuss;
 

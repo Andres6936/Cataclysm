@@ -3,6 +3,7 @@
 
 #include <string>
 
+#include <Cuss/Interface.hpp>
 #include "Cataclysm/Entity/entity.h"
 #include "Cataclysm/Entity/profession.h"
 

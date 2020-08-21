@@ -3,12 +3,12 @@
 
 #include <string>
 
-#include <Cataclysm/cuss.h>
 #include <Cataclysm/pathfind.h>
 #include <Cataclysm/biome.h>
 #include "Cataclysm/World/Tile.hpp"
 #include <Cataclysm/World/world_terrain.h>
 #include <Cataclysm/Entity/Monster/monster_spawn.h>
+#include <Cuss/Element.hpp>
 
 #define WORLDMAP_SIZE 150
 #define BONUS_SPACING   8
