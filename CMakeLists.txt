@@ -13,6 +13,7 @@ CPMAddPackage(
 
 ADD_LIBRARY(Cuss
         Source/Cuss/Enum/ActionID.cpp
+        Source/Cuss/String/Utility.cpp
         Source/Cuss/List.cpp
         Source/Cuss/Menu.cpp
         Source/Cuss/Number.cpp

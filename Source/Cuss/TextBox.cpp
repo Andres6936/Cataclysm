@@ -4,6 +4,7 @@
 #include "Cuss/TextBox.hpp"
 #include <Cataclysm/Screen/Debugger.hpp>
 #include <Cataclysm/stringfunc.h>
+#include <Cuss/String/Utility.hpp>
 
 using namespace cuss;
 
@@ -58,15 +59,18 @@ void ele_textbox::draw(Doryen::Console& _console)
 		{
 			if (align == ALIGN_RIGHT)
 			{
-				_console.write(posx, ypos, broken[index]);
+				const std::string tagLess = Utility::stripTags(broken[index]);
+				_console.write(posx, ypos, tagLess);
 			}
 			else if (align == ALIGN_CENTER)
 			{
-				_console.write(posx, ypos, broken[index]);
+				const std::string tagLess = Utility::stripTags(broken[index]);
+				_console.write(posx, ypos, tagLess);
 			}
 			else
 			{
-				_console.write(posx, ypos, broken[index]);
+				const std::string tagLess = Utility::stripTags(broken[index]);
+				_console.write(posx, ypos, tagLess);
 			}
 		}
 	}
