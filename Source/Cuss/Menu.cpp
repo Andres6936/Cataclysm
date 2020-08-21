@@ -1,9 +1,13 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include "Cuss/Menu.hpp"
+#include <Cataclysm/stringfunc.h>
+#include <Cataclysm/Screen/Debugger.hpp>
+#include <sstream>
 
 using namespace cuss;
 
+#define SELECTCOLOR c_blue
 
 // *** MENU ELEMENT ***
 void ele_menu::draw(Window* win)
