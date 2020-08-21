@@ -12,7 +12,16 @@ CPMAddPackage(
 )
 
 ADD_LIBRARY(Cuss
-        Source/cuss.cpp
+        Source/Cuss/Enum/ActionID.cpp
+        Source/Cuss/List.cpp
+        Source/Cuss/Menu.cpp
+        Source/Cuss/Number.cpp
+        Source/Cuss/Binding.cpp
+        Source/Cuss/Drawing.cpp
+        Source/Cuss/Element.cpp
+        Source/Cuss/TextBox.cpp
+        Source/Cuss/TextEntry.cpp
+        Source/Cuss/Interface.cpp
         Source/cuss_editor.cpp
         Source/window.cpp
         Source/glyph.cpp
@@ -83,7 +92,6 @@ ADD_EXECUTABLE(Cataclysm
         Source/color.cpp
         Source/geometry.cpp
         Source/tool.cpp
-        Source/cuss.cpp
         Source/globals.cpp
         Source/trait.cpp
         Source/glyph.cpp
