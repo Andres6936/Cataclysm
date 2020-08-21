@@ -42,6 +42,8 @@ namespace cuss
 
 		virtual void draw(Window* win);
 
+		void draw(Doryen::Console& _console) override;
+
 		virtual std::string save_data();
 
 		virtual void load_data(std::istream& datastream);

@@ -28,6 +28,8 @@ namespace cuss
 
 		void draw(Window* win);
 
+		void draw(Doryen::Console& _console);
+
 		void draw_prototype(Window* win); // For the editor
 
 		std::string save_data();

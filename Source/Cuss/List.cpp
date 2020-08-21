@@ -35,6 +35,11 @@ void _print_scrollbar(Window* win, int posx, int posy, int length, int offset,
 	}
 }
 
+void ele_list::draw(Doryen::Console& _console)
+{
+	element::draw(_console);
+}
+
 // *** LIST ELEMENT ***
 void ele_list::draw(Window* win)
 {

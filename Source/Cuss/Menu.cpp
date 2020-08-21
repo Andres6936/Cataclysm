@@ -7,6 +7,53 @@
 
 using namespace cuss;
 
+void ele_menu::draw(Doryen::Console& _console)
+{
+	std::string text = title;
+	if (selection >= 0)
+	{
+		text = (*list)[selection];
+	}
+
+	if (!selected || !open)
+	{
+		if (align == ALIGN_RIGHT)
+		{
+			_console.write(posx + 1, posy, text);
+		}
+		else if (align == ALIGN_CENTER)
+		{
+			_console.write(posx + 1, posy, text);
+		}
+		else
+		{
+			_console.write(posx + 1, posy, text);
+		}
+		return;
+	}
+// The rest is for when it's selected, i.e. open
+// Draw outline first
+	int tmpsizey = list->size() + 2;
+	if (posy + tmpsizey > _console.getHeight())
+	{
+		tmpsizey = _console.getHeight() - posy;
+	}
+
+// Then draw menu items
+	if (align == ALIGN_RIGHT)
+	{
+		_console.write(posx + 1, posy, title);
+	}
+	else if (align == ALIGN_CENTER)
+	{
+		_console.write(posx + 1, posy, title);
+	}
+	else
+	{
+		_console.write(posx + 1, posy, title);
+	}
+}
+
 #define SELECTCOLOR c_blue
 
 // *** MENU ELEMENT ***

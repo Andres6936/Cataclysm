@@ -14,6 +14,14 @@ void ele_drawing::draw(Window* win)
 		win->putglyph(posx + it->first.x, posy + it->first.y, it->second);
 }
 
+void ele_drawing::draw(Doryen::Console& _console)
+{
+	for (const auto& [point, glyph] : drawing)
+	{
+		_console.writeChar(point.x, point.y, glyph.symbol);
+	}
+}
+
 std::string ele_drawing::save_data()
 {
 	std::stringstream ret;

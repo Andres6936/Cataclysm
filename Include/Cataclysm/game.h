@@ -1,6 +1,7 @@
 #ifndef _GAME_H_
 #define _GAME_H_
 
+#include <Doryen/Doryen.hpp>
 #include <Cataclysm/Entity/Pool.hpp>
 #include "Cataclysm/Entity/Player/player.h"
 
@@ -173,6 +174,12 @@ public:
 	Generic_map scent_map;
 
 private:
+
+	inline static Doryen::Console console {80, 80};
+
+	Doryen::Console screenMap {24, 24};
+	Doryen::Console screenHUD {56, 24};
+
 	Window* w_map;
 	Window* w_hud;
 	cuss::interface i_hud;

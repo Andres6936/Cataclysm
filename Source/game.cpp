@@ -158,10 +158,29 @@ bool Game::starting_menu()
 
 	int current_world = -1;
 
+	Doryen::Console screenMenu {80, 24};
+
+//	screenMap.setDefaultBackground(Doryen::Palette::GOLD);
+//	screenMap.clear();
+//
+//	screenHUD.setDefaultBackground(Doryen::Palette::RED);
+//	screenHUD.clear();
+//
+//	screenMap.blit({0, 0}, console, {0, 0});
+//	screenHUD.blit({0, 0}, console, {24, 0});
+
 	while (true)
 	{
+
 		i_menu.draw(&w_menu);
+		i_menu.draw(screenMenu);
+
 		w_menu.refresh();
+
+		screenMenu.blit({0, 0}, console, {0, 0});
+
+		console.draw();
+
 		long ch = input();
 
 		if (ch == 'n' || ch == 'N')

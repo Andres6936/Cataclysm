@@ -5,6 +5,7 @@
 
 #include <string>
 #include <vector>
+#include <Doryen/Doryen.hpp>
 #include <Cataclysm/glyph.h>
 #include <Cataclysm/window.h>
 #include <Cuss/Enum/Alignment.hpp>
@@ -58,6 +59,11 @@ namespace cuss
 		virtual void draw(Window* win)
 		{
 		}
+
+		virtual void draw(Doryen::Console& _console)
+		{
+
+		};
 
 		virtual std::string save_data();
 

@@ -155,6 +155,25 @@ bool interface::erase_element(std::string name)
 	return false;
 }
 
+void interface::draw(Doryen::Console& _console)
+{
+	_console.clear();
+	std::vector<element*> draw_last; // Menus need to be layered at the top
+	for (int i = 0; i < elements.size(); i++)
+	{
+		if (elements[i]->type() == ELE_MENU && elements[i]->selected)
+			draw_last.push_back(elements[i]);
+		else
+			elements[i]->draw(_console);
+	}
+
+	for (int i = 0; i < draw_last.size(); i++)
+		draw_last[i]->draw(_console);
+
+	_console.draw();
+}
+
+
 void interface::draw(Window* win)
 {
 	win->clear();
