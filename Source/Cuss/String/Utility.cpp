@@ -27,11 +27,12 @@ std::string Utility::stripTags(std::string _text)
 	return ret;
 }
 
-bool Utility::parseColorTags(std::string text,
-		std::vector<std::string>& segments,
-		std::vector<long>& color_pairs,
-		nc_color fg, nc_color bg)
+std::vector<std::pair<Doryen::Color, Doryen::Color>> Utility::parseColorTags(
+		std::string text, std::vector<std::string>& segments,
+		std::vector<long>& color_pairs, nc_color fg, nc_color bg)
 {
+	std::vector<std::pair<Doryen::Color, Doryen::Color>> colors {};
+
 	size_t tag;
 	nc_color cur_fg = fg, cur_bg = bg;
 
@@ -40,6 +41,10 @@ bool Utility::parseColorTags(std::string text,
 		// Everything before the tag is a segment, with the current colors
 		segments.push_back(text.substr(0, tag));
 		color_pairs.push_back(get_color_pair(cur_fg, cur_bg));
+
+		// Transform the Cataclysm color to Doryen color
+		colors.push_back(Cataclysm::getColorPair(cur_fg, cur_bg));
+
 		// Strip off everything up to and including "<c="
 		text = text.substr(tag + 3);
 		// Find the end of the tag
@@ -47,7 +52,7 @@ bool Utility::parseColorTags(std::string text,
 		if (tagend == std::string::npos)
 		{
 			// debugmsg("Unterminated color tag! %d:%s:", int(tag), text.c_str());
-			return false;
+			return colors;
 		}
 		std::string tag = text.substr(0, tagend);
 		// Strip out the tag
@@ -67,7 +72,7 @@ bool Utility::parseColorTags(std::string text,
 				if (cur_fg == c_null)
 				{
 //					debugmsg("Malformed color tag: %s", tag.c_str());
-					return false;
+					return colors;
 				}
 			}
 			else
@@ -77,7 +82,7 @@ bool Utility::parseColorTags(std::string text,
 				if (new_fg == c_null && new_bg == c_null)
 				{
 //					debugmsg("Malformed color tag: %s", tag.c_str());
-					return false;
+					return colors;
 				}
 				if (new_fg != c_null)
 					cur_fg = new_fg;
@@ -90,11 +95,14 @@ bool Utility::parseColorTags(std::string text,
 	segments.push_back(text);
 	color_pairs.push_back(get_color_pair(cur_fg, cur_bg));
 
+	// Transform the Cataclysm color to Doryen color
+	colors.push_back(Cataclysm::getColorPair(cur_fg, cur_bg));
+
 	if (segments.size() != color_pairs.size())
 	{
 //		debugmsg("Segments.size() = %d, color_pairs.size() = %d",segments.size(), color_pairs.size());
-		return false;
+		return colors;
 	}
 
-	return true;
+	return colors;
 }

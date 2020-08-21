@@ -18,8 +18,8 @@ namespace cuss
 
 		static std::string stripTags(std::string _text);
 
-		static bool parseColorTags(std::string text,
-				std::vector<std::string>& segments,
+		static std::vector<std::pair<Doryen::Color, Doryen::Color>> parseColorTags(
+				std::string text, std::vector<std::string>& segments,
 				std::vector<long>& color_pairs, nc_color fg, nc_color bg);
 
 	};
