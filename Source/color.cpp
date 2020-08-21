@@ -380,3 +380,55 @@ nc_color non_bright(nc_color col)
 	}
 	return c_null;
 }
+
+namespace Cataclysm
+{
+	Doryen::Color transformColor(nc_color color)
+	{
+		switch (color)
+		{
+
+		case c_black:
+			return Doryen::Palette::GRAY_WARN_90;
+		case c_ltgray:
+			return Doryen::Palette::GRAY_WARN_30;
+		case c_red:
+			return Doryen::Palette::RED;
+		case c_green:
+			return Doryen::Palette::GREEN;
+		case c_blue:
+			return Doryen::Palette::BLUE;
+		case c_cyan:
+			return Doryen::Palette::CYAN;
+		case c_magenta:
+			return Doryen::Palette::MAGENTA;
+		case c_brown:
+			return Doryen::Palette::GRAY_WARN_30;
+		case c_dkgray:
+			return Doryen::Palette::GRAY_WARN_30;
+		case c_white:
+			return Doryen::Palette::GRAY_WARN_1;
+		case c_ltred:
+			return Doryen::Palette::RED;
+		case c_ltgreen:
+			return Doryen::Palette::GREEN;
+		case c_ltblue:
+			return Doryen::Palette::BLUE;
+		case c_ltcyan:
+			return Doryen::Palette::CYAN;
+		case c_pink:
+			return Doryen::Palette::MAGENTA;
+		case c_yellow:
+			return Doryen::Palette::YELLOW;
+		case c_null:
+			return Doryen::Palette::GRAY_WARN_1;
+		default:
+			return Doryen::Palette::GRAY_WARN_1;
+		}
+	}
+
+	std::pair<Doryen::Color, Doryen::Color> getColorPair(nc_color fg, nc_color bg)
+	{
+		return std::make_pair(transformColor(fg), transformColor(bg));
+	}
+}

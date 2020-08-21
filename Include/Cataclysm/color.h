@@ -2,6 +2,7 @@
 #define _COLOR_H_
 
 #include <string>
+#include <Doryen/Doryen.hpp>
 
 void init_colors();
 
@@ -46,5 +47,12 @@ nc_color contrast(nc_color orig);
 bool is_bright(nc_color col);
 
 nc_color non_bright(nc_color col);
+
+namespace Cataclysm
+{
+	Doryen::Color transformColor(nc_color color);
+
+	std::pair<Doryen::Color, Doryen::Color> getColorPair(nc_color fg, nc_color bg);
+}
 
 #endif
