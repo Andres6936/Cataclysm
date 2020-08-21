@@ -1,6 +1,8 @@
 // Joan Andrés (@Andres6936) Github.
 
+#include <sstream>
 #include "Cataclysm/Item/TypeBook.hpp"
+#include <Cataclysm/Screen/Debugger.hpp>
 
 
 Item_type_book::Item_type_book()

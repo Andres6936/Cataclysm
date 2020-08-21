@@ -1,7 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include "Cataclysm/Item/TypeCorpse.hpp"
-
+#include <Cataclysm/Screen/Debugger.hpp>
 
 // Item_type_corpse doesn't have any properties, so this section is boring.
 Item_type_corpse::Item_type_corpse()

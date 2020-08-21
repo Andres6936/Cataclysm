@@ -1,7 +1,8 @@
 // Joan Andrés (@Andres6936) Github.
 
+#include <sstream>
+#include <Cataclysm/Screen/Debugger.hpp>
 #include "Cataclysm/Item/TypeLauncher.hpp"
-
 
 Item_type_launcher::Item_type_launcher()
 {

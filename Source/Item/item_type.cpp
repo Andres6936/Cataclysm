@@ -1,4 +1,7 @@
+#include <Cataclysm/stringfunc.h>
 #include <Cataclysm/Item/item_type.h>
+#include <Cataclysm/Screen/Debugger.hpp>
+#include <sstream>
 
 Item_type::Item_type()
 {

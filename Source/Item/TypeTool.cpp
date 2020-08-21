@@ -1,6 +1,8 @@
 // Joan Andrés (@Andres6936) Github.
 
+#include <Cataclysm/stringfunc.h>
 #include "Cataclysm/Item/TypeTool.hpp"
+#include <Cataclysm/Screen/Debugger.hpp>
 
 
 Item_type_tool::Item_type_tool()

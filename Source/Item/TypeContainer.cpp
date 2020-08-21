@@ -1,7 +1,8 @@
 // Joan Andrés (@Andres6936) Github.
 
+#include <Cataclysm/stringfunc.h>
+#include <Cataclysm/Screen/Debugger.hpp>
 #include "Cataclysm/Item/TypeContainer.hpp"
-
 
 
 Item_type_container::Item_type_container()

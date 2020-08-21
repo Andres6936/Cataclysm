@@ -1,6 +1,9 @@
 // Joan Andrés (@Andres6936) Github.
 
+#include <sstream>
+#include <Cataclysm/stringfunc.h>
 #include "Cataclysm/Item/TypeFood.hpp"
+#include <Cataclysm/Screen/Debugger.hpp>
 
 
 Item_type_food::Item_type_food()

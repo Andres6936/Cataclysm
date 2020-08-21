@@ -1,5 +1,6 @@
 // Joan Andrés (@Andres6936) Github.
 
+#include <sstream>
 #include "Cataclysm/Item/TypeAmmo.hpp"
 
 
