@@ -1,6 +1,8 @@
 // Joan Andrés (@Andres6936) Github.
 
+#include <sstream>
 #include "Cuss/Binding.hpp"
+#include <Cataclysm/stringfunc.h>
 
 using namespace cuss;
 
