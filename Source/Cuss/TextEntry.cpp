@@ -1,9 +1,12 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include "Cuss/TextEntry.hpp"
+#include <Cataclysm/stringfunc.h>
+#include <Cataclysm/Screen/Debugger.hpp>
 
 using namespace cuss;
 
+#define SELECTCOLOR c_blue
 
 // *** TEXT ENTRY ELEMENT ***
 void ele_textentry::draw(Window* win)

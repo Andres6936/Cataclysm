@@ -1,9 +1,12 @@
 // Joan Andrés (@Andres6936) Github.
 
+#include <sstream>
 #include "Cuss/Number.hpp"
+#include <Cataclysm/Screen/Debugger.hpp>
 
 using namespace cuss;
 
+#define SELECTCOLOR c_blue
 
 // *** NUMBER ELEMENT ***
 void ele_number::draw(Window* win)

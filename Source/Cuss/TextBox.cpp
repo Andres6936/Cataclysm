@@ -1,9 +1,38 @@
 // Joan Andrés (@Andres6936) Github.
 
+#include <sstream>
 #include "Cuss/TextBox.hpp"
+#include <Cataclysm/Screen/Debugger.hpp>
+#include <Cataclysm/stringfunc.h>
 
 using namespace cuss;
 
+#define SELECTCOLOR c_blue
+
+void print_scrollbar(Window* win, int posx, int posy, int length, int offset,
+		int size, bool selected)
+{
+	nc_color barcol = (selected ? SELECTCOLOR : c_ltgray);
+	int barsize = (length >= size ? -1 : 1 + ((length * length) / size));
+
+	if (barsize == -1)
+	{
+// Don't print a scroll bar
+		for (int y = posy; y < posy + length; y++)
+			win->putch(posx, y, barcol, c_black, LINE_XOXO);
+	}
+	else
+	{
+		int barpos = (offset * length) / size;
+		if (barpos + barsize > length)
+			barpos = length - barsize;
+		for (int y = 0; y < length; y++)
+		{
+			long ch = ((y >= barpos && y < barpos + barsize) ? '#' : LINE_XOXO);
+			win->putch(posx, posy + y, barcol, c_black, ch);
+		}
+	}
+}
 
 // *** TEXTBOX ELEMENT ***
 void ele_textbox::draw(Window* win)
