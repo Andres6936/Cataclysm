@@ -1,6 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include <Cataclysm/globals.h>
+#include <Cataclysm/Random/rng.h>
 #include <Cataclysm/Entity/Monster/monster.h>
 #include "Cataclysm/Entity/Monster/AbilityTerrain.hpp"
 

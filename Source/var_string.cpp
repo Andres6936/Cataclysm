@@ -1,6 +1,6 @@
 #include "Cataclysm/var_string.h"
 #include "Cataclysm/stringfunc.h"
-#include "Cataclysm/rng.h"
+#include "Cataclysm/Random/rng.h"
 
 Variable_string::Variable_string()
 {

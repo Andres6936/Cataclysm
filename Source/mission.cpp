@@ -1,3 +1,4 @@
+#include <Cataclysm/Random/rng.h>
 #include "Cataclysm/stringfunc.h"
 #include "Cataclysm/mission.h"
 #include "Cataclysm/globals.h"

@@ -1,6 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include "Cataclysm/World/VariableTerrain.hpp"
+#include <Cataclysm/Random/rng.h>
 #include "Cataclysm/stringfunc.h"
 #include "Cataclysm/globals.h"
 

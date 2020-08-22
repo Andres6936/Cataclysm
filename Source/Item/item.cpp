@@ -3,6 +3,7 @@
 #include <Cataclysm/Item/TypeClothing.hpp>
 #include <Cataclysm/Item/TypeLauncher.hpp>
 #include <Cataclysm/Item/TypeAmmo.hpp>
+#include <Cataclysm/Random/rng.h>
 #include "Cataclysm/Item/item.h"
 #include "Cataclysm/globals.h"
 #include "Cataclysm/files.h"    // For CUSS_DIR

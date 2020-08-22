@@ -1,10 +1,10 @@
 #include "Cataclysm/World/Enum/TerrainFlag.hpp"
 #include "Cataclysm/World/worldmap.h"
 #include <Cataclysm/World/Tile.hpp>
+#include <Cataclysm/Random/rng.h>
 #include <Cataclysm/stringfunc.h>
 #include "Cataclysm/globals.h"
 #include "Cataclysm/files.h"
-#include <Cataclysm/rng.h>
 
 #include <sstream>
 

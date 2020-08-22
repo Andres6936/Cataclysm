@@ -4,7 +4,7 @@
 #include <Cataclysm/Screen/Debugger.hpp>
 #include <Cataclysm/stringfunc.h>
 #include <Cataclysm/globals.h>
-#include <Cataclysm/rng.h>
+#include <Cataclysm/Random/rng.h>
 
 
 Variable_monster_genus::Variable_monster_genus()

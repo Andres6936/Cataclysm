@@ -1,7 +1,7 @@
-
-#include "Cataclysm/stringfunc.h"
-#include "Cataclysm/globals.h"
 #include "Cataclysm/files.h"
+#include "Cataclysm/globals.h"
+#include "Cataclysm/stringfunc.h"
+#include <Cataclysm/Random/rng.h>
 #include "Cataclysm/Screen/help.h"
 #include <Cataclysm/Entity/Monster/monster.h>
 

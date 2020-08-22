@@ -2,7 +2,7 @@
 
 #include "Cataclysm/Enum/BodyPart.hpp"
 #include "Cataclysm/stringfunc.h" // For no_caps
-#include "Cataclysm/rng.h"
+#include "Cataclysm/Random/rng.h"
 
 Body_part lookup_body_part(std::string name)
 {

@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 
+#include <Cataclysm/Random/dice.h>
 #include <Cataclysm/Graphics/glyph.h>
 #include <Cataclysm/Geometry/geometry.h>
 #include <Cataclysm/World/Enum/SpreadType.hpp>

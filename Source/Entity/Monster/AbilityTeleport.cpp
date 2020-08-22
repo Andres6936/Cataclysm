@@ -1,7 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include <Cataclysm/globals.h>
-#include <Cataclysm/geometry.h>
+#include <Cataclysm/Random/rng.h>
 #include "Cataclysm/Screen/Debugger.hpp"
 #include <Cataclysm/Entity/Monster/monster.h>
 #include "Cataclysm/Entity/Monster/AbilityTeleport.hpp"
