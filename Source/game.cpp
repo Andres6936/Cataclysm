@@ -341,11 +341,6 @@ void MenuScreen::create_world()
 }
 
 
-bool MenuScreen::main_loop()
-{
-
-}
-
 void MenuScreen::reset_temp_values()
 {
 	temp_light_level = 0;

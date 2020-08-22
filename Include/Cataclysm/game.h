@@ -59,9 +59,6 @@ public:
 	int world_screen(); // Returns a new world_index
 	void create_world();
 
-/**** Engine - Main loop functions ****/
-	bool main_loop();
-
 	void reset_temp_values();
 
 	void do_action(Interface_action act);
@@ -203,10 +200,6 @@ private:
 
 // Temp values; all reset in reset_temp_values()
 	int temp_light_level;
-
-// Just adds the message, after it's been formatted and everything.
-// Used by add_msg(), msg_query_yn(), and any other similar functions.
-	void add_msg_static(std::string message);
 };
 
 #endif
