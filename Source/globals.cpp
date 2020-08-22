@@ -2,12 +2,11 @@
 #include "Cataclysm/globals.h"
 #include "Cataclysm/datapool.h"
 #include "Cataclysm/files.h"
-#include "Cataclysm/game.h"
 #include "Cataclysm/map.h"
 
 int TESTING_MODE;
 
-MenuScreen GAME;
+PlayScreen GAME;
 Data_pool<Terrain> TERRAIN;
 Data_pool<World_terrain> WORLD_TERRAIN;
 Data_pool<Item_type> ITEM_TYPES;

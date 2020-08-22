@@ -5,8 +5,8 @@
 #include "mapgen.h"
 #include "keybind.h"
 #include "mission.h"
-#include "game.h"
 
+#include "Cataclysm/Screen/PlayScreen.hpp"
 #include "Cataclysm/Entity/profession.h"
 #include <Cataclysm/World/Biome/biome.h>
 
@@ -16,7 +16,7 @@ class Field_type;
 
 extern int TESTING_MODE;
 
-extern MenuScreen GAME;
+extern PlayScreen GAME;
 extern Data_pool<Terrain> TERRAIN;
 extern Data_pool<World_terrain> WORLD_TERRAIN;
 extern Data_pool<Item_type> ITEM_TYPES;

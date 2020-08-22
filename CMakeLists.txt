@@ -90,6 +90,7 @@ ADD_EXECUTABLE(Cataclysm
         Source/Random/dice.cpp
         Source/Screen/help.cpp
         Source/Screen/Debugger.cpp
+        Source/Screen/PlayScreen.cpp
         Source/Screen/ScreenManager.cpp
         Source/World/Biome/Enum/BiomeFlag.cpp
         Source/World/Biome/biome.cpp
@@ -110,7 +111,6 @@ ADD_EXECUTABLE(Cataclysm
         Source/mission.cpp
         Source/stringfunc.cpp
         Source/files.cpp
-        Source/game.cpp
         Source/time.cpp
         Source/tool.cpp
         Source/globals.cpp

@@ -5,7 +5,7 @@
 
 #include <memory>
 
-#include <Cataclysm/game.h>
+#include <Cataclysm/Screen/PlayScreen.hpp>
 #include <Cataclysm/Screen/IScreen.hpp>
 
 namespace Cataclysm

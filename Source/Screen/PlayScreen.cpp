@@ -3,6 +3,7 @@
 #include "Cataclysm/stringfunc.h"
 #include <Cataclysm/Random/rng.h>
 #include "Cataclysm/Screen/help.h"
+#include <Cataclysm/Screen/PlayScreen.hpp>
 #include <Cataclysm/Entity/Monster/monster.h>
 
 #include <stdarg.h>
@@ -13,7 +14,7 @@ std::vector<std::string> get_pickup_strings(std::vector<Item>* items,
 
 std::string pickup_string(Item* item, char letter, bool picking_up);
 
-MenuScreen::MenuScreen()
+PlayScreen::PlayScreen()
 {
 	map = NULL;
 	worldmap = NULL;
@@ -28,7 +29,7 @@ MenuScreen::MenuScreen()
 	game_over = false;
 }
 
-MenuScreen::~MenuScreen()
+PlayScreen::~PlayScreen()
 {
 	if (map)
 	{
@@ -44,7 +45,7 @@ MenuScreen::~MenuScreen()
 	}
 }
 
-bool MenuScreen::setup_ui()
+bool PlayScreen::setup_ui()
 {
 	if (!i_hud.load_from_file(CUSS_DIR + "/i_hud.cuss"))
 	{
@@ -83,7 +84,7 @@ bool MenuScreen::setup_ui()
 	return true;
 }
 
-bool MenuScreen::setup_new_game(int world_index)
+bool PlayScreen::setup_new_game(int world_index)
 {
 	worldmap = new Worldmap;
 	if (world_index >= 0 && world_index < worldmap_names.size())
@@ -143,7 +144,7 @@ bool MenuScreen::setup_new_game(int world_index)
 	return true;
 }
 
-bool MenuScreen::starting_menu()
+bool PlayScreen::starting_menu()
 {
 	cuss::interface i_menu;
 	Window w_menu;
@@ -216,7 +217,7 @@ bool MenuScreen::starting_menu()
 	return false; // Should never be reached
 }
 
-int MenuScreen::world_screen()
+int PlayScreen::world_screen()
 {
 	cuss::interface i_worlds;
 	Window w_worlds(0, 0, 80, 24);
@@ -276,7 +277,7 @@ int MenuScreen::world_screen()
 	return -1;
 }
 
-void MenuScreen::create_world()
+void PlayScreen::create_world()
 {
 	cuss::interface i_editor;
 	Window w_editor(0, 0, 80, 24);
@@ -341,12 +342,12 @@ void MenuScreen::create_world()
 }
 
 
-void MenuScreen::reset_temp_values()
+void PlayScreen::reset_temp_values()
 {
 	temp_light_level = 0;
 }
 
-void MenuScreen::do_action(Interface_action act)
+void PlayScreen::do_action(Interface_action act)
 {
 	switch (act)
 	{
@@ -878,7 +879,7 @@ there.<c=/>", map->get_name(examine).c_str());
 	}
 }
 
-void MenuScreen::move_entities()
+void PlayScreen::move_entities()
 {
 	clean_up_dead_entities();
 	//scent_map = map->get_dijkstra_map(player->pos, 15);
@@ -917,7 +918,7 @@ void MenuScreen::move_entities()
 
 }
 
-void MenuScreen::clean_up_dead_entities()
+void PlayScreen::clean_up_dead_entities()
 {
 	std::list<Entity*>::iterator it = entities.instances.begin();
 	while (it != entities.instances.end())
@@ -947,7 +948,7 @@ void MenuScreen::clean_up_dead_entities()
 	}
 }
 
-void MenuScreen::handle_player_activity()
+void PlayScreen::handle_player_activity()
 {
 	if (!player->has_activity())
 	{
@@ -966,7 +967,7 @@ void MenuScreen::handle_player_activity()
 	}
 }
 
-void MenuScreen::complete_player_activity()
+void PlayScreen::complete_player_activity()
 {
 	Player_activity* act = &(player->activity);
 	switch (act->type)
@@ -1009,7 +1010,7 @@ void MenuScreen::complete_player_activity()
 	player->activity = Player_activity();
 }
 
-void MenuScreen::process_active_items()
+void PlayScreen::process_active_items()
 {
 	for (int i = 0; i < active_items.size(); i++)
 	{
@@ -1017,7 +1018,7 @@ void MenuScreen::process_active_items()
 	}
 }
 
-void MenuScreen::shift_if_needed()
+void PlayScreen::shift_if_needed()
 {
 	//return;
 	int min = SUBMAP_SIZE * (MAP_SIZE / 2), max = min + SUBMAP_SIZE - 1;
@@ -1053,22 +1054,22 @@ void MenuScreen::shift_if_needed()
 	}
 }
 
-void MenuScreen::make_sound(std::string desc, int volume, Tripoint pos)
+void PlayScreen::make_sound(std::string desc, int volume, Tripoint pos)
 {
 	make_sound(Sound(desc, volume), pos);
 }
 
-void MenuScreen::make_sound(std::string desc, int volume, Point pos)
+void PlayScreen::make_sound(std::string desc, int volume, Point pos)
 {
 	make_sound(desc, volume, Tripoint(pos.x, pos.y, 0));
 }
 
-void MenuScreen::make_sound(std::string desc, int volume, int x, int y)
+void PlayScreen::make_sound(std::string desc, int volume, int x, int y)
 {
 	make_sound(desc, volume, Point(x, y));
 }
 
-void MenuScreen::make_sound(Sound snd, Tripoint pos)
+void PlayScreen::make_sound(Sound snd, Tripoint pos)
 {
 	if (snd.description.empty())
 	{
@@ -1094,25 +1095,25 @@ void MenuScreen::make_sound(Sound snd, Tripoint pos)
 	}
 }
 
-void MenuScreen::launch_projectile(Ranged_attack attack,
+void PlayScreen::launch_projectile(Ranged_attack attack,
 		Tripoint origin, Tripoint target)
 {
 	launch_projectile(NULL, attack, origin, target);
 }
 
-void MenuScreen::launch_projectile(Item it, Ranged_attack attack, Tripoint origin,
+void PlayScreen::launch_projectile(Item it, Ranged_attack attack, Tripoint origin,
 		Tripoint target)
 {
 	launch_projectile(NULL, it, attack, origin, target);
 }
 
-void MenuScreen::launch_projectile(Entity* shooter, Ranged_attack attack,
+void PlayScreen::launch_projectile(Entity* shooter, Ranged_attack attack,
 		Tripoint origin, Tripoint target)
 {
 	launch_projectile(shooter, Item(), attack, origin, target);
 }
 
-void MenuScreen::launch_projectile(Entity* shooter, Item it, Ranged_attack attack,
+void PlayScreen::launch_projectile(Entity* shooter, Item it, Ranged_attack attack,
 		Tripoint origin, Tripoint target)
 {
 // Set up some nouns and verbs for messages (far below)
@@ -1489,7 +1490,7 @@ void MenuScreen::launch_projectile(Entity* shooter, Item it, Ranged_attack attac
 	} // for (int round = 0; round < attack.rounds; round++)
 }
 
-void MenuScreen::player_move(int xdif, int ydif)
+void PlayScreen::player_move(int xdif, int ydif)
 {
 // TODO: Remove this?
 	if (xdif < -1 || xdif > 1 || ydif < -1 || ydif > 1)
@@ -1583,7 +1584,7 @@ cannot see or access them.<c=/>", map->get_name(player->pos).c_str());
 	}
 }
 
-void MenuScreen::player_move_vertical(int zdif)
+void PlayScreen::player_move_vertical(int zdif)
 {
 // FRODO: Move entities into a stairs-following queue
 //        (except not, since we're on a 3D map nowadays)
@@ -1591,7 +1592,7 @@ void MenuScreen::player_move_vertical(int zdif)
 	player->pos.z += zdif;
 }
 
-void MenuScreen::add_msg(std::string msg, ...)
+void PlayScreen::add_msg(std::string msg, ...)
 {
 	if (msg.empty())
 	{
@@ -1618,7 +1619,7 @@ void MenuScreen::add_msg(std::string msg, ...)
 	messages.push_back(Game_message(text, time.get_turn()));
 }
 
-bool MenuScreen::msg_query_yn(std::string msg, ...)
+bool PlayScreen::msg_query_yn(std::string msg, ...)
 {
 // This duplicates all the code of add_msg(), but there's no other option!
 	if (msg.empty())
@@ -1661,7 +1662,7 @@ Case-sensitive.");
 	return (ch == 'Y');
 }
 
-void MenuScreen::add_active_item(Item* it)
+void PlayScreen::add_active_item(Item* it)
 {
 	if (!it)
 	{
@@ -1670,7 +1671,7 @@ void MenuScreen::add_active_item(Item* it)
 	active_items.push_back(it);
 }
 
-void MenuScreen::remove_active_item(Item* it)
+void PlayScreen::remove_active_item(Item* it)
 {
 	if (!it)
 	{
@@ -1686,7 +1687,7 @@ void MenuScreen::remove_active_item(Item* it)
 	}
 }
 
-void MenuScreen::remove_active_item_uid(int uid)
+void PlayScreen::remove_active_item_uid(int uid)
 {
 	for (int i = 0; i < active_items.size(); i++)
 	{
@@ -1699,7 +1700,7 @@ void MenuScreen::remove_active_item_uid(int uid)
 }
 
 // Bit of a duplication of code from find_item(), but what can ya do
-bool MenuScreen::destroy_item(Item* it, int uid)
+bool PlayScreen::destroy_item(Item* it, int uid)
 {
 // Sanity check
 	if (it == NULL && (uid < 0 || uid >= next_item_uid))
@@ -1720,12 +1721,12 @@ bool MenuScreen::destroy_item(Item* it, int uid)
 	return map->remove_item(it, uid);
 }
 
-bool MenuScreen::destroy_item_uid(int uid)
+bool PlayScreen::destroy_item_uid(int uid)
 {
 	return destroy_item(NULL, uid);
 }
 
-void MenuScreen::set_temp_light_level(int level)
+void PlayScreen::set_temp_light_level(int level)
 {
 	if (level > temp_light_level)
 	{
@@ -1733,7 +1734,7 @@ void MenuScreen::set_temp_light_level(int level)
 	}
 }
 
-void MenuScreen::draw_all()
+void PlayScreen::draw_all()
 {
 	update_hud();
 	int range = player->sight_range(get_light_level());
@@ -1746,7 +1747,7 @@ void MenuScreen::draw_all()
 	console.draw();
 }
 
-void MenuScreen::update_hud()
+void PlayScreen::update_hud()
 {
 //debugmsg("update_hud(); mes %d, new %d", messages.size(), new_messages);
 	print_messages();
@@ -1799,7 +1800,7 @@ void MenuScreen::update_hud()
 	w_hud->refresh();
 }
 
-void MenuScreen::print_messages()
+void PlayScreen::print_messages()
 {
 	i_hud.clear_data("text_messages");
 	int sizey;
@@ -1842,7 +1843,7 @@ void MenuScreen::print_messages()
 */
 }
 
-void MenuScreen::debug_command()
+void PlayScreen::debug_command()
 {
 	add_msg("<c=yellow>Press debug key.<c=/>");
 	draw_all();
@@ -1986,18 +1987,18 @@ active items!");
 	}
 }
 
-void MenuScreen::pickup_items(Tripoint pos)
+void PlayScreen::pickup_items(Tripoint pos)
 {
 // TODO: don't ignore z?
 	pickup_items(pos.x, pos.y);
 }
 
-void MenuScreen::pickup_items(Point pos)
+void PlayScreen::pickup_items(Point pos)
 {
 	pickup_items(pos.x, pos.y);
 }
 
-void MenuScreen::pickup_items(int posx, int posy)
+void PlayScreen::pickup_items(int posx, int posy)
 {
 	if (map->has_flag(TF_SEALED, posx, posy))
 	{
@@ -2176,7 +2177,7 @@ void MenuScreen::pickup_items(int posx, int posy)
 
 }
 
-Tripoint MenuScreen::target_selector(int startx, int starty, int range,
+Tripoint PlayScreen::target_selector(int startx, int starty, int range,
 		bool target_entities, bool show_path)
 {
 	std::vector<Tripoint> path = path_selector(startx, starty, range,
@@ -2188,7 +2189,7 @@ Tripoint MenuScreen::target_selector(int startx, int starty, int range,
 	return path.back();
 }
 
-std::vector<Tripoint> MenuScreen::path_selector(int startx, int starty, int range,
+std::vector<Tripoint> PlayScreen::path_selector(int startx, int starty, int range,
 		bool target_entities, bool show_path)
 {
 	std::vector<Tripoint> ret;
@@ -2438,17 +2439,17 @@ std::vector<Tripoint> MenuScreen::path_selector(int startx, int starty, int rang
 	}
 }
 
-int MenuScreen::get_item_uid()
+int PlayScreen::get_item_uid()
 {
 	return next_item_uid++;
 }
 
-int MenuScreen::get_furniture_uid()
+int PlayScreen::get_furniture_uid()
 {
 	return next_furniture_uid++;
 }
 
-bool MenuScreen::minute_timer(int minutes)
+bool PlayScreen::minute_timer(int minutes)
 {
 	if (minutes <= 0)
 	{
@@ -2458,7 +2459,7 @@ bool MenuScreen::minute_timer(int minutes)
 	return turn_timer(turns);
 }
 
-bool MenuScreen::turn_timer(int turns)
+bool PlayScreen::turn_timer(int turns)
 {
 	if (turns <= 0)
 	{
@@ -2467,7 +2468,7 @@ bool MenuScreen::turn_timer(int turns)
 	return (time.get_turn() % turns == 0);
 }
 
-int MenuScreen::get_light_level()
+int PlayScreen::get_light_level()
 {
 	int ret = time.get_light_level();
 	if (temp_light_level > ret)
@@ -2477,18 +2478,18 @@ int MenuScreen::get_light_level()
 	return ret;
 }
 
-bool MenuScreen::is_empty(int x, int y, int z)
+bool PlayScreen::is_empty(int x, int y, int z)
 {
 	return is_empty(Tripoint(x, y, z));
 }
 
-bool MenuScreen::is_empty(Tripoint pos)
+bool PlayScreen::is_empty(Tripoint pos)
 {
 	return (!(entities.entity_at(pos)) && map->move_cost(pos) > 0);
 }
 
 // UID defaults to -1
-Tripoint MenuScreen::find_item(Item* it, int uid)
+Tripoint PlayScreen::find_item(Item* it, int uid)
 {
 // Sanity check
 	if (it == NULL && (uid < 0 || uid >= next_item_uid))
@@ -2509,22 +2510,22 @@ Tripoint MenuScreen::find_item(Item* it, int uid)
 	return ret;
 }
 
-Tripoint MenuScreen::find_item_uid(int uid)
+Tripoint PlayScreen::find_item_uid(int uid)
 {
 	return find_item(NULL, uid);
 }
 
-void MenuScreen::draw()
+void PlayScreen::draw()
 {
 
 }
 
-void MenuScreen::updated()
+void PlayScreen::updated()
 {
 
 }
 
-Cataclysm::ScreenType MenuScreen::processInput()
+Cataclysm::ScreenType PlayScreen::processInput()
 {
 	// Sanity check
 	if (!w_map || !w_hud || !player || !worldmap || !map)
