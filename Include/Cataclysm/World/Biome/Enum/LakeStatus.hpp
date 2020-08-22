@@ -1,0 +1,14 @@
+// Joan Andrés (@Andres6936) Github.
+
+#ifndef CATACLYSM_LAKESTATUS_HPP
+#define CATACLYSM_LAKESTATUS_HPP
+
+
+enum Lake_status
+{
+	LAKE_UNCHECKED,
+	LAKE_CHECKED,
+	LAKE_NOTLAKE
+};
+
+#endif //CATACLYSM_LAKESTATUS_HPP

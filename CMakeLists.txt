@@ -84,6 +84,9 @@ ADD_EXECUTABLE(Cataclysm
         Source/Item/TypeLauncher.cpp
         Source/Item/TypeContainer.cpp
         Source/Screen/Debugger.cpp
+        Source/World/Biome/Enum/BiomeFlag.cpp
+        Source/World/Biome/biome.cpp
+        Source/World/Biome/VariableMonsterGenus.cpp
         Source/World/Tile.cpp
         Source/World/worldmap.cpp
         Source/World/world_terrain.cpp
@@ -98,7 +101,6 @@ ADD_EXECUTABLE(Cataclysm
         Source/field.cpp
         Source/mission.cpp
         Source/stringfunc.cpp
-        Source/biome.cpp
         Source/files.cpp
         Source/catacurse.cpp
         Source/game.cpp

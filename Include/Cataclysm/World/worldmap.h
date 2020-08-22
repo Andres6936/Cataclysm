@@ -1,14 +1,15 @@
 #ifndef _WORLDMAP_H_
 #define _WORLDMAP_H_
 
+#include <map>
 #include <string>
 
+#include <Cuss/Element.hpp>
 #include <Cataclysm/pathfind.h>
-#include <Cataclysm/biome.h>
 #include "Cataclysm/World/Tile.hpp"
 #include <Cataclysm/World/world_terrain.h>
+#include <Cataclysm/World/Biome/biome.h>
 #include <Cataclysm/Entity/Monster/monster_spawn.h>
-#include <Cuss/Element.hpp>
 
 #define WORLDMAP_SIZE 150
 #define BONUS_SPACING   8

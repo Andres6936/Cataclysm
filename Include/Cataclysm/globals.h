@@ -4,11 +4,11 @@
 #include "datapool.h"
 #include "mapgen.h"
 #include "keybind.h"
-#include "biome.h"
 #include "mission.h"
 #include "game.h"
 
 #include "Cataclysm/Entity/profession.h"
+#include <Cataclysm/World/Biome/biome.h>
 
 class Submap_pool;
 

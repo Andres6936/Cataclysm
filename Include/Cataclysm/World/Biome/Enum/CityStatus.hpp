@@ -1,0 +1,17 @@
+// Joan Andrés (@Andres6936) Github.
+
+#ifndef CATACLYSM_CITYSTATUS_HPP
+#define CATACLYSM_CITYSTATUS_HPP
+
+enum City_status
+{
+	CITY_NOTCITY,
+	CITY_HUB,
+	CITY_RAW, // Not generated yet
+	CITY_BUILDING,
+	CITY_BUILDING_CLOSED,
+	CITY_ROAD,
+	CITY_ROAD_CLOSED
+};
+
+#endif //CATACLYSM_CITYSTATUS_HPP
