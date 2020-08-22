@@ -93,6 +93,7 @@ ADD_EXECUTABLE(Cataclysm
         Source/World/worldmap.cpp
         Source/World/world_terrain.cpp
         Source/World/VariableTerrain.cpp
+        Source/World/worldmap_generate.cpp
         Source/World/Enum/SpreadType.cpp
         Source/World/Enum/TerrainFlag.cpp
         Source/World/Terrain/Bonus.cpp
@@ -116,7 +117,6 @@ ADD_EXECUTABLE(Cataclysm
         Source/window.cpp
         Source/damage_set.cpp
         Source/dice.cpp
-        Source/worldmap_generate.cpp
         Source/entity_ai.cpp
         Source/keybind.cpp
         Source/main.cpp
