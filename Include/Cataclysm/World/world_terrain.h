@@ -5,7 +5,7 @@
 #include <vector>
 
 #include <Cataclysm/dice.h>
-#include <Cataclysm/glyph.h>
+#include <Cataclysm/Graphics/glyph.h>
 #include <Cataclysm/World/Enum/SpreadType.hpp>
 #include <Cataclysm/World/Enum/TerrainFlag.hpp>
 

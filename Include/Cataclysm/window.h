@@ -6,7 +6,7 @@
 #else
 
 #include <curses.h>
-#include "Cataclysm/glyph.h"
+#include "Cataclysm/Graphics/glyph.h"
 
 #endif
 

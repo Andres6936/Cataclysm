@@ -1,7 +1,7 @@
 #ifndef _FIELD_H_
 #define _FIELD_H_
 
-#include "glyph.h"
+#include "Cataclysm/Graphics/glyph.h"
 #include "geometry.h"   // For Tripoint
 #include "explosion.h"  // For fuel explosions
 #include "damage_set.h"

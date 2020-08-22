@@ -1,7 +1,7 @@
 #ifndef _STRINGFUNC_H_
 #define _STRINGFUNC_H_
 
-#include "color.h"
+#include "Cataclysm/Graphics/color.h"
 #include <string>
 #include <vector>
 #include <istream>

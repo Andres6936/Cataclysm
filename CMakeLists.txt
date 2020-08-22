@@ -23,10 +23,10 @@ ADD_LIBRARY(Cuss
         Source/Cuss/TextBox.cpp
         Source/Cuss/TextEntry.cpp
         Source/Cuss/Interface.cpp
+        Source/Graphics/glyph.cpp
+        Source/Graphics/color.cpp
         Source/cuss_editor.cpp
         Source/window.cpp
-        Source/glyph.cpp
-        Source/color.cpp
         Source/stringfunc.cpp
         Source/files.cpp
         )
@@ -71,6 +71,8 @@ ADD_EXECUTABLE(Cataclysm
         Source/Enum/SenseType.cpp
         Source/Enum/DamageType.cpp
         Source/Enum/MathOperator.cpp
+        Source/Graphics/color.cpp
+        Source/Graphics/glyph.cpp
         Source/Item/Enum/Class.cpp
         Source/Item/Enum/BookGenre.cpp
         Source/Item/item.cpp
@@ -83,6 +85,7 @@ ADD_EXECUTABLE(Cataclysm
         Source/Item/TypeClothing.cpp
         Source/Item/TypeLauncher.cpp
         Source/Item/TypeContainer.cpp
+        Source/Screen/help.cpp
         Source/Screen/Debugger.cpp
         Source/World/Biome/Enum/BiomeFlag.cpp
         Source/World/Biome/biome.cpp
@@ -104,15 +107,12 @@ ADD_EXECUTABLE(Cataclysm
         Source/files.cpp
         Source/game.cpp
         Source/time.cpp
-        Source/color.cpp
         Source/geometry.cpp
         Source/tool.cpp
         Source/globals.cpp
         Source/trait.cpp
-        Source/glyph.cpp
         Source/newcharacter.cpp
         Source/var_string.cpp
-        Source/help.cpp
         Source/pathfind.cpp
         Source/window.cpp
         Source/damage_set.cpp

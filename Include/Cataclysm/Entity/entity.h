@@ -4,7 +4,6 @@
 #include <string>
 
 #include <Cataclysm/map.h>
-#include <Cataclysm/glyph.h>
 #include <Cataclysm/trait.h>
 #include <Cataclysm/mission.h>
 #include <Cataclysm/geometry.h>

@@ -8,7 +8,6 @@
 
 #include <Cataclysm/dice.h>
 #include <Cataclysm/sound.h>
-#include <Cataclysm/glyph.h>
 #include <Cataclysm/entity_ai.h>
 #include <Cataclysm/var_string.h>
 #include <Cataclysm/Attack/attack.h>

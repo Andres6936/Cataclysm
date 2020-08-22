@@ -3,7 +3,7 @@
 #ifndef CATACLYSM_TILE_HPP
 #define CATACLYSM_TILE_HPP
 
-#include <Cataclysm/glyph.h>
+#include <Cataclysm/Graphics/glyph.h>
 #include "Cataclysm/World/world_terrain.h"
 #include <Cataclysm/Enum/TerrainFlag.hpp>
 #include <Cataclysm/Entity/Monster/monster_spawn.h>

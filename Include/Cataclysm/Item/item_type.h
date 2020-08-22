@@ -3,7 +3,7 @@
 
 #include <string>
 #include <Cataclysm/Enum/DamageType.hpp>
-#include <Cataclysm/glyph.h>
+#include <Cataclysm/Graphics/glyph.h>
 #include <Cataclysm/dice.h>
 #include <Cataclysm/Item/Enum/Class.hpp>
 #include <Cataclysm/Enum/ItemAction.hpp>

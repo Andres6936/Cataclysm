@@ -5,7 +5,7 @@
 #include <map>
 #include <list>
 
-#include <Cataclysm/glyph.h>
+#include <Cataclysm/Graphics/glyph.h>
 #include "Cataclysm/World/Terrain/Smash.hpp"
 #include "Cataclysm/World/Terrain/SignalHandler.hpp"
 

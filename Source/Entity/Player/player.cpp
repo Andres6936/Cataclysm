@@ -1,7 +1,7 @@
 #include "Cataclysm/Entity/Player/player.h"
-#include "Cataclysm/files.h"  // For CUSS_DIR
-#include "Cataclysm/help.h"   // For help_skill_desc()
+#include "Cataclysm/Screen/help.h"   // For help_skill_desc()
 #include "Cataclysm/globals.h"
+#include "Cataclysm/files.h"  // For CUSS_DIR
 
 void populate_item_lists(Player* p, int offset_size,
 		std::vector<int> item_indices[ITEM_CLASS_MAX],

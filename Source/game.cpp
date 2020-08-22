@@ -2,7 +2,7 @@
 #include "Cataclysm/stringfunc.h"
 #include "Cataclysm/globals.h"
 #include "Cataclysm/files.h"
-#include "Cataclysm/help.h"
+#include "Cataclysm/Screen/help.h"
 #include <Cataclysm/Entity/Monster/monster.h>
 
 #include <stdarg.h>

@@ -1,4 +1,4 @@
-#include "Cataclysm/color.h"
+#include "Cataclysm/Graphics/color.h"
 
 #if (defined _WIN32 || defined WINDOWS)
 #include "catacurse.h"

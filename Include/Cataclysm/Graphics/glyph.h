@@ -1,8 +1,7 @@
 #ifndef _GLYPH_H_
 #define _GLYPH_H_
 
-#include "color.h"
-#include <istream>
+#include "Cataclysm/Graphics/color.h"
 
 #define HILITE_COLOR c_blue
 

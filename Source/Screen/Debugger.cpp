@@ -4,7 +4,6 @@
 #include <cstring>
 #include <curses.h>
 
-#include <Cataclysm/color.h>
 #include <Cataclysm/globals.h>
 #include "Cataclysm/Screen/Debugger.hpp"
 
