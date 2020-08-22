@@ -178,9 +178,6 @@ public:
 
 	Time time;
 
-// Not used; TODO: Remove this?
-	Generic_map scent_map;
-
 private:
 
 	Doryen::Console screenMap {24, 24};
