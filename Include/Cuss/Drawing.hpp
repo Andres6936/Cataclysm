@@ -5,7 +5,7 @@
 
 #include <map>
 #include <string>
-#include <Cataclysm/geometry.h>
+#include <Cataclysm/Geometry/geometry.h>
 #include "Element.hpp"
 
 namespace cuss

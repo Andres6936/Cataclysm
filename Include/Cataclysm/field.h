@@ -2,7 +2,7 @@
 #define _FIELD_H_
 
 #include "Cataclysm/Graphics/glyph.h"
-#include "geometry.h"   // For Tripoint
+#include <Cataclysm/Geometry/geometry.h>
 #include "explosion.h"  // For fuel explosions
 #include "damage_set.h"
 
@@ -14,6 +14,7 @@
 #include <Cataclysm/World/Terrain/terrain.h>    // For Terrain*
 #include <Cataclysm/Enum/ItemFlag.hpp>
 #include <Cataclysm/Enum/BodyPart.hpp>
+#include <Cataclysm/Random/dice.h>
 
 class Entity;
 

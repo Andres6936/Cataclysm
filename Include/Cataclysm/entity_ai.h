@@ -1,7 +1,6 @@
 #ifndef _ENTITY_AI_H_
 #define _ENTITY_AI_H_
 
-#include "geometry.h"
 #include <string>
 #include <istream>
 #include <vector>

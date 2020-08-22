@@ -64,6 +64,8 @@ ADD_EXECUTABLE(Cataclysm
         Source/Entity/Player/player.cpp
         Source/Entity/Player/player_activity.cpp
         Source/Entity/Player/Enum/ActivityType.cpp
+        Source/Geometry/geometry.cpp
+        Source/Enum/trait.cpp
         Source/Enum/BodyPart.cpp
         Source/Enum/StatType.cpp
         Source/Enum/ItemFlag.cpp
@@ -84,6 +86,8 @@ ADD_EXECUTABLE(Cataclysm
         Source/Item/TypeClothing.cpp
         Source/Item/TypeLauncher.cpp
         Source/Item/TypeContainer.cpp
+        Source/Random/rng.cpp
+        Source/Random/dice.cpp
         Source/Screen/help.cpp
         Source/Screen/Debugger.cpp
         Source/Screen/ScreenManager.cpp
@@ -108,20 +112,16 @@ ADD_EXECUTABLE(Cataclysm
         Source/files.cpp
         Source/game.cpp
         Source/time.cpp
-        Source/geometry.cpp
         Source/tool.cpp
         Source/globals.cpp
-        Source/trait.cpp
         Source/newcharacter.cpp
         Source/var_string.cpp
         Source/pathfind.cpp
         Source/window.cpp
         Source/damage_set.cpp
-        Source/dice.cpp
         Source/entity_ai.cpp
         Source/keybind.cpp
         Source/main.cpp
-        Source/rng.cpp
         Source/enum.cpp
         Source/map.cpp
         Source/skill.cpp

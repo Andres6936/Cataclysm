@@ -3,7 +3,6 @@
 #ifndef CATACLYSM_ABILITYTERRAIN_HPP
 #define CATACLYSM_ABILITYTERRAIN_HPP
 
-#include <Cataclysm/dice.h>
 #include <Cataclysm/var_string.h>
 #include "Cataclysm/Entity/Monster/Ability.hpp"
 

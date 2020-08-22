@@ -3,7 +3,6 @@
 #ifndef CATACLYSM_ABILITYFIELDS_HPP
 #define CATACLYSM_ABILITYFIELDS_HPP
 
-#include <Cataclysm/dice.h>
 #include <Cataclysm/var_string.h>
 #include "Cataclysm/Entity/Monster/Ability.hpp"
 

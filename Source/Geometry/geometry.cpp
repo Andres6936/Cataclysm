@@ -1,7 +1,6 @@
-#include "Cataclysm/geometry.h"
+#include "Cataclysm/Geometry/geometry.h"
 #include <vector>
 #include <stdlib.h>
-#include <math.h>
 #include <sstream> // For Tripoint::string()
 
 #define SGN(a) (((a)<0) ? -1 : 1)

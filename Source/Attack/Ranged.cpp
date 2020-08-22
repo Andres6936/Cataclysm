@@ -4,7 +4,7 @@
 #include "Cataclysm/Attack/Verbs.hpp"
 #include "Cataclysm/stringfunc.h" // For no_caps
 #include <Cataclysm/Screen/Debugger.hpp>
-#include "Cataclysm/rng.h" // For rng
+#include "Cataclysm/Random/rng.h" // For rng
 
 Ranged_attack::Ranged_attack()
 {

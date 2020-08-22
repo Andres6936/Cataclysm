@@ -7,6 +7,7 @@
 #include <Cataclysm/Entity/Monster/AbilityFields.hpp>
 #include "Cataclysm/Entity/Monster/Type.hpp"
 #include "Cataclysm/Entity/Monster/Genus.hpp"
+#include <Cataclysm/Random/rng.h>
 #include "Cataclysm/stringfunc.h"
 #include "Cataclysm/globals.h"
 

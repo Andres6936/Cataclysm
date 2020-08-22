@@ -1,7 +1,6 @@
 #ifndef _TOOL_H_
 #define _TOOL_H_
 
-#include "dice.h"
 #include "field.h"
 #include "skill.h"  // Some actions are affected by skill
 #include <string>

@@ -1,4 +1,5 @@
 #include "Cataclysm/Entity/Monster/monster.h"
+#include <Cataclysm/Random/rng.h>
 #include "Cataclysm/globals.h"
 
 Monster::Monster()

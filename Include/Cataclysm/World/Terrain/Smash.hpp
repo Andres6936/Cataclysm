@@ -3,7 +3,7 @@
 #ifndef CATACLYSM_SMASH_HPP
 #define CATACLYSM_SMASH_HPP
 
-#include <Cataclysm/dice.h>
+#include <Cataclysm/Random/dice.h>
 #include <Cataclysm/Enum/DamageType.hpp>
 
 struct Terrain_smash

@@ -1,6 +1,6 @@
 #include <sstream>
-#include "Cataclysm/dice.h"
-#include "Cataclysm/rng.h"
+#include "Cataclysm/Random/dice.h"
+#include "Cataclysm/Random/rng.h"
 #include <Cataclysm/Screen/Debugger.hpp>
 
 Dice::Dice(int N, int S, int B, bool G)

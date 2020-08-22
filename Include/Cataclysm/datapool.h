@@ -2,7 +2,6 @@
 #define _DATAPOOL_H_
 
 #include "stringfunc.h"
-#include "rng.h"
 #include <string>
 #include <istream>
 #include <list>

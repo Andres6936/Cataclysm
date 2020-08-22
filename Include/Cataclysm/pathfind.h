@@ -1,7 +1,7 @@
 #ifndef _PATHFIND_H_
 #define _PATHFIND_H_
 
-#include "geometry.h"
+#include <Cataclysm/Geometry/geometry.h>
 #include <vector>
 
 class Map;

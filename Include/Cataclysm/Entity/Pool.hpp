@@ -6,7 +6,7 @@
 
 #include <list>
 #include <map>
-#include <Cataclysm/geometry.h>
+
 #include "Cataclysm/Entity/entity.h"
 
 /* For now, Entity_pool does NOT include a map which uses location as a key.

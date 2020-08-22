@@ -1,4 +1,5 @@
 #include <Cataclysm/Entity/entity.h>
+#include <Cataclysm/Random/rng.h>
 #include <Cataclysm/globals.h>
 
 Entity::Entity()

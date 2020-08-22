@@ -3,8 +3,8 @@
 #ifndef CATACLYSM_ABILITYSUMMON_HPP
 #define CATACLYSM_ABILITYSUMMON_HPP
 
-#include <Cataclysm/dice.h>
 #include <Cataclysm/var_string.h>
+#include <Cataclysm/Random/dice.h>
 #include "Cataclysm/Entity/Monster/Ability.hpp"
 
 struct Monster_ability_summon : public Monster_ability

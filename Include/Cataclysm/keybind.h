@@ -1,9 +1,11 @@
 #ifndef _KEYBIND_H_
 #define _KEYBIND_H_
 
-#include "geometry.h"
 #include <map>
 #include <string>
+#include <vector>
+
+#include <Cataclysm/Geometry/geometry.h>
 
 enum Interface_action
 {

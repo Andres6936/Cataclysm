@@ -1,10 +1,10 @@
 #ifndef _EXPLOSION_H_
 #define _EXPLOSION_H_
 
-#include "dice.h"
-#include "geometry.h" // For Tripoint
 #include <istream>
 #include <string>
+#include <Cataclysm/Random/dice.h>
+#include <Cataclysm/Geometry/geometry.h>
 
 struct Explosion
 {

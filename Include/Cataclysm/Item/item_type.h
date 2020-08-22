@@ -4,7 +4,7 @@
 #include <string>
 #include <Cataclysm/Enum/DamageType.hpp>
 #include <Cataclysm/Graphics/glyph.h>
-#include <Cataclysm/dice.h>
+#include <Cataclysm/Random/dice.h>
 #include <Cataclysm/Item/Enum/Class.hpp>
 #include <Cataclysm/Enum/ItemAction.hpp>
 #include <Cataclysm/Enum/ItemFlag.hpp>

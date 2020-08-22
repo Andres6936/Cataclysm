@@ -6,7 +6,6 @@
 
 #include <string>
 
-#include <Cataclysm/dice.h>
 #include <Cataclysm/sound.h>
 #include <Cataclysm/entity_ai.h>
 #include <Cataclysm/var_string.h>
