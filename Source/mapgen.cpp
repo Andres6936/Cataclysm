@@ -1,6 +1,7 @@
 #include "Cataclysm/mapgen.h"
 #include "Cataclysm/globals.h"
 #include "Cataclysm/stringfunc.h"
+#include <Cataclysm/Random/rng.h>
 
 Variable_terrain::Variable_terrain()
 {
