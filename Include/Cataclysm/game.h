@@ -1,9 +1,9 @@
 #ifndef _GAME_H_
 #define _GAME_H_
 
-#include <Doryen/Doryen.hpp>
 #include <Cataclysm/Entity/Pool.hpp>
 #include "Cataclysm/Entity/Player/player.h"
+#include <Cataclysm/Screen/IScreen.hpp>
 
 // Identical messages within MESSAGE_GAP turns of each other are combined
 #define MESSAGE_GAP 3
@@ -27,12 +27,23 @@ struct Game_message
 	}
 };
 
-class Game
+class MenuScreen : public Cataclysm::IScreen
 {
-public:
-	Game();
 
-	~Game();
+public:
+
+	MenuScreen();
+
+	~MenuScreen();
+
+	// Implemented methods
+
+	void draw() override;
+
+	void updated() override;
+
+	Cataclysm::ScreenType processInput() override;
+
 
 /**** Setup - Called only once ****/
 	bool setup_ui();
@@ -174,8 +185,6 @@ public:
 	Generic_map scent_map;
 
 private:
-
-	inline static Doryen::Console console {80, 80};
 
 	Doryen::Console screenMap {24, 24};
 	Doryen::Console screenHUD {56, 24};

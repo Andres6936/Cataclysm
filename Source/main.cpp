@@ -1,6 +1,8 @@
 #include "Cataclysm/globals.h"
 #include "Cataclysm/files.h"
 
+#include <Cataclysm/Screen/ScreenManager.hpp>
+
 #include <ctime>
 #include <getopt.h>
 #include <string>
@@ -48,9 +50,14 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 
-	do
-	{}
-	while (GAME.main_loop()); // See game.cpp
+	Cataclysm::ScreenManager manager {};
+
+	while (manager.isRunning())
+	{
+		manager.draw();
+		manager.updated();
+		manager.processInput();
+	}
 
 	endwin();           // See window.cpp
 	return 0;

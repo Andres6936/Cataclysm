@@ -7,7 +7,7 @@
 
 int TESTING_MODE;
 
-Game GAME;
+MenuScreen GAME;
 Data_pool<Terrain> TERRAIN;
 Data_pool<World_terrain> WORLD_TERRAIN;
 Data_pool<Item_type> ITEM_TYPES;

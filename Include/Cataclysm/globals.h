@@ -16,7 +16,7 @@ class Field_type;
 
 extern int TESTING_MODE;
 
-extern Game GAME;
+extern MenuScreen GAME;
 extern Data_pool<Terrain> TERRAIN;
 extern Data_pool<World_terrain> WORLD_TERRAIN;
 extern Data_pool<Item_type> ITEM_TYPES;

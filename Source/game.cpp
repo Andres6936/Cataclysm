@@ -13,7 +13,7 @@ std::vector<std::string> get_pickup_strings(std::vector<Item>* items,
 
 std::string pickup_string(Item* item, char letter, bool picking_up);
 
-Game::Game()
+MenuScreen::MenuScreen()
 {
 	map = NULL;
 	worldmap = NULL;
@@ -28,7 +28,7 @@ Game::Game()
 	game_over = false;
 }
 
-Game::~Game()
+MenuScreen::~MenuScreen()
 {
 	if (map)
 	{
@@ -44,7 +44,7 @@ Game::~Game()
 	}
 }
 
-bool Game::setup_ui()
+bool MenuScreen::setup_ui()
 {
 	if (!i_hud.load_from_file(CUSS_DIR + "/i_hud.cuss"))
 	{
@@ -83,7 +83,7 @@ bool Game::setup_ui()
 	return true;
 }
 
-bool Game::setup_new_game(int world_index)
+bool MenuScreen::setup_new_game(int world_index)
 {
 	worldmap = new Worldmap;
 	if (world_index >= 0 && world_index < worldmap_names.size())
@@ -143,7 +143,7 @@ bool Game::setup_new_game(int world_index)
 	return true;
 }
 
-bool Game::starting_menu()
+bool MenuScreen::starting_menu()
 {
 	cuss::interface i_menu;
 	Window w_menu;
@@ -216,7 +216,7 @@ bool Game::starting_menu()
 	return false; // Should never be reached
 }
 
-int Game::world_screen()
+int MenuScreen::world_screen()
 {
 	cuss::interface i_worlds;
 	Window w_worlds(0, 0, 80, 24);
@@ -276,7 +276,7 @@ int Game::world_screen()
 	return -1;
 }
 
-void Game::create_world()
+void MenuScreen::create_world()
 {
 	cuss::interface i_editor;
 	Window w_editor(0, 0, 80, 24);
@@ -341,73 +341,17 @@ void Game::create_world()
 }
 
 
-bool Game::main_loop()
+bool MenuScreen::main_loop()
 {
-// Sanity check
-	if (!w_map || !w_hud || !player || !worldmap || !map)
-	{
-		return false;
-	}
-	if (game_over)
-	{
-		return false;
-	}
-// Reset all temp values.
-	reset_temp_values();
-// Process active items; these may set temp values!
-	process_active_items();
-/* TODO:  It's be nice to move all of this to Player::take_turn().  Then we
- *        won't have to special case it - it'd just be another entity taking
- *        their turn!
- */
-// Give the player their action points
-	player->gain_action_points();
-// Set all values, incur hunger/thirst, etc.
-	player->start_turn();
-	while (player->action_points > 0)
-	{
-// Handle the player's activity (e.g. reloading, crafting, etc)
-		handle_player_activity();
-// Update the map in case we need to right now
-		shift_if_needed();
-// Print everything (update_hud() and map->draw())
-		if (!player->has_activity())
-		{
-			draw_all();
-		}
 
-// The player doesn't get to give input if they have an active activity.
-		if (!player->activity.is_active())
-		{
-			long ch = input();
-// Fetch the action bound to whatever key we pressed...
-			Interface_action act = KEYBINDINGS.bound_to_key(ch);
-// ... and do that action.
-			do_action(act);
-		}
-	}
-// Map processes fields after the player
-	map->process_fields();
-// Shift the map - it's likely that the player moved or something
-	shift_if_needed();
-// Now all other entities get their turn
-	move_entities();
-// Maybe a monster killed us
-	if (game_over)
-	{
-		return false; // This terminates the game
-	}
-// Advance the turn
-	time.increment();
-	return true;    // This keeps the game going
 }
 
-void Game::reset_temp_values()
+void MenuScreen::reset_temp_values()
 {
 	temp_light_level = 0;
 }
 
-void Game::do_action(Interface_action act)
+void MenuScreen::do_action(Interface_action act)
 {
 	switch (act)
 	{
@@ -939,7 +883,7 @@ there.<c=/>", map->get_name(examine).c_str());
 	}
 }
 
-void Game::move_entities()
+void MenuScreen::move_entities()
 {
 	clean_up_dead_entities();
 	//scent_map = map->get_dijkstra_map(player->pos, 15);
@@ -978,7 +922,7 @@ void Game::move_entities()
 
 }
 
-void Game::clean_up_dead_entities()
+void MenuScreen::clean_up_dead_entities()
 {
 	std::list<Entity*>::iterator it = entities.instances.begin();
 	while (it != entities.instances.end())
@@ -1008,7 +952,7 @@ void Game::clean_up_dead_entities()
 	}
 }
 
-void Game::handle_player_activity()
+void MenuScreen::handle_player_activity()
 {
 	if (!player->has_activity())
 	{
@@ -1027,7 +971,7 @@ void Game::handle_player_activity()
 	}
 }
 
-void Game::complete_player_activity()
+void MenuScreen::complete_player_activity()
 {
 	Player_activity* act = &(player->activity);
 	switch (act->type)
@@ -1070,7 +1014,7 @@ void Game::complete_player_activity()
 	player->activity = Player_activity();
 }
 
-void Game::process_active_items()
+void MenuScreen::process_active_items()
 {
 	for (int i = 0; i < active_items.size(); i++)
 	{
@@ -1078,7 +1022,7 @@ void Game::process_active_items()
 	}
 }
 
-void Game::shift_if_needed()
+void MenuScreen::shift_if_needed()
 {
 	//return;
 	int min = SUBMAP_SIZE * (MAP_SIZE / 2), max = min + SUBMAP_SIZE - 1;
@@ -1114,22 +1058,22 @@ void Game::shift_if_needed()
 	}
 }
 
-void Game::make_sound(std::string desc, int volume, Tripoint pos)
+void MenuScreen::make_sound(std::string desc, int volume, Tripoint pos)
 {
 	make_sound(Sound(desc, volume), pos);
 }
 
-void Game::make_sound(std::string desc, int volume, Point pos)
+void MenuScreen::make_sound(std::string desc, int volume, Point pos)
 {
 	make_sound(desc, volume, Tripoint(pos.x, pos.y, 0));
 }
 
-void Game::make_sound(std::string desc, int volume, int x, int y)
+void MenuScreen::make_sound(std::string desc, int volume, int x, int y)
 {
 	make_sound(desc, volume, Point(x, y));
 }
 
-void Game::make_sound(Sound snd, Tripoint pos)
+void MenuScreen::make_sound(Sound snd, Tripoint pos)
 {
 	if (snd.description.empty())
 	{
@@ -1155,25 +1099,25 @@ void Game::make_sound(Sound snd, Tripoint pos)
 	}
 }
 
-void Game::launch_projectile(Ranged_attack attack,
+void MenuScreen::launch_projectile(Ranged_attack attack,
 		Tripoint origin, Tripoint target)
 {
 	launch_projectile(NULL, attack, origin, target);
 }
 
-void Game::launch_projectile(Item it, Ranged_attack attack, Tripoint origin,
+void MenuScreen::launch_projectile(Item it, Ranged_attack attack, Tripoint origin,
 		Tripoint target)
 {
 	launch_projectile(NULL, it, attack, origin, target);
 }
 
-void Game::launch_projectile(Entity* shooter, Ranged_attack attack,
+void MenuScreen::launch_projectile(Entity* shooter, Ranged_attack attack,
 		Tripoint origin, Tripoint target)
 {
 	launch_projectile(shooter, Item(), attack, origin, target);
 }
 
-void Game::launch_projectile(Entity* shooter, Item it, Ranged_attack attack,
+void MenuScreen::launch_projectile(Entity* shooter, Item it, Ranged_attack attack,
 		Tripoint origin, Tripoint target)
 {
 // Set up some nouns and verbs for messages (far below)
@@ -1550,7 +1494,7 @@ void Game::launch_projectile(Entity* shooter, Item it, Ranged_attack attack,
 	} // for (int round = 0; round < attack.rounds; round++)
 }
 
-void Game::player_move(int xdif, int ydif)
+void MenuScreen::player_move(int xdif, int ydif)
 {
 // TODO: Remove this?
 	if (xdif < -1 || xdif > 1 || ydif < -1 || ydif > 1)
@@ -1644,7 +1588,7 @@ cannot see or access them.<c=/>", map->get_name(player->pos).c_str());
 	}
 }
 
-void Game::player_move_vertical(int zdif)
+void MenuScreen::player_move_vertical(int zdif)
 {
 // FRODO: Move entities into a stairs-following queue
 //        (except not, since we're on a 3D map nowadays)
@@ -1652,7 +1596,7 @@ void Game::player_move_vertical(int zdif)
 	player->pos.z += zdif;
 }
 
-void Game::add_msg(std::string msg, ...)
+void MenuScreen::add_msg(std::string msg, ...)
 {
 	if (msg.empty())
 	{
@@ -1679,7 +1623,7 @@ void Game::add_msg(std::string msg, ...)
 	messages.push_back(Game_message(text, time.get_turn()));
 }
 
-bool Game::msg_query_yn(std::string msg, ...)
+bool MenuScreen::msg_query_yn(std::string msg, ...)
 {
 // This duplicates all the code of add_msg(), but there's no other option!
 	if (msg.empty())
@@ -1722,7 +1666,7 @@ Case-sensitive.");
 	return (ch == 'Y');
 }
 
-void Game::add_active_item(Item* it)
+void MenuScreen::add_active_item(Item* it)
 {
 	if (!it)
 	{
@@ -1731,7 +1675,7 @@ void Game::add_active_item(Item* it)
 	active_items.push_back(it);
 }
 
-void Game::remove_active_item(Item* it)
+void MenuScreen::remove_active_item(Item* it)
 {
 	if (!it)
 	{
@@ -1747,7 +1691,7 @@ void Game::remove_active_item(Item* it)
 	}
 }
 
-void Game::remove_active_item_uid(int uid)
+void MenuScreen::remove_active_item_uid(int uid)
 {
 	for (int i = 0; i < active_items.size(); i++)
 	{
@@ -1760,7 +1704,7 @@ void Game::remove_active_item_uid(int uid)
 }
 
 // Bit of a duplication of code from find_item(), but what can ya do
-bool Game::destroy_item(Item* it, int uid)
+bool MenuScreen::destroy_item(Item* it, int uid)
 {
 // Sanity check
 	if (it == NULL && (uid < 0 || uid >= next_item_uid))
@@ -1781,12 +1725,12 @@ bool Game::destroy_item(Item* it, int uid)
 	return map->remove_item(it, uid);
 }
 
-bool Game::destroy_item_uid(int uid)
+bool MenuScreen::destroy_item_uid(int uid)
 {
 	return destroy_item(NULL, uid);
 }
 
-void Game::set_temp_light_level(int level)
+void MenuScreen::set_temp_light_level(int level)
 {
 	if (level > temp_light_level)
 	{
@@ -1794,7 +1738,7 @@ void Game::set_temp_light_level(int level)
 	}
 }
 
-void Game::draw_all()
+void MenuScreen::draw_all()
 {
 	update_hud();
 	int range = player->sight_range(get_light_level());
@@ -1807,7 +1751,7 @@ void Game::draw_all()
 	console.draw();
 }
 
-void Game::update_hud()
+void MenuScreen::update_hud()
 {
 //debugmsg("update_hud(); mes %d, new %d", messages.size(), new_messages);
 	print_messages();
@@ -1860,7 +1804,7 @@ void Game::update_hud()
 	w_hud->refresh();
 }
 
-void Game::print_messages()
+void MenuScreen::print_messages()
 {
 	i_hud.clear_data("text_messages");
 	int sizey;
@@ -1903,7 +1847,7 @@ void Game::print_messages()
 */
 }
 
-void Game::debug_command()
+void MenuScreen::debug_command()
 {
 	add_msg("<c=yellow>Press debug key.<c=/>");
 	draw_all();
@@ -2047,18 +1991,18 @@ active items!");
 	}
 }
 
-void Game::pickup_items(Tripoint pos)
+void MenuScreen::pickup_items(Tripoint pos)
 {
 // TODO: don't ignore z?
 	pickup_items(pos.x, pos.y);
 }
 
-void Game::pickup_items(Point pos)
+void MenuScreen::pickup_items(Point pos)
 {
 	pickup_items(pos.x, pos.y);
 }
 
-void Game::pickup_items(int posx, int posy)
+void MenuScreen::pickup_items(int posx, int posy)
 {
 	if (map->has_flag(TF_SEALED, posx, posy))
 	{
@@ -2237,7 +2181,7 @@ void Game::pickup_items(int posx, int posy)
 
 }
 
-Tripoint Game::target_selector(int startx, int starty, int range,
+Tripoint MenuScreen::target_selector(int startx, int starty, int range,
 		bool target_entities, bool show_path)
 {
 	std::vector<Tripoint> path = path_selector(startx, starty, range,
@@ -2249,7 +2193,7 @@ Tripoint Game::target_selector(int startx, int starty, int range,
 	return path.back();
 }
 
-std::vector<Tripoint> Game::path_selector(int startx, int starty, int range,
+std::vector<Tripoint> MenuScreen::path_selector(int startx, int starty, int range,
 		bool target_entities, bool show_path)
 {
 	std::vector<Tripoint> ret;
@@ -2499,17 +2443,17 @@ std::vector<Tripoint> Game::path_selector(int startx, int starty, int range,
 	}
 }
 
-int Game::get_item_uid()
+int MenuScreen::get_item_uid()
 {
 	return next_item_uid++;
 }
 
-int Game::get_furniture_uid()
+int MenuScreen::get_furniture_uid()
 {
 	return next_furniture_uid++;
 }
 
-bool Game::minute_timer(int minutes)
+bool MenuScreen::minute_timer(int minutes)
 {
 	if (minutes <= 0)
 	{
@@ -2519,7 +2463,7 @@ bool Game::minute_timer(int minutes)
 	return turn_timer(turns);
 }
 
-bool Game::turn_timer(int turns)
+bool MenuScreen::turn_timer(int turns)
 {
 	if (turns <= 0)
 	{
@@ -2528,7 +2472,7 @@ bool Game::turn_timer(int turns)
 	return (time.get_turn() % turns == 0);
 }
 
-int Game::get_light_level()
+int MenuScreen::get_light_level()
 {
 	int ret = time.get_light_level();
 	if (temp_light_level > ret)
@@ -2538,18 +2482,18 @@ int Game::get_light_level()
 	return ret;
 }
 
-bool Game::is_empty(int x, int y, int z)
+bool MenuScreen::is_empty(int x, int y, int z)
 {
 	return is_empty(Tripoint(x, y, z));
 }
 
-bool Game::is_empty(Tripoint pos)
+bool MenuScreen::is_empty(Tripoint pos)
 {
 	return (!(entities.entity_at(pos)) && map->move_cost(pos) > 0);
 }
 
 // UID defaults to -1
-Tripoint Game::find_item(Item* it, int uid)
+Tripoint MenuScreen::find_item(Item* it, int uid)
 {
 // Sanity check
 	if (it == NULL && (uid < 0 || uid >= next_item_uid))
@@ -2570,9 +2514,83 @@ Tripoint Game::find_item(Item* it, int uid)
 	return ret;
 }
 
-Tripoint Game::find_item_uid(int uid)
+Tripoint MenuScreen::find_item_uid(int uid)
 {
 	return find_item(NULL, uid);
+}
+
+void MenuScreen::draw()
+{
+
+}
+
+void MenuScreen::updated()
+{
+
+}
+
+Cataclysm::ScreenType MenuScreen::processInput()
+{
+	// Sanity check
+	if (!w_map || !w_hud || !player || !worldmap || !map)
+	{
+		return Cataclysm::ScreenType::QUIT;
+	}
+	if (game_over)
+	{
+		return Cataclysm::ScreenType::QUIT;
+	}
+	// Reset all temp values.
+	reset_temp_values();
+	// Process active items; these may set temp values!
+	process_active_items();
+
+	/* TODO:  It's be nice to move all of this to Player::take_turn().  Then we
+	 *        won't have to special case it - it'd just be another entity taking
+	 *        their turn!
+	 */
+
+	// Give the player their action points
+	player->gain_action_points();
+	// Set all values, incur hunger/thirst, etc.
+	player->start_turn();
+	while (player->action_points > 0)
+	{
+		// Handle the player's activity (e.g. reloading, crafting, etc)
+		handle_player_activity();
+		// Update the map in case we need to right now
+		shift_if_needed();
+		// Print everything (update_hud() and map->draw())
+		if (!player->has_activity())
+		{
+			draw_all();
+		}
+
+		// The player doesn't get to give input if they have an active activity.
+		if (!player->activity.is_active())
+		{
+			long ch = input();
+			// Fetch the action bound to whatever key we pressed...
+			Interface_action act = KEYBINDINGS.bound_to_key(ch);
+			// ... and do that action.
+			do_action(act);
+		}
+	}
+	// Map processes fields after the player
+	map->process_fields();
+	// Shift the map - it's likely that the player moved or something
+	shift_if_needed();
+	// Now all other entities get their turn
+	move_entities();
+	// Maybe a monster killed us
+	if (game_over)
+	{
+		return Cataclysm::ScreenType::QUIT;
+	}
+	// Advance the turn
+	time.increment();
+	// This keeps the game going
+	return Cataclysm::ScreenType::NONE;
 }
 
 std::vector<std::string>
