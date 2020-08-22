@@ -56,7 +56,7 @@ namespace cuss
 			return ELE_NULL;
 		}
 
-		virtual void draw(Window* win)
+		virtual void draw(std::shared_ptr<Window> win)
 		{
 		}
 

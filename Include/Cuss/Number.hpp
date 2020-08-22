@@ -34,7 +34,7 @@ namespace cuss
 			return ELE_NUMBER;
 		};
 
-		virtual void draw(Window* win);
+		virtual void draw(std::shared_ptr<Window> win);
 
 		void draw(Doryen::Console& _console) override;
 

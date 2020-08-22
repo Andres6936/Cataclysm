@@ -436,24 +436,24 @@ public:
 	void process_fields();
 
 // Output
-	void draw(Window* w, Entity_pool* entities, Tripoint ref,
+	void draw(std::shared_ptr<Window> w, Entity_pool* entities, Tripoint ref,
 			int range = -1, Sense_type sense = SENSE_SIGHT);
 
-	void draw(Window* w, Entity_pool* entities, int refx, int refy, int refz,
+	void draw(std::shared_ptr<Window> w, Entity_pool* entities, int refx, int refy, int refz,
 			int range = -1, Sense_type sense = SENSE_SIGHT);
 
-	void draw_area(Window* w, Entity_pool* entities, Tripoint ref,
+	void draw_area(std::shared_ptr<Window> w, Entity_pool* entities, Tripoint ref,
 			int minx, int miny, int maxx, int maxy,
 			int range = -1, Sense_type sense = SENSE_SIGHT);
 
-	void draw_area(Window* w, Entity_pool* entities, int refx, int refy, int refz,
+	void draw_area(std::shared_ptr<Window> w, Entity_pool* entities, int refx, int refy, int refz,
 			int minx, int miny, int maxx, int maxy,
 			int range = -1, Sense_type sense = SENSE_SIGHT);
 
-	void draw_tile(Window* w, Entity_pool* entities, int tilex, int tiley,
+	void draw_tile(std::shared_ptr<Window> w, Entity_pool* entities, int tilex, int tiley,
 			int refx, int refy, bool invert, bool gray = false);
 
-	void draw_tile(Window* w, Entity_pool* entities,
+	void draw_tile(std::shared_ptr<Window> w, Entity_pool* entities,
 			int tilex, int tiley, int tilez,
 			int refx, int refy, bool invert, bool gray = false);
 

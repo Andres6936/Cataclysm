@@ -174,7 +174,7 @@ void interface::draw(Doryen::Console& _console)
 }
 
 
-void interface::draw(Window* win)
+void interface::draw(std::shared_ptr<Window> win)
 {
 	win->clear();
 	std::vector<element*> draw_last; // Menus need to be layered at the top
@@ -192,7 +192,7 @@ void interface::draw(Window* win)
 	win->refresh();
 }
 
-void interface::draw_prototype(Window* win)
+void interface::draw_prototype(std::shared_ptr<Window> win)
 {
 	win->clear();
 	for (int i = 0; i < elements.size(); i++)

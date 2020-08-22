@@ -10,7 +10,7 @@ using namespace cuss;
 
 #define SELECTCOLOR c_blue
 
-void print_scrollbar(Window* win, int posx, int posy, int length, int offset,
+void print_scrollbar(std::shared_ptr<Window> win, int posx, int posy, int length, int offset,
 		int size, bool selected)
 {
 	nc_color barcol = (selected ? SELECTCOLOR : c_ltgray);
@@ -110,7 +110,7 @@ void ele_textbox::draw(Doryen::Console& _console)
 }
 
 // *** TEXTBOX ELEMENT ***
-void ele_textbox::draw(Window* win)
+void ele_textbox::draw(std::shared_ptr<Window> win)
 {
 	std::vector<std::string> broken = break_into_lines(*text, sizex);
 

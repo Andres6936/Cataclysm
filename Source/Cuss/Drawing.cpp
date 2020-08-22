@@ -7,7 +7,7 @@ using namespace cuss;
 
 
 // *** DRAWING ELEMENT ***
-void ele_drawing::draw(Window* win)
+void ele_drawing::draw(std::shared_ptr<Window> win)
 {
 	std::map<Point, glyph>::iterator it;
 	for (it = drawing.begin(); it != drawing.end(); it++)

@@ -57,7 +57,7 @@ void ele_menu::draw(Doryen::Console& _console)
 #define SELECTCOLOR c_blue
 
 // *** MENU ELEMENT ***
-void ele_menu::draw(Window* win)
+void ele_menu::draw(std::shared_ptr<Window> win)
 {
 	std::string text = title;
 	if (selection >= 0)

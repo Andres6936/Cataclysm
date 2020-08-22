@@ -279,7 +279,8 @@ std::vector<Item> Player::drop_items()
 
 std::vector<Item> Player::inventory_ui(bool single, bool remove)
 {
-	Window w_inv(0, 0, 80, 24);
+	std::shared_ptr<Window> w_inv = std::make_shared<Window>(0, 0, 80, 24);
+
 	cuss::interface i_inv;
 	std::string inv_file = CUSS_DIR + "/i_inventory.cuss";
 // Sanity checks
@@ -430,7 +431,7 @@ std::vector<Item> Player::inventory_ui(bool single, bool remove)
 			i_inv.set_data("weight_after", weight_after);
 			i_inv.set_data("volume_after", volume_after);
 		}
-		i_inv.draw(&w_inv);
+		i_inv.draw(w_inv);
 		long ch = input();
 		if (single && ch == '-')
 		{

@@ -29,7 +29,7 @@ void ele_textentry::draw(Doryen::Console& _console)
 }
 
 // *** TEXT ENTRY ELEMENT ***
-void ele_textentry::draw(Window* win)
+void ele_textentry::draw(std::shared_ptr<Window> win)
 {
 	nc_color hilite = (selected ? SELECTCOLOR : bg);
 // Ensure we see the end of the word--and a blank space

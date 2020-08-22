@@ -3198,13 +3198,13 @@ std::vector<Tripoint> Map::line_of_sight(Tripoint origin, Tripoint target)
 			target.x, target.y, target.z);
 }
 
-void Map::draw(Window* w, Entity_pool* entities, Tripoint ref,
+void Map::draw(std::shared_ptr<Window> w, Entity_pool* entities, Tripoint ref,
 		int range, Sense_type sense)
 {
 	draw(w, entities, ref.x, ref.y, ref.z, range, sense);
 }
 
-void Map::draw(Window* w, Entity_pool* entities, int refx, int refy, int refz,
+void Map::draw(std::shared_ptr<Window> w, Entity_pool* entities, int refx, int refy, int refz,
 		int range, Sense_type sense)
 {
 	if (!w)
@@ -3222,7 +3222,7 @@ void Map::draw(Window* w, Entity_pool* entities, int refx, int refy, int refz,
 			sense);
 }
 
-void Map::draw_area(Window* w, Entity_pool* entities, Tripoint ref,
+void Map::draw_area(std::shared_ptr<Window> w, Entity_pool* entities, Tripoint ref,
 		int minx, int miny, int maxx, int maxy,
 		int range, Sense_type sense)
 {
@@ -3230,7 +3230,7 @@ void Map::draw_area(Window* w, Entity_pool* entities, Tripoint ref,
 			sense);
 }
 
-void Map::draw_area(Window* w, Entity_pool* entities,
+void Map::draw_area(std::shared_ptr<Window> w, Entity_pool* entities,
 		int refx, int refy, int refz,
 		int minx, int miny, int maxx, int maxy,
 		int range, Sense_type sense)
@@ -3280,13 +3280,13 @@ void Map::draw_area(Window* w, Entity_pool* entities,
 	}
 }
 
-void Map::draw_tile(Window* w, Entity_pool* entities, int tilex, int tiley,
+void Map::draw_tile(std::shared_ptr<Window> w, Entity_pool* entities, int tilex, int tiley,
 		int refx, int refy, bool invert, bool gray)
 {
 	draw_tile(w, entities, tilex, tiley, posz, refx, refy, invert, gray);
 }
 
-void Map::draw_tile(Window* w, Entity_pool* entities,
+void Map::draw_tile(std::shared_ptr<Window> w, Entity_pool* entities,
 		int tilex, int tiley, int tilez,
 		int refx, int refy, bool invert, bool gray)
 {

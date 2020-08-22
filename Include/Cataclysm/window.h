@@ -89,6 +89,7 @@ public:
 	void refresh();
 
 private:
+
 	WINDOW* w;
 	bool outlined;
 	Window_type type;

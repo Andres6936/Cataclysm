@@ -10,7 +10,7 @@ using namespace cuss;
 #define SELECTCOLOR c_blue
 
 
-void _print_scrollbar(Window* win, int posx, int posy, int length, int offset,
+void _print_scrollbar(std::shared_ptr<Window> win, int posx, int posy, int length, int offset,
 		int size, bool selected)
 {
 	nc_color barcol = (selected ? SELECTCOLOR : c_ltgray);
@@ -41,7 +41,7 @@ void ele_list::draw(Doryen::Console& _console)
 }
 
 // *** LIST ELEMENT ***
-void ele_list::draw(Window* win)
+void ele_list::draw(std::shared_ptr<Window> win)
 {
 	win->clear_area(posx, posy, posx + sizex - 1, posy + sizey - 1);
 

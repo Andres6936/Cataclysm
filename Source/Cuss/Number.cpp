@@ -26,7 +26,7 @@ void ele_number::draw(Doryen::Console& _console)
 }
 
 // *** NUMBER ELEMENT ***
-void ele_number::draw(Window* win)
+void ele_number::draw(std::shared_ptr<Window> win)
 {
 	nc_color hilite = (selected ? SELECTCOLOR : bg);
 	if (align == ALIGN_RIGHT)
