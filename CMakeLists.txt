@@ -102,7 +102,6 @@ ADD_EXECUTABLE(Cataclysm
         Source/mission.cpp
         Source/stringfunc.cpp
         Source/files.cpp
-        Source/catacurse.cpp
         Source/game.cpp
         Source/time.cpp
         Source/color.cpp
