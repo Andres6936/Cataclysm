@@ -1800,6 +1800,11 @@ void Game::draw_all()
 	int range = player->sight_range(get_light_level());
 	map->draw(w_map, &entities, player->pos, range);
 	w_map->refresh();
+
+	screenMap.blit({0, 0}, console, {0, 0});
+	screenHUD.blit({0, 0}, console, {24, 0});
+
+	console.draw();
 }
 
 void Game::update_hud()
@@ -1850,6 +1855,8 @@ void Game::update_hud()
 
 //debugmsg("Offset %d\n%s", i_hud.get_int("text_messages"), i_hud.get_str("text_messages").c_str());
 	i_hud.draw(w_hud);
+	i_hud.draw(screenHUD);
+
 	w_hud->refresh();
 }
 
