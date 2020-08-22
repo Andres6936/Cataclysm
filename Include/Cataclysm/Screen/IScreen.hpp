@@ -16,6 +16,14 @@ namespace Cataclysm
 
 		inline static Doryen::Console console {80, 24};
 
+		inline static std::unique_ptr<Window> w_map {nullptr};
+
+		inline static std::unique_ptr<Window> w_hud {nullptr};
+
+		inline static std::vector<std::string> worldmap_names;
+
+		inline static cuss::interface i_hud {};
+
 	public:
 
 		virtual void draw() = 0;

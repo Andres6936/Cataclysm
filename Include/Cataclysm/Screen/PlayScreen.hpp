@@ -183,12 +183,9 @@ private:
 	Doryen::Console screenMap {24, 24};
 	Doryen::Console screenHUD {56, 24};
 
-	Window* w_map;
-	Window* w_hud;
-	cuss::interface i_hud;
 	std::vector<Game_message> messages;
 	std::vector<Item*> active_items;
-	std::vector<std::string> worldmap_names;
+
 	int last_target;
 	int new_messages;
 	int next_item_uid;

@@ -18,8 +18,7 @@ PlayScreen::PlayScreen()
 {
 	map = NULL;
 	worldmap = NULL;
-	w_map = NULL;
-	w_hud = NULL;
+
 	player = NULL;
 	last_target = -1;
 	new_messages = 0;
@@ -39,49 +38,12 @@ PlayScreen::~PlayScreen()
 	{
 		delete worldmap;
 	}
-	if (w_map)
-	{
-		delete w_map;
-	}
+
 }
 
 bool PlayScreen::setup_ui()
 {
-	if (!i_hud.load_from_file(CUSS_DIR + "/i_hud.cuss"))
-	{
-		return false;
-	}
-	int xdim, ydim;
-	get_screen_dims(xdim, ydim);
-	int win_size = ydim;
-/* Commenting this out for now - the extra empty space caused issues
-  if (win_size % 2 == 0) {
-    win_size--; // Only odd numbers allowed!
-  }
-*/
-	w_map = new Window(0, 0, win_size, win_size);
-	w_hud = new Window(win_size, 0, xdim - win_size, ydim);
-// Attempt to resize the messages box to be as tall as the window allows
-	cuss::element* messages = i_hud.select("text_messages");
-	if (!messages)
-	{
-		debugmsg("Couldn't find element text_messages in i_hud");
-		return false;
-	}
-	messages->sizey = ydim - messages->posy;
 
-// Populate Worldmap_names with all the Worldmaps in SAVE_DIR/worlds
-	worldmap_names = files_in(SAVE_DIR + "/worlds", ".map");
-// Strip the ".map" from each Worldmap name
-	for (int i = 0; i < worldmap_names.size(); i++)
-	{
-		size_t suffix = worldmap_names[i].find(".map");
-		if (suffix != std::string::npos)
-		{
-			worldmap_names[i] = worldmap_names[i].substr(0, suffix);
-		}
-	}
-	return true;
 }
 
 bool PlayScreen::setup_new_game(int world_index)
@@ -146,75 +108,7 @@ bool PlayScreen::setup_new_game(int world_index)
 
 bool PlayScreen::starting_menu()
 {
-	cuss::interface i_menu;
-	Window w_menu;
-	if (!i_menu.load_from_file(CUSS_DIR + "/i_starting_menu.cuss"))
-	{
-		return false;
-	}
 
-	std::string motd = slurp_file(DATA_DIR + "/motd.txt");
-
-	i_menu.set_data("text_motd", motd);
-
-	int current_world = -1;
-
-	Doryen::Console screenMenu {80, 24};
-
-//	screenMap.setDefaultBackground(Doryen::Palette::GOLD);
-//	screenMap.clear();
-//
-//	screenHUD.setDefaultBackground(Doryen::Palette::RED);
-//	screenHUD.clear();
-//
-//	screenMap.blit({0, 0}, console, {0, 0});
-//	screenHUD.blit({0, 0}, console, {24, 0});
-
-	while (true)
-	{
-
-		i_menu.draw(&w_menu);
-		i_menu.draw(screenMenu);
-
-		w_menu.refresh();
-
-		screenMenu.blit({0, 0}, console, {0, 0});
-
-		console.draw();
-
-		long ch = input();
-
-		if (ch == 'n' || ch == 'N')
-		{
-			if (setup_new_game(current_world))
-			{
-				return true;
-			}
-
-		}
-		else if (ch == 'l' || ch == 'L')
-		{
-// TODO: Load character here
-			return true;
-
-		}
-		else if (ch == 'w' || ch == 'W')
-		{
-			current_world = world_screen();
-
-		}
-		else if (ch == 'h' || ch == 'H')
-		{
-			help_screen();
-
-		}
-		else if (ch == 'q' || ch == 'Q')
-		{
-			return false;
-		}
-
-	}
-	return false; // Should never be reached
 }
 
 int PlayScreen::world_screen()

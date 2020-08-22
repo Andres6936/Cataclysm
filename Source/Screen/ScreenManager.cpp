@@ -1,13 +1,17 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include <Cataclysm/globals.h>
+#include <Cataclysm/Screen/MenuScreen.hpp>
 #include "Cataclysm/Screen/ScreenManager.hpp"
 
 using namespace Cataclysm;
 
 ScreenManager::ScreenManager()
 {
-	this->menuScreen.reset(&GAME);
+	this->menuScreen = std::make_shared<MenuScreen>();
+	this->playScreen.reset(&GAME);
+
+	// The first Screen to show is the Menu
 	this->actualScreen = menuScreen;
 }
 
