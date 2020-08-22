@@ -25,7 +25,6 @@ ADD_LIBRARY(Cuss
         Source/Cuss/Interface.cpp
         Source/Graphics/glyph.cpp
         Source/Graphics/color.cpp
-        Source/cuss_editor.cpp
         Source/window.cpp
         Source/stringfunc.cpp
         Source/files.cpp
