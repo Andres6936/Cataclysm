@@ -13,6 +13,7 @@ namespace Cataclysm
 		MENU,
 		PLAY,
 		PAUSE,
+		HELP_MENU,
 		CREATE_WORLD,
 		CREATE_PLAYER,
 	};

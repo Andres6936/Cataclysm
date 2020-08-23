@@ -1,4 +1,4 @@
-#include "Cataclysm/Screen/help.h"
+#include "Cataclysm/Screen/HelpScreen.hpp"
 #include "Cataclysm/files.h"
 #include "Cataclysm/stringfunc.h"
 #include <Cuss/Interface.hpp>
@@ -115,4 +115,45 @@ void help_skill_desc(Skill_type skill)
 {
 	std::string sk_name = skill_type_user_name(skill);
 	help_screen("skills.txt", sk_name);
+}
+
+// Construct
+
+Cataclysm::HelpScreen::HelpScreen()
+{
+	help_files.push_back("story.txt");
+	help_files.push_back("introduction.txt");
+	help_files.push_back("interface.txt");
+	help_files.push_back("movement.txt");
+	help_files.push_back("status_effects.txt");
+	help_files.push_back("combat.txt");
+	help_files.push_back("items.txt");
+	help_files.push_back("configuration.txt");
+	help_files.push_back("skills.txt");
+
+	if (!i_help.load_from_file(CUSS_DIR + "/i_help.cuss"))
+	{
+		throw std::runtime_error("The file i_help.cuss cannot found");
+	}
+}
+
+// Methods
+
+void Cataclysm::HelpScreen::draw()
+{
+	i_help.draw(helpConsole);
+
+	helpConsole.blit({0, 0}, console, {0, 0});
+
+	helpConsole.draw();
+}
+
+void Cataclysm::HelpScreen::updated()
+{
+
+}
+
+Cataclysm::ScreenType Cataclysm::HelpScreen::processInput()
+{
+	return ScreenType::NONE;
 }

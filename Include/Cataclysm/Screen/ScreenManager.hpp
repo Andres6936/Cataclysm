@@ -24,6 +24,8 @@ namespace Cataclysm
 
 		std::shared_ptr<IScreen> actualScreen {};
 
+		std::shared_ptr<IScreen> helpMenuScreen {};
+
 		void nextScene(ScreenType _next);
 
 	public:

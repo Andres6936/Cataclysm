@@ -4,6 +4,8 @@
 #define CATACLYSM_SCREEN_HPP
 
 #include <Doryen/Doryen.hpp>
+#include <Cataclysm/window.h>
+#include <Cuss/Interface.hpp>
 #include <Cataclysm/Screen/Enum/ScreenType.hpp>
 
 namespace Cataclysm

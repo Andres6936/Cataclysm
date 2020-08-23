@@ -104,8 +104,7 @@ ScreenType MenuScreen::processInput()
 	}
 	else if (ch == 'h' || ch == 'H')
 	{
-//		help_screen();
-
+		return ScreenType::HELP_MENU;
 	}
 	else if (ch == 'q' || ch == 'Q')
 	{
