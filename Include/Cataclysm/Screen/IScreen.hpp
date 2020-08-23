@@ -26,7 +26,18 @@ namespace Cataclysm
 
 		inline static cuss::interface i_hud {};
 
+		/**
+		 * -1 Not Select World
+		 */
+		inline static std::int32_t indexWorldSelect = -1;
+
 	public:
+
+		bool showQueryYesNo(std::string_view _text);
+
+		void showDebugMessage(std::string_view _text);
+
+		// Virtual Methods
 
 		virtual void draw() = 0;
 
