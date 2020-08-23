@@ -9,25 +9,42 @@ bool IScreen::showQueryYesNo(std::string_view _text)
 	console.writeText({0, 0}, {80, 24}, Doryen::BlendModes::SET, _text);
 	console.draw();
 
-	Doryen::KeyCode key = console.getKeyPressed().getKeyCode();
+	flushinp();
 
-	while(key not_eq Doryen::KeyCode::Y or key not_eq Doryen::KeyCode::N)
+	long key = getch();
+
+	while(key not_eq 'y' or key not_eq 'n')
 	{
-		if (key == Doryen::KeyCode::Y)
+		if (key == 'y')
 		{
 			return true;
 		}
-		else if (key == Doryen::KeyCode::N)
+		else if (key == 'n')
 		{
 			return false;
 		}
 
-		key = console.getKeyPressed().getKeyCode();
+		flushinp();
+
+		key = getch();
 	}
+
+	return false;
 }
 
 void IScreen::showDebugMessage(std::string_view _text)
 {
 	console.writeText({0, 0}, {80, 24}, Doryen::BlendModes::SET, _text);
 	console.draw();
+
+	flushinp();
+
+	long ch = getch();
+
+	while (ch not_eq '\n')
+	{
+		flushinp();
+
+		ch = getch();
+	}
 }
