@@ -9,11 +9,11 @@ using namespace Cataclysm;
 
 TourScreen::TourScreen()
 {
-	tour_name << CUSS_DIR << "/i_help_interface_" << indexFile << ".cuss";
+	tour_name = CUSS_DIR + "/i_help_interface_" + std::to_string(indexFile) + ".cuss";
 
-	if (!i_tour.load_from_file(tour_name.str()))
+	if (!i_tour.load_from_file(tour_name))
 	{
-		throw std::runtime_error("Cannot found the file " + tour_name.str() );
+		throw std::runtime_error("Cannot found the file " + tour_name );
 	}
 }
 
@@ -46,6 +46,13 @@ ScreenType TourScreen::processInput()
 		{
 			// Advance to next section
 			indexFile += 1;
+
+			tour_name = CUSS_DIR + "/i_help_interface_" + std::to_string(indexFile) + ".cuss";
+
+			if (!i_tour.load_from_file(tour_name))
+			{
+				throw std::runtime_error("Cannot found the file " + tour_name );
+			}
 		}
 	}
 

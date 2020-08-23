@@ -15,7 +15,7 @@ namespace Cataclysm
 
 		Doryen::Console tourScreen {80, 24};
 
-		std::stringstream tour_name;
+		std::string tour_name;
 
 		cuss::interface i_tour;
 
