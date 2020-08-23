@@ -101,11 +101,11 @@ ScreenType MenuScreen::processInput()
 	else if (ch == 'w' || ch == 'W')
 	{
 //		current_world = world_screen();
-		return ScreenType::NONE;
+		return ScreenType::WORLD;
 	}
 	else if (ch == 'h' || ch == 'H')
 	{
-		help_screen();
+		// NOTE: help_screen();
 		return ScreenType::HELP_MENU;
 	}
 	else if (ch == 'q' || ch == 'Q')

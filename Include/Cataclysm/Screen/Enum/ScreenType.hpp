@@ -14,6 +14,7 @@ namespace Cataclysm
 		PLAY,
 		TOUR,
 		PAUSE,
+		WORLD,
 		HELP_MENU,
 		CREATE_WORLD,
 		CREATE_PLAYER,
