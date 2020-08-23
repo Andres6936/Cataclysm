@@ -163,23 +163,8 @@ Cataclysm::ScreenType Cataclysm::HelpMenuScreen::processInput()
 	}
 
 	if (ch == 'c')
-	{  // Interface tour is handled specially
-		std::shared_ptr<Window> w_tour = std::make_shared<Window>(0, 0, 80, 24);
-		cuss::interface i_tour;
-		for (int i = 1; i <= 6; i++)
-		{
-			std::stringstream tour_name;
-			tour_name << CUSS_DIR << "/i_help_interface_" << i << ".cuss";
-			if (!i_tour.load_from_file(tour_name.str()))
-			{
-				i = 100;
-			}
-			i_tour.draw(w_tour);
-			long ch;
-			do
-			{ ch = getch(); }
-			while (ch != ' ');
-		}
+	{
+		return ScreenType::TOUR;
 	}
 	else if (ch >= 'a' && ch - 'a' < help_files.size())
 	{

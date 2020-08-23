@@ -12,6 +12,7 @@ namespace Cataclysm
 		QUIT,
 		MENU,
 		PLAY,
+		TOUR,
 		PAUSE,
 		HELP_MENU,
 		CREATE_WORLD,
