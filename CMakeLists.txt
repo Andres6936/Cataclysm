@@ -88,7 +88,7 @@ ADD_EXECUTABLE(Cataclysm
         Source/Item/TypeContainer.cpp
         Source/Random/rng.cpp
         Source/Random/dice.cpp
-        Source/Screen/HelpScreen.cpp
+        Source/Screen/HelpMenuScreen.cpp
         Source/Screen/Debugger.cpp
         Source/Screen/MenuScreen.cpp
         Source/Screen/PlayScreen.cpp

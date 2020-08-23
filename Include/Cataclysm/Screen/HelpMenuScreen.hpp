@@ -8,7 +8,7 @@
 
 namespace Cataclysm
 {
-	class HelpScreen : public IScreen
+	class HelpMenuScreen : public IScreen
 	{
 
 	private:
@@ -23,7 +23,7 @@ namespace Cataclysm
 
 	public:
 
-		HelpScreen();
+		HelpMenuScreen();
 
 		void draw() override;
 

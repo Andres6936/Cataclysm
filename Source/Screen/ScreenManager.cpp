@@ -2,7 +2,7 @@
 
 #include <Cataclysm/globals.h>
 #include <Cataclysm/Screen/MenuScreen.hpp>
-#include <Cataclysm/Screen/HelpScreen.hpp>
+#include <Cataclysm/Screen/HelpMenuScreen.hpp>
 #include "Cataclysm/Screen/ScreenManager.hpp"
 
 using namespace Cataclysm;
@@ -10,7 +10,7 @@ using namespace Cataclysm;
 ScreenManager::ScreenManager()
 {
 	this->menuScreen = std::make_shared<MenuScreen>();
-	this->helpMenuScreen = std::make_shared<HelpScreen>();
+	this->helpMenuScreen = std::make_shared<HelpMenuScreen>();
 	this->playScreen.reset(&GAME);
 
 	// The first Screen to show is the Menu
@@ -39,6 +39,10 @@ void ScreenManager::nextScene(ScreenType _next)
 	if (_next == ScreenType::QUIT)
 	{
 		running = false;
+	}
+	else if (_next == ScreenType::MENU)
+	{
+		actualScreen = menuScreen;
 	}
 	else if (_next == ScreenType::HELP_MENU)
 	{

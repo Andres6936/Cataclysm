@@ -1,4 +1,4 @@
-#include "Cataclysm/Screen/HelpScreen.hpp"
+#include "Cataclysm/Screen/HelpMenuScreen.hpp"
 #include "Cataclysm/files.h"
 #include "Cataclysm/stringfunc.h"
 #include <Cuss/Interface.hpp>
@@ -119,7 +119,7 @@ void help_skill_desc(Skill_type skill)
 
 // Construct
 
-Cataclysm::HelpScreen::HelpScreen()
+Cataclysm::HelpMenuScreen::HelpMenuScreen()
 {
 	help_files.push_back("story.txt");
 	help_files.push_back("introduction.txt");
@@ -139,7 +139,7 @@ Cataclysm::HelpScreen::HelpScreen()
 
 // Methods
 
-void Cataclysm::HelpScreen::draw()
+void Cataclysm::HelpMenuScreen::draw()
 {
 	i_help.draw(helpConsole);
 
@@ -148,12 +148,61 @@ void Cataclysm::HelpScreen::draw()
 	helpConsole.draw();
 }
 
-void Cataclysm::HelpScreen::updated()
+void Cataclysm::HelpMenuScreen::updated()
 {
 
 }
 
-Cataclysm::ScreenType Cataclysm::HelpScreen::processInput()
+Cataclysm::ScreenType Cataclysm::HelpMenuScreen::processInput()
 {
+	long ch = getch();
+
+	if (ch >= 'A' && ch <= 'Z')
+	{
+		ch = ch - 'A' + 'a';
+	}
+
+	if (ch == 'c')
+	{  // Interface tour is handled specially
+		std::shared_ptr<Window> w_tour = std::make_shared<Window>(0, 0, 80, 24);
+		cuss::interface i_tour;
+		for (int i = 1; i <= 6; i++)
+		{
+			std::stringstream tour_name;
+			tour_name << CUSS_DIR << "/i_help_interface_" << i << ".cuss";
+			if (!i_tour.load_from_file(tour_name.str()))
+			{
+				i = 100;
+			}
+			i_tour.draw(w_tour);
+			long ch;
+			do
+			{ ch = getch(); }
+			while (ch != ' ');
+		}
+	}
+	else if (ch >= 'a' && ch - 'a' < help_files.size())
+	{
+		std::string filename = DATA_DIR + "/help/" + help_files[ch - 'a'];
+		if (!file_exists(filename))
+		{
+			i_help.set_data("text_help",
+					"Help file '" + filename + "' doesn't exist.");
+		}
+		else
+		{
+			i_help.set_data("text_help", slurp_file(filename));
+		}
+		i_help.set_data("text_help", 0);  // Scroll to top
+	}
+	else if (ch == 'q' || ch == 'Q' || ch == KEY_ESC)
+	{
+		return ScreenType::MENU;
+	}
+	else
+	{
+		i_help.handle_keypress(ch);
+	}
+
 	return ScreenType::NONE;
 }

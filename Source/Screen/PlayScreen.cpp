@@ -2,7 +2,7 @@
 #include "Cataclysm/globals.h"
 #include "Cataclysm/stringfunc.h"
 #include <Cataclysm/Random/rng.h>
-#include "Cataclysm/Screen/HelpScreen.hpp"
+#include "Cataclysm/Screen/HelpMenuScreen.hpp"
 #include <Cataclysm/Screen/PlayScreen.hpp>
 #include <Cataclysm/Entity/Monster/monster.h>
 

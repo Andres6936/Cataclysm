@@ -1,5 +1,6 @@
 // Joan Andrés (@Andres6936) Github.
 
+#include <Cataclysm/Screen/HelpMenuScreen.hpp>
 #include "Cataclysm/Screen/MenuScreen.hpp"
 #include <Cataclysm/Screen/Debugger.hpp>
 #include <Cataclysm/files.h>
@@ -104,6 +105,7 @@ ScreenType MenuScreen::processInput()
 	}
 	else if (ch == 'h' || ch == 'H')
 	{
+		help_screen();
 		return ScreenType::HELP_MENU;
 	}
 	else if (ch == 'q' || ch == 'Q')
