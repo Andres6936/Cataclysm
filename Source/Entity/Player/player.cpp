@@ -872,7 +872,7 @@ void Player::status_interface()
 		return;
 	}
 
-	Window w_status(0, 0, 80, 24);
+	std::shared_ptr<Window> w_status = std::make_shared<Window>(0, 0, 80, 24);
 
 	i_status.set_data("num_str_cur", stats.strength);
 	i_status.set_data("num_str_max", stats.strength_max);
@@ -987,8 +987,8 @@ void Player::status_interface()
 // Okay!  All done filling out the interface.
 	while (true)
 	{
-		i_status.draw(&w_status);
-		w_status.refresh();
+		i_status.draw(w_status);
+		w_status->refresh();
 
 		std::string selected_name = i_status.selected()->name;
 		int last_selected = i_status.selected()->get_int();
@@ -1056,12 +1056,12 @@ void Player::skills_interface()
 		return;
 	}
 
-	Window w_skills(0, 0, 80, 24);
+	std::shared_ptr<Window> w_skills = std::make_shared<Window>(0, 0, 80, 24);
 
 	setup_skills_interface(i_skills);
 
-	i_skills.draw(&w_skills);
-	w_skills.refresh();
+	i_skills.draw(w_skills);
+	w_skills->refresh();
 
 	bool help_mode = false;
 
@@ -1114,8 +1114,8 @@ Press <c=pink>?<c=yellow> again for general help on skills.<c=/>");
 improve a skill beyond its cap.\n\n\
 Press <c=pink>?<c=yellow> and then a letter for skill description.<c=/>");
 			}
-			i_skills.draw(&w_skills);
-			w_skills.refresh();
+			i_skills.draw(w_skills);
+			w_skills->refresh();
 
 
 		}
@@ -1167,8 +1167,8 @@ Press <c=pink>?<c=yellow> and then a letter for skill description.<c=/>");
 			}
 
 			setup_skills_interface(i_skills);
-			i_skills.draw(&w_skills);
-			w_skills.refresh();
+			i_skills.draw(w_skills);
+			w_skills->refresh();
 
 		} // End of "ch is a letter"
 
@@ -1289,7 +1289,7 @@ void Player::clothing_interface()
 		return;
 	}
 
-	Window w_clothing(0, 0, 80, 24);
+	std::shared_ptr<Window> w_clothing = std::make_shared<Window>(0, 0, 80, 24);
 
 // Init the lists.
 	for (int i = 1; i < BODY_PART_MAX; i++)
@@ -1350,8 +1350,8 @@ void Player::clothing_interface()
 		Body_part bp = Body_part(i_clothing.get_int("list_part_name") + 1);
 		i_clothing.set_data("text_protection_description",
 				get_protection_meaning(bp));
-		i_clothing.draw(&w_clothing);
-		w_clothing.refresh();
+		i_clothing.draw(w_clothing);
+		w_clothing->refresh();
 		long ch = input();
 		if (ch == KEY_ESC || ch == 'q' || ch == 'Q')
 		{
@@ -1392,7 +1392,7 @@ void Player::missions_interface()
 		return;
 	}
 
-	Window w_missions(0, 0, 80, 24);
+	std::shared_ptr<Window> w_missions = std::make_shared<Window>(0, 0, 80, 24);
 
 // Init the lists.
 	for (int i = 0; i < missions.size(); i++)
@@ -1404,8 +1404,8 @@ void Player::missions_interface()
 		i_missions.add_data("list_experience", miss->get_experience_text());
 	}
 
-	i_missions.draw(&w_missions);
-	w_missions.refresh();
+	i_missions.draw(w_missions);
+	w_missions->refresh();
 
 	while (true)
 	{

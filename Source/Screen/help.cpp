@@ -24,7 +24,7 @@ void help_screen(std::string file, std::string term)
 		return;
 	}
 
-	Window w_help(0, 0, 80, 24);
+	std::shared_ptr<Window> w_help = std::make_shared<Window>(0, 0, 80, 24);
 
 // We were told to read a specific file, and go to a specific line
 	if (!file.empty())
@@ -61,7 +61,7 @@ void help_screen(std::string file, std::string term)
 	bool done = false;
 	while (!done)
 	{
-		i_help.draw(&w_help);
+		i_help.draw(w_help);
 		long ch = getch();
 		if (ch >= 'A' && ch <= 'Z')
 		{
@@ -69,7 +69,7 @@ void help_screen(std::string file, std::string term)
 		}
 		if (ch == 'c')
 		{  // Interface tour is handled specially
-			Window w_tour(0, 0, 80, 24);
+			std::shared_ptr<Window> w_tour = std::make_shared<Window>(0, 0, 80, 24);
 			cuss::interface i_tour;
 			for (int i = 1; i <= 6; i++)
 			{
@@ -79,7 +79,7 @@ void help_screen(std::string file, std::string term)
 				{
 					i = 100;
 				}
-				i_tour.draw(&w_tour);
+				i_tour.draw(w_tour);
 				long ch;
 				do
 				{ ch = getch(); }

@@ -522,7 +522,7 @@ void popup_scrollable(const char* mes, ...)
 	std::string tmp = buff;
 	int width = 80;
 	int height = 24;
-	Window w(0, 0, width, height);
+	std::shared_ptr<Window> w = std::make_shared<Window>(0, 0, width, height);
 	cuss::interface i_popup;
 	i_popup.add_element(cuss::ELE_TEXTBOX, "text", 0, 0, 80, 24, false);
 	i_popup.set_data("text", tmp);
@@ -544,7 +544,7 @@ void popup_scrollable(const char* mes, ...)
 	long ch;
 	do
 	{
-		i_popup.draw(&w);
+		i_popup.draw(w);
 		ch = getch();
 		if (ch == 'k' || ch == 'K' || ch == KEY_UP)
 		{

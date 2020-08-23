@@ -1129,7 +1129,7 @@ Item_action Item::show_info(Entity* user)
 	{
 		return IACT_NULL;
 	}
-	Window w_info(0, 0, 80, 24);
+	std::shared_ptr<Window> w_info = std::make_shared<Window>(0, 0, 80, 24);
 	cuss::interface i_info;
 	if (!i_info.load_from_file(CUSS_DIR + "/i_item_info.cuss"))
 	{
@@ -1197,7 +1197,7 @@ Item_action Item::show_info(Entity* user)
 // get_desciption_full() includes type-specific info, e.g. nutrition for food
 	i_info.set_data("description", get_description_full());
 
-	i_info.draw(&w_info);
+	i_info.draw(w_info);
 	while (true)
 	{
 		long ch = input();

@@ -15,9 +15,9 @@ namespace Cataclysm
 
 	private:
 
+		std::shared_ptr<Window> w_menu = std::make_shared<Window>();
 		Doryen::Console screenMenu {80, 24};
 		cuss::interface i_menu;
-		Window w_menu;
 
 		int current_world = -1;
 

@@ -114,7 +114,7 @@ bool PlayScreen::starting_menu()
 int PlayScreen::world_screen()
 {
 	cuss::interface i_worlds;
-	Window w_worlds(0, 0, 80, 24);
+	std::shared_ptr<Window> w_worlds = std::make_shared<Window>(0, 0, 80, 24);
 	if (!i_worlds.load_from_file(CUSS_DIR + "/i_worlds.cuss"))
 	{
 		return -1;
@@ -124,8 +124,8 @@ int PlayScreen::world_screen()
 
 	while (true)
 	{  // We'll exit when the player hits enter
-		i_worlds.draw(&w_worlds);
-		w_worlds.refresh();
+		i_worlds.draw(w_worlds);
+		w_worlds->refresh();
 		long ch = input();
 
 		if (ch == 'c' || ch == 'C')
@@ -174,7 +174,7 @@ int PlayScreen::world_screen()
 void PlayScreen::create_world()
 {
 	cuss::interface i_editor;
-	Window w_editor(0, 0, 80, 24);
+	std::shared_ptr<Window> w_editor = std::make_shared<Window>(0, 0, 80, 24);
 	if (!i_editor.load_from_file(CUSS_DIR + "/i_world_editor.cuss"))
 	{
 		return;
@@ -188,8 +188,8 @@ void PlayScreen::create_world()
 // TODO: Enable climate selection, and generate the world based on the climate.
 	while (true)
 	{  // We'll exit this loop via player input.
-		i_editor.draw(&w_editor);
-		w_editor.refresh();
+		i_editor.draw(w_editor);
+		w_editor->refresh();
 
 		long ch = input();
 

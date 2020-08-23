@@ -28,7 +28,7 @@ std::vector<std::string> get_profession_list(Player* pl);
 bool Player::create_new_character()
 {
 	stats = Stats(10, 10, 10, 10);
-	Window w_newch(0, 0, 80, 24);
+	std::shared_ptr<Window> w_newch = std::make_shared<Window>(0, 0, 80, 24);
 	cuss::interface i_newch;
 	if (!i_newch.load_from_file(CUSS_DIR + "/i_newchar_stats.cuss"))
 	{
@@ -79,8 +79,8 @@ bool Player::create_new_character()
 	{  // We'll exit this function via keypresses, always
 // Always set num_points!
 
-		i_newch.draw(&w_newch);
-		w_newch.refresh();
+		i_newch.draw(w_newch);
+		w_newch->refresh();
 
 		long ch = getch();
 		bool changed_screen = false;

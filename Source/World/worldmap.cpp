@@ -378,12 +378,12 @@ Point Worldmap::get_point(int posx, int posy)
 
 	int xdim, ydim;
 	get_screen_dims(xdim, ydim);
-	Window w_worldmap(0, 0, xdim - 20, ydim);
-	Window w_legend(xdim - 20, 0, 20, ydim);
+	std::shared_ptr<Window> w_worldmap = std::make_shared<Window>(0, 0, xdim - 20, ydim);
+	std::shared_ptr<Window> w_legend = std::make_shared<Window>(xdim - 20, 0, 20, ydim);
 
 	int origx = posx, origy = posy;
 // Size of the window
-	int winx = w_worldmap.sizex(), winy = w_worldmap.sizey();
+	int winx = w_worldmap->sizex(), winy = w_worldmap->sizey();
 
 	bool done = false;
 	std::vector<Point> results;
@@ -417,16 +417,16 @@ Point Worldmap::get_point(int posx, int posy)
 				{
 					sym = sym.hilite(c_red);
 				}
-				w_worldmap.putglyph(x, y, sym);
+				w_worldmap->putglyph(x, y, sym);
 			}
 		}
 		if (TESTING_MODE)
 		{
-			w_worldmap.putstr(0, 0, c_red, c_black, "[%d:%d]", posx, posy);
+			w_worldmap->putstr(0, 0, c_red, c_black, "[%d:%d]", posx, posy);
 		}
-		w_worldmap.refresh();
-		i_legend.draw(&w_legend);
-		w_legend.refresh();
+		w_worldmap->refresh();
+		i_legend.draw(w_legend);
+		w_legend->refresh();
 		long ch = input();
 
 		if (i_legend.selected())
