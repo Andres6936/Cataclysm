@@ -91,8 +91,8 @@ void ele_textbox::draw(Doryen::Console& _console)
 
 				for (const auto& [foreground, background] : colors)
 				{
-					_console.setDefaultForeground(foreground);
-					_console.setDefaultBackground(background);
+					_console.setForegroundColor(foreground);
+					_console.setBackgroundColor(background);
 
 					_console.write(positionX, ypos, segments[indexActualString]);
 
