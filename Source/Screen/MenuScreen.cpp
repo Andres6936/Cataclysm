@@ -87,11 +87,8 @@ ScreenType MenuScreen::processInput()
 
 	if (ch == 'n' || ch == 'N')
 	{
-//		if (setup_new_game(current_world))
-//		{
-//			return true;
-//		}
-		return ScreenType::NONE;
+		// NOTE: setup_new_game(current_world);
+		return ScreenType::NEW_GAME;
 	}
 	else if (ch == 'l' || ch == 'L')
 	{

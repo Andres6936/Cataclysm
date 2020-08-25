@@ -4,6 +4,7 @@
 #include <Cataclysm/Screen/MenuScreen.hpp>
 #include <Cataclysm/Screen/TourScreen.hpp>
 #include <Cataclysm/Screen/WorldScreen.hpp>
+#include <Cataclysm/Screen/NewGameScreen.hpp>
 #include "Cataclysm/Screen/ScreenManager.hpp"
 #include <Cataclysm/Screen/HelpMenuScreen.hpp>
 #include <Cataclysm/Screen/CreateWorldScreen.hpp>
@@ -15,6 +16,7 @@ ScreenManager::ScreenManager()
 	this->menuScreen = std::make_shared<MenuScreen>();
 	this->tourScreen = std::make_shared<TourScreen>();
 	this->worldScreen = std::make_shared<WorldScreen>();
+	this->newGameScreen = std::make_shared<NewGameScreen>();
 	this->helpMenuScreen = std::make_shared<HelpMenuScreen>();
 	this->createWorldScreen = std::make_shared<CreateWorldScreen>();
 	this->playScreen.reset(&GAME);
@@ -46,6 +48,10 @@ void ScreenManager::nextScene(ScreenType _next)
 	{
 		running = false;
 	}
+	else if (_next == ScreenType::PLAY)
+	{
+		actualScreen = playScreen;
+	}
 	else if (_next == ScreenType::MENU)
 	{
 		actualScreen = menuScreen;
@@ -57,6 +63,10 @@ void ScreenManager::nextScene(ScreenType _next)
 	else if (_next == ScreenType::WORLD)
 	{
 		actualScreen = worldScreen;
+	}
+	else if (_next == ScreenType::NEW_GAME)
+	{
+		actualScreen = newGameScreen;
 	}
 	else if (_next == ScreenType::HELP_MENU)
 	{

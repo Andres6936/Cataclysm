@@ -15,9 +15,9 @@ namespace Cataclysm
 		TOUR,
 		PAUSE,
 		WORLD,
+		NEW_GAME,
 		HELP_MENU,
 		CREATE_WORLD,
-		CREATE_PLAYER,
 	};
 
 }
