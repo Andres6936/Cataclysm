@@ -34,8 +34,6 @@ public:
 
 	PlayScreen();
 
-	~PlayScreen();
-
 	// Implemented methods
 
 	void draw() override;

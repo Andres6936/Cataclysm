@@ -16,9 +16,6 @@ std::string pickup_string(Item* item, char letter, bool picking_up);
 
 PlayScreen::PlayScreen()
 {
-	map = NULL;
-	worldmap = NULL;
-
 	player = NULL;
 	last_target = -1;
 	new_messages = 0;
@@ -26,19 +23,6 @@ PlayScreen::PlayScreen()
 	next_furniture_uid = 0;
 	temp_light_level = 0;
 	game_over = false;
-}
-
-PlayScreen::~PlayScreen()
-{
-	if (map)
-	{
-		delete map;
-	}
-	if (worldmap)
-	{
-		delete worldmap;
-	}
-
 }
 
 bool PlayScreen::setup_new_game(int world_index)
