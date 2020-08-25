@@ -132,7 +132,7 @@ there.<c=/>", map->get_name(player->pos).c_str());
 		else
 		{
 			Tripoint open = player->pos + dir;
-			if (map->apply_signal("open", open, player))
+			if (map->apply_signal("open", open, player.get()))
 			{
 				player->use_ap(100);
 			}
@@ -153,7 +153,7 @@ there.<c=/>", map->get_name(player->pos).c_str());
 		{
 			Tripoint close = player->pos + dir;
 			Entity* ent = entities.entity_at(close);
-			if (ent == player)
+			if (ent == player.get())
 			{
 				add_msg("Maybe you should move out of the doorway first.");
 			}
@@ -165,7 +165,7 @@ there.<c=/>", map->get_name(player->pos).c_str());
 			{
 				add_msg("There's some furniture in the way.");
 			}
-			else if (map->apply_signal("close", close, player))
+			else if (map->apply_signal("close", close, player.get()))
 			{
 				player->use_ap(100);
 			}
@@ -464,7 +464,7 @@ there.<c=/>", map->get_name(examine).c_str());
 				}
 				player->remove_item_uid(it.get_uid(), 1);
 				Ranged_attack att = player->throw_item(it);
-				launch_projectile(player, it, att, player->pos, target);
+				launch_projectile(player.get(), it, att, player->pos, target);
 			}
 		}
 	}
@@ -492,7 +492,7 @@ there.<c=/>", map->get_name(examine).c_str());
 				}
 // And do the actual attack!
 				Ranged_attack att = player->fire_weapon();
-				launch_projectile(player, player->weapon, att, player->pos, target);
+				launch_projectile(player.get(), player->weapon, att, player->pos, target);
 			}
 		}
 		break;
@@ -531,7 +531,7 @@ there.<c=/>", map->get_name(examine).c_str());
 			posx += MAP_SIZE / 2;
 			posy += MAP_SIZE / 2;
 			SUBMAP_POOL.load_area_centered_on(posx, posy);
-			map->generate(worldmap, got.x, got.y);
+			map->generate(worldmap.get(), got.x, got.y);
 			Point mp = map->get_center_point();
 			//debugmsg("Worldmap %s, map %s", got.str().c_str(), mp.str().c_str());
 		}
@@ -615,7 +615,7 @@ void PlayScreen::clean_up_dead_entities()
 		Entity* ent = (*it);
 		if (ent->dead)
 		{
-			if (player->can_see(map, ent->pos))
+			if (player->can_see(map.get(), ent->pos))
 			{
 				if (ent->killed_by_player)
 				{
@@ -675,7 +675,7 @@ void PlayScreen::complete_player_activity()
 			return;
 		}
 		add_msg("You reload your %s.", reloaded->get_name().c_str());
-		reloaded->reload(player, act->secondary_item_uid);
+		reloaded->reload(player.get(), act->secondary_item_uid);
 	}
 		break;
 
@@ -732,7 +732,7 @@ void PlayScreen::shift_if_needed()
 	posx += MAP_SIZE / 2;
 	posy += MAP_SIZE / 2;
 	SUBMAP_POOL.load_area_centered_on(posx, posy);
-	map->shift(worldmap, shiftx, shifty);
+	map->shift(worldmap.get(), shiftx, shifty);
 	//Point p = map->get_center_point();
 	//SUBMAP_POOL.load_area_centered_on( p.x, p.y );
 	for (std::list<Entity*>::iterator it = entities.instances.begin();
@@ -1027,7 +1027,7 @@ void PlayScreen::launch_projectile(Entity* shooter, Item it, Ranged_attack attac
 							}
 							stopped = true;
 						}
-						else if (i == path.size() - 1 && shooter == player)
+						else if (i == path.size() - 1 && shooter == player.get())
 						{
 							add_msg("<c=dkgray>%s barely %s %s.<c=/>",
 									shooter_name.c_str(), miss_verb.c_str(),
@@ -1200,7 +1200,7 @@ void PlayScreen::player_move(int xdif, int ydif)
 
 // Check that we can drag our furniture (if any)
 	}
-	else if (!player->can_drag_furniture_to(map, newx, newy))
+	else if (!player->can_drag_furniture_to(map.get(), newx, newy))
 	{
 		add_msg("The %s you're dragging prevents you from moving there.",
 				player->get_dragged_name().c_str());
@@ -1228,7 +1228,7 @@ void PlayScreen::player_move(int xdif, int ydif)
 		{
 			debugmsg("Fall");
 		}
-		player->move_to(map, newx, newy);
+		player->move_to(map.get(), newx, newy);
 		player_move_vertical(0 - levels_to_fall);
 		player->fall(levels_to_fall); // This handles damage, etc.
 
@@ -1244,13 +1244,13 @@ void PlayScreen::player_move(int xdif, int ydif)
 
 // If we can move there... move there!
 	}
-	else if (player->can_move_to(map, newx, newy))
+	else if (player->can_move_to(map.get(), newx, newy))
 	{
-		player->move_to(map, newx, newy);
+		player->move_to(map.get(), newx, newy);
 
 // Otherwise, try to open it?
 	}
-	else if (map->apply_signal("open", newx, newy, player->pos.z, player))
+	else if (map->apply_signal("open", newx, newy, player->pos.z, player.get()))
 	{
 		player->use_ap(100);
 		return; // Don't list items
@@ -1277,7 +1277,7 @@ void PlayScreen::player_move_vertical(int zdif)
 {
 // FRODO: Move entities into a stairs-following queue
 //        (except not, since we're on a 3D map nowadays)
-	map->shift(worldmap, 0, 0, zdif);
+	map->shift(worldmap.get(), 0, 0, zdif);
 	player->pos.z += zdif;
 }
 
@@ -1919,7 +1919,7 @@ std::vector<Tripoint> PlayScreen::path_selector(int startx, int starty, int rang
 		{
 			Entity* ent_target = (*it);
 			int ent_range = rl_dist(player->pos, ent_target->pos);
-			if (ent_target != player && ent_range <= range &&
+			if (ent_target != player.get() && ent_range <= range &&
 				player->is_enemy(ent_target) && player->can_sense(ent_target))
 			{
 // They should be included; figure out where to place them in the list
@@ -1942,7 +1942,7 @@ std::vector<Tripoint> PlayScreen::path_selector(int startx, int starty, int rang
 		}
 		if (last_target == -1)
 		{  // No previous target to snap to, pick the closest
-			Entity* new_target = entities.closest_seen_by(player, range);
+			Entity* new_target = entities.closest_seen_by(player.get(), range);
 			if (new_target)
 			{ // It'll be NULL if no one is in range
 				target = new_target->pos;
@@ -1978,7 +1978,7 @@ std::vector<Tripoint> PlayScreen::path_selector(int startx, int starty, int rang
 			{
 // Reset last_target
 				last_target = -1;
-				Entity* new_target = entities.closest_seen_by(player, range);
+				Entity* new_target = entities.closest_seen_by(player.get(), range);
 				if (new_target)
 				{ // It'll be NULL if no one is in range
 					target = new_target->pos;
