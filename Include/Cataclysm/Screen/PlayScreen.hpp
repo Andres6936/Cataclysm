@@ -45,9 +45,6 @@ public:
 	Cataclysm::ScreenType processInput() override;
 
 
-/**** Setup - Called only once ****/
-	bool setup_ui();
-
 /* setup_new_game() creates the Worldmap, Map, and Player objects.
  * If a world_index is passed to it, it'll attempt to load that Worldmap - the
  * index refers to an element in worldmap_names.  Otherwise, it'll create a new

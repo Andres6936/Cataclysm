@@ -41,11 +41,6 @@ PlayScreen::~PlayScreen()
 
 }
 
-bool PlayScreen::setup_ui()
-{
-
-}
-
 bool PlayScreen::setup_new_game(int world_index)
 {
 	worldmap = new Worldmap;
