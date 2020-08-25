@@ -2,10 +2,11 @@
 
 #include <Cataclysm/globals.h>
 #include <Cataclysm/Screen/MenuScreen.hpp>
-#include <Cataclysm/Screen/HelpMenuScreen.hpp>
 #include <Cataclysm/Screen/TourScreen.hpp>
 #include <Cataclysm/Screen/WorldScreen.hpp>
 #include "Cataclysm/Screen/ScreenManager.hpp"
+#include <Cataclysm/Screen/HelpMenuScreen.hpp>
+#include <Cataclysm/Screen/CreateWorldScreen.hpp>
 
 using namespace Cataclysm;
 
@@ -15,6 +16,7 @@ ScreenManager::ScreenManager()
 	this->tourScreen = std::make_shared<TourScreen>();
 	this->worldScreen = std::make_shared<WorldScreen>();
 	this->helpMenuScreen = std::make_shared<HelpMenuScreen>();
+	this->createWorldScreen = std::make_shared<CreateWorldScreen>();
 	this->playScreen.reset(&GAME);
 
 	// The first Screen to show is the Menu
@@ -59,6 +61,10 @@ void ScreenManager::nextScene(ScreenType _next)
 	else if (_next == ScreenType::HELP_MENU)
 	{
 		actualScreen = helpMenuScreen;
+	}
+	else if (_next == ScreenType::CREATE_WORLD)
+	{
+		actualScreen = createWorldScreen;
 	}
 }
 

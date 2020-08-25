@@ -100,7 +100,7 @@ ScreenType MenuScreen::processInput()
 	}
 	else if (ch == 'w' || ch == 'W')
 	{
-//		current_world = world_screen();
+		// NOTE: current_world = world_screen();
 		return ScreenType::WORLD;
 	}
 	else if (ch == 'h' || ch == 'H')

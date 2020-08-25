@@ -31,7 +31,9 @@ void WorldScreen::draw()
 
 void WorldScreen::updated()
 {
-
+	// Repopulate list_worlds with (hopefully) a new world name.
+	i_worlds.set_data("list_worlds", worldmap_names);
+	i_worlds.select("list_worlds");
 }
 
 ScreenType WorldScreen::processInput()
@@ -41,11 +43,8 @@ ScreenType WorldScreen::processInput()
 
 	if (ch == 'c' || ch == 'C')
 	{
-//		create_world();
-
-		// Repopulate list_worlds with (hopefully) a new world name.
-//		i_worlds.set_data("list_worlds", worldmap_names);
-//		i_worlds.select("list_worlds");
+		// Note: create_world();
+		return ScreenType::CREATE_WORLD;
 	}
 	else if ((ch == 'd' || ch == 'D') && !worldmap_names.empty())
 	{

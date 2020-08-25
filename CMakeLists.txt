@@ -96,6 +96,7 @@ ADD_EXECUTABLE(Cataclysm
         Source/Screen/WorldScreen.cpp
         Source/Screen/ScreenManager.cpp
         Source/Screen/HelpMenuScreen.cpp
+        Source/Screen/CreateWorldScreen.cpp
         Source/World/Biome/Enum/BiomeFlag.cpp
         Source/World/Biome/biome.cpp
         Source/World/Biome/VariableMonsterGenus.cpp
