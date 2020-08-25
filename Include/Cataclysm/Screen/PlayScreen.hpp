@@ -57,7 +57,6 @@ public:
 	bool setup_new_game(int world_index = -1);
 
 	// Returns a new world_index
-	void create_world();
 
 	void reset_temp_values();
 
