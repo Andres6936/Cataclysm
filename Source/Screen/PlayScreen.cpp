@@ -106,11 +106,6 @@ bool PlayScreen::setup_new_game(int world_index)
 	return true;
 }
 
-bool PlayScreen::starting_menu()
-{
-
-}
-
 
 void PlayScreen::reset_temp_values()
 {
