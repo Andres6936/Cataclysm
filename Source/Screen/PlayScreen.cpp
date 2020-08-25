@@ -43,62 +43,7 @@ PlayScreen::~PlayScreen()
 
 bool PlayScreen::setup_new_game(int world_index)
 {
-	worldmap = new Worldmap;
-	if (world_index >= 0 && world_index < worldmap_names.size())
-	{
-		std::string world_file = SAVE_DIR + "/worlds/" +
-								 worldmap_names[world_index] + ".map";
-		if (!worldmap->load_from_file(world_file))
-		{
-			debugmsg("Couldn't load worldmap from '%s'.", world_file.c_str());
-			return false;
-		}
-	}
-	else
-	{
-		worldmap->generate();
-	}
 
-// Need to set time BEFORE creating a new character - because creating a new
-// character uses time to set mission deadlines!
-	time = Time(0, 0, 8, 1, SEASON_SPRING, STARTING_YEAR);
-	map = new Map;
-	player = new Player;
-	player->prep_new_character();
-// Player::create_new_character() returns false if the user cancels the process.
-	if (!player->create_new_character())
-	{
-		return false;
-	}
-// entities[0] should always be the player!
-	entities.add_entity(player);
-// The second argument of 0 means "on the main island"
-	Point start = worldmap->random_tile_with_terrain("beach", 0);
-// Set the starting point to a shipwreck beach!
-	worldmap->set_terrain(start.x, start.y, "beach_shipwreck");
-// Prep our Submap_pool.
-/*
-  if (TESTING_MODE) {
-    debugmsg("Starting at %s.", start.str().c_str());
-  }
-*/
-	SUBMAP_POOL.load_area_centered_on(start.x, start.y);
-// And then generate our map.
-	map->generate(worldmap, start.x, start.y, 0);
-/*
-  if (TESTING_MODE) {
-    debugmsg("Pool covers %s, map covers %s.",
-             SUBMAP_POOL.get_range_text().c_str(),
-             map->get_range_text().c_str());
-  }
-*/
-	worldmap->set_terrain(start.x, start.y, "beach");
-
-
-	last_target = -1;
-	new_messages = 0;
-	game_over = false;
-	return true;
 }
 
 

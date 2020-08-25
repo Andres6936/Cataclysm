@@ -164,15 +164,6 @@ public:
 
 	Tripoint find_item_uid(int uid);  // find_item(NULL, uid)
 
-/**** Contained data ****/
-	Map* map;
-	Worldmap* worldmap;
-// Note that player should always == &(entities[0])
-	Player* player;
-	Entity_pool entities;
-
-	Time time;
-
 private:
 
 	Doryen::Console screenMap {24, 24};
@@ -181,11 +172,9 @@ private:
 	std::vector<Game_message> messages;
 	std::vector<Item*> active_items;
 
-	int last_target;
-	int new_messages;
+
 	int next_item_uid;
 	int next_furniture_uid;
-	bool game_over;
 
 // Temp values; all reset in reset_temp_values()
 	int temp_light_level;

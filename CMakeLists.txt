@@ -95,6 +95,7 @@ ADD_EXECUTABLE(Cataclysm
         Source/Screen/TourScreen.cpp
         Source/Screen/WorldScreen.cpp
         Source/Screen/ScreenManager.cpp
+        Source/Screen/NewGameScreen.cpp
         Source/Screen/HelpMenuScreen.cpp
         Source/Screen/CreateWorldScreen.cpp
         Source/World/Biome/Enum/BiomeFlag.cpp
