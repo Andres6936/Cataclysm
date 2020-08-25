@@ -39,7 +39,7 @@ NewGameScreen::NewGameScreen()
 	}
 
 	// entities[0] should always be the player!
-	entities.add_entity(player);
+	entities.add_entity(player.get());
 
 	// The second argument of 0 means "on the main island"
 	Point start = worldmap->random_tile_with_terrain("beach", 0);
@@ -51,7 +51,7 @@ NewGameScreen::NewGameScreen()
 	SUBMAP_POOL.load_area_centered_on(start.x, start.y);
 
 	// And then generate our map.
-	map->generate(worldmap, start.x, start.y, 0);
+	map->generate(worldmap.get(), start.x, start.y, 0);
 
 	/*
 	if (TESTING_MODE) {
