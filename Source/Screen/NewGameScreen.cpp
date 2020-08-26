@@ -32,7 +32,41 @@ NewGameScreen::NewGameScreen()
 	player = std::make_unique<Player>();
 
 	player->prep_new_character();
-	// Player::create_new_character() returns false if the user cancels the process.
+
+	// Start Create New Character
+
+	if (!i_newch.load_from_file(CUSS_DIR + "/i_newchar_stats.cuss"))
+	{
+		throw std::runtime_error("Cannot found the file i_newchar_stats.cuss");
+	}
+
+	for (int i = 1; i < TRAIT_MAX_BAD; i++)
+	{
+		if (i != TRAIT_MAX_GOOD && i != TRAIT_MAX_NEUTRAL)
+		{
+			selectable_traits.push_back(Trait_id(i));
+		}
+	}
+
+	traits_list = getTraitList();
+	profession_list = getProfessionList();
+
+	i_newch.ref_data("num_points", &points);
+
+	i_newch.ref_data("num_strength", &player->stats.strength);
+	i_newch.ref_data("num_dexterity", &player->stats.dexterity);
+	i_newch.ref_data("num_perception", &player->stats.perception);
+	i_newch.ref_data("num_intelligence", &player->stats.intelligence);
+	i_newch.set_data("text_description", getStatDescription(cur_stat));
+
+	i_newch.set_data("text_strength", "<c=ltblue>Strength<c=/>");
+	i_newch.set_data("text_dexterity", "<c=ltgray>Dexterity<c=/>");
+	i_newch.set_data("text_perception", "<c=ltgray>Perception<c=/>");
+	i_newch.set_data("text_intelligence", "<c=ltgray>Intelligence<c=/>");
+
+
+	// End Create New Character
+
 	if (!player->create_new_character())
 	{
 		userCreatedPlayer = false;
@@ -67,12 +101,15 @@ NewGameScreen::NewGameScreen()
 
 void NewGameScreen::draw()
 {
+	i_newch.draw(newGameConsole);
 
+	newGameConsole.blit({0,0}, console, {0, 0});
+	newGameConsole.draw();
 }
 
 void NewGameScreen::updated()
 {
-
+	long ch = getch();
 }
 
 ScreenType NewGameScreen::processInput()
@@ -85,4 +122,108 @@ ScreenType NewGameScreen::processInput()
 	{
 		return ScreenType::MENU;
 	}
+}
+
+std::vector<std::string> NewGameScreen::getTraitList()
+{
+	std::vector<std::string> ret;
+
+	for (int i = 1; i < TRAIT_MAX_BAD; i++)
+	{
+		// Skip over "marker" traits
+		if (i == TRAIT_MAX_GOOD || i == TRAIT_MAX_NEUTRAL)
+		{
+			i++;
+		}
+
+		std::stringstream name;
+
+		if (player->has_trait(Trait_id(i)))
+		{
+			name << "<c=white>";
+		}
+		else if (i < TRAIT_MAX_GOOD)
+		{
+			name << "<c=green>";
+		}
+		else if (i < TRAIT_MAX_NEUTRAL)
+		{
+			name << "<c=brown>";
+		}
+		else
+		{
+			name << "<c=red>";
+		}
+
+		name << trait_id_name(Trait_id(i)) << "<c=/>";
+
+		ret.push_back(name.str());
+	}
+
+	return ret;
+}
+
+std::vector<std::string> NewGameScreen::getProfessionList()
+{
+	std::vector<std::string> ret;
+
+	for (std::list<Profession*>::iterator it = PROFESSIONS.instances.begin();
+		 it != PROFESSIONS.instances.end();
+		 it++)
+	{
+		std::stringstream text;
+
+		if ((*it) == player->get_profession())
+		{
+			text << "<c=white>";
+		}
+		else
+		{
+			text << "<c=ltblue>";
+		}
+
+		text << (*it)->name << "<c=/>";
+
+		ret.push_back(text.str());
+	}
+
+	return ret;
+}
+
+std::string NewGameScreen::getStatDescription(Stat_selected stat)
+{
+	switch (stat)
+	{
+
+	case Stat_selected::STATSEL_STR:
+		return "\
+Strength affects the amount of weight you can carry or drag, and your base \
+melee damage.  It's especially important for increasing the damage when using \
+a blunt weapon.  It also helps you hit faster when using a heavy weapon. Many \
+actions which require brute force, like smashing through doors, rely on \
+strength.";
+
+	case Stat_selected::STATSEL_DEX:
+		return "\
+Dexterity improves your chance of hitting a target in melee combat, and to a \
+lesser degree, ranged combat.  It improves damage when using a piercing \
+weapon, and improves speed when attacking with a large object.  It's also \
+useful for a variety of smaller purposes, like falling gracefully or avoiding \
+traps.";
+
+	case Stat_selected::STATSEL_PER:
+		return "\
+Perception is vital for accurate ranged attacks.  It slightly improves your \
+damage with cutting or piercing melee weapons.  Finally, it's useful for a \
+variety of minor uses, like detecting traps or stealthy monsters, noticing \
+when an NPC is lying, or smuggling items.";
+
+	case Stat_selected::STATSEL_INT:
+		return "\
+Intelligence is the most subtle stat, but often the most important.  It \
+affects how quickly you can read books, and how well you'll absorb their \
+contents.  It's also important for NPC interaction and the use of bionics.";
+	}
+
+	return "Unknown stat???";
 }

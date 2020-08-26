@@ -40,9 +40,9 @@ bool Player::create_new_character()
 	Stat_selected cur_stat = STATSEL_STR;
 	int* stat_value = &(stats.strength);
 
-/* We need to set up a list of traits which does NOT include the placeholder / 
- * marker "traits" like TRAIT_MAX_GOOD and TRAIT_MAX_NEUTRAL etc.
- */
+	/* We need to set up a list of traits which does NOT include the placeholder /
+	 * marker "traits" like TRAIT_MAX_GOOD and TRAIT_MAX_NEUTRAL etc.
+	 */
 	std::vector<Trait_id> selectable_traits;
 	for (int i = 1; i < TRAIT_MAX_BAD; i++)
 	{
@@ -646,7 +646,7 @@ std::vector<std::string> get_trait_list(Player* pl)
 	std::vector<std::string> ret;
 	for (int i = 1; i < TRAIT_MAX_BAD; i++)
 	{
-// Skip over "marker" traits
+		// Skip over "marker" traits
 		if (i == TRAIT_MAX_GOOD || i == TRAIT_MAX_NEUTRAL)
 		{
 			i++;
