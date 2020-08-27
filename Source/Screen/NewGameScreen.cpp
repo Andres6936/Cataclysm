@@ -432,12 +432,39 @@ ScreenType NewGameScreen::processInput()
 			break;
 
 		case New_char_screen::NCS_DESCRIPTION:
+			if (ch == '/')
+			{
+				player->male = !player->male;
+				if (player->male)
+				{
+					i_newch.set_data("text_male", "<c=yellow>Male<c=/>");
+					i_newch.set_data("text_female", "<c=dkgray>Female<c=/>");
+				}
+				else
+				{
+					i_newch.set_data("text_male", "<c=dkgray>Male<c=/>");
+					i_newch.set_data("text_female", "<c=yellow>Female<c=/>");
+				}
+			}
+			else
+			{
+				/* Let the interface handle name entry; this includes cursor movement,
+				 * backspace, etc.  The only downside is that this allows entry of "invalid"
+				 * name characters like "'&^%$#@ etc.  Bad?
+				 */
+				cuss::element* entry = i_newch.find_by_name("entry_name");
+				entry->handle_keypress(ch);
+			}
 			break;
 
 		case New_char_screen::NCS_DONE:
+			userCreatedPlayer = true;
+
 			break;
 		}
 	}
+
+	return ScreenType::NONE;
 }
 
 std::vector<std::string> NewGameScreen::getTraitList()
