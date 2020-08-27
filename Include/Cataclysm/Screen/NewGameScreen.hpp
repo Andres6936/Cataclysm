@@ -69,6 +69,8 @@ namespace Cataclysm
 
 		void nextStat();
 
+		void verifyInvariantPlayer();
+
 		std::string getStatDescription(Stat_selected stat);
 
 		std::vector<std::string> getTraitList();

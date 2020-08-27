@@ -530,7 +530,7 @@ bool Player::create_new_character()
 		} // if (changed_screen)
 	}
 
-// Now set up our skills and equipment based on our profession
+	// Now set up our skills and equipment based on our profession
 	if (!profession)
 	{
 		debugmsg("Character creation finished without a profession!");

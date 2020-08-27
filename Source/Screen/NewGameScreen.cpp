@@ -567,8 +567,9 @@ ScreenType NewGameScreen::processInput()
 
 		case New_char_screen::NCS_DONE:
 			userCreatedPlayer = true;
+			verifyInvariantPlayer();
 
-			break;
+			return ScreenType::PLAY;
 		}
 	}
 
@@ -779,4 +780,77 @@ void NewGameScreen::nextStat()
 	case Stat_selected::STATSEL_INT:
 		break;
 	}
+}
+
+void NewGameScreen::verifyInvariantPlayer()
+{
+	// Now set up our skills and equipment based on our profession
+	if (!player->profession)
+	{
+		throw std::runtime_error("Character creation finished without a profession!");
+	}
+
+	std::vector<Item_type_chance> prof_items = player->profession->items.item_types;
+	for (int i = 0; i < prof_items.size(); i++)
+	{
+		int count = prof_items[i].number;
+		Item tmp_it(prof_items[i].item);
+		for (int i = 0; i < count; i++)
+		{
+			if (tmp_it.get_item_class() == ITEM_CLASS_CLOTHING)
+			{
+				player->items_worn.push_back(tmp_it);
+			}
+			else
+			{
+				player->inventory.push_back(tmp_it);
+			}
+		}
+	}
+
+	player->skills = player->profession->skills;
+
+	// The "Durable" trait needs to be set up here.
+	if (player->has_trait(TRAIT_DURABLE))
+	{
+		for (int i = 0; i < HP_PART_MAX; i++)
+		{
+			player->current_hp[i] = 115;
+			player->max_hp[i] = 115;
+		}
+	}
+
+	// Set up our max mental skill levels, based on int.
+	int max_sk = player->stats.intelligence / 5;
+	for (int i = 0; i < SKILL_MAX; i++)
+	{
+		Skill_type sk = Skill_type(i);
+		// If we start with some skill from our profession, increase the max by that
+		int cap = max_sk + player->skills.get_level(sk);
+		if (is_skill_mental(sk))
+		{
+			player->skills.set_max_level(sk, cap);
+		}
+	}
+
+	// Myopic characters get free glasses
+	if (player->has_trait(TRAIT_MYOPIC))
+	{
+		Item_type* glasses = ITEM_TYPES.lookup_name("glasses");
+		if (!glasses)
+		{
+			throw std::logic_error("No item 'glasses' exists - required for the Myopic trait!");
+		}
+		Item tmp_it(glasses);
+		player->items_worn.push_back(tmp_it);
+	}
+
+	// Set max stats to current stats.
+	player->stats.strength_max = player->stats.strength;
+	player->stats.dexterity_max = player->stats.dexterity;
+	player->stats.perception_max = player->stats.perception;
+	player->stats.intelligence_max = player->stats.intelligence;
+
+	// Assign some starting missions!
+	player->assign_personal_missions();
 }
