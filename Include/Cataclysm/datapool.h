@@ -8,6 +8,7 @@
 #include <map>
 #include <fstream>
 
+#include <Cataclysm/Random/rng.h>
 #include <Cataclysm/Screen/Debugger.hpp>
 #include <Cataclysm/Item/item_type.h>
 #include <Cataclysm/Item/TypeClothing.hpp>

@@ -53,7 +53,7 @@ namespace Cataclysm
 
 		bool userChangedScreen = false;
 
-		int* stat_value = &(player->stats.strength);
+		int* stat_value = nullptr;
 
 		std::int32_t points = 4;
 

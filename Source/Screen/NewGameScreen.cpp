@@ -64,6 +64,9 @@ NewGameScreen::NewGameScreen()
 	i_newch.set_data("text_perception", "<c=ltgray>Perception<c=/>");
 	i_newch.set_data("text_intelligence", "<c=ltgray>Intelligence<c=/>");
 
+	stat_value = &(player->stats.strength);
+
+	player->set_profession(PROFESSIONS.random_instance());
 
 	// End Create New Character
 }
@@ -197,6 +200,7 @@ ScreenType NewGameScreen::processInput()
 	// Reset the state of screens
 	userChangedScreen = false;
 
+	flushinp();
 	long ch = getch();
 
 	if (ch == '<')
