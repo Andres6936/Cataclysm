@@ -372,7 +372,7 @@ void Monster::take_turn()
 		attack_ranged(plan.target_entity, pick_ranged_attack(plan.target_entity));
 
 	}
-	else if (can_move_to(GAME.map, plan.next_step()))
+	else if (can_move_to(GAME.map.get(), plan.next_step()))
 	{
 
 		if (rl_dist(pos, plan.next_step()) > 1)
@@ -381,14 +381,14 @@ void Monster::take_turn()
 					rl_dist(pos, plan.next_step()));
 		}
 
-		move_to(GAME.map, plan.next_step());
+		move_to(GAME.map.get(), plan.next_step());
 		plan.erase_step();
 
 	}
-	else if (can_smash(GAME.map, plan.next_step()))
+	else if (can_smash(GAME.map.get(), plan.next_step()))
 	{
 
-		smash(GAME.map, plan.next_step());
+		smash(GAME.map.get(), plan.next_step());
 
 	}
 	else
@@ -548,7 +548,7 @@ void Monster::wander()
 	{
 		for (int y = pos.y - 1; y <= pos.y + 1; y++)
 		{
-			if (can_move_to(GAME.map, x, y, pos.z))
+			if (can_move_to(GAME.map.get(), x, y, pos.z))
 			{
 				open_points.push_back(Tripoint(x, y, pos.z));
 			}
@@ -560,7 +560,7 @@ void Monster::wander()
 	}
 	else
 	{
-		move_to(GAME.map, open_points[rng(0, open_points.size() - 1)]);
+		move_to(GAME.map.get(), open_points[rng(0, open_points.size() - 1)]);
 	}
 }
 

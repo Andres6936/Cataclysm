@@ -719,15 +719,19 @@ void NewGameScreen::prevStat()
 	{
 
 	case Stat_selected::STATSEL_STR:
+		cur_stat = Stat_selected::STATSEL_INT;
 		break;
 
 	case Stat_selected::STATSEL_DEX:
+		cur_stat = Stat_selected::STATSEL_STR;
 		break;
 
 	case Stat_selected::STATSEL_PER:
+		cur_stat = Stat_selected::STATSEL_DEX;
 		break;
 
 	case Stat_selected::STATSEL_INT:
+		cur_stat = Stat_selected::STATSEL_PER;
 		break;
 	}
 }
@@ -738,15 +742,19 @@ void NewGameScreen::nextStat()
 	{
 
 	case Stat_selected::STATSEL_STR:
+		cur_stat = Stat_selected::STATSEL_DEX;
 		break;
 
 	case Stat_selected::STATSEL_DEX:
+		cur_stat = Stat_selected::STATSEL_PER;
 		break;
 
 	case Stat_selected::STATSEL_PER:
+		cur_stat = Stat_selected::STATSEL_INT;
 		break;
 
 	case Stat_selected::STATSEL_INT:
+		cur_stat = Stat_selected::STATSEL_STR;
 		break;
 	}
 }

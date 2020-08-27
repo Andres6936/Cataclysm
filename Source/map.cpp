@@ -1865,7 +1865,7 @@ Submap* Submap_pool::generate_submap(Tripoint p)
 		instances.push_back(sub);
 		return sub;
 	}
-	sub->generate(GAME.worldmap, p.x, p.y, p.z);
+	sub->generate(GAME.worldmap.get(), p.x, p.y, p.z);
 	point_map[p] = sub;
 	instances.push_back(sub);
 	return sub;

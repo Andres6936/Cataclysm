@@ -22,24 +22,13 @@ namespace Cataclysm
 
 		inline static Doryen::Console console {80, 24};
 
-		inline static std::unique_ptr<Worldmap> worldmap {nullptr};
-
 		inline static std::shared_ptr<Window> w_map {nullptr};
 
 		inline static std::shared_ptr<Window> w_hud {nullptr};
 
-		// Note that player should always == &(entities[0])
-		inline static std::unique_ptr<Player> player {nullptr};
-
-		inline static std::unique_ptr<Map> map {nullptr};
-
 		inline static std::vector<std::string> worldmap_names;
 
 		inline static cuss::interface i_hud {};
-
-		inline static Entity_pool entities {};
-
-		inline static Time time {};
 
 		inline static std::int32_t last_target {-1};
 
@@ -59,6 +48,17 @@ namespace Cataclysm
 		void showDebugMessage(std::string_view _text);
 
 	public:
+
+		inline static std::unique_ptr<Worldmap> worldmap {nullptr};
+
+		// Note that player should always == &(entities[0])
+		inline static std::unique_ptr<Player> player {nullptr};
+
+		inline static std::unique_ptr<Map> map {nullptr};
+
+		inline static Entity_pool entities {};
+
+		inline static Time time {};
 
 		// Virtual Methods
 

@@ -152,7 +152,7 @@ bool Monster_ability_terrain::effect(Monster* user)
 		{
 			tile_hit->set_terrain(ter_used);
 // Check if we need to list the terrain
-			if (GAME.player->can_see(GAME.map, ter_pos))
+			if (GAME.player->can_see(GAME.map.get(), ter_pos))
 			{
 				if (effects.count(ter_name) == 0)
 				{

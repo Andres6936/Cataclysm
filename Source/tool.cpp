@@ -416,7 +416,7 @@ bool Tool_action::activate(Item* it, Entity* user)
 
 bool Tool_action::activate(Item* it, Entity* user, Tripoint pos)
 {
-	bool seen_by_player = GAME.player->can_see(GAME.map, pos);
+	bool seen_by_player = GAME.player->can_see(GAME.map.get(), pos);
 	if (!seen_by_player && user && user->is_you())
 	{
 		seen_by_player = true;

@@ -102,7 +102,7 @@ bool Monster_ability_teleport::effect(Monster* user)
 					break;
 				}
 				if (p != user->pos && GAME.is_empty(p) &&
-					(phase || (user->can_see(GAME.map, p) &&
+					(phase || (user->can_see(GAME.map.get(), p) &&
 							   GAME.map->clear_path_exists(user->pos, p))))
 				{
 // If controlled, ensure we're getting closer to / further from our target
@@ -136,7 +136,7 @@ bool Monster_ability_teleport::effect(Monster* user)
 					p.y++;
 				}
 				if (GAME.is_empty(p) &&
-					(phase || (user->can_see(GAME.map, p) &&
+					(phase || (user->can_see(GAME.map.get(), p) &&
 							   GAME.map->clear_path_exists(user->pos, p))))
 				{
 // If controlled, ensure we're getting closer to / further from our target
