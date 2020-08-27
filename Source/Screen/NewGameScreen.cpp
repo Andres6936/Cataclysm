@@ -243,6 +243,7 @@ ScreenType NewGameScreen::processInput()
 			}
 			else if (showQueryYesNo("Complete character and start the game?"))
 			{
+				verifyInvariantPlayer();
 				return ScreenType::PLAY;
 			}
 
