@@ -109,7 +109,115 @@ void NewGameScreen::draw()
 
 void NewGameScreen::updated()
 {
+	if (userChangedScreen)
+	{
+		std::string filename = CUSS_DIR + "/i_newchar_";
 
+		switch (cur_screen)
+		{
+		case New_char_screen::NCS_STATS:
+			filename += "stats.cuss";
+			break;
+
+		case New_char_screen::NCS_TRAITS:
+			filename += "traits.cuss";
+			break;
+
+		case New_char_screen::NCS_PROFESSION:
+			filename += "profession.cuss";
+			break;
+
+		case New_char_screen::NCS_DESCRIPTION:
+			filename += "description.cuss";
+			break;
+		}
+
+		if (!i_newch.load_from_file(filename))
+		{
+			throw std::runtime_error("Cannot found the file: " + filename + "\n");
+		}
+
+		i_newch.ref_data("num_points", &points);
+
+		switch (cur_screen)
+		{
+
+		case New_char_screen::NCS_STATS:
+			cur_stat = Stat_selected::STATSEL_STR;
+			i_newch.set_data("text_strength", "<c=ltblue>Strength<c=/>");
+			i_newch.set_data("text_dexterity", "<c=ltgray>Dexterity<c=/>");
+			i_newch.set_data("text_perception", "<c=ltgray>Perception<c=/>");
+			i_newch.set_data("text_intelligence", "<c=ltgray>Intelligence<c=/>");
+			i_newch.ref_data("num_strength", &player->stats.strength);
+			i_newch.ref_data("num_dexterity", &player->stats.dexterity);
+			i_newch.ref_data("num_perception", &player->stats.perception);
+			i_newch.ref_data("num_intelligence", &player->stats.intelligence);
+			i_newch.set_data("text_description", getStatDescription(cur_stat));
+			break;
+
+		case New_char_screen::NCS_TRAITS:
+		{
+			i_newch.select("list_traits");
+			i_newch.ref_data("list_traits", &traits_list);
+			int sel = i_newch.get_int("list_traits");
+			Trait_id cur_trait = selectable_traits[sel];
+			i_newch.set_data("text_description", trait_description(cur_trait));
+			i_newch.set_data("num_cost", abs(trait_cost(cur_trait)));
+			if (trait_cost(cur_trait) >= 0)
+			{
+				i_newch.set_data("text_cost", "<c=yellow>Cost:<c=/>");
+			}
+			else
+			{
+				i_newch.set_data("text_cost", "<c=yellow>Earns:<c=/>");
+			}
+			if (trait_cost(cur_trait) > points)
+			{
+				i_newch.set_data("num_cost", c_red);
+			}
+			else
+			{
+				i_newch.set_data("num_cost", c_white);
+			}
+			i_newch.set_data("num_traits_left", 5 - num_traits);
+			if (num_traits >= 5)
+			{
+				i_newch.set_data("num_traits_left", c_red);
+			}
+		}
+			break;
+
+		case New_char_screen::NCS_PROFESSION:
+		{
+			i_newch.select("list_professions");
+			i_newch.ref_data("list_professions", &profession_list);
+			std::string prof_name = i_newch.get_str("list_professions");
+			prof_name = remove_color_tags(prof_name);
+			Profession* cur_prof = PROFESSIONS.lookup_name(prof_name);
+			if (!cur_prof)
+			{
+				throw std::runtime_error(Doryen::format("No such profession as '{}'!", prof_name));
+			}
+			i_newch.set_data("text_description", cur_prof->description);
+		}
+			break;
+
+		case New_char_screen::NCS_DESCRIPTION:
+			i_newch.ref_data("entry_name", &player->name);
+
+			if (player->male)
+			{
+				i_newch.set_data("text_male", "<c=yellow>Male<c=/>");
+				i_newch.set_data("text_female", "<c=dkgray>Female<c=/>");
+			}
+			else
+			{
+				i_newch.set_data("text_male", "<c=dkgray>Male<c=/>");
+				i_newch.set_data("text_female", "<c=yellow>Female<c=/>");
+			}
+			break;
+		} // switch (cur_screen)
+	}
 }
 
 ScreenType NewGameScreen::processInput()
