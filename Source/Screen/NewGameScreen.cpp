@@ -66,37 +66,6 @@ NewGameScreen::NewGameScreen()
 
 
 	// End Create New Character
-
-	if (!player->create_new_character())
-	{
-		userCreatedPlayer = false;
-	}
-
-	// entities[0] should always be the player!
-	entities.add_entity(player.get());
-
-	// The second argument of 0 means "on the main island"
-	Point start = worldmap->random_tile_with_terrain("beach", 0);
-
-	// Set the starting point to a shipwreck beach!
-	worldmap->set_terrain(start.x, start.y, "beach_shipwreck");
-
-	// Prep our Submap_pool.
-	SUBMAP_POOL.load_area_centered_on(start.x, start.y);
-
-	// And then generate our map.
-	map->generate(worldmap.get(), start.x, start.y, 0);
-
-	/*
-	if (TESTING_MODE) {
-	debugmsg("Pool covers %s, map covers %s.",
-			 SUBMAP_POOL.get_range_text().c_str(),
-			 map->get_range_text().c_str());
-	}
-	*/
-	worldmap->set_terrain(start.x, start.y, "beach");
-
-	userCreatedPlayer = true;
 }
 
 void NewGameScreen::draw()
@@ -566,8 +535,8 @@ ScreenType NewGameScreen::processInput()
 			break;
 
 		case New_char_screen::NCS_DONE:
-			userCreatedPlayer = true;
 			verifyInvariantPlayer();
+			userCreatedPlayer = true;
 
 			return ScreenType::PLAY;
 		}
@@ -853,4 +822,28 @@ void NewGameScreen::verifyInvariantPlayer()
 
 	// Assign some starting missions!
 	player->assign_personal_missions();
+
+	// entities[0] should always be the player!
+	entities.add_entity(player.get());
+
+	// The second argument of 0 means "on the main island"
+	Point start = worldmap->random_tile_with_terrain("beach", 0);
+
+	// Set the starting point to a shipwreck beach!
+	worldmap->set_terrain(start.x, start.y, "beach_shipwreck");
+
+	// Prep our Submap_pool.
+	SUBMAP_POOL.load_area_centered_on(start.x, start.y);
+
+	// And then generate our map.
+	map->generate(worldmap.get(), start.x, start.y, 0);
+
+	/*
+	if (TESTING_MODE) {
+	debugmsg("Pool covers %s, map covers %s.",
+			 SUBMAP_POOL.get_range_text().c_str(),
+			 map->get_range_text().c_str());
+	}
+	*/
+	worldmap->set_terrain(start.x, start.y, "beach");
 }
