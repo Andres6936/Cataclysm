@@ -674,7 +674,6 @@ void NewGameScreen::prevScreen()
 		break;
 
 	case New_char_screen::NCS_DONE:
-		cur_screen = New_char_screen::NCS_DESCRIPTION;
 		break;
 	}
 
@@ -687,7 +686,6 @@ void NewGameScreen::nextScreen()
 	{
 
 	case New_char_screen::NCS_CANCEL:
-		cur_screen = New_char_screen::NCS_STATS;
 		break;
 
 	case New_char_screen::NCS_STATS:
