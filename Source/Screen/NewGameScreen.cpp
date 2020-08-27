@@ -373,6 +373,62 @@ ScreenType NewGameScreen::processInput()
 			break;
 
 		case New_char_screen::NCS_PROFESSION:
+			switch (ch)
+			{
+			case '2':
+			case 'j':
+			case KEY_DOWN:
+			{
+				i_newch.add_data("list_professions", 1);
+				std::string prof_name = i_newch.get_str("list_professions");
+				prof_name = remove_color_tags(prof_name);
+				Profession* cur_prof = PROFESSIONS.lookup_name(prof_name);
+
+				if (!cur_prof)
+				{
+					showDebugMessage(Doryen::format("No such profession as '{}'!", prof_name));
+					return ScreenType::MENU;
+				}
+
+				i_newch.set_data("text_description", cur_prof->description);
+			}
+				break;
+
+			case '8':
+			case 'k':
+			case KEY_UP:
+			{
+				i_newch.add_data("list_professions", -1);
+				std::string prof_name = i_newch.get_str("list_professions");
+				prof_name = remove_color_tags(prof_name);
+				Profession* cur_prof = PROFESSIONS.lookup_name(prof_name);
+				if (!cur_prof)
+				{
+					showDebugMessage(Doryen::format("No such profession as '{}'!", prof_name));
+					return ScreenType::MENU;
+				}
+				i_newch.set_data("text_description", cur_prof->description);
+			}
+				break;
+
+			case '\n':
+			case ' ':
+			{
+				std::string prof_name = i_newch.get_str("list_professions");
+				prof_name = remove_color_tags(prof_name);
+				Profession* cur_prof = PROFESSIONS.lookup_name(prof_name);
+				if (!cur_prof)
+				{
+					showDebugMessage(Doryen::format("No such profession as '{}'!", prof_name));
+					return ScreenType::MENU;
+				}
+
+				player->set_profession(cur_prof);
+				profession_list = getProfessionList();
+			}
+				break;
+
+			} // switch (ch)
 			break;
 
 		case New_char_screen::NCS_DESCRIPTION:
