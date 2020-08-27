@@ -51,6 +51,8 @@ namespace Cataclysm
 
 		bool userCreatedPlayer = false;
 
+		bool userChangedScreen = false;
+
 		int* stat_value = &(player->stats.strength);
 
 		std::int32_t points = 4;
@@ -58,6 +60,14 @@ namespace Cataclysm
 		std::int32_t num_traits = 0;
 
 		// Methods
+
+		void prevScreen();
+
+		void nextScreen();
+
+		void prevStat();
+
+		void nextStat();
 
 		std::string getStatDescription(Stat_selected stat);
 

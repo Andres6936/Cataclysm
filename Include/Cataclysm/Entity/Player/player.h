@@ -114,7 +114,8 @@ public:
 	int current_hp[HP_PART_MAX];
 	int max_hp[HP_PART_MAX];
 
-private:
+public:
+
 	std::string name;
 	bool male;
 	Profession* profession;

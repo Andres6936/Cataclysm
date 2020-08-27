@@ -109,18 +109,91 @@ void NewGameScreen::draw()
 
 void NewGameScreen::updated()
 {
-	long ch = getch();
+
 }
 
 ScreenType NewGameScreen::processInput()
 {
-	if (userCreatedPlayer)
+	// Exit of Scene if the user has been created successfully a player
+	if (userCreatedPlayer) return ScreenType::PLAY;
+
+	// Reset the state of screens
+	userChangedScreen = false;
+
+	long ch = getch();
+
+	if (ch == '<')
 	{
-		return ScreenType::PLAY;
+		prevScreen();
+
+		if (cur_screen == New_char_screen::NCS_CANCEL)
+		{
+			if (showQueryYesNo("Cancel character creation?"))
+			{
+				return ScreenType::MENU;
+			}
+			else
+			{
+				cur_screen = New_char_screen::NCS_STATS;
+			}
+		}
+	}
+	else if (ch == '>')
+	{
+		nextScreen();
+
+		if (cur_screen == New_char_screen::NCS_DONE)
+		{
+			std::string reason_for_fail;
+
+			if (points > 0)
+			{
+				reason_for_fail += "\nYou have unspent points!";
+			}
+			if (player->profession == nullptr)
+			{
+				reason_for_fail += "\nYou didn't choose a profession!";
+			}
+			if (player->name.empty())
+			{
+				reason_for_fail += "\nYour name is blank!";
+			}
+
+			if (!reason_for_fail.empty())
+			{
+				showDebugMessage(Doryen::format("Wait, you can't start the game yet! {}", reason_for_fail));
+			}
+			else if (showQueryYesNo("Complete character and start the game?"))
+			{
+				return ScreenType::PLAY;
+			}
+
+			cur_screen = New_char_screen::NCS_DESCRIPTION;
+		}
 	}
 	else
 	{
-		return ScreenType::MENU;
+		switch (cur_screen)
+		{
+
+		case New_char_screen::NCS_CANCEL:
+			break;
+
+		case New_char_screen::NCS_STATS:
+			break;
+
+		case New_char_screen::NCS_TRAITS:
+			break;
+
+		case New_char_screen::NCS_PROFESSION:
+			break;
+
+		case New_char_screen::NCS_DESCRIPTION:
+			break;
+
+		case New_char_screen::NCS_DONE:
+			break;
+		}
 	}
 }
 
@@ -226,4 +299,106 @@ contents.  It's also important for NPC interaction and the use of bionics.";
 	}
 
 	return "Unknown stat???";
+}
+
+void NewGameScreen::prevScreen()
+{
+	switch (cur_screen)
+	{
+
+	case New_char_screen::NCS_CANCEL:
+		break;
+
+	case New_char_screen::NCS_STATS:
+		cur_screen = New_char_screen::NCS_CANCEL;
+		break;
+
+	case New_char_screen::NCS_TRAITS:
+		cur_screen = New_char_screen::NCS_STATS;
+		break;
+
+	case New_char_screen::NCS_PROFESSION:
+		cur_screen = New_char_screen::NCS_TRAITS;
+		break;
+
+	case New_char_screen::NCS_DESCRIPTION:
+		cur_screen = New_char_screen::NCS_PROFESSION;
+		break;
+
+	case New_char_screen::NCS_DONE:
+		cur_screen = New_char_screen::NCS_DESCRIPTION;
+		break;
+	}
+
+	userChangedScreen = true;
+}
+
+void NewGameScreen::nextScreen()
+{
+	switch (cur_screen)
+	{
+
+	case New_char_screen::NCS_CANCEL:
+		cur_screen = New_char_screen::NCS_STATS;
+		break;
+
+	case New_char_screen::NCS_STATS:
+		cur_screen = New_char_screen::NCS_TRAITS;
+		break;
+
+	case New_char_screen::NCS_TRAITS:
+		cur_screen = New_char_screen::NCS_PROFESSION;
+		break;
+
+	case New_char_screen::NCS_PROFESSION:
+		cur_screen = New_char_screen::NCS_DESCRIPTION;
+		break;
+
+	case New_char_screen::NCS_DESCRIPTION:
+		cur_screen = New_char_screen::NCS_DONE;
+		break;
+
+	case New_char_screen::NCS_DONE:
+		break;
+	}
+
+	userChangedScreen = true;
+}
+
+void NewGameScreen::prevStat()
+{
+	switch (cur_stat)
+	{
+
+	case Stat_selected::STATSEL_STR:
+		break;
+
+	case Stat_selected::STATSEL_DEX:
+		break;
+
+	case Stat_selected::STATSEL_PER:
+		break;
+
+	case Stat_selected::STATSEL_INT:
+		break;
+	}
+}
+
+void NewGameScreen::nextStat()
+{
+	switch (cur_stat)
+	{
+
+	case Stat_selected::STATSEL_STR:
+		break;
+
+	case Stat_selected::STATSEL_DEX:
+		break;
+
+	case Stat_selected::STATSEL_PER:
+		break;
+
+	case Stat_selected::STATSEL_INT:
+		break;
+	}
 }

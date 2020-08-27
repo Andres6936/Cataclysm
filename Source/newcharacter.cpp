@@ -119,6 +119,7 @@ bool Player::create_new_character()
 				{
 					reason_for_fail += "\nYour name is blank!";
 				}
+
 				if (!reason_for_fail.empty())
 				{
 					popup("Wait, you can't start the game yet!%s",
@@ -128,6 +129,7 @@ bool Player::create_new_character()
 				{
 					done = true;
 				}
+
 				cur_screen = NCS_DESCRIPTION;
 			}
 			else
