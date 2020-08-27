@@ -194,9 +194,6 @@ void NewGameScreen::updated()
 
 ScreenType NewGameScreen::processInput()
 {
-	// Exit of Scene if the user has been created successfully a player
-	if (userCreatedPlayer) return ScreenType::PLAY;
-
 	// Reset the state of screens
 	userChangedScreen = false;
 
@@ -540,8 +537,8 @@ ScreenType NewGameScreen::processInput()
 
 		case New_char_screen::NCS_DONE:
 			verifyInvariantPlayer();
-			userCreatedPlayer = true;
 
+			// Exit of Scene if the user has been created successfully a player
 			return ScreenType::PLAY;
 		}
 	}

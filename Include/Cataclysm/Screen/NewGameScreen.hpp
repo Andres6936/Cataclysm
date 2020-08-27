@@ -49,8 +49,6 @@ namespace Cataclysm
 
 		std::vector<std::string> traits_list;
 
-		bool userCreatedPlayer = false;
-
 		bool userChangedScreen = false;
 
 		int* stat_value = nullptr;
