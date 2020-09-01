@@ -1427,7 +1427,10 @@ void PlayScreen::draw_all()
 {
 	update_hud();
 	int range = player->sight_range(get_light_level());
+
 	map->draw(w_map, &entities, player->pos, range);
+	map->draw(screenMap, &entities, player->pos, range);
+
 	w_map->refresh();
 
 	screenMap.blit({0, 0}, console, {0, 0});

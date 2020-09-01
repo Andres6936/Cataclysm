@@ -457,6 +457,27 @@ public:
 			int tilex, int tiley, int tilez,
 			int refx, int refy, bool invert, bool gray = false);
 
+	void draw(Doryen::Console& w, Entity_pool* entities, Tripoint ref,
+			int range = -1, Sense_type sense = SENSE_SIGHT);
+
+	void draw(Doryen::Console& w, Entity_pool* entities, int refx, int refy, int refz,
+			int range = -1, Sense_type sense = SENSE_SIGHT);
+
+	void draw_area(Doryen::Console& w, Entity_pool* entities, Tripoint ref,
+			int minx, int miny, int maxx, int maxy,
+			int range = -1, Sense_type sense = SENSE_SIGHT);
+
+	void draw_area(Doryen::Console& w, Entity_pool* entities, int refx, int refy, int refz,
+			int minx, int miny, int maxx, int maxy,
+			int range = -1, Sense_type sense = SENSE_SIGHT);
+
+	void draw_tile(Doryen::Console& w, Entity_pool* entities, int tilex, int tiley,
+			int refx, int refy, bool invert, bool gray = false);
+
+	void draw_tile(Doryen::Console& w, Entity_pool* entities,
+			int tilex, int tiley, int tilez,
+			int refx, int refy, bool invert, bool gray = false);
+
 // Other information
 	Submap* get_center_submap(); // i.e. the one the player is in
 	Submap* get_testing_submap(); // Just north of us

@@ -3448,3 +3448,168 @@ Tripoint Map::find_item_uid(int uid)
 {
 	return find_item(NULL, uid);
 }
+
+void Map::draw(Doryen::Console& w, Entity_pool* entities, Tripoint ref, int range, Sense_type sense)
+{
+	draw(w, entities, ref.x, ref.y, ref.z, range, sense);
+}
+
+void Map::draw(Doryen::Console& w, Entity_pool* entities, int refx, int refy, int refz, int range, Sense_type sense)
+{
+	int winx = w.getWidth(), winy = w.getHeight();
+	if (winy % 2 == 0)
+	{
+		winy--; // Only odd numbers are allowed!
+	}
+	int minx = refx - (winx / 2), maxx = refx + ((winx - 1) / 2);
+	int miny = refy - (winy / 2) - 1, maxy = refy + ((winy - 1) / 2);
+	draw_area(w, entities, refx, refy, refz, minx, miny, maxx, maxy, range,
+			sense);
+}
+
+void Map::draw_area(Doryen::Console& w, Entity_pool* entities, Tripoint ref, int minx, int miny, int maxx, int maxy,
+		int range, Sense_type sense)
+{
+	draw_area(w, entities, ref.x, ref.y, ref.z, minx, miny, maxx, maxy, range,
+			sense);
+}
+
+void
+Map::draw_area(Doryen::Console& w, Entity_pool* entities, int refx, int refy, int refz, int minx, int miny, int maxx,
+		int maxy, int range, Sense_type sense)
+{
+	// Range defaults to -1; which means use light level
+	if (range == -1)
+	{
+		range = GAME.get_light_level();
+	}
+
+	int winx = w.getWidth(), winy = w.getHeight();
+	int dist = winx > winy ? winx / 2 : winy / 2;
+	for (int x = 0; x < winx; x++)
+	{
+		for (int y = 0; y < winy; y++)
+		{
+			int terx = refx + x - (winx / 2), tery = refy + y - (winy / 2);
+			int z_used = posz;
+			while (z_used > 0 && has_flag(TF_OPEN_SPACE, terx, tery, z_used))
+			{
+				z_used--;
+			}
+			int range_used = (dist < range ? dist : range);
+			if (senses(refx, refy, refz, terx, tery, z_used, range_used, sense))
+			{
+// If we're inbounds, draw normally...
+				if (terx >= minx && terx <= maxx && tery >= miny && tery <= maxy)
+				{
+					draw_tile(w, entities, terx, tery, refx, refy, false);
+				}
+				else
+				{  // Otherwise, that last "true" means "change colors to dkgray"
+					draw_tile(w, entities, terx, tery, refx, refy, false, true);
+				}
+			}
+			else
+			{
+				// TODO: Don't use a literal glyph!  TILES GEEZE
+				w.writeChar(x, y, ' ', {0, 0, 0}, {0, 0, 0});
+			}
+		}
+	}
+}
+
+void Map::draw_tile(Doryen::Console& w, Entity_pool* entities, int tilex, int tiley, int refx, int refy, bool invert,
+		bool gray)
+{
+	draw_tile(w, entities, tilex, tiley, posz, refx, refy, invert, gray);
+}
+
+void Map::draw_tile(Doryen::Console& w, Entity_pool* entities, int tilex, int tiley, int tilez, int refx, int refy,
+		bool invert, bool gray)
+{
+	int winx = w.getWidth(), winy = w.getHeight();
+	int centerx = winx / 2, centery = winy / 2;
+	int dx = tilex - refx, dy = tiley - refy;
+	int tile_winx = centerx + dx, tile_winy = centery + dy;
+	if (tile_winx < 0 || tile_winx >= winx || tile_winy < 0 || tile_winy >= winy)
+	{
+		return; // It won't fit in the window!
+	}
+// Now pick a glyph...
+	glyph output;
+	bool picked_glyph = false;
+	int curz = tilez;
+/* Start from the z-level that we're looking at.  As long as there's no entity,
+ * and the terrain is open space, drop down a level.
+ */
+	while (!picked_glyph && curz >= 0)
+	{
+		if (entities)
+		{
+			Entity* ent = entities->entity_at(tilex, tiley, curz);
+			if (ent)
+			{
+				output = ent->get_glyph();
+				picked_glyph = true;
+			}
+		}
+		if (!picked_glyph)
+		{
+			Tile* tile = get_tile(tilex, tiley, curz);
+			if (!tile->has_flag(TF_OPEN_SPACE))
+			{
+				output = tile->top_glyph();
+				picked_glyph = true;
+			}
+		}
+		if (picked_glyph)
+		{
+			if (curz < tilez)
+			{
+				output = output.hilite();
+			}
+		}
+		else
+		{
+			curz--;
+		}
+	}
+	if (!picked_glyph)
+	{
+		int smx = tilex / SUBMAP_SIZE, smy = tiley / SUBMAP_SIZE;
+		if (smx < 0 || smx >= MAP_SIZE || smy < 0 || smy >= MAP_SIZE)
+		{
+			debugmsg("Could not find a glyph - out of bounds!");
+		}
+		else
+		{
+// Find the submap the tile's in...
+			int smz = tilez - posz + VERTICAL_MAP_SIZE;
+			Submap* sm = submaps[smx][smy][smz];
+			while (!sm && smz > 0)
+			{
+				smz--;
+				sm = submaps[smx][smy][smz];
+			}
+			if (sm)
+			{
+				debugmsg("Really could not find a glyph! %s",
+						sm->get_spec_name().c_str());
+			}
+			else
+			{
+				debugmsg("Really could not find a glyph - invalid submap!");
+			}
+		}
+		return;
+	}
+	if (invert)
+	{
+		output = output.invert();
+	}
+	if (gray)
+	{
+		output.fg = c_dkgray;
+	}
+	w.writeChar(tile_winx, tile_winy, output.symbol, Cataclysm::transformColor(output.fg), Cataclysm::transformColor(output.bg));
+}
