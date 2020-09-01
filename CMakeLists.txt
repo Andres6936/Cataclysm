@@ -98,6 +98,13 @@ ADD_EXECUTABLE(Cataclysm
         Source/Screen/NewGameScreen.cpp
         Source/Screen/HelpMenuScreen.cpp
         Source/Screen/CreateWorldScreen.cpp
+        Source/Screen/NewGame/DoneScreen.cpp
+        Source/Screen/NewGame/StatsScreen.cpp
+        Source/Screen/NewGame/CancelScreen.cpp
+        Source/Screen/NewGame/TraitsScreen.cpp
+        Source/Screen/NewGame/ProfessionScreen.cpp
+        Source/Screen/NewGame/DescriptionScreen.cpp
+        Source/Screen/NewGame/Interface/INewGameScreen.cpp
         Source/World/Biome/Enum/BiomeFlag.cpp
         Source/World/Biome/biome.cpp
         Source/World/Biome/VariableMonsterGenus.cpp

@@ -4,6 +4,13 @@
 #define CATACLYSM_NEWGAMESCREEN_HPP
 
 #include <Cataclysm/Screen/IScreen.hpp>
+#include <Cataclysm/Screen/NewGame/DoneScreen.hpp>
+#include <Cataclysm/Screen/NewGame/StatsScreen.hpp>
+#include <Cataclysm/Screen/NewGame/TraitsScreen.hpp>
+#include <Cataclysm/Screen/NewGame/CancelScreen.hpp>
+#include <Cataclysm/Screen/NewGame/ProfessionScreen.hpp>
+#include <Cataclysm/Screen/NewGame/DescriptionScreen.hpp>
+#include <Cataclysm/Screen/NewGame/Interface/INewGameScreen.hpp>
 
 namespace Cataclysm
 {
@@ -13,67 +20,14 @@ namespace Cataclysm
 
 	private:
 
-		enum class New_char_screen : std::uint8_t
-		{
-			NCS_CANCEL,
-			NCS_STATS,
-			NCS_TRAITS,
-			NCS_PROFESSION,
-			NCS_DESCRIPTION,
-			NCS_DONE
-		};
+		std::shared_ptr<INewGameScreen> doneScreen = std::make_shared<DoneScreen>();
+		std::shared_ptr<INewGameScreen> statsScreen = std::make_shared<StatsScreen>();
+		std::shared_ptr<INewGameScreen> traitsScreen = std::make_shared<TraitsScreen>();
+		std::shared_ptr<INewGameScreen> cancelScreen = std::make_shared<CancelScreen>();
+		std::shared_ptr<INewGameScreen> professionScreen = std::make_shared<ProfessionScreen>();
+		std::shared_ptr<INewGameScreen> descriptionScreen = std::make_shared<DescriptionScreen>();
 
-		enum class Stat_selected : std::uint8_t
-		{
-			STATSEL_STR,
-			STATSEL_DEX,
-			STATSEL_PER,
-			STATSEL_INT
-		};
-
-		New_char_screen cur_screen = New_char_screen::NCS_STATS;
-
-		Stat_selected cur_stat = Stat_selected::STATSEL_STR;
-
-		Doryen::Console newGameConsole {80, 24};
-
-		cuss::interface i_newch;
-
-		std::vector<std::string> profession_list;
-
-		/**
-		 * We need to set up a list of traits which does NOT include the placeholder /
-	 	 * marker "traits" like TRAIT_MAX_GOOD and TRAIT_MAX_NEUTRAL etc.
-	 	 */
-		std::vector<Trait_id> selectable_traits;
-
-		std::vector<std::string> traits_list;
-
-		bool userChangedScreen = false;
-
-		int* stat_value = nullptr;
-
-		std::int32_t points = 4;
-
-		std::int32_t num_traits = 0;
-
-		// Methods
-
-		void prevScreen();
-
-		void nextScreen();
-
-		void prevStat();
-
-		void nextStat();
-
-		void verifyInvariantPlayer();
-
-		std::string getStatDescription(Stat_selected stat);
-
-		std::vector<std::string> getTraitList();
-
-		std::vector<std::string> getProfessionList();
+		std::shared_ptr<INewGameScreen> currentScreen {nullptr};
 
 	public:
 
