@@ -389,12 +389,21 @@ void INewGameScreen::draw()
 
 void INewGameScreen::updated()
 {
-	if (!i_newch.load_from_file(filenameInterfaceCuss))
-	{
-		throw std::runtime_error("Cannot found the file: " + filenameInterfaceCuss + "\n");
-	}
+	// Reference for avoid unnecessary load
+	static std::string reference;
 
-	i_newch.ref_data("num_points", &points);
+	if (reference != filenameInterfaceCuss)
+	{
+		if (!i_newch.load_from_file(filenameInterfaceCuss))
+		{
+			throw std::runtime_error("Cannot found the file: " + filenameInterfaceCuss + "\n");
+		}
+
+		i_newch.ref_data("num_points", &points);
+
+		// Update the reference
+		reference = filenameInterfaceCuss;
+	}
 }
 
 ScreenType INewGameScreen::processInput()
