@@ -2207,6 +2207,36 @@ Tripoint PlayScreen::find_item_uid(int uid)
 	return find_item(NULL, uid);
 }
 
+std::vector<std::string>
+get_pickup_strings(std::vector<Item>* items, std::vector<bool>* picking_up)
+{
+	std::vector<std::string> ret;
+	if (items->size() != picking_up->size())
+	{
+		debugmsg("get_pickup_strings() - vectors aren't same size!");
+		return ret;
+	}
+
+	for (int i = 0; i < items->size(); i++)
+	{
+		bool pickup = (*picking_up)[i];
+		ret.push_back(pickup_string(&((*items)[i]), char('a' + i), pickup));
+	}
+	return ret;
+}
+
+std::string pickup_string(Item* item, char letter, bool picking_up)
+{
+	if (!item)
+	{
+		return "<c=red>NO ITEM<c=/>";
+	}
+	std::stringstream ss;
+	ss << "<c=" << (picking_up ? "green" : "ltgray") << ">" << letter <<
+	   (picking_up ? " +" : " -") << " " << item->get_name_full();
+	return ss.str();
+}
+
 void PlayScreen::draw()
 {
 
@@ -2279,34 +2309,4 @@ Cataclysm::ScreenType PlayScreen::processInput()
 	time.increment();
 	// This keeps the game going
 	return Cataclysm::ScreenType::NONE;
-}
-
-std::vector<std::string>
-get_pickup_strings(std::vector<Item>* items, std::vector<bool>* picking_up)
-{
-	std::vector<std::string> ret;
-	if (items->size() != picking_up->size())
-	{
-		debugmsg("get_pickup_strings() - vectors aren't same size!");
-		return ret;
-	}
-
-	for (int i = 0; i < items->size(); i++)
-	{
-		bool pickup = (*picking_up)[i];
-		ret.push_back(pickup_string(&((*items)[i]), char('a' + i), pickup));
-	}
-	return ret;
-}
-
-std::string pickup_string(Item* item, char letter, bool picking_up)
-{
-	if (!item)
-	{
-		return "<c=red>NO ITEM<c=/>";
-	}
-	std::stringstream ss;
-	ss << "<c=" << (picking_up ? "green" : "ltgray") << ">" << letter <<
-	   (picking_up ? " +" : " -") << " " << item->get_name_full();
-	return ss.str();
 }
