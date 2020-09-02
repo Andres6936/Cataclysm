@@ -35,7 +35,7 @@ ScreenType StatsScreen::processInput()
 
 	if (ch == '>')
 	{
-		return ScreenType::NEW_GAME_STATS;
+		return ScreenType::NEW_GAME_TRAITS;
 	}
 	else if (ch == '<')
 	{
