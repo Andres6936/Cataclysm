@@ -2233,25 +2233,15 @@ std::string pickup_string(Item* item, char letter, bool picking_up)
 
 void PlayScreen::draw()
 {
-
+	// Print everything (update_hud() and map->draw())
+	if (!player->has_activity())
+	{
+		draw_all();
+	}
 }
 
 void PlayScreen::updated()
 {
-
-}
-
-Cataclysm::ScreenType PlayScreen::processInput()
-{
-	// Sanity check
-	if (!w_map || !w_hud || !player || !worldmap || !map)
-	{
-		return Cataclysm::ScreenType::QUIT;
-	}
-	if (game_over)
-	{
-		return Cataclysm::ScreenType::QUIT;
-	}
 	// Reset all temp values.
 	reset_temp_values();
 	// Process active items; these may set temp values!
@@ -2266,17 +2256,26 @@ Cataclysm::ScreenType PlayScreen::processInput()
 	player->gain_action_points();
 	// Set all values, incur hunger/thirst, etc.
 	player->start_turn();
+}
+
+Cataclysm::ScreenType PlayScreen::processInput()
+{
+	// Sanity check
+	if (!w_map || !w_hud || !player || !worldmap || !map)
+	{
+		return Cataclysm::ScreenType::QUIT;
+	}
+	if (game_over)
+	{
+		return Cataclysm::ScreenType::QUIT;
+	}
+
 	while (player->action_points > 0)
 	{
 		// Handle the player's activity (e.g. reloading, crafting, etc)
 		handle_player_activity();
 		// Update the map in case we need to right now
 		shift_if_needed();
-		// Print everything (update_hud() and map->draw())
-		if (!player->has_activity())
-		{
-			draw_all();
-		}
 
 		// The player doesn't get to give input if they have an active activity.
 		if (!player->activity.is_active())
