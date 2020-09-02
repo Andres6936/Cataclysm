@@ -1,5 +1,6 @@
 // Joan Andrés (@Andres6936) Github.
 
+#include <Cataclysm/files.h>
 #include "Cataclysm/Screen/NewGame/DescriptionScreen.hpp"
 
 using namespace Cataclysm;
@@ -11,6 +12,8 @@ void DescriptionScreen::draw()
 
 void DescriptionScreen::updated()
 {
+	filenameInterfaceCuss = CUSS_DIR + "/i_newchar_description.cuss";
+
 	INewGameScreen::updated();
 
 	i_newch.ref_data("entry_name", &player->name);

@@ -36,6 +36,8 @@ namespace Cataclysm
 
 		inline static std::vector<std::string> traits_list;
 
+		inline static std::string filenameInterfaceCuss;
+
 		inline static bool userChangedScreen = false;
 
 		inline static int* stat_value = nullptr;

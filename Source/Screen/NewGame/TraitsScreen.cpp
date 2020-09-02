@@ -1,5 +1,6 @@
 // Joan Andrés (@Andres6936) Github.
 
+#include <Cataclysm/files.h>
 #include "Cataclysm/Screen/NewGame/TraitsScreen.hpp"
 
 using namespace Cataclysm;
@@ -11,6 +12,8 @@ void TraitsScreen::draw()
 
 void TraitsScreen::updated()
 {
+	filenameInterfaceCuss = CUSS_DIR + "/i_newchar_traits.cuss";
+
 	INewGameScreen::updated();
 
 	i_newch.select("list_traits");

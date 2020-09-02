@@ -1,5 +1,6 @@
 // Joan Andrés (@Andres6936) Github.
 
+#include <Cataclysm/files.h>
 #include "Cataclysm/Screen/NewGame/StatsScreen.hpp"
 
 using namespace Cataclysm;
@@ -11,6 +12,8 @@ void StatsScreen::draw()
 
 void StatsScreen::updated()
 {
+	filenameInterfaceCuss = CUSS_DIR + "/i_newchar_stats.cuss";
+
 	INewGameScreen::updated();
 
 	cur_stat = Stat_selected::STATSEL_STR;

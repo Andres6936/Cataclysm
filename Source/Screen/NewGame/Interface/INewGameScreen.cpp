@@ -389,36 +389,12 @@ void INewGameScreen::draw()
 
 void INewGameScreen::updated()
 {
-	if (userChangedScreen)
+	if (!i_newch.load_from_file(filenameInterfaceCuss))
 	{
-		std::string filename = CUSS_DIR + "/i_newchar_";
-
-		switch (cur_screen)
-		{
-		case New_char_screen::NCS_STATS:
-			filename += "stats.cuss";
-			break;
-
-		case New_char_screen::NCS_TRAITS:
-			filename += "traits.cuss";
-			break;
-
-		case New_char_screen::NCS_PROFESSION:
-			filename += "profession.cuss";
-			break;
-
-		case New_char_screen::NCS_DESCRIPTION:
-			filename += "description.cuss";
-			break;
-		}
-
-		if (!i_newch.load_from_file(filename))
-		{
-			throw std::runtime_error("Cannot found the file: " + filename + "\n");
-		}
-
-		i_newch.ref_data("num_points", &points);
+		throw std::runtime_error("Cannot found the file: " + filenameInterfaceCuss + "\n");
 	}
+
+	i_newch.ref_data("num_points", &points);
 }
 
 ScreenType INewGameScreen::processInput()

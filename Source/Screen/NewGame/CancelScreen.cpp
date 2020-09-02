@@ -22,7 +22,7 @@ ScreenType CancelScreen::processInput()
 	}
 	else
 	{
-		cur_screen = New_char_screen::NCS_STATS;
+		userChangedScreen = true;
 		return ScreenType::NEW_GAME_STATS;
 	}
 }

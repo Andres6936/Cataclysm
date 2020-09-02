@@ -1,5 +1,6 @@
 // Joan Andrés (@Andres6936) Github.
 
+#include <Cataclysm/files.h>
 #include <Cataclysm/globals.h>
 #include <Cataclysm/stringfunc.h>
 #include "Cataclysm/Screen/NewGame/ProfessionScreen.hpp"
@@ -13,6 +14,8 @@ void ProfessionScreen::draw()
 
 void ProfessionScreen::updated()
 {
+	filenameInterfaceCuss = CUSS_DIR + "/i_newchar_profession.cuss";
+
 	INewGameScreen::updated();
 
 	i_newch.select("list_professions");

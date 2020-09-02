@@ -43,7 +43,5 @@ ScreenType DoneScreen::processInput()
 		return ScreenType::PLAY;
 	}
 
-	cur_screen = New_char_screen::NCS_DESCRIPTION;
-
 	return ScreenType::NEW_GAME_DESCRIPTION;
 }
