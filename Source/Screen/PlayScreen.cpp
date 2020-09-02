@@ -25,12 +25,6 @@ PlayScreen::PlayScreen()
 	game_over = false;
 }
 
-bool PlayScreen::setup_new_game(int world_index)
-{
-
-}
-
-
 void PlayScreen::reset_temp_values()
 {
 	temp_light_level = 0;

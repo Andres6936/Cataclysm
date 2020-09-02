@@ -42,14 +42,6 @@ public:
 
 	Cataclysm::ScreenType processInput() override;
 
-
-/* setup_new_game() creates the Worldmap, Map, and Player objects.
- * If a world_index is passed to it, it'll attempt to load that Worldmap - the
- * index refers to an element in worldmap_names.  Otherwise, it'll create a new
- * Worldmap.
- */
-	bool setup_new_game(int world_index = -1);
-
 	// Returns a new world_index
 
 	void reset_temp_values();
