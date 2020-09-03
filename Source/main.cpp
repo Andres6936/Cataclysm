@@ -47,9 +47,9 @@ int main(int argc, char* argv[])
 
 	while (manager.isRunning())
 	{
-		manager.draw();
-		manager.updated();
 		manager.processInput();
+		manager.updated();
+		manager.draw();
 	}
 
 	endwin();           // See window.cpp
