@@ -13,7 +13,7 @@ using namespace Cataclysm;
 
 MenuScreen::MenuScreen()
 {
-	console.setCustomFont("font-13.png", 2);
+	console.setCustomFont("Fonts/font-13.png", 2);
 
 	if (!i_hud.load_from_file(CUSS_DIR + "/i_hud.cuss"))
 	{
