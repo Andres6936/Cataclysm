@@ -46,7 +46,7 @@ public:
 
 	void reset_temp_values();
 
-	void do_action(Interface_action act);
+	Cataclysm::ScreenType do_action(Interface_action act);
 
 	void move_entities();
 

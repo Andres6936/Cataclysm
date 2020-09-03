@@ -30,7 +30,7 @@ void PlayScreen::reset_temp_values()
 	temp_light_level = 0;
 }
 
-void PlayScreen::do_action(Interface_action act)
+Cataclysm::ScreenType PlayScreen::do_action(Interface_action act)
 {
 	switch (act)
 	{
@@ -553,13 +553,16 @@ there.<c=/>", map->get_name(examine).c_str());
 		break;
 
 	case IACTION_QUIT:
-		if (query_yn("Commit suicide?"))
+		if (showQueryYesNo("Commit suicide?"))
 		{
 			game_over = true;
 			player->action_points = 0;
 		}
-		break;
+
+		return Cataclysm::ScreenType::QUIT;
 	}
+
+	return Cataclysm::ScreenType::NONE;
 }
 
 void PlayScreen::move_entities()
@@ -2284,7 +2287,10 @@ Cataclysm::ScreenType PlayScreen::processInput()
 			// Fetch the action bound to whatever key we pressed...
 			Interface_action act = KEYBINDINGS.bound_to_key(ch);
 			// ... and do that action.
-			do_action(act);
+			Cataclysm::ScreenType action = do_action(act);
+
+			// If the action to make not is null
+			if (action not_eq Cataclysm::ScreenType::NONE) return action;
 		}
 	}
 	// Map processes fields after the player
