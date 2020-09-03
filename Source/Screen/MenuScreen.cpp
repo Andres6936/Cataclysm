@@ -13,6 +13,8 @@ using namespace Cataclysm;
 
 MenuScreen::MenuScreen()
 {
+	console.setCustomFont("font-13.png", 2);
+
 	if (!i_hud.load_from_file(CUSS_DIR + "/i_hud.cuss"))
 	{
 		throw std::runtime_error("Not is possible found i_hud.cuss");
