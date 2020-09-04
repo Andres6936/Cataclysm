@@ -11,18 +11,10 @@ using namespace cuss;
 void ele_number::draw(Doryen::Console& _console)
 {
 	nc_color hilite = (selected ? SELECTCOLOR : bg);
-	if (align == ALIGN_RIGHT)
-	{
-		_console.write(posx, posy, std::to_string(*value));
-	}
-	else if (align == ALIGN_CENTER)
-	{
-		_console.write(posx, posy, std::to_string(*value));
-	}
-	else
-	{
-		_console.write(posx, posy, std::to_string(*value));
-	}
+
+	_console.setForegroundColor(Cataclysm::transformColor(fg));
+	_console.setBackgroundColor(Cataclysm::transformColor(hilite));
+	_console.write(posx, posy, std::to_string(*value));
 }
 
 // *** NUMBER ELEMENT ***

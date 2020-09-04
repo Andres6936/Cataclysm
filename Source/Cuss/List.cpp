@@ -2,6 +2,7 @@
 
 #include "Cuss/List.hpp"
 #include <Cataclysm/stringfunc.h>
+#include <Cuss/String/Utility.hpp>
 #include <Cataclysm/Screen/Debugger.hpp>
 #include <sstream>
 
@@ -37,7 +38,101 @@ void _print_scrollbar(std::shared_ptr<Window> win, int posx, int posy, int lengt
 
 void ele_list::draw(Doryen::Console& _console)
 {
-	element::draw(_console);
+	for (int i = 0; i + offset < list->size() && i < sizey; i++)
+	{
+		nc_color hilite = (selection == i + offset ? SELECTCOLOR : bg);
+		int ypos, index;
+		if (v_align == ALIGN_BOTTOM)
+		{
+			ypos = posy + sizey - 1 - i;
+			index = list->size() - 1 - i - offset;
+		}
+		else
+		{ // Default to top-aligned
+			ypos = posy + i;
+			index = i + offset;
+		}
+		if (!selected)
+			hilite = bg;
+		if (align == ALIGN_RIGHT)
+		{
+/* If it's selectable, we need an extra space at the end to compensate for the
+ * scroll bar; otherwise the scroll bar will cover up the last name in the list.
+ * This is hacky but it's good enough for now.
+ */
+			if (selectable)
+			{
+				std::vector<std::string> segments;
+				std::vector<long> color_pairs;
+
+				const auto colors = Utility::parseColorTags((*list)[index] + " ", segments, color_pairs, fg, bg);
+
+				std::uint32_t positionX = posx;
+				std::uint32_t indexActualString = 0;
+
+				for (const auto& [foreground, background] : colors)
+				{
+					_console.setForegroundColor(foreground);
+					_console.setBackgroundColor(background);
+
+					_console.write(positionX, ypos, segments[indexActualString]);
+
+					// Move the position of x for avoid overlap
+					positionX += segments[indexActualString].size();
+					// Move to next string to print
+					indexActualString += 1;
+				}
+			}
+			else
+			{
+				std::vector<std::string> segments;
+				std::vector<long> color_pairs;
+
+				const auto colors = Utility::parseColorTags((*list)[index], segments, color_pairs, fg, bg);
+
+				std::uint32_t positionX = posx;
+				std::uint32_t indexActualString = 0;
+
+				for (const auto& [foreground, background] : colors)
+				{
+					_console.setForegroundColor(foreground);
+					_console.setBackgroundColor(background);
+
+					_console.write(positionX, ypos, segments[indexActualString]);
+
+					// Move the position of x for avoid overlap
+					positionX += segments[indexActualString].size();
+					// Move to next string to print
+					indexActualString += 1;
+				}
+			}
+		}
+		else
+		{
+			std::vector<std::string> segments;
+			std::vector<long> color_pairs;
+
+			const auto colors = Utility::parseColorTags((*list)[index], segments, color_pairs, fg, bg);
+
+			std::uint32_t positionX = posx;
+			std::uint32_t indexActualString = 0;
+
+			for (const auto& [foreground, background] : colors)
+			{
+				_console.setForegroundColor(foreground);
+				_console.setBackgroundColor(background);
+
+				_console.write(positionX, ypos, segments[indexActualString]);
+
+				// Move the position of x for avoid overlap
+				positionX += segments[indexActualString].size();
+				// Move to next string to print
+				indexActualString += 1;
+			}
+		}
+	}
+
+	//if (selectable) _print_scrollbar(win, posx + sizex - 1, posy, sizey, offset, list->size(), selected);
 }
 
 // *** LIST ELEMENT ***
