@@ -37,6 +37,13 @@ game is a tutorial which runs the player through most of the key features.  The
 game also has extensive documentation via the ? command.  Pressing ?1 will list
 all the key commands, which is a good place to start.
 
+# Compiling Source Code
+
+Compiling Cataclysm under linux is straightforward, and only requires the
+ncurses development libraries.  Under Ubuntu, these libraries can be found in
+the libncurses5-dev package ("sudo apt-get install libncurses5-dev" will install
+this package).
+
 # Refactor code?
 
 Yes, new frontend based in [Doryen](https://github.com/Andres6936/Doryen) Library.
