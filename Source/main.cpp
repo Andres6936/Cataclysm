@@ -45,6 +45,12 @@ int main(int argc, char* argv[])
 
 	Cataclysm::ScreenManager manager {};
 
+	// Because ncurses blocks the thread until the user presses a key,
+	// it is impossible for Cataclysm to draw the screen if the user does
+	// not press a key before, this line of code will be deleted once Doryen
+	// replaces completely to ncurses.
+	manager.draw();
+
 	while (manager.isRunning())
 	{
 		manager.processInput();
