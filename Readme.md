@@ -47,6 +47,14 @@ CPM.cmake).
 Under Ubuntu, these libraries can be found in the libncurses5-dev package
 (`sudo apt-get install libncurses5-dev` will install this package).
 
+You needed an Compiler for support to C++17 and CMake 3.15
+
+    git clone --depth=1 https://github.com/Andres6936/Cataclysm.git
+    mkdir Build
+    cd Build
+    cmake ..
+    make
+
 # Refactor code?
 
 The ultimate goal of this project is not to add new features or fix bugs in the 
