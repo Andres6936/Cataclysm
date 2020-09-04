@@ -54,81 +54,26 @@ void ele_list::draw(Doryen::Console& _console)
 		}
 		if (!selected)
 			hilite = bg;
-		if (align == ALIGN_RIGHT)
+
+		std::vector<std::string> segments;
+		std::vector<long> color_pairs;
+
+		const auto colors = Utility::parseColorTags((*list)[index], segments, color_pairs, fg, hilite);
+
+		std::uint32_t positionX = align == ALIGN_RIGHT ? posx : posx + 4;
+		std::uint32_t indexActualString = 0;
+
+		for (const auto& [foreground, background] : colors)
 		{
-/* If it's selectable, we need an extra space at the end to compensate for the
- * scroll bar; otherwise the scroll bar will cover up the last name in the list.
- * This is hacky but it's good enough for now.
- */
-			if (selectable)
-			{
-				std::vector<std::string> segments;
-				std::vector<long> color_pairs;
+			_console.setForegroundColor(foreground);
+			_console.setBackgroundColor(background);
 
-				const auto colors = Utility::parseColorTags((*list)[index] + " ", segments, color_pairs, fg, bg);
+			_console.write(positionX, ypos, segments[indexActualString]);
 
-				std::uint32_t positionX = posx;
-				std::uint32_t indexActualString = 0;
-
-				for (const auto& [foreground, background] : colors)
-				{
-					_console.setForegroundColor(foreground);
-					_console.setBackgroundColor(background);
-
-					_console.write(positionX, ypos, segments[indexActualString]);
-
-					// Move the position of x for avoid overlap
-					positionX += segments[indexActualString].size();
-					// Move to next string to print
-					indexActualString += 1;
-				}
-			}
-			else
-			{
-				std::vector<std::string> segments;
-				std::vector<long> color_pairs;
-
-				const auto colors = Utility::parseColorTags((*list)[index], segments, color_pairs, fg, bg);
-
-				std::uint32_t positionX = posx;
-				std::uint32_t indexActualString = 0;
-
-				for (const auto& [foreground, background] : colors)
-				{
-					_console.setForegroundColor(foreground);
-					_console.setBackgroundColor(background);
-
-					_console.write(positionX, ypos, segments[indexActualString]);
-
-					// Move the position of x for avoid overlap
-					positionX += segments[indexActualString].size();
-					// Move to next string to print
-					indexActualString += 1;
-				}
-			}
-		}
-		else
-		{
-			std::vector<std::string> segments;
-			std::vector<long> color_pairs;
-
-			const auto colors = Utility::parseColorTags((*list)[index], segments, color_pairs, fg, bg);
-
-			std::uint32_t positionX = posx;
-			std::uint32_t indexActualString = 0;
-
-			for (const auto& [foreground, background] : colors)
-			{
-				_console.setForegroundColor(foreground);
-				_console.setBackgroundColor(background);
-
-				_console.write(positionX, ypos, segments[indexActualString]);
-
-				// Move the position of x for avoid overlap
-				positionX += segments[indexActualString].size();
-				// Move to next string to print
-				indexActualString += 1;
-			}
+			// Move the position of x for avoid overlap
+			positionX += segments[indexActualString].size();
+			// Move to next string to print
+			indexActualString += 1;
 		}
 	}
 
