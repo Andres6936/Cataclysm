@@ -3,6 +3,7 @@
 #include <Cataclysm/globals.h>
 #include <Cataclysm/Screen/MenuScreen.hpp>
 #include <Cataclysm/Screen/TourScreen.hpp>
+#include <Cataclysm/Screen/SkillScreen.hpp>
 #include <Cataclysm/Screen/WorldScreen.hpp>
 #include <Cataclysm/Screen/NewGameScreen.hpp>
 #include "Cataclysm/Screen/ScreenManager.hpp"
@@ -15,6 +16,7 @@ ScreenManager::ScreenManager()
 {
 	this->menuScreen = std::make_shared<MenuScreen>();
 	this->tourScreen = std::make_shared<TourScreen>();
+	this->skillScreen = std::make_shared<SkillScreen>();
 	this->worldScreen = std::make_shared<WorldScreen>();
 	this->newGameScreen = std::make_shared<NewGameScreen>();
 	this->helpMenuScreen = std::make_shared<HelpMenuScreen>();
@@ -59,6 +61,10 @@ void ScreenManager::nextScene(ScreenType _next)
 	else if (_next == ScreenType::TOUR)
 	{
 		actualScreen = tourScreen;
+	}
+	else if (_next == ScreenType::SKILL)
+	{
+		actualScreen = skillScreen;
 	}
 	else if (_next == ScreenType::WORLD)
 	{

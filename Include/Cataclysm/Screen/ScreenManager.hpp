@@ -26,6 +26,8 @@ namespace Cataclysm
 
 		std::shared_ptr<IScreen> worldScreen {};
 
+		std::shared_ptr<IScreen> skillScreen {};
+
 		std::shared_ptr<IScreen> actualScreen {};
 
 		std::shared_ptr<IScreen> newGameScreen {};

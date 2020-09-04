@@ -48,3 +48,19 @@ void IScreen::showDebugMessage(std::string_view _text)
 		ch = getch();
 	}
 }
+
+void IScreen::showMessagePopup(std::string_view _text)
+{
+	console.writeText({0, 0}, {80, 24}, Doryen::BlendModes::SET, _text);
+	console.draw();
+
+	flushinp();
+
+	long key = getch();
+
+	while(key not_eq '\n' or key not_eq ' ')
+	{
+		flushinp();
+		key = getch();
+	}
+}

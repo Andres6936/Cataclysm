@@ -537,8 +537,7 @@ there.<c=/>", map->get_name(examine).c_str());
 		break;
 
 	case IACTION_CHAR_SKILLS:
-		player->skills_interface();
-		break;
+		return Cataclysm::ScreenType::SKILL;
 
 	case IACTION_DEBUG:
 		if (!TESTING_MODE)

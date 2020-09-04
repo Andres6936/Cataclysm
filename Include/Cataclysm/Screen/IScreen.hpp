@@ -47,6 +47,8 @@ namespace Cataclysm
 
 		void showDebugMessage(std::string_view _text);
 
+		void showMessagePopup(std::string_view _text);
+
 	public:
 
 		inline static std::unique_ptr<Worldmap> worldmap {nullptr};

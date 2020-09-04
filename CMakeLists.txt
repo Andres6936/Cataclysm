@@ -94,6 +94,7 @@ ADD_EXECUTABLE(Cataclysm
         Source/Screen/PlayScreen.cpp
         Source/Screen/TourScreen.cpp
         Source/Screen/WorldScreen.cpp
+        Source/Screen/SkillScreen.cpp
         Source/Screen/ScreenManager.cpp
         Source/Screen/NewGameScreen.cpp
         Source/Screen/HelpMenuScreen.cpp
