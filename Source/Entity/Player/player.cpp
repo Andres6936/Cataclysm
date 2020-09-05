@@ -1,5 +1,6 @@
-#include "Cataclysm/Entity/Player/player.h"
+#include <Cataclysm/Entity/Player/StateInventory.hpp>
 #include "Cataclysm/Screen/HelpMenuScreen.hpp"   // For help_skill_desc()
+#include "Cataclysm/Entity/Player/player.h"
 #include <Cataclysm/Random/rng.h>
 #include "Cataclysm/globals.h"
 #include "Cataclysm/files.h"  // For CUSS_DIR
@@ -263,18 +264,21 @@ int Player::maximum_volume()
 
 Item Player::inventory_single()
 {
-	std::vector<Item> items = inventory_ui(true, false);
-	if (items.empty())
+	inventory_ui(true, false);
+
+	if (stateInventory.isEmpty())
 	{
 		return Item();
 	}
-	return items[0];
+
+	return stateInventory.getItemSelected();
 }
 
 std::vector<Item> Player::drop_items()
 {
-	std::vector<Item> ret = inventory_ui(false, true);
-	return ret;
+	inventory_ui(false, true);
+
+	return stateInventory.getItemsSelected();
 }
 
 std::vector<Item> Player::inventory_ui(bool single, bool remove)
@@ -563,23 +567,27 @@ std::vector<Item> Player::inventory_ui(bool single, bool remove)
  * include_item - a set of bools, true if the item with that index is selected
  * include_clothing - like include_item but for items_worn
  */
-	std::vector<Item> ret;
+
+	stateInventory.resetState();
+
 	if (include_weapon)
 	{
-		ret.push_back(weapon);
+		stateInventory.addItem(weapon);
 	}
+
 	for (int i = 0; i < include_item.size(); i++)
 	{
 		if (include_item[i])
 		{
-			ret.push_back(inventory[i]);
+			stateInventory.addItem(inventory[i]);
 		}
 	}
+
 	for (int i = 0; i < include_clothing.size(); i++)
 	{
 		if (include_clothing[i])
 		{
-			ret.push_back(items_worn[i]);
+			stateInventory.addItem(items_worn[i]);
 		}
 	}
 
@@ -609,7 +617,7 @@ std::vector<Item> Player::inventory_ui(bool single, bool remove)
 
 	}
 
-	return ret;
+	return { };
 }
 
 

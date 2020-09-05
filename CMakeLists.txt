@@ -62,6 +62,7 @@ ADD_EXECUTABLE(Cataclysm
         Source/Entity/Monster/AbilityTeleport.cpp
         Source/Entity/Monster/Enum/AbilityType.cpp
         Source/Entity/Player/player.cpp
+        Source/Entity/Player/StateInventory.cpp
         Source/Entity/Player/player_activity.cpp
         Source/Entity/Player/Enum/ActivityType.cpp
         Source/Geometry/geometry.cpp
