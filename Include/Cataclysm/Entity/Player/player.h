@@ -70,7 +70,7 @@ public:
 	Item inventory_single();
 
 	std::vector<Item> drop_items(); // Provides an interface via inventory()
-	std::vector<Item> inventory_ui(bool single = false, bool remove = false);
+	void inventory_ui(bool single = false, bool remove = false);
 
 	virtual Item pick_ammo_for(Item* it);
 

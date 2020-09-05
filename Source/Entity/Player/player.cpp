@@ -281,23 +281,26 @@ std::vector<Item> Player::drop_items()
 	return stateInventory.getItemsSelected();
 }
 
-std::vector<Item> Player::inventory_ui(bool single, bool remove)
+void Player::inventory_ui(bool single, bool remove)
 {
 	std::shared_ptr<Window> w_inv = std::make_shared<Window>(0, 0, 80, 24);
 
 	cuss::interface i_inv;
 	std::string inv_file = CUSS_DIR + "/i_inventory.cuss";
-// Sanity checks
+
+	// Sanity checks
 	if (!i_inv.load_from_file(inv_file))
 	{
-		return std::vector<Item>();
+		throw std::runtime_error("Cannot found the file i_inventory.cuss");
 	}
+
 	cuss::element* ele_list_items = i_inv.find_by_name("list_items");
 	if (ele_list_items == NULL)
 	{
 		debugmsg("No element 'list_items' in %s", inv_file.c_str());
-		return std::vector<Item>();
+		return;
 	}
+
 	int offset_size = ele_list_items->sizey;
 // Set static text fields, which are different depending on single/remove
 // So, we have a vector of indices for each item category.
@@ -439,9 +442,7 @@ std::vector<Item> Player::inventory_ui(bool single, bool remove)
 		long ch = input();
 		if (single && ch == '-')
 		{
-			std::vector<Item> ret;
-			ret.push_back(Item());
-			return ret;
+			return;
 		}
 		else if (ch == '<' && offset > 0)
 		{
@@ -475,8 +476,7 @@ std::vector<Item> Player::inventory_ui(bool single, bool remove)
 		}
 		else if (ch == KEY_ESC)
 		{
-			std::vector<Item> empty;
-			return empty;
+			return;
 		}
 		else if (ch == '\n')
 		{
@@ -616,8 +616,6 @@ std::vector<Item> Player::inventory_ui(bool single, bool remove)
 		}
 
 	}
-
-	return { };
 }
 
 
