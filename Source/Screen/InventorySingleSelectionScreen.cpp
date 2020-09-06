@@ -163,33 +163,47 @@ ScreenType InventorySingleSelectionScreen::processInput()
 	else if (ch == '<' && offset > 0)
 	{
 		offset--;
+
 		i_inv.clear_data("list_items");
 		i_inv.clear_data("list_weight");
 		i_inv.clear_data("list_volume");
-//		for (int i = offset * offset_size;
-//			 i < (offset + 1) * offset_size && i < item_name.size();
-//			 i++)
-//		{
-//			i_inv.add_data("list_items", item_name[i]);
-//			i_inv.add_data("list_weight", item_weight[i]);
-//			i_inv.add_data("list_volume", item_volume[i]);
-//		}
+
+		for (int i = offset * offset_size; i < (offset + 1) * offset_size && i < getTotalElementInDictionaryItems(); i++)
+		{
+			try
+			{
+				i_inv.add_data("list_items", getItemAt(i).getNameWithLetter());
+				i_inv.add_data("list_weight", getItemAt(i).getWeight());
+				i_inv.add_data("list_volume", getItemAt(i).getVolume());
+			}
+			catch (std::out_of_range& exception)
+			{
+				showDebugMessage(exception.what());
+			}
+		}
 	}
-//	else if (ch == '>' && item_name.size() > (offset + 1) * offset_size)
-//	{
-//		offset++;
-//		i_inv.clear_data("list_items");
-//		i_inv.clear_data("list_weight");
-//		i_inv.clear_data("list_volume");
-//		for (int i = offset * offset_size;
-//			 i < (offset + 1) * offset_size && i < item_name.size();
-//			 i++)
-//		{
-//			i_inv.add_data("list_items", item_name[i]);
-//			i_inv.add_data("list_weight", item_weight[i]);
-//			i_inv.add_data("list_volume", item_volume[i]);
-//		}
-//	}
+	else if (ch == '>' && getTotalElementInDictionaryItems() > (offset + 1) * offset_size)
+	{
+		offset++;
+
+		i_inv.clear_data("list_items");
+		i_inv.clear_data("list_weight");
+		i_inv.clear_data("list_volume");
+
+		for (int i = offset * offset_size; i < (offset + 1) * offset_size && i < getTotalElementInDictionaryItems(); i++)
+		{
+			try
+			{
+				i_inv.add_data("list_items", getItemAt(i).getNameWithLetter());
+				i_inv.add_data("list_weight", getItemAt(i).getWeight());
+				i_inv.add_data("list_volume", getItemAt(i).getVolume());
+			}
+			catch (std::out_of_range& exception)
+			{
+				showDebugMessage(exception.what());
+			}
+		}
+	}
 	else if (ch == KEY_ESC)
 	{
 		isNeededUpdate = true;
@@ -380,5 +394,43 @@ void InventorySingleSelectionScreen::printDictionaryItems()
 
 		// Advance to next class
 		itemClass = static_cast<Item_class>(itemClass + 1);
+	}
+}
+
+std::uint32_t InventorySingleSelectionScreen::getTotalElementInDictionaryItems() const noexcept
+{
+	std::uint32_t totalElements = 0;
+
+	for (const auto& dictionary: dictionaryItems)
+	{
+		totalElements += dictionary.size();
+	}
+
+	return totalElements;
+}
+
+const DictionaryItem& InventorySingleSelectionScreen::getItemAt(const std::uint32_t _index) const
+{
+	// Verify that _index is in the range of dictionary
+	if (_index > getTotalElementInDictionaryItems())
+	{
+		throw std::out_of_range("Try access to index: " + std::to_string(_index));
+	}
+
+	std::uint32_t elementVisited = 0;
+
+	for (const auto& dictionary: dictionaryItems)
+	{
+		for(const auto& [item, selected] : dictionary)
+		{
+			if (_index == elementVisited)
+			{
+				return item;
+			}
+			else
+			{
+				elementVisited += 1;
+			}
+		}
 	}
 }

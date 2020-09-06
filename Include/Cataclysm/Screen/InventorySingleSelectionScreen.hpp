@@ -51,6 +51,13 @@ namespace Cataclysm
 
 		void printDictionaryClothing();
 
+		/**
+		 * @return The total of elements in the dictionary items
+		 */
+		std::uint32_t getTotalElementInDictionaryItems() const noexcept;
+
+		const DictionaryItem& getItemAt(const std::uint32_t _index) const;
+
 	public:
 
 		InventorySingleSelectionScreen();
