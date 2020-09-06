@@ -152,7 +152,8 @@ void InventorySingleSelectionScreen::updated()
 		// Only print the name of category if the dictionary not is empty
 		if (not dictionary.empty())
 		{
-			i_inv.add_data("list_items", item_class_name(itemClass));
+			// Create an header with color foreground blue
+			i_inv.add_data("list_items", "<c=ltblue>" + item_class_name(itemClass) + "<c=/>");
 			i_inv.add_data("list_weight", "");
 			i_inv.add_data("list_volume", "");
 		}
