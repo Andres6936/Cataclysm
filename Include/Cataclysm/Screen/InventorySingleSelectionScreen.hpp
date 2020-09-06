@@ -57,10 +57,6 @@ namespace Cataclysm
 
 		int offset_size = 0;
 
-		int weight_after = 0;
-
-		int volume_after = 0;
-
 		char weapon_letter = 0;
 
 		void populate_item_lists(int _offsetSize,
