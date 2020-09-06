@@ -4,6 +4,8 @@
 #define CATACLYSM_INVENTORYSINGLESELECTIONSCREEN_HPP
 
 #include <Cataclysm/Screen/IScreen.hpp>
+#include <Cataclysm/Visual/Item/DictionaryItem.hpp>
+#include <Cataclysm/Visual/Item/DictionaryClothing.hpp>
 
 namespace Cataclysm
 {
@@ -21,6 +23,8 @@ namespace Cataclysm
 		 * A set of bools, true if the item with that index is selected.
 		 */
 		std::vector<bool> include_item;
+
+		DictionaryClothing dictionaryClothing;
 
 		/**
 		 * Like include_item but for items_worn.

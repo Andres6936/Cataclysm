@@ -96,6 +96,15 @@ void InventorySingleSelectionScreen::updated()
 		Item_type_clothing* clothing =
 				static_cast<Item_type_clothing*>(player->items_worn[i].get_type());
 
+
+		const std::string name = player->items_worn[i].get_name_full();
+		const std::string weight = std::to_string(player->items_worn[i].get_weight());
+		const std::string volume = std::to_string(clothing->carry_capacity);
+
+		DictionaryItem item {name, weight, volume};
+
+		dictionaryClothing.emplace(item, false);
+
 		clothing_ss << letter << " - " << player->items_worn[i].get_name_full();
 		clothing_name.push_back(clothing_ss.str());
 
