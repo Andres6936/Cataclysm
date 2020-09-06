@@ -47,6 +47,10 @@ namespace Cataclysm
 
 		void setItemSelected();
 
+		void printDictionaryItems();
+
+		void printDictionaryClothing();
+
 	public:
 
 		InventorySingleSelectionScreen();

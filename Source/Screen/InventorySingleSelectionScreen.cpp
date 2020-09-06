@@ -142,77 +142,8 @@ void InventorySingleSelectionScreen::updated()
 
 	i_inv.set_data("text_instructions", "<c=magenta>Press Esc to cancel.\nPress - to select nothing.<c=/>");
 
-	int counterItemsInserted = 0;
-
-	// Begin from the initial item class enum
-	Item_class itemClass = Item_class::ITEM_CLASS_MISC;
-
-	for (const auto& dictionary : dictionaryItems)
-	{
-		// Only print the name of category if the dictionary not is empty
-		if (not dictionary.empty())
-		{
-			// Create an header with color foreground blue
-			i_inv.add_data("list_items", "<c=ltblue>" + item_class_name(itemClass) + "<c=/>");
-			i_inv.add_data("list_weight", "");
-			i_inv.add_data("list_volume", "");
-		}
-
-		// Print the list of items
-		for (const auto& [item, selected] : dictionary)
-		{
-			i_inv.add_data("list_items", item.getNameWithLetter());
-			i_inv.add_data("list_weight", item.getWeight());
-			i_inv.add_data("list_volume", item.getVolume());
-
-			counterItemsInserted += 1;
-
-			// Not can print more item
-			if (counterItemsInserted == offset_size) break;
-		}
-
-		// Advance to next class
-		itemClass = static_cast<Item_class>(itemClass + 1);
-
-		// Not can print more item
-		if (counterItemsInserted == offset_size) break;
-	}
-
-	// If the size of elements is lesser than offsetSize thus is sure
-	// use a for-loop for print the items
-	if (dictionaryClothing.size() < offset_size)
-	{
-		for (const auto& [clothing, selected] : dictionaryClothing)
-		{
-			i_inv.add_data("list_clothing", clothing.getNameWithLetter());
-			i_inv.add_data("list_clothing_weight", clothing.getWeight());
-			i_inv.add_data("list_clothing_volume", clothing.getVolume());
-		}
-	}
-	// Not is secure use of for-loop, because it can be print elements
-	// that not can be see the user in the screen
-	else
-	{
-		int counterElementsInserted = 0;
-
-		for (const auto& [clothing, selected] : dictionaryClothing)
-		{
-			i_inv.add_data("list_clothing", clothing.getNameWithLetter());
-			i_inv.add_data("list_clothing_weight", clothing.getWeight());
-			i_inv.add_data("list_clothing_volume", clothing.getVolume());
-
-			// If reach the limit of elements that can be visualized in the
-			// screen, thus exit
-			if (counterElementsInserted == offset_size)
-			{
-				break;
-			}
-			else
-			{
-				counterElementsInserted += 1;
-			}
-		}
-	}
+	printDictionaryItems();
+	printDictionaryClothing();
 
 	isNeededUpdate = false;
 }
@@ -380,4 +311,82 @@ void InventorySingleSelectionScreen::setItemSelected()
 
 	// Change of screen with the next action, needed update
 	isNeededUpdate = true;
+}
+
+void InventorySingleSelectionScreen::printDictionaryClothing()
+{
+	// If the size of elements is lesser than offsetSize thus is sure
+	// use a for-loop for print the items
+	if (dictionaryClothing.size() < offset_size)
+	{
+		for (const auto& [clothing, selected] : dictionaryClothing)
+		{
+			i_inv.add_data("list_clothing", clothing.getNameWithLetter());
+			i_inv.add_data("list_clothing_weight", clothing.getWeight());
+			i_inv.add_data("list_clothing_volume", clothing.getVolume());
+		}
+	}
+		// Not is secure use of for-loop, because it can be print elements
+		// that not can be see the user in the screen
+	else
+	{
+		int counterElementsInserted = 0;
+
+		for (const auto& [clothing, selected] : dictionaryClothing)
+		{
+			i_inv.add_data("list_clothing", clothing.getNameWithLetter());
+			i_inv.add_data("list_clothing_weight", clothing.getWeight());
+			i_inv.add_data("list_clothing_volume", clothing.getVolume());
+
+			// If reach the limit of elements that can be visualized in the
+			// screen, thus exit
+			if (counterElementsInserted == offset_size)
+			{
+				break;
+			}
+			else
+			{
+				counterElementsInserted += 1;
+			}
+		}
+	}
+}
+
+void InventorySingleSelectionScreen::printDictionaryItems()
+{
+	int counterItemsInserted = 0;
+
+	// Begin from the initial item class enum
+	Item_class itemClass = Item_class::ITEM_CLASS_MISC;
+
+	for (const auto& dictionary : dictionaryItems)
+	{
+		// Only print the name of category if the dictionary not is empty
+		if (not dictionary.empty())
+		{
+			// Create an header with color foreground blue
+			i_inv.add_data("list_items", "<c=ltblue>" + item_class_name(itemClass) + "<c=/>");
+			i_inv.add_data("list_weight", "");
+			i_inv.add_data("list_volume", "");
+		}
+
+		// Print the list of items
+		for (const auto& [item, selected] : dictionary)
+		{
+			i_inv.add_data("list_items", item.getNameWithLetter());
+			i_inv.add_data("list_weight", item.getWeight());
+			i_inv.add_data("list_volume", item.getVolume());
+
+			counterItemsInserted += 1;
+
+			// Not can print more item
+			if (counterItemsInserted == offset_size) break;
+		}
+
+		// Advance to next class
+		itemClass = static_cast<Item_class>(itemClass + 1);
+
+		// Not can print more item
+		if (counterItemsInserted == offset_size) break;
+	}
 }
