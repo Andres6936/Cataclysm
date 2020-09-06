@@ -60,11 +60,15 @@ void InventoryScreen::updated()
 	item_volume.clear();
 	item_weight.clear();
 
-	item_indices->clear();
-	item_indices->resize(ITEM_CLASS_MAX);
+	for (int i = 0; i < ITEM_CLASS_MAX; ++i)
+	{
+		item_indices[i].clear();
+	}
 
-	item_letters->clear();
-	item_letters->resize(ITEM_CLASS_MAX);
+	for (int j = 0; j < ITEM_CLASS_MAX; ++j)
+	{
+		item_letters[j].clear();
+	}
 
 // Set up letter for weapon, if any exists
 	char letter = 'a';
