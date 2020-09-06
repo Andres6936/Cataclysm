@@ -163,7 +163,7 @@ void InventorySingleSelectionScreen::updated()
 	{
 		for (const auto& [clothing, selected] : dictionaryClothing)
 		{
-			i_inv.add_data("list_clothing", clothing.getName());
+			i_inv.add_data("list_clothing", clothing.getNameWithLetter());
 			i_inv.add_data("list_clothing_weight", clothing.getWeight());
 			i_inv.add_data("list_clothing_volume", clothing.getVolume());
 		}
@@ -176,7 +176,7 @@ void InventorySingleSelectionScreen::updated()
 
 		for (const auto& [clothing, selected] : dictionaryClothing)
 		{
-			i_inv.add_data("list_clothing", clothing.getName());
+			i_inv.add_data("list_clothing", clothing.getNameWithLetter());
 			i_inv.add_data("list_clothing_weight", clothing.getWeight());
 			i_inv.add_data("list_clothing_volume", clothing.getVolume());
 

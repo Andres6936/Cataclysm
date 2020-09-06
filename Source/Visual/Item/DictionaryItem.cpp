@@ -126,6 +126,15 @@ const std::string& DictionaryItem::getVolume() const noexcept
 	return volume;
 }
 
+const std::string DictionaryItem::getNameWithLetter() const noexcept
+{
+	// For avoid write static_cast
+	// The use of std::uint16_t more char throw warnings for
+	// the compiler, so that first concat the name with " - "
+	// then concat with the key (letter in this case)
+	return (char) key + (" - " + name);
+}
+
 // Setters
 
 void DictionaryItem::setName(const std::string& _name) noexcept

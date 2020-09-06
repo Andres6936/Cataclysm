@@ -85,6 +85,8 @@ namespace Cataclysm
 
 		const std::string& getVolume() const noexcept;
 
+		const std::string getNameWithLetter() const noexcept;
+
 		// Setters
 
 		void setKey(const std::uint16_t _key) noexcept;
