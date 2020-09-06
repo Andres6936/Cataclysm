@@ -20,6 +20,7 @@ namespace Cataclysm
 		NEW_GAME,
 		CLOTHING,
 		MISSIONS,
+		INVENTORY,
 		HELP_MENU,
 		CREATE_WORLD,
 		NEW_GAME_DONE,
