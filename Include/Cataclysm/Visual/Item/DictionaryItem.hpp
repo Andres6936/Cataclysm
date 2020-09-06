@@ -10,12 +10,17 @@ namespace Cataclysm
 {
 
 	/**
-	 * Properties: Copyable, Copy Assignable, Move Assignable
+	 * This properties are necessary for use this class as Key for
+	 * structs define for ISO (aka. Standard).
+	 *
+	 * Properties: Copyable, Copy Assignable, Move Assignable, Move-able
 	 */
 	class DictionaryItem
 	{
 
 	private:
+
+		// Variables
 
 		std::string name;
 
@@ -26,6 +31,13 @@ namespace Cataclysm
 	public:
 
 		// Construct
+
+		/**
+		 * Construct Move, set the property Move-able.
+		 *
+		 * @param _object Another objecto to move.
+		 */
+		DictionaryItem(DictionaryItem&& _object) noexcept;
 
 		/**
 		 * Construct Copy, set the property Copyable.

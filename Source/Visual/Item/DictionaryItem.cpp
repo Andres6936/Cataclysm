@@ -7,6 +7,13 @@ using namespace Cataclysm;
 
 // Construct
 
+DictionaryItem::DictionaryItem(DictionaryItem&& _object) noexcept
+{
+	name = std::move(_object.name);
+	weight = std::move(_object.weight);
+	volume = std::move(_object.volume);
+}
+
 DictionaryItem::DictionaryItem(const DictionaryItem& _object) noexcept
 {
 	this->copy(_object);
