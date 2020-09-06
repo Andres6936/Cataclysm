@@ -263,6 +263,24 @@ ScreenType InventorySingleSelectionScreen::processInput()
 			i_inv.set_data("text_weapon", weapon_ss.str());
 		}
 
+		// The user has been pressed an key that represent a shortcut to
+		// a object in the inventory, in this moment each object have
+		// a unique letter or key, is needed found the item that user
+		// select
+		if (not found)
+		{
+			for (auto& [clothing, selected] : dictionaryClothing)
+			{
+				if (clothing.getKey() == ch)
+				{
+					found = true;
+
+					// Mark the object as selected for the user
+					selected = true;
+				}
+			}
+		}
+
 		if (!found)
 		{ // Not the weapon, not clothing - let's check inventory
 			for (int n = 0; n < ITEM_CLASS_MAX; n++)
