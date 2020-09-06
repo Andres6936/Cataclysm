@@ -9,12 +9,8 @@
 namespace Cataclysm
 {
 
-	class DictionaryClothing : private std::multimap<DictionaryItem, bool>
+	class DictionaryClothing : public std::multimap<DictionaryItem, bool, DictionaryItemCompare>
 	{
-
-	public:
-
-
 
 	};
 
