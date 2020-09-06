@@ -35,6 +35,8 @@ void InventoryScreen::draw()
 
 void InventoryScreen::updated()
 {
+	if ( not isNeededUpdate) return;
+
 	offset_size = ele_list_items->sizey;
 
 // Set up letter for weapon, if any exists
@@ -157,6 +159,8 @@ void InventoryScreen::updated()
 
 	weight_after = player->current_weight();
 	volume_after = player->current_volume();
+
+	isNeededUpdate = false;
 }
 
 ScreenType InventoryScreen::processInput()
@@ -173,6 +177,8 @@ ScreenType InventoryScreen::processInput()
 
 	if (single && ch == '-')
 	{
+		isNeededUpdate = true;
+
 		return ScreenType::PLAY;
 	}
 	else if (ch == '<' && offset > 0)
@@ -207,6 +213,8 @@ ScreenType InventoryScreen::processInput()
 	}
 	else if (ch == KEY_ESC)
 	{
+		isNeededUpdate = true;
+
 		return ScreenType::PLAY;
 	}
 	else if (ch == '\n')
@@ -269,6 +277,10 @@ ScreenType InventoryScreen::processInput()
 			}
 
 		}
+
+		isNeededUpdate = true;
+
+		return ScreenType::PLAY;
 	}
 	else
 	{ // Anything else warrants a check for the matching key!

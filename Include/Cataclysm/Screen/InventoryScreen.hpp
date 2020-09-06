@@ -47,6 +47,8 @@ namespace Cataclysm
 		// So, we have a vector of indices for each item category.
 		bool include_weapon = false;
 
+		bool isNeededUpdate = true;
+
 		int offset = 0;
 
 		int offset_size = 0;
