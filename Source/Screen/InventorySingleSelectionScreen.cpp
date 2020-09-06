@@ -396,11 +396,9 @@ void InventorySingleSelectionScreen::setItemSelected()
 			// is represent in the dictionary
 			for (auto& item : player->items_worn)
 			{
-				auto itemClothing = static_cast<Item_type_clothing*>(item.get_type());
-
 				if (item.get_name_full() == clothing.getName())
 				{
-					stateInventory.addItem(itemClothing);
+					stateInventory.addItem(static_cast<Item_type_clothing*>(item.get_type()));
 				}
 			}
 		}
