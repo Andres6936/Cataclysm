@@ -166,7 +166,7 @@ void InventorySingleSelectionScreen::updated()
 		}
 	}
 	// Not is secure use of for-loop, because it can be print elements
-	// that not can be see the user
+	// that not can be see the user in the screen
 	else
 	{
 		int counterElementsInserted = 0;
@@ -177,6 +177,8 @@ void InventorySingleSelectionScreen::updated()
 			i_inv.add_data("list_clothing_weight", clothing.getWeight());
 			i_inv.add_data("list_clothing_volume", clothing.getVolume());
 
+			// If reach the limit of elements that can be visualized in the
+			// screen, thus exit
 			if (counterElementsInserted == offset_size)
 			{
 				break;
