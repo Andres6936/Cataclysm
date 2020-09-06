@@ -118,3 +118,13 @@ const std::string& DictionaryItem::getVolume() const noexcept
 {
 	return volume;
 }
+
+
+// Definition class DictionaryItemCompare
+
+bool DictionaryItemCompare::operator()(const DictionaryItem& lhs, const DictionaryItem& rhs) const noexcept
+{
+	// In C++, the "compare" predicate must be a strict weak ordering.
+
+	return lhs.getName() < rhs.getName() and lhs.getWeight() < rhs.getWeight() and lhs.getVolume() < rhs.getVolume();
+}

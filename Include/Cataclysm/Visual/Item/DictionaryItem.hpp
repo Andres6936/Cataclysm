@@ -82,6 +82,24 @@ namespace Cataclysm
 
 	};
 
+	class DictionaryItemCompare
+	{
+
+	public:
+
+		/**
+		 * Comparable
+		 *
+		 * @param lhs Left object to compare
+		 * @param rhs Right object to compare
+		 *
+		 * @return True if the left object is lesser than right object,
+		 *  False otherwise
+		 */
+		bool operator()(const DictionaryItem& lhs, const DictionaryItem& rhs) const noexcept;
+
+	};
+
 }
 
 #endif //CATACLYSM_DICTIONARYITEM_HPP
