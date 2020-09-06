@@ -47,6 +47,11 @@ namespace Cataclysm
 		// So, we have a vector of indices for each item category.
 		bool include_weapon = false;
 
+		/**
+		 * For avoid duplicate the elements in the inventory of player, is needed
+		 * determine when is needed update the screen for show the content of way
+		 * consistent, it action too allow a better performance.
+		 */
 		bool isNeededUpdate = true;
 
 		int offset = 0;
