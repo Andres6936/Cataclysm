@@ -26,19 +26,6 @@ namespace Cataclysm
 
 		DictionaryClothing dictionaryClothing;
 
-		/**
-		 * Like include_item but for items_worn.
-		 */
-		std::vector<bool> include_clothing;
-
-		std::vector<char> clothing_letters;
-
-		std::vector<std::string> clothing_name;
-
-		std::vector<std::string> clothing_weight;
-
-		std::vector<std::string> clothing_volume;
-
 		std::vector<int> item_indices[ITEM_CLASS_MAX];
 
 		std::vector<char> item_letters[ITEM_CLASS_MAX];

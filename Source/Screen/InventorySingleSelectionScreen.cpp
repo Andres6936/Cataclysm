@@ -47,12 +47,7 @@ void InventorySingleSelectionScreen::updated()
 	i_inv.clear_data("list_clothing_weight");
 	i_inv.clear_data("list_clothing_volume");
 
-	clothing_letters.clear();
-	include_clothing.clear();
-
-	clothing_name.clear();
-	clothing_volume.clear();
-	clothing_weight.clear();
+	dictionaryClothing.clear();
 
 	include_item.clear();
 
@@ -90,39 +85,22 @@ void InventorySingleSelectionScreen::updated()
 
 	for (int i = 0; i < player->items_worn.size(); i++)
 	{
-		include_clothing.push_back(false);
-
 		std::stringstream clothing_ss;
 		Item_type_clothing* clothing =
 				static_cast<Item_type_clothing*>(player->items_worn[i].get_type());
 
+		const int capacity = clothing->carry_capacity;
 
+		const std::uint16_t key = letter;
 		const std::string name = player->items_worn[i].get_name_full();
 		const std::string weight = std::to_string(player->items_worn[i].get_weight());
-		const std::string volume = std::to_string(clothing->carry_capacity);
+		const std::string volume = capacity == 0 ? "<c=dkgray>+0<c=/>" : "<c=green>+" + std::to_string(capacity) + "<c=/>";
 
-		DictionaryItem item {name, weight, volume};
+		const DictionaryItem item {key, name, weight, volume};
 
 		dictionaryClothing.emplace(item, false);
 
-		clothing_ss << letter << " - " << player->items_worn[i].get_name_full();
-		clothing_name.push_back(clothing_ss.str());
 
-		clothing_weight.push_back(itos(player->items_worn[i].get_weight()));
-
-		int capacity = clothing->carry_capacity;
-		if (capacity == 0)
-		{
-			clothing_volume.push_back("<c=dkgray>+0<c=/>");
-		}
-		else
-		{
-			std::stringstream volume_ss;
-			volume_ss << "<c=green>+" << capacity << "<c=/>";
-			clothing_volume.push_back(volume_ss.str());
-		}
-
-		clothing_letters.push_back(letter);
 		if (letter == 'z')
 		{
 			letter = 'A';
@@ -178,11 +156,39 @@ void InventorySingleSelectionScreen::updated()
 		i_inv.add_data("list_weight", item_weight[i]);
 		i_inv.add_data("list_volume", item_volume[i]);
 	}
-	for (int i = 0; i < offset_size && i < clothing_name.size(); i++)
+
+	// If the size of elements is lesser than offsetSize thus is sure
+	// use a for-loop for print the items
+	if (dictionaryClothing.size() < offset_size)
 	{
-		i_inv.add_data("list_clothing", clothing_name[i]);
-		i_inv.add_data("list_clothing_weight", clothing_weight[i]);
-		i_inv.add_data("list_clothing_volume", clothing_volume[i]);
+		for (const auto& [clothing, selected] : dictionaryClothing)
+		{
+			i_inv.add_data("list_clothing", clothing.getName());
+			i_inv.add_data("list_clothing_weight", clothing.getWeight());
+			i_inv.add_data("list_clothing_volume", clothing.getVolume());
+		}
+	}
+	// Not is secure use of for-loop, because it can be print elements
+	// that not can be see the user
+	else
+	{
+		int counterElementsInserted = 0;
+
+		for (const auto& [clothing, selected] : dictionaryClothing)
+		{
+			i_inv.add_data("list_clothing", clothing.getName());
+			i_inv.add_data("list_clothing_weight", clothing.getWeight());
+			i_inv.add_data("list_clothing_volume", clothing.getVolume());
+
+			if (counterElementsInserted == offset_size)
+			{
+				break;
+			}
+			else
+			{
+				counterElementsInserted += 1;
+			}
+		}
 	}
 
 	isNeededUpdate = false;
@@ -255,24 +261,6 @@ ScreenType InventorySingleSelectionScreen::processInput()
 					  weapon_letter << (include_weapon ? " + " : " - ") <<
 					  player->weapon.get_name_full();
 			i_inv.set_data("text_weapon", weapon_ss.str());
-		}
-
-		if (!found)
-		{
-			for (int i = 0; i < clothing_letters.size(); i++)
-			{
-				if (ch == clothing_letters[i])
-				{
-					found = true;
-					include_clothing[i] = !include_clothing[i];
-					bool inc = include_clothing[i];
-					std::stringstream clothing_ss;
-					clothing_ss << (inc ? "<c=green>" : "<c=ltgray>") <<
-								clothing_letters[i] << (inc ? " + " : " - ") <<
-								player->items_worn[i].get_name_full();
-					clothing_name[i] = clothing_ss.str();
-				}
-			}
 		}
 
 		if (!found)
@@ -382,11 +370,21 @@ void InventorySingleSelectionScreen::setItemSelected()
 		}
 	}
 
-	for (int i = 0; i < include_clothing.size(); i++)
+	for (const auto& [clothing, selected] : dictionaryClothing)
 	{
-		if (include_clothing[i])
+		if (selected)
 		{
-			stateInventory.addItem(player->items_worn[i]);
+			// Search the object in the inventory of player that
+			// is represent in the dictionary
+			for (auto& item : player->items_worn)
+			{
+				auto itemClothing = static_cast<Item_type_clothing*>(item.get_type());
+
+				if (item.get_name_full() == clothing.getName())
+				{
+					stateInventory.addItem(itemClothing);
+				}
+			}
 		}
 	}
 
