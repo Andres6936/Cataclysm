@@ -1,7 +1,6 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include <Cataclysm/files.h>
-#include <Cataclysm/stringfunc.h>
 #include <Cataclysm/Item/TypeClothing.hpp>
 #include "Cataclysm/Screen/InventorySingleSelectionScreen.hpp"
 #include <Cataclysm/Entity/Player/StateInventory.hpp>
