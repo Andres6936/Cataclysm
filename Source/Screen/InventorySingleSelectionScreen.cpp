@@ -433,4 +433,7 @@ const DictionaryItem& InventorySingleSelectionScreen::getItemAt(const std::uint3
 			}
 		}
 	}
+
+	// This line of code is unreachable
+	throw std::out_of_range("Cannot found the element with the index: " + std::to_string(_index));
 }
