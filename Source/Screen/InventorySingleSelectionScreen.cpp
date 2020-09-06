@@ -48,20 +48,9 @@ void InventorySingleSelectionScreen::updated()
 
 	dictionaryClothing.clear();
 
-	include_item.clear();
-
-	item_name.clear();
-	item_volume.clear();
-	item_weight.clear();
-
-	for (int i = 0; i < ITEM_CLASS_MAX; ++i)
+	for (auto& dictionary : dictionaryItems)
 	{
-		item_indices[i].clear();
-	}
-
-	for (int j = 0; j < ITEM_CLASS_MAX; ++j)
-	{
-		item_letters[j].clear();
+		dictionary.clear();
 	}
 
 // Set up letter for weapon, if any exists
@@ -115,11 +104,22 @@ void InventorySingleSelectionScreen::updated()
 
 	for (int i = 0; i < player->inventory.size(); i++)
 	{
-		include_item.push_back(false);
 		Item_class iclass = player->inventory[i].get_item_class();
-		item_indices[iclass].push_back(i);
-		item_letters[iclass].push_back(letter);
-// TODO: Better inventory letters.  This still isn't unlimited.
+
+		// Get the dictionary that store the representations to
+		// object in the inventory of player
+		DictionaryAny dictionary = dictionaryItems.at(iclass);
+
+		const std::uint16_t key = letter;
+		const std::string name = player->inventory[i].get_name();
+		const int weight = player->inventory[i].get_weight();
+		const int volume = player->inventory[i].get_volume();
+
+		DictionaryItem item {key, name, weight, volume};
+
+		dictionary.emplace(item, false);
+
+		// TODO: Better inventory letters.  This still isn't unlimited.
 		if (letter == 'z')
 		{
 			letter = 'A';
@@ -134,10 +134,6 @@ void InventorySingleSelectionScreen::updated()
 		}
 	}
 
-	// Now, populate the string lists
-	populate_item_lists(offset_size, item_indices, item_letters,
-			include_item, item_name, item_weight, item_volume);
-
 // Set interface data
 	i_inv.set_data("weight_current", player->current_weight());
 	i_inv.set_data("weight_maximum", player->maximum_weight());
@@ -146,11 +142,39 @@ void InventorySingleSelectionScreen::updated()
 
 	i_inv.set_data("text_instructions", "<c=magenta>Press Esc to cancel.\nPress - to select nothing.<c=/>");
 
-	for (int i = 0; i < offset_size && i < item_name.size(); i++)
+	int counterItemsInserted = 0;
+
+	// Begin from the initial item class enum
+	Item_class itemClass = Item_class::ITEM_CLASS_MISC;
+
+	for (const auto& dictionary : dictionaryItems)
 	{
-		i_inv.add_data("list_items", item_name[i]);
-		i_inv.add_data("list_weight", item_weight[i]);
-		i_inv.add_data("list_volume", item_volume[i]);
+		// Only print the name of category if the dictionary not is empty
+		if (not dictionary.empty())
+		{
+			i_inv.add_data("list_items", item_class_name(itemClass));
+			i_inv.add_data("list_weight", "");
+			i_inv.add_data("list_volume", "");
+		}
+
+		// Print the list of items
+		for (const auto& [item, selected] : dictionary)
+		{
+			i_inv.add_data("list_items", item.getNameWithLetter());
+			i_inv.add_data("list_weight", item.getWeight());
+			i_inv.add_data("list_volume", item.getVolume());
+
+			counterItemsInserted += 1;
+
+			// Not can print more item
+			if (counterItemsInserted == offset_size) break;
+		}
+
+		// Advance to next class
+		itemClass = static_cast<Item_class>(itemClass + 1);
+
+		// Not can print more item
+		if (counterItemsInserted == offset_size) break;
 	}
 
 	// If the size of elements is lesser than offsetSize thus is sure
@@ -210,30 +234,30 @@ ScreenType InventorySingleSelectionScreen::processInput()
 		i_inv.clear_data("list_items");
 		i_inv.clear_data("list_weight");
 		i_inv.clear_data("list_volume");
-		for (int i = offset * offset_size;
-			 i < (offset + 1) * offset_size && i < item_name.size();
-			 i++)
-		{
-			i_inv.add_data("list_items", item_name[i]);
-			i_inv.add_data("list_weight", item_weight[i]);
-			i_inv.add_data("list_volume", item_volume[i]);
-		}
+//		for (int i = offset * offset_size;
+//			 i < (offset + 1) * offset_size && i < item_name.size();
+//			 i++)
+//		{
+//			i_inv.add_data("list_items", item_name[i]);
+//			i_inv.add_data("list_weight", item_weight[i]);
+//			i_inv.add_data("list_volume", item_volume[i]);
+//		}
 	}
-	else if (ch == '>' && item_name.size() > (offset + 1) * offset_size)
-	{
-		offset++;
-		i_inv.clear_data("list_items");
-		i_inv.clear_data("list_weight");
-		i_inv.clear_data("list_volume");
-		for (int i = offset * offset_size;
-			 i < (offset + 1) * offset_size && i < item_name.size();
-			 i++)
-		{
-			i_inv.add_data("list_items", item_name[i]);
-			i_inv.add_data("list_weight", item_weight[i]);
-			i_inv.add_data("list_volume", item_volume[i]);
-		}
-	}
+//	else if (ch == '>' && item_name.size() > (offset + 1) * offset_size)
+//	{
+//		offset++;
+//		i_inv.clear_data("list_items");
+//		i_inv.clear_data("list_weight");
+//		i_inv.clear_data("list_volume");
+//		for (int i = offset * offset_size;
+//			 i < (offset + 1) * offset_size && i < item_name.size();
+//			 i++)
+//		{
+//			i_inv.add_data("list_items", item_name[i]);
+//			i_inv.add_data("list_weight", item_weight[i]);
+//			i_inv.add_data("list_volume", item_volume[i]);
+//		}
+//	}
 	else if (ch == KEY_ESC)
 	{
 		isNeededUpdate = true;
@@ -279,24 +303,19 @@ ScreenType InventorySingleSelectionScreen::processInput()
 			}
 		}
 
-		if (!found)
+		if (not  found)
 		{ // Not the weapon, not clothing - let's check inventory
-			for (int n = 0; n < ITEM_CLASS_MAX; n++)
+
+			for (auto& dictionary : dictionaryItems)
 			{
-				for (int i = 0; i < item_letters[n].size(); i++)
+				for (auto& [item, selected] : dictionary)
 				{
-					if (ch == item_letters[n][i])
+					if (item.getKey() == ch)
 					{
 						found = true;
-						int index = item_indices[n][i];
-						include_item[index] = !include_item[index];
-						bool inc = include_item[index];
-						std::stringstream item_ss;
-						item_ss << (inc ? "<c=green>" : "<c=ltgray>") <<
-								item_letters[n][i] << (inc ? " + " : " - ") <<
-								player->inventory[index].get_name_full();
-// It's easiest to just set up the text lists for items from scratch!
-						populate_item_lists( offset_size, item_indices, item_letters,include_item, item_name, item_weight,item_volume);
+
+						// Mark the object as selected for the user
+						selected = true;
 					}
 				}
 			}
@@ -313,7 +332,7 @@ ScreenType InventorySingleSelectionScreen::processInput()
 	return ScreenType::NONE;
 }
 
-void InventorySingleSelectionScreen::populate_item_lists(int _offsetSize, std::vector<int>* _itemIndices,
+void InventorySingleSelectionScreen::populate_item_lists( std::vector<int>* _itemIndices,
 		std::vector<char>* _itemLetters, std::vector<bool> _includeItem, std::vector<std::string>& _itemName,
 		std::vector<std::string>& _itemWeight, std::vector<std::string>& _itemVolume)
 {
@@ -337,7 +356,7 @@ void InventorySingleSelectionScreen::populate_item_lists(int _offsetSize, std::v
 
 				// Check to see if we're starting a new page.
 				// If so, repeat the category header
-				if (_itemName.size() % _offsetSize == 0)
+				if (_itemName.size() % offset_size == 0)
 				{
 					_itemName.push_back(class_name + "(cont)");
 					_itemWeight.push_back("");
@@ -378,11 +397,20 @@ void InventorySingleSelectionScreen::setItemSelected()
 		stateInventory.addItem(player->weapon);
 	}
 
-	for (int i = 0; i < include_item.size(); i++)
+	for (const auto& dictionary : dictionaryItems)
 	{
-		if (include_item[i])
+		for (const auto& [item, selected] : dictionary)
 		{
-			stateInventory.addItem(player->inventory[i]);
+			if (selected)
+			{
+				for (auto& itemInventory: player->inventory)
+				{
+					if (item.getName() == itemInventory.get_name_full())
+					{
+						stateInventory.addItem(itemInventory);
+					}
+				}
+			}
 		}
 	}
 

@@ -4,6 +4,7 @@
 #define CATACLYSM_INVENTORYSINGLESELECTIONSCREEN_HPP
 
 #include <Cataclysm/Screen/IScreen.hpp>
+#include <Cataclysm/Visual/Item/DictionaryAny.hpp>
 #include <Cataclysm/Visual/Item/DictionaryItem.hpp>
 #include <Cataclysm/Visual/Item/DictionaryClothing.hpp>
 
@@ -19,22 +20,9 @@ namespace Cataclysm
 
 		cuss::interface i_inv;
 
-		/**
-		 * A set of bools, true if the item with that index is selected.
-		 */
-		std::vector<bool> include_item;
-
 		DictionaryClothing dictionaryClothing;
 
-		std::vector<int> item_indices[ITEM_CLASS_MAX];
-
-		std::vector<char> item_letters[ITEM_CLASS_MAX];
-
-		std::vector<std::string> item_name;
-
-		std::vector<std::string> item_weight;
-
-		std::vector<std::string> item_volume;
+		std::array<DictionaryAny, ITEM_CLASS_MAX> dictionaryItems;
 
 		/**
 		 * A bool marked true if we selected our weapon.
@@ -59,7 +47,7 @@ namespace Cataclysm
 
 		void setItemSelected();
 
-		void populate_item_lists(int _offsetSize,
+		void populate_item_lists(
 				std::vector<int> _itemIndices[ITEM_CLASS_MAX],
 				std::vector<char> _itemLetters[ITEM_CLASS_MAX],
 				std::vector<bool> _includeItem,
