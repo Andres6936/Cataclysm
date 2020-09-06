@@ -51,6 +51,9 @@ namespace Cataclysm
 		 * For avoid duplicate the elements in the inventory of player, is needed
 		 * determine when is needed update the screen for show the content of way
 		 * consistent, it action too allow a better performance.
+		 *
+		 * The change of a screen to another too trigger the action of update the
+		 * action of update the this screen.
 		 */
 		bool isNeededUpdate = true;
 
