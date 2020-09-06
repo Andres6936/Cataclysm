@@ -106,9 +106,9 @@ void InventorySingleSelectionScreen::updated()
 	{
 		Item_class iclass = player->inventory[i].get_item_class();
 
-		// Get the dictionary that store the representations to
-		// object in the inventory of player
-		DictionaryAny dictionary = dictionaryItems.at(iclass);
+		// Get the dictionary (for reference) that store the
+		// representations to object in the inventory of player
+		DictionaryAny& dictionary = dictionaryItems.at(iclass);
 
 		const std::uint16_t key = letter;
 		const std::string name = player->inventory[i].get_name();
