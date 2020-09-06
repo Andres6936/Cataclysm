@@ -82,15 +82,15 @@ void InventorySingleSelectionScreen::updated()
 
 	// Start with clothing - it's simple!
 
-	for (int i = 0; i < player->items_worn.size(); i++)
+	for (auto& itemWorn : player->items_worn)
 	{
-		auto clothing = static_cast<Item_type_clothing*>(player->items_worn[i].get_type());
+		auto clothing = static_cast<Item_type_clothing*>(itemWorn.get_type());
 
 		const int capacity = clothing->carry_capacity;
 
 		const std::uint16_t key = letter;
-		const std::string name = player->items_worn[i].get_name_full();
-		const std::string weight = std::to_string(player->items_worn[i].get_weight());
+		const std::string name = itemWorn.get_name_full();
+		const std::string weight = std::to_string(itemWorn.get_weight());
 		const std::string volume = capacity == 0 ? "<c=dkgray>+0<c=/>" : "<c=green>+" + std::to_string(capacity) + "<c=/>";
 
 		const DictionaryItem item {key, name, weight, volume};
