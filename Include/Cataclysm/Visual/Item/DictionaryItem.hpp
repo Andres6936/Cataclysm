@@ -10,7 +10,7 @@ namespace Cataclysm
 {
 
 	/**
-	 * Properties: Copyable, Copy Assignable
+	 * Properties: Copyable, Copy Assignable, Move Assignable
 	 */
 	class DictionaryItem
 	{
@@ -51,6 +51,14 @@ namespace Cataclysm
 		 * @return Reference to this object.
 		 */
 		DictionaryItem& operator= (const DictionaryItem& _object);
+
+		/**
+		 * Assignment Move, set the property of Move Assignable.
+		 *
+		 * @param _object Another objecto to copy.
+		 * @return Reference to this object.
+		 */
+		DictionaryItem& operator= (DictionaryItem&& _object) noexcept;
 
 		// Getters
 
