@@ -99,6 +99,7 @@ ADD_EXECUTABLE(Cataclysm
         Source/Screen/ScreenManager.cpp
         Source/Screen/NewGameScreen.cpp
         Source/Screen/HelpMenuScreen.cpp
+        Source/Screen/InventoryScreen.cpp
         Source/Screen/CreateWorldScreen.cpp
         Source/Screen/NewGame/DoneScreen.cpp
         Source/Screen/NewGame/StatsScreen.cpp
