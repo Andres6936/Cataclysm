@@ -1,6 +1,6 @@
 // Joan Andrés (@Andres6936) Github.
 
-#include <algorithm>
+#include <utility>
 #include "Cataclysm/Visual/Item/DictionaryItem.hpp"
 
 using namespace Cataclysm;
@@ -8,7 +8,7 @@ using namespace Cataclysm;
 // Construct
 
 DictionaryItem::DictionaryItem(DictionaryItem&& _object) noexcept
-	: name(std::move(_object.name)), weight(std::move(_object.weight)), volume(std::move(_object.volume))
+	: key(_object.key), name(std::move(_object.name)), weight(std::move(_object.weight)), volume(std::move(_object.volume))
 {
 	// Move, Move, Move
 }
@@ -18,14 +18,14 @@ DictionaryItem::DictionaryItem(const DictionaryItem& _object) noexcept
 	this->copy(_object);
 }
 
-DictionaryItem::DictionaryItem(std::string_view _name, int _weight, int _volume) noexcept
-		: name(_name), weight(std::to_string(_weight)), volume(std::to_string(_volume))
+DictionaryItem::DictionaryItem(std::uint16_t _key, std::string_view _name, int _weight, int _volume) noexcept
+	: key(_key) ,name(_name), weight(std::to_string(_weight)), volume(std::to_string(_volume))
 {
 	// String, Integer, Integer
 }
 
-DictionaryItem::DictionaryItem(std::string_view _name, std::string_view _weight, std::string_view _volume) noexcept
-	: name(_name), weight(_weight), volume(_volume)
+DictionaryItem::DictionaryItem(std::uint16_t _key, std::string_view _name, std::string_view _weight, std::string_view _volume) noexcept
+	: key(_key), name(_name), weight(_weight), volume(_volume)
 {
 	// String, String, String
 }
@@ -34,6 +34,7 @@ DictionaryItem::DictionaryItem(std::string_view _name, std::string_view _weight,
 
 void DictionaryItem::copy(const DictionaryItem& _object) noexcept
 {
+	key = _object.key;
 	name = _object.name;
 	weight = _object.weight;
 	volume = _object.volume;
@@ -77,6 +78,7 @@ DictionaryItem& DictionaryItem::operator=(DictionaryItem&& _object) noexcept
 	if (this not_eq &_object)
 	{
 		// Invariant: Change of values and another object leave in valid state
+		key = std::exchange(_object.key, 0);
 		std::swap(name, _object.name);
 		std::swap(weight, _object.weight);
 		std::swap(volume, _object.volume);
@@ -103,6 +105,11 @@ DictionaryItem& DictionaryItem::operator=(DictionaryItem&& _object) noexcept
 }
 
 // Getters
+
+const std::uint16_t DictionaryItem::getKey() const noexcept
+{
+	return key;
+}
 
 const std::string& DictionaryItem::getName() const noexcept
 {
@@ -136,6 +143,11 @@ void DictionaryItem::setVolume(const std::string& _volume) noexcept
 	volume = _volume;
 }
 
+void DictionaryItem::setKey(const std::uint16_t _key) noexcept
+{
+	key = _key;
+}
+
 
 // Definition class DictionaryItemCompare
 
@@ -143,5 +155,14 @@ bool DictionaryItemCompare::operator()(const DictionaryItem& lhs, const Dictiona
 {
 	// In C++, the "compare" predicate must be a strict weak ordering.
 
-	return lhs.getName() < rhs.getName() and lhs.getWeight() < rhs.getWeight() and lhs.getVolume() < rhs.getVolume();
+	// Invariant, if the key are equals, then compare for name, weight and volume
+	//  this invariant allow use this class with std::multimap
+	if (lhs.getKey() == rhs.getKey())
+	{
+		return lhs.getName() < rhs.getName() and lhs.getWeight() < rhs.getWeight() and lhs.getVolume() < rhs.getVolume();
+	}
+	else
+	{
+		return lhs.getKey() < rhs.getKey();
+	}
 }

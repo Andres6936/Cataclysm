@@ -4,6 +4,7 @@
 #define CATACLYSM_DICTIONARYITEM_HPP
 
 #include <string>
+#include <cstdint>
 #include <string_view>
 
 namespace Cataclysm
@@ -21,6 +22,8 @@ namespace Cataclysm
 	private:
 
 		// Variables
+
+		std::uint16_t key;
 
 		std::string name;
 
@@ -46,9 +49,9 @@ namespace Cataclysm
 		 */
 		DictionaryItem(const DictionaryItem& _object) noexcept;
 
-		DictionaryItem(std::string_view _name, int _weight, int _volume) noexcept;
+		DictionaryItem(std::uint16_t _key, std::string_view _name, int _weight, int _volume) noexcept;
 
-		DictionaryItem(std::string_view _name, std::string_view _weight, std::string_view _volume) noexcept;
+		DictionaryItem(std::uint16_t _key, std::string_view _name, std::string_view _weight, std::string_view _volume) noexcept;
 
 		// Methods
 
@@ -74,6 +77,8 @@ namespace Cataclysm
 
 		// Getters
 
+		const std::uint16_t getKey() const noexcept;
+
 		const std::string& getName() const noexcept;
 
 		const std::string& getWeight() const noexcept;
@@ -81,6 +86,8 @@ namespace Cataclysm
 		const std::string& getVolume() const noexcept;
 
 		// Setters
+
+		void setKey(const std::uint16_t _key) noexcept;
 
 		void setName(const std::string& _name) noexcept;
 
