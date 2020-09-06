@@ -161,21 +161,8 @@ void InventorySingleSelectionScreen::updated()
 	i_inv.set_data("volume_current", player->current_volume());
 	i_inv.set_data("volume_maximum", player->maximum_volume());
 
-	if (single)
-	{
-		i_inv.set_data("text_instructions", "\
-<c=magenta>Press Esc to cancel.\nPress - to select nothing.<c=/>");
-	}
-	else
-	{
-		i_inv.set_data("text_instructions", "\
-<c=magenta>Press Esc to cancel.\nPress Enter to confirm selection.<c=/>");
-		if (remove)
-		{
-			i_inv.set_data("text_after", "<c=brown>After:<c=/>");
-			i_inv.set_data("text_after2", "<c=brown>After:<c=/>");
-		}
-	}
+	i_inv.set_data("text_instructions", "<c=magenta>Press Esc to cancel.\nPress - to select nothing.<c=/>");
+
 	for (int i = 0; i < offset_size && i < item_name.size(); i++)
 	{
 		i_inv.add_data("list_items", item_name[i]);
@@ -197,17 +184,11 @@ void InventorySingleSelectionScreen::updated()
 
 ScreenType InventorySingleSelectionScreen::processInput()
 {
-	if (!single && remove)
-	{
-		i_inv.set_data("weight_after", weight_after);
-		i_inv.set_data("volume_after", volume_after);
-	}
-
 	flushinp();
 
 	const long ch = getch();
 
-	if (single && ch == '-')
+	if (ch == '-')
 	{
 		isNeededUpdate = true;
 
@@ -284,32 +265,6 @@ ScreenType InventorySingleSelectionScreen::processInput()
 			}
 		}
 
-		if (remove)
-		{
-			if (include_weapon)
-			{
-				player->weapon = Item();
-			}
-/* We go through these vectors backwards - to guarantee that the indices remain
- * valid, even after removing items!
- */
-			for (int i = include_item.size() - 1; i >= 0; i--)
-			{
-				if (include_item[i])
-				{
-					player->inventory.erase(player->inventory.begin() + i);
-				}
-			}
-			for (int i = include_clothing.size() - 1; i >= 0; i--)
-			{
-				if (include_clothing[i])
-				{
-					player->items_worn.erase(player->items_worn.begin() + i);
-				}
-			}
-
-		}
-
 		isNeededUpdate = true;
 
 		return ScreenType::PLAY;
@@ -372,28 +327,43 @@ ScreenType InventorySingleSelectionScreen::processInput()
 
 		if (found)
 		{
-			if (single)
+			/* If we reach this point, either we're in single-mode and we've selected an
+			 * item, or we're in multiple mode and we've hit Enter - either with some items
+			 * items selected or without.
+			 * Things set at this point:
+			 * include_weapon - a bool marked true if we selected our weapon
+			 * include_item - a set of bools, true if the item with that index is selected
+			 * include_clothing - like include_item but for items_worn
+			 */
+
+			stateInventory.resetState();
+
+			if (include_weapon)
 			{
-//				done = true;
-				return ScreenType::PLAY;
+				stateInventory.addItem(player->weapon);
 			}
 
-			// Need to refresh our lists!
-			i_inv.clear_data("list_items");
-			i_inv.clear_data("list_weight");
-			i_inv.clear_data("list_volume");
-
-			for (int i = offset * offset_size;
-				 i < (offset + 1) * offset_size && i < item_name.size();
-				 i++)
+			for (int i = 0; i < include_item.size(); i++)
 			{
-				i_inv.add_data("list_items", item_name[i]);
-				i_inv.add_data("list_weight", item_weight[i]);
-				i_inv.add_data("list_volume", item_volume[i]);
+				if (include_item[i])
+				{
+					stateInventory.addItem(player->inventory[i]);
+				}
 			}
-			i_inv.set_data("list_clothing", clothing_name);
+
+			for (int i = 0; i < include_clothing.size(); i++)
+			{
+				if (include_clothing[i])
+				{
+					stateInventory.addItem(player->items_worn[i]);
+				}
+			}
+
+			isNeededUpdate = true;
+
+			return ScreenType::PLAY;
 		}
-	} // Last check for ch
+	}
 
 	return ScreenType::NONE;
 }

@@ -39,10 +39,6 @@ namespace Cataclysm
 
 		std::vector<std::string> item_volume;
 
-		bool single = true;
-
-		bool remove = false;
-
 		// Set static text fields, which are different depending on single/remove
 		// So, we have a vector of indices for each item category.
 		bool include_weapon = false;
