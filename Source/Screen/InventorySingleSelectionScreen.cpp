@@ -334,20 +334,15 @@ void InventorySingleSelectionScreen::printDictionaryClothing()
 
 		for (const auto& [clothing, selected] : dictionaryClothing)
 		{
+			// If reach the limit of elements that can be visualized in the
+			// screen, thus exit
+			if (counterElementsInserted == offset_size) break;
+
 			i_inv.add_data("list_clothing", clothing.getNameWithLetter());
 			i_inv.add_data("list_clothing_weight", clothing.getWeight());
 			i_inv.add_data("list_clothing_volume", clothing.getVolume());
 
-			// If reach the limit of elements that can be visualized in the
-			// screen, thus exit
-			if (counterElementsInserted == offset_size)
-			{
-				break;
-			}
-			else
-			{
-				counterElementsInserted += 1;
-			}
+			counterElementsInserted += 1;
 		}
 	}
 }
@@ -373,20 +368,17 @@ void InventorySingleSelectionScreen::printDictionaryItems()
 		// Print the list of items
 		for (const auto& [item, selected] : dictionary)
 		{
+			// Not can print more item
+			if (counterItemsInserted == offset_size) break;
+
 			i_inv.add_data("list_items", item.getNameWithLetter());
 			i_inv.add_data("list_weight", item.getWeight());
 			i_inv.add_data("list_volume", item.getVolume());
 
 			counterItemsInserted += 1;
-
-			// Not can print more item
-			if (counterItemsInserted == offset_size) break;
 		}
 
 		// Advance to next class
 		itemClass = static_cast<Item_class>(itemClass + 1);
-
-		// Not can print more item
-		if (counterItemsInserted == offset_size) break;
 	}
 }
