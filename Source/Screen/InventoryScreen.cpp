@@ -24,6 +24,8 @@ InventoryScreen::InventoryScreen()
 	{
 		throw std::logic_error("No element 'list_items' in " + inv_file);
 	}
+
+	offset_size = ele_list_items->sizey;
 }
 
 void InventoryScreen::draw()
@@ -37,7 +39,32 @@ void InventoryScreen::updated()
 {
 	if ( not isNeededUpdate) return;
 
-	offset_size = ele_list_items->sizey;
+	i_inv.clear_data("list_items");
+	i_inv.clear_data("list_weight");
+	i_inv.clear_data("list_volume");
+
+	i_inv.clear_data("list_clothing");
+	i_inv.clear_data("list_clothing_weight");
+	i_inv.clear_data("list_clothing_volume");
+
+	clothing_letters.clear();
+	include_clothing.clear();
+
+	clothing_name.clear();
+	clothing_volume.clear();
+	clothing_weight.clear();
+
+	include_item.clear();
+
+	item_name.clear();
+	item_volume.clear();
+	item_weight.clear();
+
+	item_indices->clear();
+	item_indices->resize(ITEM_CLASS_MAX);
+
+	item_letters->clear();
+	item_letters->resize(ITEM_CLASS_MAX);
 
 // Set up letter for weapon, if any exists
 	char letter = 'a';
@@ -332,9 +359,7 @@ ScreenType InventoryScreen::processInput()
 								item_letters[n][i] << (inc ? " + " : " - ") <<
 								player->inventory[index].get_name_full();
 // It's easiest to just set up the text lists for items from scratch!
-						populate_item_lists( offset_size, item_indices, item_letters,
-								include_item, item_name, item_weight,
-								item_volume);
+						populate_item_lists( offset_size, item_indices, item_letters,include_item, item_name, item_weight,item_volume);
 					}
 				}
 			}
@@ -345,12 +370,14 @@ ScreenType InventoryScreen::processInput()
 			if (single)
 			{
 //				done = true;
+				return ScreenType::PLAY;
 			}
 
 			// Need to refresh our lists!
 			i_inv.clear_data("list_items");
 			i_inv.clear_data("list_weight");
 			i_inv.clear_data("list_volume");
+
 			for (int i = offset * offset_size;
 				 i < (offset + 1) * offset_size && i < item_name.size();
 				 i++)
@@ -373,6 +400,7 @@ void InventoryScreen::populate_item_lists(int offset_size, std::vector<int>* ite
 	item_name.clear();
 	item_weight.clear();
 	item_volume.clear();
+
 	for (int n = 0; n < ITEM_CLASS_MAX; n++)
 	{
 		if (!item_indices[n].empty())
