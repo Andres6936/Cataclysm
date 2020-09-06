@@ -17,8 +17,14 @@ namespace Cataclysm
 
 		cuss::interface i_inv;
 
+		/**
+		 * A set of bools, true if the item with that index is selected.
+		 */
 		std::vector<bool> include_item;
 
+		/**
+		 * Like include_item but for items_worn.
+		 */
 		std::vector<bool> include_clothing;
 
 		std::vector<char> clothing_letters;
@@ -39,8 +45,9 @@ namespace Cataclysm
 
 		std::vector<std::string> item_volume;
 
-		// Set static text fields, which are different depending on single/remove
-		// So, we have a vector of indices for each item category.
+		/**
+		 * A bool marked true if we selected our weapon.
+		 */
 		bool include_weapon = false;
 
 		/**
@@ -58,6 +65,8 @@ namespace Cataclysm
 		int offset_size = 0;
 
 		char weapon_letter = 0;
+
+		void setItemSelected();
 
 		void populate_item_lists(int _offsetSize,
 				std::vector<int> _itemIndices[ITEM_CLASS_MAX],

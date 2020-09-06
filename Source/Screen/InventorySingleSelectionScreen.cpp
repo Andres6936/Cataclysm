@@ -176,9 +176,6 @@ void InventorySingleSelectionScreen::updated()
 		i_inv.add_data("list_clothing_volume", clothing_volume[i]);
 	}
 
-	weight_after = player->current_weight();
-	volume_after = player->current_volume();
-
 	isNeededUpdate = false;
 }
 
@@ -232,40 +229,7 @@ ScreenType InventorySingleSelectionScreen::processInput()
 	}
 	else if (ch == '\n')
 	{
-
-		/* If we reach this point, either we're in single-mode and we've selected an
-		 * item, or we're in multiple mode and we've hit Enter - either with some items
-		 * items selected or without.
-		 * Things set at this point:
-		 * include_weapon - a bool marked true if we selected our weapon
-		 * include_item - a set of bools, true if the item with that index is selected
-		 * include_clothing - like include_item but for items_worn
-		 */
-
-		stateInventory.resetState();
-
-		if (include_weapon)
-		{
-			stateInventory.addItem(player->weapon);
-		}
-
-		for (int i = 0; i < include_item.size(); i++)
-		{
-			if (include_item[i])
-			{
-				stateInventory.addItem(player->inventory[i]);
-			}
-		}
-
-		for (int i = 0; i < include_clothing.size(); i++)
-		{
-			if (include_clothing[i])
-			{
-				stateInventory.addItem(player->items_worn[i]);
-			}
-		}
-
-		isNeededUpdate = true;
+		setItemSelected();
 
 		return ScreenType::PLAY;
 	}
@@ -327,39 +291,7 @@ ScreenType InventorySingleSelectionScreen::processInput()
 
 		if (found)
 		{
-			/* If we reach this point, either we're in single-mode and we've selected an
-			 * item, or we're in multiple mode and we've hit Enter - either with some items
-			 * items selected or without.
-			 * Things set at this point:
-			 * include_weapon - a bool marked true if we selected our weapon
-			 * include_item - a set of bools, true if the item with that index is selected
-			 * include_clothing - like include_item but for items_worn
-			 */
-
-			stateInventory.resetState();
-
-			if (include_weapon)
-			{
-				stateInventory.addItem(player->weapon);
-			}
-
-			for (int i = 0; i < include_item.size(); i++)
-			{
-				if (include_item[i])
-				{
-					stateInventory.addItem(player->inventory[i]);
-				}
-			}
-
-			for (int i = 0; i < include_clothing.size(); i++)
-			{
-				if (include_clothing[i])
-				{
-					stateInventory.addItem(player->items_worn[i]);
-				}
-			}
-
-			isNeededUpdate = true;
+			setItemSelected();
 
 			return ScreenType::PLAY;
 		}
@@ -419,4 +351,36 @@ void InventorySingleSelectionScreen::populate_item_lists(int _offsetSize, std::v
 			}
 		}
 	}
+}
+
+void InventorySingleSelectionScreen::setItemSelected()
+{
+	/**
+	 * Important always reset the state of inventory
+	 */
+	stateInventory.resetState();
+
+	if (include_weapon)
+	{
+		stateInventory.addItem(player->weapon);
+	}
+
+	for (int i = 0; i < include_item.size(); i++)
+	{
+		if (include_item[i])
+		{
+			stateInventory.addItem(player->inventory[i]);
+		}
+	}
+
+	for (int i = 0; i < include_clothing.size(); i++)
+	{
+		if (include_clothing[i])
+		{
+			stateInventory.addItem(player->items_worn[i]);
+		}
+	}
+
+	// Change of screen with the next action, needed update
+	isNeededUpdate = true;
 }
