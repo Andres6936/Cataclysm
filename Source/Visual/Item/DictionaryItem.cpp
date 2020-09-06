@@ -119,6 +119,23 @@ const std::string& DictionaryItem::getVolume() const noexcept
 	return volume;
 }
 
+// Setters
+
+void DictionaryItem::setName(const std::string& _name) noexcept
+{
+	name = _name;
+}
+
+void DictionaryItem::setWeight(const std::string& _weight) noexcept
+{
+	weight = _weight;
+}
+
+void DictionaryItem::setVolume(const std::string& _volume) noexcept
+{
+	volume = _volume;
+}
+
 
 // Definition class DictionaryItemCompare
 

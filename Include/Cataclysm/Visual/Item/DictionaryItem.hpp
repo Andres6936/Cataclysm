@@ -80,6 +80,14 @@ namespace Cataclysm
 
 		const std::string& getVolume() const noexcept;
 
+		// Setters
+
+		void setName(const std::string& _name) noexcept;
+
+		void setWeight(const std::string& _weight) noexcept;
+
+		void setVolume(const std::string& _volume) noexcept;
+
 	};
 
 	class DictionaryItemCompare
