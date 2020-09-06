@@ -146,7 +146,8 @@ void InventoryScreen::updated()
 			letter++;
 		}
 	}
-// Now, populate the string lists
+
+	// Now, populate the string lists
 	populate_item_lists(offset_size, item_indices, item_letters,
 			include_item, item_name, item_weight, item_volume);
 
@@ -393,46 +394,54 @@ ScreenType InventoryScreen::processInput()
 	return ScreenType::NONE;
 }
 
-void InventoryScreen::populate_item_lists(int offset_size, std::vector<int>* item_indices,
-		std::vector<char>* item_letters, std::vector<bool> include_item, std::vector<std::string>& item_name,
-		std::vector<std::string>& item_weight, std::vector<std::string>& item_volume)
+void InventoryScreen::populate_item_lists(int _offsetSize, std::vector<int>* _itemIndices,
+		std::vector<char>* _itemLetters, std::vector<bool> _includeItem, std::vector<std::string>& _itemName,
+		std::vector<std::string>& _itemWeight, std::vector<std::string>& _itemVolume)
 {
-	item_name.clear();
-	item_weight.clear();
-	item_volume.clear();
+	_itemName.clear();
+	_itemWeight.clear();
+	_itemVolume.clear();
 
 	for (int n = 0; n < ITEM_CLASS_MAX; n++)
 	{
-		if (!item_indices[n].empty())
+		if (!_itemIndices[n].empty())
 		{
-			std::string class_name = "<c=ltblue>" +
-									 item_class_name_plural(Item_class(n)) +
-									 "<c=/>";
-			item_name.push_back(class_name);
-			item_weight.push_back("");
-			item_volume.push_back("");
-			for (int i = 0; i < item_indices[n].size(); i++)
+			const std::string class_name = "<c=ltblue>" + item_class_name_plural(Item_class(n)) + "<c=/>";
+
+			// Create a header
+			_itemName.push_back(class_name);
+			_itemWeight.push_back("");
+			_itemVolume.push_back("");
+
+			for (int i = 0; i < _itemIndices[n].size(); i++)
 			{
-// Check to see if we're starting a new page.  If so, repeat the category header
-				if (item_name.size() % offset_size == 0)
+
+				// Check to see if we're starting a new page.
+				// If so, repeat the category header
+				if (_itemName.size() % _offsetSize == 0)
 				{
-					item_name.push_back(class_name + "(cont)");
-					item_weight.push_back("");
-					item_volume.push_back("");
+					_itemName.push_back(class_name + "(cont)");
+					_itemWeight.push_back("");
+					_itemVolume.push_back("");
 				}
-				int index = item_indices[n][i];
-				Item* item = &(player->inventory[index]);
-				bool inc = include_item[index];
+
+				const int index = _itemIndices[n][i];
+
+				Item& item = player->inventory[index];
+
+				const bool inc = _includeItem[index];
+
 				std::stringstream item_ss, weight_ss, volume_ss;
-				item_ss << (inc ? "<c=green>" : "<c=ltgray>") << item_letters[n][i] <<
-						(inc ? " + " : " - ") << item->get_name_full() << "<c=/>";
-				item_name.push_back(item_ss.str());
-				weight_ss << (inc ? "<c=green>" : "<c=ltgray>") << item->get_weight() <<
-						  "<c=/>";
-				item_weight.push_back(weight_ss.str());
-				volume_ss << (inc ? "<c=green>" : "<c=ltgray>") << item->get_volume() <<
-						  "<c=/>";
-				item_volume.push_back(volume_ss.str());
+
+				item_ss << (inc ? "<c=green>" : "<c=ltgray>") << _itemLetters[n][i] <<
+						(inc ? " + " : " - ") << item.get_name_full() << "<c=/>";
+				_itemName.push_back(item_ss.str());
+
+				weight_ss << (inc ? "<c=green>" : "<c=ltgray>") << item.get_weight() << "<c=/>";
+				_itemWeight.push_back(weight_ss.str());
+
+				volume_ss << (inc ? "<c=green>" : "<c=ltgray>") << item.get_volume() << "<c=/>";
+				_itemVolume.push_back(volume_ss.str());
 			}
 		}
 	}

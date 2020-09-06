@@ -59,13 +59,13 @@ namespace Cataclysm
 
 		char weapon_letter = 0;
 
-		void populate_item_lists(int offset_size,
-				std::vector<int> item_indices[ITEM_CLASS_MAX],
-				std::vector<char> item_letters[ITEM_CLASS_MAX],
-				std::vector<bool> include_item,
-				std::vector<std::string>& item_name,
-				std::vector<std::string>& item_weight,
-				std::vector<std::string>& item_volume);
+		void populate_item_lists(int _offsetSize,
+				std::vector<int> _itemIndices[ITEM_CLASS_MAX],
+				std::vector<char> _itemLetters[ITEM_CLASS_MAX],
+				std::vector<bool> _includeItem,
+				std::vector<std::string>& _itemName,
+				std::vector<std::string>& _itemWeight,
+				std::vector<std::string>& _itemVolume);
 
 	public:
 
