@@ -85,9 +85,7 @@ void InventorySingleSelectionScreen::updated()
 
 	for (int i = 0; i < player->items_worn.size(); i++)
 	{
-		std::stringstream clothing_ss;
-		Item_type_clothing* clothing =
-				static_cast<Item_type_clothing*>(player->items_worn[i].get_type());
+		auto clothing = static_cast<Item_type_clothing*>(player->items_worn[i].get_type());
 
 		const int capacity = clothing->carry_capacity;
 
@@ -99,7 +97,6 @@ void InventorySingleSelectionScreen::updated()
 		const DictionaryItem item {key, name, weight, volume};
 
 		dictionaryClothing.emplace(item, false);
-
 
 		if (letter == 'z')
 		{
