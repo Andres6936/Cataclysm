@@ -333,59 +333,6 @@ ScreenType InventorySingleSelectionScreen::processInput()
 	return ScreenType::NONE;
 }
 
-void InventorySingleSelectionScreen::populate_item_lists( std::vector<int>* _itemIndices,
-		std::vector<char>* _itemLetters, std::vector<bool> _includeItem, std::vector<std::string>& _itemName,
-		std::vector<std::string>& _itemWeight, std::vector<std::string>& _itemVolume)
-{
-	_itemName.clear();
-	_itemWeight.clear();
-	_itemVolume.clear();
-
-	for (int n = 0; n < ITEM_CLASS_MAX; n++)
-	{
-		if (!_itemIndices[n].empty())
-		{
-			const std::string class_name = "<c=ltblue>" + item_class_name_plural(Item_class(n)) + "<c=/>";
-
-			// Create a header
-			_itemName.push_back(class_name);
-			_itemWeight.push_back("");
-			_itemVolume.push_back("");
-
-			for (int i = 0; i < _itemIndices[n].size(); i++)
-			{
-
-				// Check to see if we're starting a new page.
-				// If so, repeat the category header
-				if (_itemName.size() % offset_size == 0)
-				{
-					_itemName.push_back(class_name + "(cont)");
-					_itemWeight.push_back("");
-					_itemVolume.push_back("");
-				}
-
-				const int index = _itemIndices[n][i];
-
-				Item& item = player->inventory[index];
-
-				const bool inc = _includeItem[index];
-
-				std::stringstream item_ss, weight_ss, volume_ss;
-
-				item_ss << (inc ? "<c=green>" : "<c=ltgray>") << _itemLetters[n][i] <<
-						(inc ? " + " : " - ") << item.get_name_full() << "<c=/>";
-				_itemName.push_back(item_ss.str());
-
-				weight_ss << (inc ? "<c=green>" : "<c=ltgray>") << item.get_weight() << "<c=/>";
-				_itemWeight.push_back(weight_ss.str());
-
-				volume_ss << (inc ? "<c=green>" : "<c=ltgray>") << item.get_volume() << "<c=/>";
-				_itemVolume.push_back(volume_ss.str());
-			}
-		}
-	}
-}
-
 void InventorySingleSelectionScreen::setItemSelected()
 {
 	/**

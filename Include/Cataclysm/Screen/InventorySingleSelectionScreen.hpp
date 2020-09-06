@@ -47,14 +47,6 @@ namespace Cataclysm
 
 		void setItemSelected();
 
-		void populate_item_lists(
-				std::vector<int> _itemIndices[ITEM_CLASS_MAX],
-				std::vector<char> _itemLetters[ITEM_CLASS_MAX],
-				std::vector<bool> _includeItem,
-				std::vector<std::string>& _itemName,
-				std::vector<std::string>& _itemWeight,
-				std::vector<std::string>& _itemVolume);
-
 	public:
 
 		InventorySingleSelectionScreen();
