@@ -1,14 +1,14 @@
 // Joan Andrés (@Andres6936) Github.
 
-#ifndef CATACLYSM_INVENTORYSCREEN_HPP
-#define CATACLYSM_INVENTORYSCREEN_HPP
+#ifndef CATACLYSM_INVENTORYSINGLESELECTIONSCREEN_HPP
+#define CATACLYSM_INVENTORYSINGLESELECTIONSCREEN_HPP
 
 #include <Cataclysm/Screen/IScreen.hpp>
 
 namespace Cataclysm
 {
 
-	class InventoryScreen : public IScreen
+	class InventorySingleSelectionScreen : public IScreen
 	{
 
 	private:
@@ -39,7 +39,7 @@ namespace Cataclysm
 
 		std::vector<std::string> item_volume;
 
-		bool single = false;
+		bool single = true;
 
 		bool remove = false;
 
@@ -77,7 +77,7 @@ namespace Cataclysm
 
 	public:
 
-		InventoryScreen();
+		InventorySingleSelectionScreen();
 
 		void draw() override;
 
@@ -89,4 +89,4 @@ namespace Cataclysm
 
 }
 
-#endif //CATACLYSM_INVENTORYSCREEN_HPP
+#endif //CATACLYSM_INVENTORYSINGLESELECTIONSCREEN_HPP

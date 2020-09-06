@@ -8,7 +8,7 @@
 #include <Cataclysm/Screen/NewGameScreen.hpp>
 #include "Cataclysm/Screen/ScreenManager.hpp"
 #include <Cataclysm/Screen/HelpMenuScreen.hpp>
-#include <Cataclysm/Screen/InventoryScreen.hpp>
+#include <Cataclysm/Screen/InventorySingleSelectionScreen.hpp>
 #include <Cataclysm/Screen/CreateWorldScreen.hpp>
 
 using namespace Cataclysm;
@@ -21,8 +21,8 @@ ScreenManager::ScreenManager()
 	this->worldScreen = std::make_shared<WorldScreen>();
 	this->newGameScreen = std::make_shared<NewGameScreen>();
 	this->helpMenuScreen = std::make_shared<HelpMenuScreen>();
-	this->inventoryScreen = std::make_shared<InventoryScreen>();
 	this->createWorldScreen = std::make_shared<CreateWorldScreen>();
+	this->inventorySingleSelectionScreen = std::make_shared<InventorySingleSelectionScreen>();
 	this->playScreen.reset(&GAME);
 
 	// The first Screen to show is the Menu
@@ -80,13 +80,13 @@ void ScreenManager::nextScene(ScreenType _next)
 	{
 		actualScreen = helpMenuScreen;
 	}
-	else if (_next == ScreenType::INVENTORY)
-	{
-		actualScreen = inventoryScreen;
-	}
 	else if (_next == ScreenType::CREATE_WORLD)
 	{
 		actualScreen = createWorldScreen;
+	}
+	else if (_next == ScreenType::INVENTORY_SINGLE_SELECTION)
+	{
+		actualScreen = inventorySingleSelectionScreen;
 	}
 }
 

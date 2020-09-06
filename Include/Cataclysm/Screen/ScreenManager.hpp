@@ -34,9 +34,9 @@ namespace Cataclysm
 
 		std::shared_ptr<IScreen> helpMenuScreen {};
 
-		std::shared_ptr<IScreen> inventoryScreen {};
-
 		std::shared_ptr<IScreen> createWorldScreen {};
+
+		std::shared_ptr<IScreen> inventorySingleSelectionScreen {};
 
 		void nextScene(ScreenType _next);
 

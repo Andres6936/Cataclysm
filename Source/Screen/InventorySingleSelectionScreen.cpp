@@ -3,12 +3,12 @@
 #include <Cataclysm/files.h>
 #include <Cataclysm/stringfunc.h>
 #include <Cataclysm/Item/TypeClothing.hpp>
-#include "Cataclysm/Screen/InventoryScreen.hpp"
+#include "Cataclysm/Screen/InventorySingleSelectionScreen.hpp"
 #include <Cataclysm/Entity/Player/StateInventory.hpp>
 
 using namespace Cataclysm;
 
-InventoryScreen::InventoryScreen()
+InventorySingleSelectionScreen::InventorySingleSelectionScreen()
 {
 	const std::string inv_file = CUSS_DIR + "/i_inventory.cuss";
 
@@ -28,14 +28,14 @@ InventoryScreen::InventoryScreen()
 	offset_size = ele_list_items->sizey;
 }
 
-void InventoryScreen::draw()
+void InventorySingleSelectionScreen::draw()
 {
 	i_inv.draw(console);
 
 	console.draw();
 }
 
-void InventoryScreen::updated()
+void InventorySingleSelectionScreen::updated()
 {
 	if ( not isNeededUpdate) return;
 
@@ -195,7 +195,7 @@ void InventoryScreen::updated()
 	isNeededUpdate = false;
 }
 
-ScreenType InventoryScreen::processInput()
+ScreenType InventorySingleSelectionScreen::processInput()
 {
 	if (!single && remove)
 	{
@@ -398,7 +398,7 @@ ScreenType InventoryScreen::processInput()
 	return ScreenType::NONE;
 }
 
-void InventoryScreen::populate_item_lists(int _offsetSize, std::vector<int>* _itemIndices,
+void InventorySingleSelectionScreen::populate_item_lists(int _offsetSize, std::vector<int>* _itemIndices,
 		std::vector<char>* _itemLetters, std::vector<bool> _includeItem, std::vector<std::string>& _itemName,
 		std::vector<std::string>& _itemWeight, std::vector<std::string>& _itemVolume)
 {

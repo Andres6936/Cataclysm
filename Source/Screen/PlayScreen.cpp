@@ -331,7 +331,7 @@ there.<c=/>", map->get_name(examine).c_str());
 		} // switch (act)
 
 	}
-		return Cataclysm::ScreenType::INVENTORY;
+		return Cataclysm::ScreenType::INVENTORY_SINGLE_SELECTION;
 
 	case IACTION_DROP:
 	{
