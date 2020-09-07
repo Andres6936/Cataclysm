@@ -170,11 +170,13 @@ ScreenType InventorySingleSelectionScreen::processInput()
 
 		for (int i = offset * offset_size; i < (offset + 1) * offset_size && i < getTotalElementInDictionaryItems(); i++)
 		{
+			const std::uint32_t totalHeaders = getAmountOfHeaders();
+
 			try
 			{
-				i_inv.add_data("list_items", getItemAt(i).getNameWithLetter());
-				i_inv.add_data("list_weight", getItemAt(i).getWeight());
-				i_inv.add_data("list_volume", getItemAt(i).getVolume());
+				i_inv.add_data("list_items", getItemAt(i - totalHeaders).getNameWithLetter());
+				i_inv.add_data("list_weight", getItemAt(i - totalHeaders).getWeight());
+				i_inv.add_data("list_volume", getItemAt(i - totalHeaders).getVolume());
 			}
 			catch (std::out_of_range& exception)
 			{
@@ -192,11 +194,13 @@ ScreenType InventorySingleSelectionScreen::processInput()
 
 		for (int i = offset * offset_size; i < (offset + 1) * offset_size && i < getTotalElementInDictionaryItems(); i++)
 		{
+			const std::uint32_t totalHeaders = getAmountOfHeaders();
+
 			try
 			{
-				i_inv.add_data("list_items", getItemAt(i).getNameWithLetter());
-				i_inv.add_data("list_weight", getItemAt(i).getWeight());
-				i_inv.add_data("list_volume", getItemAt(i).getVolume());
+				i_inv.add_data("list_items", getItemAt(i - totalHeaders).getNameWithLetter());
+				i_inv.add_data("list_weight", getItemAt(i - totalHeaders).getWeight());
+				i_inv.add_data("list_volume", getItemAt(i - totalHeaders).getVolume());
 			}
 			catch (std::out_of_range& exception)
 			{
@@ -397,9 +401,9 @@ void InventorySingleSelectionScreen::printDictionaryItems()
 	}
 }
 
-std::uint32_t InventorySingleSelectionScreen::getTotalElementInDictionaryItems() const noexcept
+const std::uint32_t InventorySingleSelectionScreen::getAmountOfHeaders() const noexcept
 {
-	std::uint32_t totalElements = 0;
+	std::uint32_t totalHeaders = 0;
 
 	for (const auto& dictionary: dictionaryItems)
 	{
@@ -407,13 +411,25 @@ std::uint32_t InventorySingleSelectionScreen::getTotalElementInDictionaryItems()
 		// So that for each dictionary not empty exist a header
 		if (not dictionary.empty())
 		{
-			totalElements += 1;
+			totalHeaders += 1;
 		}
+	}
 
+	return totalHeaders;
+}
+
+const std::uint32_t InventorySingleSelectionScreen::getTotalElementInDictionaryItems() const noexcept
+{
+	std::uint32_t totalElements = 0;
+
+	for (const auto& dictionary: dictionaryItems)
+	{
 		totalElements += dictionary.size();
 	}
 
-	return totalElements;
+	// Is important remember that the header too count as a element in the dictionary
+	// So that for each dictionary not empty exist a header
+	return totalElements + getAmountOfHeaders();
 }
 
 const DictionaryItem& InventorySingleSelectionScreen::getItemAt(const std::uint32_t _index) const

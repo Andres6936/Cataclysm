@@ -51,10 +51,12 @@ namespace Cataclysm
 
 		void printDictionaryClothing();
 
+		const std::uint32_t getAmountOfHeaders() const noexcept;
+
 		/**
 		 * @return The total of elements in the dictionary items
 		 */
-		std::uint32_t getTotalElementInDictionaryItems() const noexcept;
+		const std::uint32_t getTotalElementInDictionaryItems() const noexcept;
 
 		const DictionaryItem& getItemAt(const std::uint32_t _index) const;
 
