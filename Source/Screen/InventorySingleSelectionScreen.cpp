@@ -403,6 +403,13 @@ std::uint32_t InventorySingleSelectionScreen::getTotalElementInDictionaryItems()
 
 	for (const auto& dictionary: dictionaryItems)
 	{
+		// Is important remember that the header too count as a element in the dictionary
+		// So that for each dictionary not empty exist a header
+		if (not dictionary.empty())
+		{
+			totalElements += 1;
+		}
+
 		totalElements += dictionary.size();
 	}
 
