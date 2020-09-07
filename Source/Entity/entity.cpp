@@ -1839,9 +1839,10 @@ void Entity::finish_reading(Item* it)
 			skills.increase_max_level(sk_boosted);
 			if (is_you())
 			{
-				GAME.add_msg("<c=yellow>Your %s cap increases to <c=ltgreen>%d<c=yellow>!<c=/>",
-						skill_type_user_name(sk_boosted).c_str(),
-						skills.get_max_level(sk_boosted));
+				messageQueue.addMessage({ Doryen::format(
+						"<c=yellow>Your {} cap increases to <c=ltgreen>{d}<c=yellow>!<c=/>",
+					  	skill_type_user_name(sk_boosted),
+					  	skills.get_max_level(sk_boosted)) });
 			}
 		}
 	}
@@ -1880,7 +1881,7 @@ bool Entity::eat_item_uid(int uid)
 		stomach_food = get_stomach_maximum();
 		if (can_add_message)
 		{
-			GAME.add_msg("You can't finish it all!");
+			messageQueue.addMessage({ "You can't finish it all!" });
 			can_add_message = false;
 		}
 	}
@@ -1891,7 +1892,7 @@ bool Entity::eat_item_uid(int uid)
 		stomach_water = get_stomach_maximum();
 		if (can_add_message)
 		{
-			GAME.add_msg("You can't finish it all!");
+			messageQueue.addMessage({ "You can't finish it all!" });
 		}
 	}
 
@@ -2619,7 +2620,8 @@ void Entity::attack(Entity* target)
 			std::stringstream msg;
 			msg << "<c=dkgray>" << get_name_to_player() << " " << miss_verb << " " <<
 				target->get_name_to_player() << "<c=/>.";
-			GAME.add_msg(msg.str());
+
+			messageQueue.addMessage({ msg.str() });
 		}
 		int miss_penalty = rng(0, att.speed);
 		use_ap(miss_penalty);
@@ -2741,7 +2743,8 @@ void Entity::attack(Entity* target)
 		}
 // Close coloration.
 		damage_ss << "<c=/>";
-		GAME.add_msg(damage_ss.str());
+
+		messageQueue.addMessage({ damage_ss.str() });
 	}
 }
 
@@ -2861,7 +2864,7 @@ bool Entity::can_fire_weapon()
 	{
 		if (is_player())
 		{
-			GAME.add_msg("You are not wielding anything.");
+			messageQueue.addMessage({ "You are not wielding anything." });
 		}
 		return false;
 	}
@@ -2869,7 +2872,7 @@ bool Entity::can_fire_weapon()
 	{
 		if (is_player())
 		{
-			GAME.add_msg("You cannot fire %s.", weapon.get_name_indefinite().c_str());
+			messageQueue.addMessage({ Doryen::format("You cannot fire {}.", weapon.get_name_indefinite()) });
 		}
 		return false;
 	}
@@ -2877,8 +2880,7 @@ bool Entity::can_fire_weapon()
 	{
 		if (is_player())
 		{
-			GAME.add_msg("You need to reload %s.",
-					weapon.get_name_definite().c_str());
+			messageQueue.addMessage({ Doryen::format("You need to reload {}.", weapon.get_name_definite()) });
 		}
 		return false;
 	}
@@ -2933,8 +2935,9 @@ void Entity::attack_ranged(Entity* target, Ranged_attack ra)
 		{
 			target_name = "something";
 		}
-		GAME.add_msg("<c=ltred>%s %s at %s!<c=/>", get_name_to_player().c_str(),
-				ra.verb_third.c_str(), target_name.c_str());
+
+		messageQueue.addMessage({ Doryen::format("<c=ltred>{} {} at {}!<c=/>",
+				get_name_to_player(), ra.verb_third, target_name) });
 	}
 }
 
