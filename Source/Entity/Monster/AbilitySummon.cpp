@@ -3,6 +3,7 @@
 #include <Cataclysm/globals.h>
 #include <Cataclysm/Random/rng.h>
 #include <Cataclysm/Entity/Monster/monster.h>
+#include <Cataclysm/Visual/Screen/MessageQueue.hpp>
 #include "Cataclysm/Entity/Monster/AbilitySummon.hpp"
 
 Monster_ability_summon::Monster_ability_summon()
@@ -193,7 +194,8 @@ bool Monster_ability_summon::effect(Monster* user)
 			message << " suddenly appear";
 		}
 		message << "!";
-		GAME.add_msg(message.str());
+
+		messageQueue.addMessage({ message.str() });
 	}
 
 	return true;

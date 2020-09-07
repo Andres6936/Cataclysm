@@ -2,6 +2,7 @@
 #include <Cataclysm/globals.h>
 #include "Cataclysm/Screen/Debugger.hpp"
 #include <Cataclysm/Entity/Monster/monster.h>
+#include <Cataclysm/Visual/Screen/MessageQueue.hpp>
 #include "Cataclysm/Entity/Monster/AbilityStatus.h"
 
 Monster_ability_status::Monster_ability_status()
@@ -234,6 +235,6 @@ bool Monster_ability_status::effect(Monster* user)
 		}
 	}
 
-	GAME.add_msg(mes.str());
+	messageQueue.addMessage({ mes.str() });
 	return true;
 }

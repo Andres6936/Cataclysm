@@ -1,3 +1,4 @@
+#include <Cataclysm/Visual/Screen/MessageQueue.hpp>
 #include <Cataclysm/Entity/entity.h>
 #include <Cataclysm/Random/rng.h>
 #include <Cataclysm/globals.h>
@@ -676,8 +677,8 @@ void Entity::assign_personal_missions(bool message)
 	ss_msg << "<c=/>";
 	if (message && new_missions > 0)
 	{
-		GAME.add_msg((new_missions >= 2 ? "New missions:" : "New mission:"));
-		GAME.add_msg(ss_msg.str());
+		messageQueue.addMessage({ new_missions >= 2 ? "New missions:" : "New mission:" });
+		messageQueue.addMessage({ ss_msg.str() });
 	}
 }
 
@@ -721,7 +722,7 @@ void Entity::complete_mission(int index)
 	}
 
 	missions[index].status = MISSION_STATUS_COMPLETE;
-	GAME.add_msg("<c=yellow>Mission complete!<c=/>");
+	messageQueue.addMessage({ "<c=yellow>Mission complete!<c=/>" });
 	gain_experience(missions[index].xp);
 }
 
@@ -767,7 +768,7 @@ void Entity::gain_experience(int amount)
 	}
 
 	experience += amount;
-	GAME.add_msg("You gain %d experience!", amount);
+	messageQueue.addMessage({ Doryen::format("You gain {d} experience!", amount) });
 
 	std::vector<Skill_type> unlocked_skills;
 
@@ -788,7 +789,8 @@ void Entity::gain_experience(int amount)
 
 	if (unlocked_skills.size() > 3)
 	{
-		GAME.add_msg("You can improve %d new skills!", unlocked_skills.size());
+		messageQueue.addMessage({ Doryen::format(
+				"You can improve {d} new skills!", unlocked_skills.size()) });
 	}
 	else if (!unlocked_skills.empty())
 	{
@@ -810,7 +812,8 @@ void Entity::gain_experience(int amount)
 				mes << ", ";
 			}
 		}
-		GAME.add_msg(mes.str());
+
+		messageQueue.addMessage({ mes.str() });
 	}
 }
 
@@ -1214,8 +1217,8 @@ void Entity::fall(int levels)
 	take_damage_everywhere(DAMAGE_BASH, dam, reason.str());
 	if (is_you())
 	{
-// TODO: Messages about wings, etc. (Though not if we're overloaded for Player)
-		GAME.add_msg("You take %d damage!", dam);
+		// TODO: Messages about wings, etc. (Though not if we're overloaded for Player)
+		messageQueue.addMessage({ Doryen::format("You take {d} damage!", dam) });
 	}
 }
 
@@ -1642,7 +1645,7 @@ void Entity::apply_item_uid(int uid)
 		{
 			if (is_you())
 			{
-				GAME.add_msg("Your %s has no charges.", it->get_name().c_str());
+				messageQueue.addMessage({ Doryen::format("Your {} has no charges.", it->get_name()) });
 			}
 			return;
 		}
@@ -1797,8 +1800,7 @@ void Entity::finish_reading(Item* it)
 	{
 		if (is_you())
 		{
-			GAME.add_msg("You got confused while reading and couldn't learn \
-anything.");
+			messageQueue.addMessage({ "You got confused while reading and couldn't learn anything." });
 		}
 		return;
 	}
@@ -1814,12 +1816,13 @@ anything.");
 		read_chapter(title);
 		if (get_chapters_read(title) >= book->chapters)
 		{
-			GAME.add_msg("You finish the book!");
+			messageQueue.addMessage({ "You finish the book!" });
 		}
 		else
 		{
-			GAME.add_msg("You've read %d chapters out of %d.",
-					get_chapters_read(title), book->chapters);
+			messageQueue.addMessage(
+					{ Doryen::format("You've read {d} chapters out of {d}.",
+							get_chapters_read(title), book->chapters) });
 		}
 	}
 
@@ -1836,8 +1839,7 @@ anything.");
 			skills.increase_max_level(sk_boosted);
 			if (is_you())
 			{
-				GAME.add_msg("<c=yellow>Your %s cap increases to \
-<c=ltgreen>%d<c=yellow>!<c=/>",
+				GAME.add_msg("<c=yellow>Your %s cap increases to <c=ltgreen>%d<c=yellow>!<c=/>",
 						skill_type_user_name(sk_boosted).c_str(),
 						skills.get_max_level(sk_boosted));
 			}
