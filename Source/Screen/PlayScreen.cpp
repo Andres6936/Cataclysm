@@ -240,12 +240,12 @@ Cataclysm::ScreenType PlayScreen::do_action(Interface_action act)
 	{
 		if (player->dragged.empty())
 		{
-			add_msg("<c=ltgreen>Grab where? (Press direction key)<c=/>");
+			messageQueue.addMessage({ "<c=ltgreen>Grab where? (Press direction key)<c=/>" });
 			draw_all();
 			Point dir = input_direction(input());
 			if (dir.x == -2)
 			{ // Error
-				add_msg("Invalid direction.");
+				messageQueue.addMessage({ "Invalid direction." });
 			}
 			else
 			{
@@ -253,16 +253,16 @@ Cataclysm::ScreenType PlayScreen::do_action(Interface_action act)
 				player->dragged = map->grab_furniture(player->pos, target);
 				if (player->dragged.empty())
 				{
-					add_msg("Nothing to grab there.");
+					messageQueue.addMessage({ "Nothing to grab there." });
 				}
 				else
 				{
-					add_msg("You grab the %s.", player->get_dragged_name().c_str());
+					messageQueue.addMessage({ Doryen::format("You grab the {}.", player->get_dragged_name()) });
 					if (TESTING_MODE)
 					{
 						for (int i = 0; i < player->dragged.size(); i++)
 						{
-							add_msg("%s", player->dragged[i].pos.str().c_str());
+							messageQueue.addMessage({ player->dragged[i].pos.str() });
 						}
 					}
 				}
@@ -270,7 +270,7 @@ Cataclysm::ScreenType PlayScreen::do_action(Interface_action act)
 		}
 		else
 		{  // We're already dragging something; so let go!
-			add_msg("You let go of the %s.", player->get_dragged_name().c_str());
+			messageQueue.addMessage({ Doryen::format("You let go of the {}.", player->get_dragged_name()) });
 			player->dragged.clear();
 		}
 	}
@@ -285,34 +285,34 @@ Cataclysm::ScreenType PlayScreen::do_action(Interface_action act)
 		{
 
 		case IACT_WIELD:
-			add_msg(player->wield_item_message(it));
+			messageQueue.addMessage({ player->wield_item_message(it) });
 			player->wield_item_uid(it.get_uid());
 			break;
 
 		case IACT_WEAR:
-			add_msg(player->wear_item_message(it));
+			messageQueue.addMessage({ player->wear_item_message(it) });
 			player->wear_item_uid(it.get_uid());
 			break;
 
 		case IACT_DROP:
-			add_msg(player->drop_item_message(it));
+			messageQueue.addMessage({ player->drop_item_message(it) });
 			player->remove_item_uid(it.get_uid());
 // TODO: Dropping may fail sometimes(?), so don't automatically add the item
 			map->add_item(it, player->pos);
 			break;
 
 		case IACT_EAT:
-			add_msg(player->eat_item_message(it));
+			messageQueue.addMessage({ player->eat_item_message(it) });
 			player->eat_item_uid(it.get_uid());
 			break;
 
 		case IACT_APPLY:
-			add_msg(player->apply_item_message(it));
+			messageQueue.addMessage({ player->apply_item_message(it) });
 			player->apply_item_uid(it.get_uid());
 			break;
 
 		case IACT_READ:
-			add_msg(player->read_item_message(it));
+			messageQueue.addMessage({ player->read_item_message(it) });
 			player->read_item_uid(it.get_uid());
 			break;
 
@@ -341,16 +341,16 @@ Cataclysm::ScreenType PlayScreen::do_action(Interface_action act)
 		{
 			map->add_item(dropped[i], player->pos);
 		}
-		add_msg(message.str());
+		messageQueue.addMessage({ message.str() });
 	}
 		break;
 
 	case IACTION_WIELD:
 	{
 		Item it = player->inventory_single();
-		add_msg(player->sheath_weapon_message());
+		messageQueue.addMessage({ player->sheath_weapon_message() });
 		player->sheath_weapon();
-		add_msg(player->wield_item_message(it));
+		messageQueue.addMessage({ player->wield_item_message(it) });
 		player->wield_item_uid(it.get_uid());
 	}
 		break;
@@ -358,7 +358,7 @@ Cataclysm::ScreenType PlayScreen::do_action(Interface_action act)
 	case IACTION_WEAR:
 	{
 		Item it = player->inventory_single();
-		add_msg(player->wear_item_message(it));
+		messageQueue.addMessage({ player->wear_item_message(it) });
 		player->wear_item_uid(it.get_uid());
 	}
 		break;
@@ -366,7 +366,7 @@ Cataclysm::ScreenType PlayScreen::do_action(Interface_action act)
 	case IACTION_TAKE_OFF:
 	{
 		Item it = player->inventory_single();
-		add_msg(player->take_off_item_message(it));
+		messageQueue.addMessage({ player->take_off_item_message(it) });
 		player->take_off_item_uid(it.get_uid());
 	}
 		break;
@@ -379,32 +379,32 @@ Cataclysm::ScreenType PlayScreen::do_action(Interface_action act)
 		switch (act)
 		{
 		case IACT_NULL:
-			add_msg("Can't do anything with that item.");
+			messageQueue.addMessage({ "Can't do anything with that item." });
 			break;
 
 		case IACT_WIELD:
-			add_msg(player->wield_item_message(it));
+			messageQueue.addMessage({ player->wield_item_message(it) });
 			player->wield_item_uid(it.get_uid());
 			break;
 
 		case IACT_WEAR:
-			add_msg(player->wear_item_message(it));
+			messageQueue.addMessage({ player->wear_item_message(it) });
 			player->wear_item_uid(it.get_uid());
 			break;
 
 		case IACT_EAT:
-			add_msg(player->eat_item_message(it));
+			messageQueue.addMessage({ player->eat_item_message(it) });
 			player->eat_item_uid(it.get_uid());
 			break;
 
 		case IACT_APPLY:
 // Need to redraw the map
-			add_msg(player->apply_item_message(it));
+			messageQueue.addMessage({ player->apply_item_message(it) });
 			player->apply_item_uid(it.get_uid());
 			break;
 
 		case IACT_READ:
-			add_msg(player->read_item_message(it));
+			messageQueue.addMessage({ player->read_item_message(it) });
 			player->read_item_uid(it.get_uid());
 			break;
 		}
@@ -414,7 +414,7 @@ Cataclysm::ScreenType PlayScreen::do_action(Interface_action act)
 	case IACTION_READ:
 	{
 		Item it = player->inventory_single();
-		add_msg(player->read_item_message(it));
+		messageQueue.addMessage({ player->read_item_message(it) });
 		player->read_item_uid(it.get_uid());
 	}
 		break;
@@ -436,7 +436,7 @@ Cataclysm::ScreenType PlayScreen::do_action(Interface_action act)
 		Item it = player->inventory_single();
 		if (!it.is_real())
 		{
-			add_msg("Never mind.");
+			messageQueue.addMessage({ "Never mind." });
 		}
 		else
 		{
@@ -445,7 +445,7 @@ Cataclysm::ScreenType PlayScreen::do_action(Interface_action act)
 			Tripoint target = target_selector(x, y, range, true, true);
 			if (target.x == -1)
 			{ // We canceled
-				add_msg("Never mind.");
+				messageQueue.addMessage({ "Never mind." });
 			}
 			else
 			{
@@ -471,7 +471,7 @@ Cataclysm::ScreenType PlayScreen::do_action(Interface_action act)
 			Tripoint target = target_selector(x, y, range, true, true);
 			if (target.x == -1)
 			{ // We canceled
-				add_msg("Never mind.");
+				messageQueue.addMessage({ "Never mind." });
 // If we target ourself, confirm that we want to shoot ourselves...
 			}
 			else if (target != player->pos ||
