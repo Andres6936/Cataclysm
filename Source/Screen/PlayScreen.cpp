@@ -65,7 +65,7 @@ Cataclysm::ScreenType PlayScreen::do_action(Interface_action act)
 	case IACTION_MOVE_UP:
 		if (!map->has_flag(TF_STAIRS_UP, player->pos))
 		{
-			add_msg("You cannot go up here.");
+			messageQueue.addMessage({ "You cannot go up here." });
 			player_move_vertical(1);  // Snuck this in for debugging purposes
 		}
 		else
@@ -77,7 +77,7 @@ Cataclysm::ScreenType PlayScreen::do_action(Interface_action act)
 	case IACTION_MOVE_DOWN:
 		if (!map->has_flag(TF_STAIRS_DOWN, player->pos))
 		{
-			add_msg("You cannot go down here.");
+			messageQueue.addMessage({ "You cannot go down here." });
 			player_move_vertical(-1); // Snuck this in for debugging purposes
 		}
 		else
@@ -90,13 +90,13 @@ Cataclysm::ScreenType PlayScreen::do_action(Interface_action act)
 // Make sure we're not sealed...
 		if (map->has_flag(TF_SEALED, player->pos))
 		{
-			add_msg("<c=dkgray>That %s is sealed; you cannot retrieve items \
-there.<c=/>", map->get_name(player->pos).c_str());
+			messageQueue.addMessage({ Doryen::format("<c=dkgray>That {} is sealed; you cannot retrieve items there.<c=/>",
+									  map->get_name(player->pos)) });
 
 		}
 		else if (map->item_count(player->pos) == 0)
 		{
-			add_msg("No items here.");
+			messageQueue.addMessage({ "No items here." });
 
 		}
 		else if (map->item_count(player->pos) == 1)
@@ -116,12 +116,12 @@ there.<c=/>", map->get_name(player->pos).c_str());
 
 	case IACTION_OPEN:
 	{
-		add_msg("<c=ltgreen>Open where? (Press direction key)<c=/>");
+		messageQueue.addMessage({ "<c=ltgreen>Open where? (Press direction key)<c=/>" });
 		draw_all();
 		Point dir = input_direction(input());
 		if (dir.x == -2)
 		{ // Error
-			add_msg("Invalid direction.");
+			messageQueue.addMessage({ "Invalid direction." });
 		}
 		else
 		{
@@ -136,12 +136,12 @@ there.<c=/>", map->get_name(player->pos).c_str());
 
 	case IACTION_CLOSE:
 	{
-		add_msg("<c=ltgreen>Close where? (Press direction key)<c=/>");
+		messageQueue.addMessage({ "<c=ltgreen>Close where? (Press direction key)<c=/>" });
 		draw_all();
 		Point dir = input_direction(input());
 		if (dir.x == -2)
 		{ // Error
-			add_msg("Invalid direction.");
+			messageQueue.addMessage({ "Invalid direction." });
 		}
 		else
 		{
@@ -149,15 +149,15 @@ there.<c=/>", map->get_name(player->pos).c_str());
 			Entity* ent = entities.entity_at(close);
 			if (ent == player.get())
 			{
-				add_msg("Maybe you should move out of the doorway first.");
+				messageQueue.addMessage({ "Maybe you should move out of the doorway first." });
 			}
 			else if (ent)
 			{
-				add_msg("There's a %s in the way.", ent->get_name().c_str());
+				messageQueue.addMessage({ Doryen::format("There's a {} in the way.", ent->get_name()) });
 			}
 			else if (map->furniture_at(close))
 			{
-				add_msg("There's some furniture in the way.");
+				messageQueue.addMessage({ "There's some furniture in the way." });
 			}
 			else if (map->apply_signal("close", close, player.get()))
 			{
@@ -169,23 +169,23 @@ there.<c=/>", map->get_name(player->pos).c_str());
 
 	case IACTION_SMASH:
 	{
-		add_msg("<c=ltgreen>Smash where? (Press direction key)<c=/>");
+		messageQueue.addMessage({ "<c=ltgreen>Smash where? (Press direction key)<c=/>" });
 		draw_all();
 		Point dir = input_direction(input());
 		if (dir.x == -2)
 		{ // Error
-			add_msg("Invalid direction.");
+			messageQueue.addMessage({ "Invalid direction." });
 		}
 		else
 		{
 			Tripoint sm = player->pos + dir;
 			if (!map->is_smashable(sm))
 			{
-				add_msg("Nothing to smash there.");
+				messageQueue.addMessage({ "Nothing to smash there." });
 			}
 			else
 			{
-				add_msg("You smash the %s.", map->get_name(sm).c_str());
+				messageQueue.addMessage({ Doryen::format("You smash the {}.", map->get_name(sm)) });
 				map->smash(sm, player->std_attack().roll_damage());
 				player->use_ap(100);
 			}
@@ -195,12 +195,12 @@ there.<c=/>", map->get_name(player->pos).c_str());
 
 	case IACTION_EXAMINE:
 	{
-		add_msg("<c=ltgreen>Examine where? (Press direction key)<c=/>");
+		messageQueue.addMessage({ "<c=ltgreen>Examine where? (Press direction key)<c=/>" });
 		draw_all();
 		Point dir = input_direction(input());
 		if (dir.x == -2)
 		{ // Error
-			add_msg("Invalid direction.");
+			messageQueue.addMessage({ "Invalid direction." });
 		}
 		else
 		{
@@ -208,8 +208,8 @@ there.<c=/>", map->get_name(player->pos).c_str());
 // Can't pick up items if we're sealed
 			if (map->has_flag(TF_SEALED, examine))
 			{
-				add_msg("<c=dkgray>That %s is sealed; you cannot retrieve items \
-there.<c=/>", map->get_name(examine).c_str());
+				messageQueue.addMessage({ Doryen::format("<c=dkgray>That {} is sealed; you cannot retrieve items there.<c=/>",
+										  map->get_name(examine)) });
 
 			}
 			else if (map->item_count(examine) > 0)
@@ -227,12 +227,11 @@ there.<c=/>", map->get_name(examine).c_str());
 							"<c=/>).";
 				if (TESTING_MODE)
 				{
-					add_msg("<c=pink>Furniture uid %d.<c=/>",
-							map->furniture_at(examine)->get_uid());
+					messageQueue.addMessage({ Doryen::format("<c=pink>Furniture uid {d}.<c=/>", map->furniture_at(examine)->get_uid()) });
 				}
 			}
 
-			add_msg(description.str());
+			messageQueue.addMessage({ description.str() });
 		}
 	}
 		break;
