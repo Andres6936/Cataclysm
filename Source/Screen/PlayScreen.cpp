@@ -1293,15 +1293,8 @@ void PlayScreen::add_msg(std::string msg, ...)
 // Make buff back into a string, and capitalize it
 	std::string text(buff);
 	text = capitalize(text);
-// Check if it's a duplicate of the last message - if so, just increase count
-	if (!messages.empty() && messages.back().text == text &&
-		time.get_turn() - messages.back().turn <= MESSAGE_GAP)
-	{
-		messages.back().count++;
-		messages.back().turn = time.get_turn();
-		return;
-	}
-	messages.push_back(Game_message(text, time.get_turn()));
+
+	messages.addMessage({text, static_cast<uint32_t>(time.get_turn())});
 }
 
 bool PlayScreen::msg_query_yn(std::string msg, ...)
@@ -1322,17 +1315,10 @@ bool PlayScreen::msg_query_yn(std::string msg, ...)
 	std::stringstream colorized;
 	colorized << "<c=ltgreen>" << text << "<c=/>";
 	text = colorized.str();
-	if (!messages.empty() && messages.back().text == text &&
-		time.get_turn() - messages.back().turn <= MESSAGE_GAP)
-	{
-		messages.back().count++;
-		messages.back().turn = time.get_turn();
-	}
-	else
-	{
-		messages.push_back(Game_message(text, time.get_turn()));
-		new_messages++;
-	}
+
+	messages.addMessage({text, static_cast<uint32_t>(time.get_turn())});
+	new_messages += 1;
+
 	draw_all();
 	long ch = input();
 	if (ch != 'Y' && ch != 'N')
@@ -1499,23 +1485,23 @@ void PlayScreen::print_messages()
 		return;
 	}
 	sizey = message_box->sizey;
-	int start = messages.size() - sizey;
+
+	std::uint32_t start = messages.getSize() - sizey;
+
 	if (start < 0)
 	{
 		start = 0;
 	}
-	for (int i = start; i < messages.size(); i++)
+	for (unsigned int i = start; i < messages.getSize(); i++)
 	{
-		std::stringstream text;
-		//int index = messages.size() - new_messages + i;
-		int index = i;
-		text << messages[index].text;
-		if (messages[index].count > 1)
+		try
 		{
-			text << " x" << messages[index].count;
+			i_hud.add_data("text_messages", messages.getMessageAt(i));
 		}
-		text << '\n';
-		i_hud.add_data("text_messages", text.str());
+		catch (std::out_of_range& exception)
+		{
+			showDebugMessage(exception.what());
+		}
 	}
 // Scroll to bottom.
 	//i_hud.set_data("text_messages", -3);

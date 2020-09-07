@@ -2,30 +2,9 @@
 #define _GAME_H_
 
 #include <Cataclysm/Entity/Pool.hpp>
-#include "Cataclysm/Entity/Player/player.h"
 #include <Cataclysm/Screen/IScreen.hpp>
-
-// Identical messages within MESSAGE_GAP turns of each other are combined
-#define MESSAGE_GAP 3
-
-struct Game_message
-{
-	std::string text;
-	int turn;
-	int count;
-
-	Game_message()
-	{
-		turn = 0;
-		count = 1;
-		text = "";
-	}
-
-	Game_message(std::string T, int TN) : text(T), turn(TN)
-	{
-		count = 1;
-	}
-};
+#include "Cataclysm/Entity/Player/player.h"
+#include <Cataclysm/Visual/Screen/MessageQueue.hpp>
 
 class PlayScreen : public Cataclysm::IScreen
 {
@@ -159,7 +138,8 @@ private:
 	Doryen::Console screenMap {24, 24};
 	Doryen::Console screenHUD {56, 24};
 
-	std::vector<Game_message> messages;
+	Cataclysm::MessageQueue messages;
+
 	std::vector<Item*> active_items;
 
 

@@ -19,6 +19,9 @@ namespace Cataclysm
 
 		std::uint32_t turn = 0;
 
+		/**
+		 * The number of times this message is repeated
+		 */
 		std::uint32_t count = 1;
 
 	public:
@@ -44,6 +47,19 @@ namespace Cataclysm
 		// Methods
 
 		void copy(const Message& _object) noexcept;
+
+		/**
+		 * Increment by one the number of times that it message is repeated
+		 */
+		void incrementByOneRepeatCounter() noexcept;
+
+		/**
+		 * Only compare the texts
+		 *
+		 * @param _object Another object to compare
+		 * @return True if the text is equals to another object.
+		 */
+		bool equalsText(const Message& _object) const noexcept;
 
 		// Operators
 

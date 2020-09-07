@@ -111,6 +111,8 @@ ADD_EXECUTABLE(Cataclysm
         Source/Screen/NewGame/Interface/INewGameScreen.cpp
         Source/Visual/Item/DictionaryItem.cpp
         Source/Visual/Item/DictionaryClothing.cpp
+        Source/Visual/Screen/Message.cpp
+        Source/Visual/Screen/MessageQueue.cpp
         Source/World/Biome/Enum/BiomeFlag.cpp
         Source/World/Biome/biome.cpp
         Source/World/Biome/VariableMonsterGenus.cpp

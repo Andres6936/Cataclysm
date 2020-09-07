@@ -29,6 +29,18 @@ void Message::copy(const Message& _object) noexcept
 	count = _object.count;
 }
 
+void Message::incrementByOneRepeatCounter() noexcept
+{
+	count += 1;
+}
+
+bool Message::equalsText(const Message& _object) const noexcept
+{
+	return text == _object.text;
+}
+
+// Operators
+
 Message& Message::operator=(const Message& _object) noexcept
 {
 	// The canonical copy-assignment operator is expected to perform no
