@@ -1477,21 +1477,22 @@ void PlayScreen::update_hud()
 void PlayScreen::print_messages()
 {
 	i_hud.clear_data("text_messages");
-	int sizey;
+
 	cuss::element* message_box = i_hud.find_by_name("text_messages");
+
 	if (!message_box)
 	{
 		debugmsg("Couldn't find text_messages in i_hud!");
 		return;
 	}
-	sizey = message_box->sizey;
 
-	std::uint32_t start = messages.getSize() - sizey;
+	std::uint32_t start = messages.getSize() - message_box->sizey;
 
 	if (start < 0)
 	{
 		start = 0;
 	}
+
 	for (unsigned int i = start; i < messages.getSize(); i++)
 	{
 		try
