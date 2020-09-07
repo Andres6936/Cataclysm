@@ -168,7 +168,7 @@ ScreenType InventorySingleSelectionScreen::processInput()
 		i_inv.clear_data("list_weight");
 		i_inv.clear_data("list_volume");
 
-		for (int i = offset * offset_size; i < (offset + 1) * offset_size && i < getTotalElementInDictionaryItems(); i++)
+		for (int i = offset * offset_size; i < (offset + 1) * offset_size - getAmountOfHeaders() && i < getTotalElementInDictionaryItems(); i++)
 		{
 			try
 			{
