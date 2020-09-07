@@ -4,7 +4,6 @@
 #include <Cataclysm/Entity/Pool.hpp>
 #include <Cataclysm/Screen/IScreen.hpp>
 #include "Cataclysm/Entity/Player/player.h"
-#include <Cataclysm/Visual/Screen/MessageQueue.hpp>
 
 class PlayScreen : public Cataclysm::IScreen
 {
@@ -137,8 +136,6 @@ private:
 
 	Doryen::Console screenMap {24, 24};
 	Doryen::Console screenHUD {56, 24};
-
-	Cataclysm::MessageQueue messages;
 
 	std::vector<Item*> active_items;
 

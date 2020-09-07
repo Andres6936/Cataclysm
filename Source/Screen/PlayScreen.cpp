@@ -2,9 +2,9 @@
 #include "Cataclysm/globals.h"
 #include "Cataclysm/stringfunc.h"
 #include <Cataclysm/Random/rng.h>
-#include "Cataclysm/Screen/HelpMenuScreen.hpp"
 #include <Cataclysm/Screen/PlayScreen.hpp>
 #include <Cataclysm/Entity/Monster/monster.h>
+#include <Cataclysm/Visual/Screen/MessageQueue.hpp>
 
 #include <stdarg.h>
 #include <math.h>
@@ -1294,7 +1294,7 @@ void PlayScreen::add_msg(std::string msg, ...)
 	std::string text(buff);
 	text = capitalize(text);
 
-	messages.addMessage({text, static_cast<uint32_t>(time.get_turn())});
+	messageQueue.addMessage({text, static_cast<uint32_t>(time.get_turn())});
 }
 
 bool PlayScreen::msg_query_yn(std::string msg, ...)
@@ -1316,7 +1316,7 @@ bool PlayScreen::msg_query_yn(std::string msg, ...)
 	colorized << "<c=ltgreen>" << text << "<c=/>";
 	text = colorized.str();
 
-	messages.addMessage({text, static_cast<uint32_t>(time.get_turn())});
+	messageQueue.addMessage({text, static_cast<uint32_t>(time.get_turn())});
 	new_messages += 1;
 
 	draw_all();
@@ -1486,18 +1486,18 @@ void PlayScreen::print_messages()
 		return;
 	}
 
-	std::uint32_t start = messages.getSize() - message_box->sizey;
+	std::uint32_t start = messageQueue.getSize() - message_box->sizey;
 
 	if (start < 0)
 	{
 		start = 0;
 	}
 
-	for (unsigned int i = start; i < messages.getSize(); i++)
+	for (unsigned int i = start; i < messageQueue.getSize(); i++)
 	{
 		try
 		{
-			i_hud.add_data("text_messages", messages.getMessageAt(i));
+			i_hud.add_data("text_messages", messageQueue.getMessageAt(i));
 		}
 		catch (std::out_of_range& exception)
 		{

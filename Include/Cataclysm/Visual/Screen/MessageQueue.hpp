@@ -36,4 +36,6 @@ namespace Cataclysm
 
 }
 
+inline Cataclysm::MessageQueue messageQueue {};
+
 #endif //CATACLYSM_MESSAGEQUEUE_HPP
