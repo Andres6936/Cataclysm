@@ -15,6 +15,11 @@ Message::Message(const Message& _object) noexcept
 	this->copy(_object);
 }
 
+Message::Message(std::string_view _text) noexcept : text(_text)
+{
+	// String
+}
+
 Message::Message(std::string_view _text, std::uint32_t _turn) noexcept : text(_text), turn(_turn)
 {
 	// String, Integer
@@ -28,6 +33,7 @@ void Message::copy(const Message& _object) noexcept
 	turn = _object.turn;
 	count = _object.count;
 }
+
 
 void Message::incrementByOneRepeatCounter() noexcept
 {

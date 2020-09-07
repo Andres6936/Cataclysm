@@ -42,6 +42,8 @@ namespace Cataclysm
 		 */
 		Message(const Message& _object) noexcept;
 
+		Message(std::string_view _text) noexcept;
+
 		Message(std::string_view _text, std::uint32_t _turn) noexcept;
 
 		// Methods

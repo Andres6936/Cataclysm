@@ -1,4 +1,5 @@
 #include <Cataclysm/Entity/Player/StateInventory.hpp>
+#include <Cataclysm/Visual/Screen/MessageQueue.hpp>
 #include "Cataclysm/Screen/HelpMenuScreen.hpp"   // For help_skill_desc()
 #include "Cataclysm/Entity/Player/player.h"
 #include <Cataclysm/Random/rng.h>
@@ -132,7 +133,7 @@ bool Player::add_item(Item item)
 // TODO: Weight isn't a hard limit
 	if (current_weight() + item.get_weight() > maximum_weight())
 	{
-		GAME.add_msg("You cannot carry that much weight.");
+		messageQueue.addMessage({"You cannot carry that much weight."});
 		return false;
 	}
 /* TODO: add_item() gets called when taking off an item.  If there's no room in
@@ -148,7 +149,7 @@ bool Player::add_item(Item item)
 			{
 				inventory.push_back(item);
 				wear_item_uid(item.get_uid());
-				GAME.add_msg(wear_item_message(item));
+				messageQueue.addMessage({ wear_item_message(item) });
 				return true;
 			}
 			else
@@ -179,17 +180,17 @@ bool Player::add_item(Item item)
 			{
 				if (sheath_weap)
 				{
-					GAME.add_msg(sheath_weapon_message());
+					messageQueue.addMessage({ sheath_weapon_message() });
 					sheath_weapon();
 				}
 				else if (weapon.is_real())
 				{
-					GAME.add_msg(drop_item_message(weapon));
+					messageQueue.addMessage({ drop_item_message(weapon) });
 					GAME.map->add_item(weapon, pos);
 					remove_item_uid(weapon.get_uid());
 				}
 				inventory.push_back(item);
-				GAME.add_msg(wield_item_message(item));
+				messageQueue.addMessage({ wield_item_message(item) });
 				wield_item_uid(item.get_uid());
 				return true;
 			}
@@ -631,7 +632,7 @@ Item Player::pick_ammo_for(Item* it)
 	}
 	if (it->get_item_class() != ITEM_CLASS_LAUNCHER)
 	{
-		GAME.add_msg("You cannot reload %s.", it->get_name_indefinite().c_str());
+		messageQueue.addMessage({ "You cannot reload " + it->get_name_indefinite() });
 		return Item();
 	}
 	if (it->charges > 0 && it->ammo)
@@ -642,12 +643,12 @@ Item Player::pick_ammo_for(Item* it)
 	Item ret = inventory_single();
 	if (!ret.is_real())
 	{
-		GAME.add_msg("Never mind.");
+		messageQueue.addMessage({ "Never mind." });
 		return Item();
 	}
 	if (ret.get_item_class() != ITEM_CLASS_AMMO)
 	{
-		GAME.add_msg("That %s is not ammo.", ret.get_name().c_str());
+		messageQueue.addMessage({ "That " + ret.get_name() + " is not ammo." });
 		return Item();
 	}
 	Item_type_ammo* ammo = static_cast<Item_type_ammo*>(ret.get_type());
@@ -655,9 +656,11 @@ Item Player::pick_ammo_for(Item* it)
 			static_cast<Item_type_launcher*>(it->get_type());
 	if (ammo->ammo_type != launcher->ammo_type)
 	{
-		GAME.add_msg("You picked %s ammo, but your %s needs %s.",
-				ammo->ammo_type.c_str(), it->get_name().c_str(),
-				launcher->ammo_type.c_str());
+		const std::string message = Doryen::format(
+				"You picked {} ammo, but your {} needs {}.",
+				ammo->ammo_type, it->get_name(), launcher->ammo_type);
+
+		messageQueue.addMessage({ message });
 		return Item();
 	}
 	return ret;
@@ -685,8 +688,7 @@ Tripoint Player::pick_target_for(Item* it)
 
 	case TOOL_TARGET_ADJACENT:
 	{
-		GAME.add_msg("<c=ltgreen>%s where? (Press direction key)<c=/>",
-				verb.c_str());
+		messageQueue.addMessage({ "<c=ltgreen>" + verb + " where? (Press direction key)<c=/>" });
 		GAME.draw_all();
 		Point dir = input_direction(input());
 		if (dir.x == -2)
