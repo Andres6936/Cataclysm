@@ -773,8 +773,9 @@ void PlayScreen::make_sound(Sound snd, Tripoint pos)
 	}
 	else
 	{
-		add_msg("<c=ltblue>To the <c=ltred>%s<c=ltblue>, you hear %s<c=/>",
-				Direction_name(dir).c_str(), snd.description.c_str());
+		messageQueue.addMessage(
+				{ Doryen::format("<c=ltblue>To the <c=ltred>{}<c=ltblue>, you hear {}<c=/>", Direction_name(dir).c_str(),
+				  snd.description.c_str()) });
 	}
 }
 
@@ -1023,9 +1024,8 @@ void PlayScreen::launch_projectile(Entity* shooter, Item it, Ranged_attack attac
 						}
 						else if (i == path.size() - 1 && shooter == player.get())
 						{
-							add_msg("<c=dkgray>%s barely %s %s.<c=/>",
-									shooter_name.c_str(), miss_verb.c_str(),
-									entity_hit->get_name_to_player().c_str());
+							messageQueue.addMessage({ Doryen::format("<c=dkgray>{} barely {} {}.<c=/>",
+													  shooter_name, miss_verb, entity_hit->get_name_to_player()) });
 						}
 					} // if (entity hit)
 				} // End of <Didn't hit solid terrain>
