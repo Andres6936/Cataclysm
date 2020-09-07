@@ -93,7 +93,9 @@ ScreenType InformationItemScreen::processInput()
 	{
 	case 'd':
 	case 'D':
+		// TODO: Dropping may fail sometimes(?), so don't automatically add the item
 		player->remove_item_uid(item.get_uid());
+		map->add_item(item, player->pos);
 		isNeededUpdate = true;
 		return ScreenType::PLAY;
 
