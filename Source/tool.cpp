@@ -1,6 +1,7 @@
 #include "Cataclysm/tool.h"
 #include "Cataclysm/stringfunc.h" // For trim() and no_caps()
 #include "Cataclysm/globals.h"
+#include <Cataclysm/Visual/Screen/MessageQueue.hpp>
 
 Tool_special_explosion::Tool_special_explosion()
 {
@@ -196,11 +197,10 @@ bool Tool_special_heal::effect(Entity* user)
 
 	if (skill_lvl < skill_min)
 	{
-		GAME.add_msg("%s %s the necessary %s skill (%d required).",
-				user->get_name_to_player().c_str(),
-				user->conjugate("lack").c_str(),
-				skill_type_name(skill).c_str(),
-				skill_min);
+		messageQueue.addMessage(
+				{ Doryen::format("{} {} the necessary {} skill ({} required).",
+						user->get_name_to_player(), user->conjugate("lack"),
+				  		skill_type_name(skill), skill_min) });
 		return false;
 	}
 
@@ -472,7 +472,7 @@ bool Tool_action::activate(Item* it, Entity* user, Tripoint pos)
 			}
 			else if (seen_by_player)
 			{
-				GAME.add_msg("%s can't %s there.", user_name.c_str(), signal.c_str());
+				messageQueue.addMessage({ Doryen::format("{} can't {} there.", user_name, signal) });
 			}
 		}
 // TODO: Send signal to monsters and items.

@@ -200,7 +200,9 @@ bool Player::add_item(Item item)
 			}
 		} // End of non-clothing handling block
 	} // End of "too much volume" block
-	GAME.add_msg("You pick up %s.", item.get_name_indefinite().c_str());
+
+	messageQueue.addMessage({ Doryen::format("You pick up {}.", item.get_name_indefinite()) });
+
 	if (item.combines())
 	{
 		Item* added = ref_item_of_type(item.get_type());

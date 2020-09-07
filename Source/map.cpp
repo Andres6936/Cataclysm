@@ -4,6 +4,7 @@
 #include "Cataclysm/files.h"    // For SAVE_DIR
 #include <Cataclysm/Random/rng.h>
 #include <Cataclysm/Entity/Monster/monster.h>
+#include <Cataclysm/Visual/Screen/MessageQueue.hpp>
 
 Furniture::Furniture()
 {
@@ -654,7 +655,7 @@ bool Tile::apply_signal(std::string signal, Entity* user)
 	{
 		if (user)
 		{
-			GAME.add_msg("Nothing to %s there.", user_name.c_str(), signal.c_str());
+			messageQueue.addMessage({ Doryen::format("Nothing to {} there.", signal) });
 		}
 		return false;
 	}
@@ -758,8 +759,7 @@ bool Tile::apply_signal(std::string signal, Entity* user)
 	{
 		if (user)
 		{
-			GAME.add_msg("<c=red>%s (0 percent success rate)<c=/>",
-					handler.failure_message.c_str());
+			messageQueue.addMessage({ Doryen::format("<c=red>{} (0 percent success rate)<c=/>", handler.failure_message) });
 		}
 		return true;  // True since we *tried*
 
@@ -771,15 +771,16 @@ bool Tile::apply_signal(std::string signal, Entity* user)
 		{
 			if (user)
 			{
-				GAME.add_msg("<c=ltred>%s %s the %s.<c=/>",
-						user_name.c_str(), signal.c_str(), get_name().c_str());
+				messageQueue.addMessage(
+						{ Doryen::format("<c=ltred>{} {} the {}.<c=/>", user_name, signal, get_name()) });
 			}
 		}
 		else if (user)
 		{
 			std::stringstream mes;
 			mes << "<c=ltred>" << handler.success_message << "<c=/>";
-			GAME.add_msg(mes.str());
+
+			messageQueue.addMessage({ mes.str() });
 		}
 		Terrain* result = TERRAIN.lookup_name(handler.result);
 		if (!result)
@@ -794,7 +795,7 @@ bool Tile::apply_signal(std::string signal, Entity* user)
 // Failure.
 	if (user)
 	{
-		GAME.add_msg(handler.failure_message);
+		messageQueue.addMessage({ handler.failure_message });
 	}
 	return true;  // True cause we still *tried* to...
 }
