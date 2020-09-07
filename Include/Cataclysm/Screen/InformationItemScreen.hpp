@@ -13,9 +13,13 @@ namespace Cataclysm
 
 	private:
 
+		Item item;
+
 		cuss::interface i_info;
 
 		std::vector<Item_action> app_actions;
+
+		bool isNeededUpdate = true;
 
 	public:
 

@@ -23,7 +23,9 @@ void InformationItemScreen::draw()
 
 void InformationItemScreen::updated()
 {
-	Item item = stateInventory.getItemSelected();
+	if (not isNeededUpdate) return;
+
+	item = stateInventory.getItemSelected();
 
 	i_info.set_data("item_name", item.get_name_full());
 	i_info.set_data("num_weight", item.get_weight());
@@ -77,6 +79,8 @@ void InformationItemScreen::updated()
 	i_info.set_data("text_actions", actions.str());
 	// Includes type-specific info, e.g. nutrition for food
 	i_info.set_data("description", item.get_description_full());
+
+	isNeededUpdate = false;
 }
 
 ScreenType InformationItemScreen::processInput()
@@ -85,57 +89,59 @@ ScreenType InformationItemScreen::processInput()
 
 	const long ch = getch();
 
-	Item_action ret = IACT_NULL;
-
 	switch (ch)
 	{
 	case 'd':
 	case 'D':
-		ret = IACT_DROP;
-		break;
+		player->remove_item_uid(item.get_uid());
+		isNeededUpdate = true;
+		return ScreenType::PLAY;
+
 	case 'w':
-		ret = IACT_WIELD;
-		break;
+		player->wield_item_uid(item.get_uid());
+		isNeededUpdate = true;
+		return ScreenType::PLAY;
+
 	case 'W':
-		ret = IACT_WEAR;
-		break;
+		player->wear_item_uid(item.get_uid());
+		isNeededUpdate = true;
+		return ScreenType::PLAY;
+
 	case 'e':
-		ret = IACT_EAT;
-		break;
+		player->eat_item_uid(item.get_uid());
+		isNeededUpdate = true;
+		return ScreenType::PLAY;
+
 	case 'a':
-		ret = IACT_APPLY;
-		break;
+		player->apply_item_uid(item.get_uid());
+		isNeededUpdate = true;
+		return ScreenType::PLAY;
+
 	case 'r':
-		ret = IACT_READ;
-		break;
+		player->read_item_uid(item.get_uid());
+		isNeededUpdate = true;
+		return ScreenType::PLAY;
+
 	case 'U':
-		ret = IACT_UNLOAD;
-		break;
+		// TODO: Put unload code here
+		isNeededUpdate = true;
+		return ScreenType::PLAY;
+
 	case 'R':
-		ret = IACT_RELOAD;
-		break;
+		player->reload_prep(item.get_uid());
+		isNeededUpdate = true;
+		return ScreenType::PLAY;
+
 	case 'B':
-		ret = IACT_BUTCHER;
-		break;
+		// TODO: Put butcher code here
+		isNeededUpdate = true;
+		return ScreenType::PLAY;
 
 	case KEY_ESC:
 	case 'q':
 	case 'Q':
+		isNeededUpdate = true;
 		return ScreenType::PLAY;
-	}
-
-	if (ret != IACT_NULL)
-	{ // We chose an action.
-
-		// Check the list of applicable actions to see if the action the player chose is
-		// actually available.
-		for (int i = 0; i < app_actions.size(); i++)
-		{
-			if (app_actions[i] == ret)
-			{
-//				return ret;
-			}
-		}
 	}
 
 	return ScreenType::NONE;
