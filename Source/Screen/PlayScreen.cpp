@@ -492,13 +492,13 @@ Cataclysm::ScreenType PlayScreen::do_action(Interface_action act)
 
 	case IACTION_ADVANCE_FIRE_MODE:
 		player->weapon.advance_fire_mode();
-		add_msg(player->advance_fire_mode_message());
+		messageQueue.addMessage({ player->advance_fire_mode_message() });
 		break;
 
 	case IACTION_EAT:
 	{
 		Item it = player->inventory_single();
-		add_msg(player->eat_item_message(it));
+		messageQueue.addMessage({ player->eat_item_message(it) });
 		player->eat_item_uid(it.get_uid());
 	}
 		break;
@@ -541,8 +541,7 @@ Cataclysm::ScreenType PlayScreen::do_action(Interface_action act)
 	case IACTION_DEBUG:
 		if (!TESTING_MODE)
 		{
-			add_msg("<c=red>To access debug commands, run the program with the \
---test flag.");
+			messageQueue.addMessage({ "<c=red>To access debug commands, run the program with the --test flag." });
 		}
 		else
 		{
@@ -614,11 +613,11 @@ void PlayScreen::clean_up_dead_entities()
 			{
 				if (ent->killed_by_player)
 				{
-					add_msg("You kill %s!", ent->get_name_to_player().c_str());
+					messageQueue.addMessage({ Doryen::format("You kill {}!", ent->get_name_to_player()) });
 				}
 				else
 				{
-					add_msg("%s dies!", ent->get_name_to_player().c_str());
+					messageQueue.addMessage({ Doryen::format("{} dies!", ent->get_name_to_player()) });
 				}
 			}
 			ent->die();
@@ -669,7 +668,7 @@ void PlayScreen::complete_player_activity()
 			debugmsg("Completed reload, but the item wasn't there!");
 			return;
 		}
-		add_msg("You reload your %s.", reloaded->get_name().c_str());
+		messageQueue.addMessage({ Doryen::format("You reload your {}.", reloaded->get_name()) });
 		reloaded->reload(player.get(), act->secondary_item_uid);
 	}
 		break;
@@ -682,7 +681,7 @@ void PlayScreen::complete_player_activity()
 			debugmsg("Completed reading, but the item wasn't there!");
 			return;
 		}
-		add_msg("You finish reading.");
+		messageQueue.addMessage({ "You finish reading." });
 		player->finish_reading(read);
 	}
 		break;
@@ -770,7 +769,7 @@ void PlayScreen::make_sound(Sound snd, Tripoint pos)
 // We don't punctuate the messages below - that's for the sound to do!
 	if (dir == DIRFULL_NULL)
 	{ // On top of the player!
-		add_msg("<c=ltblue>You hear %s<c=/>", snd.description.c_str());
+		messageQueue.addMessage({ Doryen::format("<c=ltblue>You hear {}<c=/>", snd.description) });
 	}
 	else
 	{
