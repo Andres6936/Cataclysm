@@ -39,19 +39,29 @@ namespace Cataclysm
 		 */
 		bool isNeededUpdate = true;
 
-		int offset = 0;
+		/**
+		 * If have much elements in the inventory of player, is needed use page for
+		 * see all the items.
+		 */
+		int page = 0;
 
-		int offset_size = 0;
+		/**
+		 * Maximum of elements per each page.
+		 */
+		int MAXIMUM_ELEMENTS_PER_PAGE = 0;
 
 		char weapon_letter = 0;
+
+		/**
+		 * Is needed have in count the amount of headers for print correctly the items.
+		 */
+		std::uint32_t totalHeadersInsertedInLastUpdate = 0;
 
 		void setItemSelected();
 
 		void printDictionaryItems();
 
 		void printDictionaryClothing();
-
-		const std::uint32_t getAmountOfHeaders() const noexcept;
 
 		/**
 		 * @return The total of elements in the dictionary items

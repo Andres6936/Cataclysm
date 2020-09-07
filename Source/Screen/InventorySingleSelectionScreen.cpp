@@ -24,7 +24,7 @@ InventorySingleSelectionScreen::InventorySingleSelectionScreen()
 		throw std::logic_error("No element 'list_items' in " + inv_file);
 	}
 
-	offset_size = ele_list_items->sizey;
+	MAXIMUM_ELEMENTS_PER_PAGE = ele_list_items->sizey;
 }
 
 void InventorySingleSelectionScreen::draw()
@@ -160,15 +160,15 @@ ScreenType InventorySingleSelectionScreen::processInput()
 
 		return ScreenType::PLAY;
 	}
-	else if (ch == '<' && offset > 0)
+	else if (ch == '<' && page > 0)
 	{
-		offset--;
+		page--;
 
 		i_inv.clear_data("list_items");
 		i_inv.clear_data("list_weight");
 		i_inv.clear_data("list_volume");
 
-		for (int i = offset * offset_size; i < (offset + 1) * offset_size - getAmountOfHeaders() && i < getTotalElementInDictionaryItems(); i++)
+		for (int i = page * MAXIMUM_ELEMENTS_PER_PAGE; i < (page + 1) * MAXIMUM_ELEMENTS_PER_PAGE - totalHeadersInsertedInLastUpdate && i < getTotalElementInDictionaryItems(); i++)
 		{
 			try
 			{
@@ -182,17 +182,17 @@ ScreenType InventorySingleSelectionScreen::processInput()
 			}
 		}
 	}
-	else if (ch == '>' && getTotalElementInDictionaryItems() > (offset + 1) * offset_size)
+	else if (ch == '>' && getTotalElementInDictionaryItems() > (page + 1) * MAXIMUM_ELEMENTS_PER_PAGE)
 	{
-		offset++;
+		page++;
 
 		i_inv.clear_data("list_items");
 		i_inv.clear_data("list_weight");
 		i_inv.clear_data("list_volume");
 
-		for (int i = offset * offset_size; i < (offset + 1) * offset_size && i < getTotalElementInDictionaryItems(); i++)
+		for (int i = page * MAXIMUM_ELEMENTS_PER_PAGE; i < (page + 1) * MAXIMUM_ELEMENTS_PER_PAGE && i < getTotalElementInDictionaryItems(); i++)
 		{
-			const std::uint32_t totalHeaders = getAmountOfHeaders();
+			const std::uint32_t totalHeaders = totalHeadersInsertedInLastUpdate;
 
 			try
 			{
@@ -333,7 +333,7 @@ void InventorySingleSelectionScreen::printDictionaryClothing()
 {
 	// If the size of elements is lesser than offsetSize thus is sure
 	// use a for-loop for print the items
-	if (dictionaryClothing.size() < offset_size)
+	if (dictionaryClothing.size() < MAXIMUM_ELEMENTS_PER_PAGE)
 	{
 		for (const auto& [clothing, selected] : dictionaryClothing)
 		{
@@ -352,7 +352,7 @@ void InventorySingleSelectionScreen::printDictionaryClothing()
 		{
 			// If reach the limit of elements that can be visualized in the
 			// screen, thus exit
-			if (counterElementsInserted == offset_size) break;
+			if (counterElementsInserted == MAXIMUM_ELEMENTS_PER_PAGE) break;
 
 			i_inv.add_data("list_clothing", clothing.getNameWithLetter());
 			i_inv.add_data("list_clothing_weight", clothing.getWeight());
@@ -365,7 +365,10 @@ void InventorySingleSelectionScreen::printDictionaryClothing()
 
 void InventorySingleSelectionScreen::printDictionaryItems()
 {
-	int counterItemsInserted = 0;
+	// Reset the amount of headers inserted
+	totalHeadersInsertedInLastUpdate = 0;
+
+	std::uint32_t counterItemsInserted = 0;
 
 	// Begin from the initial item class enum
 	Item_class itemClass = Item_class::ITEM_CLASS_MISC;
@@ -379,13 +382,15 @@ void InventorySingleSelectionScreen::printDictionaryItems()
 			i_inv.add_data("list_items", "<c=ltblue>" + item_class_name(itemClass) + "<c=/>");
 			i_inv.add_data("list_weight", "");
 			i_inv.add_data("list_volume", "");
+
+			totalHeadersInsertedInLastUpdate += 1;
 		}
 
 		// Print the list of items
 		for (const auto& [item, selected] : dictionary)
 		{
 			// Not can print more item
-			if (counterItemsInserted == offset_size) break;
+			if (counterItemsInserted == MAXIMUM_ELEMENTS_PER_PAGE) break;
 
 			i_inv.add_data("list_items", item.getNameWithLetter());
 			i_inv.add_data("list_weight", item.getWeight());
@@ -399,23 +404,6 @@ void InventorySingleSelectionScreen::printDictionaryItems()
 	}
 }
 
-const std::uint32_t InventorySingleSelectionScreen::getAmountOfHeaders() const noexcept
-{
-	std::uint32_t totalHeaders = 0;
-
-	for (const auto& dictionary: dictionaryItems)
-	{
-		// Is important remember that the header too count as a element in the dictionary
-		// So that for each dictionary not empty exist a header
-		if (not dictionary.empty())
-		{
-			totalHeaders += 1;
-		}
-	}
-
-	return totalHeaders;
-}
-
 const std::uint32_t InventorySingleSelectionScreen::getTotalElementInDictionaryItems() const noexcept
 {
 	std::uint32_t totalElements = 0;
@@ -427,7 +415,7 @@ const std::uint32_t InventorySingleSelectionScreen::getTotalElementInDictionaryI
 
 	// Is important remember that the header too count as a element in the dictionary
 	// So that for each dictionary not empty exist a header
-	return totalElements + getAmountOfHeaders();
+	return totalElements + totalHeadersInsertedInLastUpdate;
 }
 
 const DictionaryItem& InventorySingleSelectionScreen::getItemAt(const std::uint32_t _index) const
