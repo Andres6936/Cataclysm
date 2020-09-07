@@ -170,13 +170,11 @@ ScreenType InventorySingleSelectionScreen::processInput()
 
 		for (int i = offset * offset_size; i < (offset + 1) * offset_size && i < getTotalElementInDictionaryItems(); i++)
 		{
-			const std::uint32_t totalHeaders = getAmountOfHeaders();
-
 			try
 			{
-				i_inv.add_data("list_items", getItemAt(i - totalHeaders).getNameWithLetter());
-				i_inv.add_data("list_weight", getItemAt(i - totalHeaders).getWeight());
-				i_inv.add_data("list_volume", getItemAt(i - totalHeaders).getVolume());
+				i_inv.add_data("list_items", getItemAt(i).getNameWithLetter());
+				i_inv.add_data("list_weight", getItemAt(i).getWeight());
+				i_inv.add_data("list_volume", getItemAt(i).getVolume());
 			}
 			catch (std::out_of_range& exception)
 			{
