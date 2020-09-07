@@ -1503,18 +1503,6 @@ void PlayScreen::print_messages()
 			showDebugMessage(exception.what());
 		}
 	}
-// Scroll to bottom.
-	//i_hud.set_data("text_messages", -3);
-	//debugmsg( i_hud.get_str("text_messages").c_str() );
-/*
-  std::vector<std::string> str_list = i_hud.get_str_list("text_messages");
-  if (str_list.size() >= 2) {
-    int sln = str_list.size();
-    std::string last = messages[messages.size() - 1].text;
-    std::string penu = messages[messages.size() - 2].text;
-    debugmsg("%d messages\n<<%s>>\n<<%s>>\n---\n<<%s>>\n<<%s>>", str_list.size(), str_list[sln - 2].c_str(), str_list[sln - 1].c_str(), penu.c_str(), last.c_str());
-  }
-*/
 }
 
 void PlayScreen::debug_command()
