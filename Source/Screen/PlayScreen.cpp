@@ -1188,10 +1188,8 @@ void PlayScreen::player_move(int xdif, int ydif)
 	}
 	else if (!player->can_drag_furniture_to(map.get(), newx, newy))
 	{
-		add_msg("The %s you're dragging prevents you from moving there.",
-				player->get_dragged_name().c_str());
-		add_msg("Press (<c=yellow>%s<c=/>) to drop it.",
-				KEYBINDINGS.describe_bindings_for(IACTION_GRAB).c_str());
+		messageQueue.addMessage({ Doryen::format("The {} you're dragging prevents you from moving there.", player->get_dragged_name()) });
+		messageQueue.addMessage({ Doryen::format("Press (<c=yellow>{}<c=/>) to drop it.", KEYBINDINGS.describe_bindings_for(IACTION_GRAB)) });
 		return;
 
 // If it's open space, we'll fall!
@@ -1244,8 +1242,8 @@ void PlayScreen::player_move(int xdif, int ydif)
 // List items here, unless it's sealed.
 	if (map->has_flag(TF_SEALED, player->pos))
 	{
-		add_msg("<c=dkgray>This %s is sealed; there may be items inside, but you \
-cannot see or access them.<c=/>", map->get_name(player->pos).c_str());
+		messageQueue.addMessage(
+				{ Doryen::format("<c=dkgray>This {} is sealed; there may be items inside, but you cannot see or access them.<c=/>", map->get_name(player->pos)) });
 	}
 	else
 	{
@@ -1254,7 +1252,7 @@ cannot see or access them.<c=/>", map->get_name(player->pos).c_str());
 		if (!items->empty())
 		{
 			std::string item_message = "You see here " + list_items(items);
-			add_msg(item_message);
+			messageQueue.addMessage({ item_message });
 		}
 	}
 }
@@ -1313,8 +1311,7 @@ bool PlayScreen::msg_query_yn(std::string msg, ...)
 	long ch = input();
 	if (ch != 'Y' && ch != 'N')
 	{
-		add_msg("<c=ltred>Y<c=ltgreen> or <c=ltred>N<c=ltgreen> only, please. \
-Case-sensitive.");
+		messageQueue.addMessage({ "<c=ltred>Y<c=ltgreen> or <c=ltred>N<c=ltgreen> only, please. Case-sensitive." });
 	}
 	while (ch != 'Y' && ch != 'N')
 	{
@@ -1498,7 +1495,7 @@ void PlayScreen::print_messages()
 
 void PlayScreen::debug_command()
 {
-	add_msg("<c=yellow>Press debug key.<c=/>");
+	messageQueue.addMessage({ "<c=yellow>Press debug key.<c=/>" });
 	draw_all();
 	long ch = input();
 	Debug_action act = KEYBINDINGS.bound_to_debug_key(ch);
@@ -1506,7 +1503,7 @@ void PlayScreen::debug_command()
 	switch (act)
 	{
 	case DEBUG_ACTION_NULL:
-		add_msg("<c=dkgray>Never mind.<c=/>");
+		messageQueue.addMessage({ "<c=dkgray>Never mind.<c=/>" });
 		break;
 
 	case DEBUG_ACTION_CREATE_ITEM:
@@ -1515,15 +1512,15 @@ void PlayScreen::debug_command()
 		Item_type* type = ITEM_TYPES.lookup_partial_name(name);
 		if (!type)
 		{
-			add_msg("<c=dkgray>'%s' did not match any items.<c=/>", name.c_str());
+			messageQueue.addMessage({ Doryen::format("<c=dkgray>'{}' did not match any items.<c=/>", name) });
 		}
 		else
 		{
 			Item spawned(type);
 			map->add_item(spawned, player->pos);
-			add_msg("Spawned %s (UID %d, next UID %d).",
-					spawned.get_name_indefinite().c_str(), spawned.get_uid(),
-					next_item_uid);
+			messageQueue.addMessage(
+					{ Doryen::format("Spawned {} (UID {d}, next UID {}).", spawned.get_name_indefinite(), spawned.get_uid(),
+					  next_item_uid) });
 		}
 	}
 		break;
