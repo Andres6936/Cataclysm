@@ -118,6 +118,7 @@ ADD_EXECUTABLE(Cataclysm
         Source/Item/TypeLauncher.cpp
         Source/Item/TypeContainer.cpp
         Source/Item/ActiveItemsManager.cpp
+        Source/Item/NextFurnitureManager.cpp
         Source/Mechanism/time.cpp
         Source/Mechanism/mission.cpp
         Source/Mechanism/keybind.cpp

@@ -6,6 +6,7 @@
 #include <Cataclysm/Entity/Monster/monster.h>
 #include <Cataclysm/Mechanism/TimeManager.hpp>
 #include <Cataclysm/Mechanism/SoundManager.hpp>
+#include <Cataclysm/Item/NextFurnitureManager.hpp>
 #include <Cataclysm/Visual/Screen/MessageQueue.hpp>
 
 Furniture::Furniture()
@@ -1099,7 +1100,7 @@ void Submap::generate(Mapgen_spec* spec)
 				int map_uid = spec->pick_furniture_uid(x, y);
 				if (map_uid_to_game_uid.count(map_uid) == 0)
 				{
-					map_uid_to_game_uid[map_uid] = GAME.get_furniture_uid();
+					map_uid_to_game_uid[map_uid] = nextFurnitureManager.getNextFurniture();
 				}
 				tiles[x][y].add_furniture(furniture, map_uid_to_game_uid[map_uid]);
 			}

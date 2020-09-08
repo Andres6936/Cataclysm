@@ -26,8 +26,14 @@ namespace Cataclysm
 
 		// Methods
 
+		/**
+		 * @return True once every turns.
+		 */
 		bool turnTimer(const std::int32_t _turn);
 
+		/**
+		 * @return True once every minutes.
+		 */
 		bool minuteTimer(const std::int32_t _minutes);
 
 		const std::int32_t calculateLightLevel();

@@ -76,9 +76,6 @@ public:
 			bool target_entities = false,
 			bool show_path = true);
 
-	int get_furniture_uid();// Get the next available UID (and increment)
-	// Returns true once every $minutes minutes
-	// Returns true once every $turns turns
 	int get_light_level();          // Current light distance, based on the time
 
 	/* find_item() returns the location of the item.  If it == NULL, use the uid;
@@ -93,8 +90,6 @@ private:
 
 	Doryen::Console screenMap {24, 24};
 	Doryen::Console screenHUD {56, 24};
-
-	int next_furniture_uid;
 };
 
 #endif

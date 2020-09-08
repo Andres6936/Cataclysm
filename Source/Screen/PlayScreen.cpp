@@ -22,7 +22,6 @@ PlayScreen::PlayScreen()
 	player = NULL;
 	last_target = -1;
 	new_messages = 0;
-	next_furniture_uid = 0;
 	game_over = false;
 }
 
@@ -1547,11 +1546,6 @@ std::vector<Tripoint> PlayScreen::path_selector(int startx, int starty, int rang
 			w_map->refresh();
 		}
 	}
-}
-
-int PlayScreen::get_furniture_uid()
-{
-	return next_furniture_uid++;
 }
 
 int PlayScreen::get_light_level()
