@@ -3,7 +3,7 @@
 #ifndef CATACLYSM_ABILITYSUMMON_HPP
 #define CATACLYSM_ABILITYSUMMON_HPP
 
-#include <Cataclysm/var_string.h>
+#include <Cataclysm/Util/String/var_string.h>
 #include <Cataclysm/Random/dice.h>
 #include "Cataclysm/Entity/Monster/Ability.hpp"
 

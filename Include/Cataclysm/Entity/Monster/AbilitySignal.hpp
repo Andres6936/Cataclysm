@@ -3,7 +3,7 @@
 #ifndef CATACLYSM_ABILITYSIGNAL_HPP
 #define CATACLYSM_ABILITYSIGNAL_HPP
 
-#include <Cataclysm/var_string.h>
+#include <Cataclysm/Util/String/var_string.h>
 #include "Cataclysm/Entity/Monster/Ability.hpp"
 
 // Right now, Monster_ability_signal applies to ALL terrain within <range>.

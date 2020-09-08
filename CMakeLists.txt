@@ -120,6 +120,7 @@ ADD_EXECUTABLE(Cataclysm
         Source/Screen/NewGame/DescriptionScreen.cpp
         Source/Screen/NewGame/Interface/INewGameScreen.cpp
         Source/Util/String/stringfunc.cpp
+        Source/Util/String/var_string.cpp
         Source/Visual/Item/DictionaryItem.cpp
         Source/Visual/Item/DictionaryClothing.cpp
         Source/Visual/Screen/Message.cpp
@@ -144,7 +145,6 @@ ADD_EXECUTABLE(Cataclysm
         Source/tool.cpp
         Source/globals.cpp
         Source/newcharacter.cpp
-        Source/var_string.cpp
         Source/pathfind.cpp
         Source/window.cpp
         Source/keybind.cpp

@@ -7,7 +7,7 @@
 #include <string>
 
 #include <Cataclysm/sound.h>
-#include <Cataclysm/var_string.h>
+#include <Cataclysm/Util/String/var_string.h>
 #include <Cataclysm/Attack/attack.h>
 #include <Cataclysm/Attack/Ranged.hpp>
 #include <Cataclysm/Entity/entity_ai.h>

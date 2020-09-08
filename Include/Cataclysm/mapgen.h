@@ -6,7 +6,7 @@
 #include <list>
 #include <string>
 
-#include "Cataclysm/var_string.h"
+#include "Cataclysm/Util/String/var_string.h"
 #include <Cataclysm/Geometry/geometry.h>
 #include <Cataclysm/World/Terrain/terrain.h>
 #include <Cataclysm/Item/item_type.h>

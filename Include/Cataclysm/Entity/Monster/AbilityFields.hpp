@@ -3,7 +3,7 @@
 #ifndef CATACLYSM_ABILITYFIELDS_HPP
 #define CATACLYSM_ABILITYFIELDS_HPP
 
-#include <Cataclysm/var_string.h>
+#include <Cataclysm/Util/String/var_string.h>
 #include "Cataclysm/Entity/Monster/Ability.hpp"
 
 struct Monster_ability_fields : public Monster_ability

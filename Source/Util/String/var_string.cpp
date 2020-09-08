@@ -1,4 +1,4 @@
-#include "Cataclysm/var_string.h"
+#include "Cataclysm/Util/String/var_string.h"
 #include <Cataclysm/Util/String/stringfunc.h>
 #include "Cataclysm/Random/rng.h"
 
