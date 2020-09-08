@@ -46,22 +46,6 @@ public:
 
 	void make_sound(Sound snd, Tripoint pos);
 
-// Pass NULL as shooter and Item() as it
-	void launch_projectile(Ranged_attack attack,
-			Tripoint origin, Tripoint target);
-
-// Pass NULL as shooter
-	void launch_projectile(Item it, Ranged_attack attack,
-			Tripoint origin, Tripoint target);
-
-// Pass Item() as it
-	void launch_projectile(Entity* shooter, Ranged_attack attack,
-			Tripoint origin, Tripoint target);
-
-// This one is the *real* one
-	void launch_projectile(Entity* shooter, Item it, Ranged_attack attack,
-			Tripoint origin, Tripoint target);
-
 	void player_move(int xdif, int ydif); // Handles all aspects of moving player
 	void player_move_vertical(int zdif);
 

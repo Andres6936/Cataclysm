@@ -1,5 +1,6 @@
 #include <Cataclysm/Visual/Screen/MessageQueue.hpp>
 #include <Cataclysm/Mechanism/TimeManager.hpp>
+#include <Cataclysm/Mechanism/Projectile.hpp>
 #include <Cataclysm/Entity/entity.h>
 #include <Cataclysm/Random/rng.h>
 #include <Cataclysm/Util/globals.h>
@@ -2923,7 +2924,9 @@ void Entity::attack_ranged(Entity* target, Ranged_attack ra)
 // Set the special_timer.  This really only affects monsters - monsters can't
 // use ranged attacks if their special_timer is more than 0.
 	special_timer = ra.charge_time;
-	GAME.launch_projectile(this, ra, pos, target->pos);
+
+	projectile.launch(this, ra, pos, target->pos);
+
 	action_points -= ra.speed;
 	if (player->can_see(map.get(), pos))
 	{

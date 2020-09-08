@@ -1,5 +1,6 @@
-#include "Cataclysm/Mechanism/explosion.h"
+#include <Cataclysm/Mechanism/Projectile.hpp>
 #include <Cataclysm/Util/String/stringfunc.h> // For no_caps() and trim()
+#include "Cataclysm/Mechanism/explosion.h"
 #include <Cataclysm/Util/globals.h>
 #include <Cataclysm/Random/rng.h>
 
@@ -193,6 +194,7 @@ void Explosion::explode(Tripoint epicenter)
 		shrapnel_attack.variance = Dice(1, 6, 0); // Do we even need this?
 // TODO: Should shrapnel always pierce?  Maybe it should cut?
 		shrapnel_attack.damage[DAMAGE_PIERCE] = shrapnel_damage.roll();
-		GAME.launch_projectile(shrapnel_attack, epicenter, shrapnel_target);
+
+		projectile.launch(shrapnel_attack, epicenter, shrapnel_target);
 	}
 }
