@@ -1,7 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include "Cataclysm/Enum/MathOperator.hpp"
-#include "Cataclysm/stringfunc.h"
+#include <Cataclysm/Util/String/stringfunc.h>
 
 Math_operator lookup_math_operator(std::string name)
 {

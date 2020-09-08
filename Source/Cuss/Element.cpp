@@ -2,7 +2,7 @@
 
 #include <sstream>
 #include "Cuss/Element.hpp"
-#include <Cataclysm/stringfunc.h>
+#include <Cataclysm/Util/String/stringfunc.h>
 
 using namespace cuss;
 

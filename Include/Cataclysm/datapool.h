@@ -1,7 +1,7 @@
 #ifndef _DATAPOOL_H_
 #define _DATAPOOL_H_
 
-#include "stringfunc.h"
+#include "Cataclysm/Util/String/stringfunc.h"
 #include <string>
 #include <istream>
 #include <list>

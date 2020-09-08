@@ -1,7 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include <sstream>
-#include <Cataclysm/stringfunc.h>
+#include <Cataclysm/Util/String/stringfunc.h>
 #include <Cataclysm/Screen/Debugger.hpp>
 #include "Cataclysm/Item/TypeClothing.hpp"
 

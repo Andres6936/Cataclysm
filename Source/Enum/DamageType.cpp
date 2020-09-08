@@ -1,7 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include "Cataclysm/Enum/DamageType.hpp"
-#include "Cataclysm/stringfunc.h"
+#include <Cataclysm/Util/String/stringfunc.h>
 
 Damage_type lookup_damage_type(std::string name)
 {

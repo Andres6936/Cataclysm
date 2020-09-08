@@ -1,6 +1,6 @@
 #include <Cataclysm/Screen/Debugger.hpp>
 #include "Cataclysm/World/Biome/biome.h"
-#include <Cataclysm/stringfunc.h>
+#include <Cataclysm/Util/String/stringfunc.h>
 
 Biome::Biome()
 {

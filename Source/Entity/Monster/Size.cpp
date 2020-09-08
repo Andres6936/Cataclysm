@@ -1,5 +1,5 @@
 #include "Cataclysm/Entity/Monster/Size.h"
-#include "Cataclysm/stringfunc.h"
+#include <Cataclysm/Util/String/stringfunc.h>
 
 Monster_size lookup_monster_size(std::string name)
 {

@@ -1,7 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include "Cataclysm/Item/Enum/Class.hpp"
-#include "Cataclysm/stringfunc.h"
+#include <Cataclysm/Util/String/stringfunc.h>
 
 Item_class lookup_item_class(std::string name)
 {

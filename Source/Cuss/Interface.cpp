@@ -5,7 +5,7 @@
 #include <Cuss/TextEntry.hpp>
 #include "Cuss/Interface.hpp"
 #include <Cataclysm/Screen/Debugger.hpp>
-#include <Cataclysm/stringfunc.h>
+#include <Cataclysm/Util/String/stringfunc.h>
 #include <Cuss/Number.hpp>
 #include <sstream>
 #include <fstream>

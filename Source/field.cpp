@@ -1,5 +1,5 @@
 #include <Cataclysm/Random/rng.h>
-#include "Cataclysm/stringfunc.h" // For no_caps and trim
+#include <Cataclysm/Util/String/stringfunc.h> // For no_caps and trim
 #include "Cataclysm/globals.h"    // For TERRAIN and FIELDS
 #include "Cataclysm/field.h"
 

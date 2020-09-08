@@ -2,7 +2,7 @@
 
 #include "Cataclysm/World/VariableTerrain.hpp"
 #include <Cataclysm/Random/rng.h>
-#include "Cataclysm/stringfunc.h"
+#include <Cataclysm/Util/String/stringfunc.h>
 #include "Cataclysm/globals.h"
 
 Variable_world_terrain::Variable_world_terrain()

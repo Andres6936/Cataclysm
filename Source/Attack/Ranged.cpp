@@ -2,7 +2,7 @@
 
 #include "Cataclysm/Attack/Ranged.hpp"
 #include "Cataclysm/Attack/Verbs.hpp"
-#include "Cataclysm/stringfunc.h" // For no_caps
+#include <Cataclysm/Util/String/stringfunc.h> // For no_caps
 #include <Cataclysm/Screen/Debugger.hpp>
 #include "Cataclysm/Random/rng.h" // For rng
 

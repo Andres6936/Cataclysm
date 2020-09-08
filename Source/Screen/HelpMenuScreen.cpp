@@ -1,6 +1,6 @@
 #include "Cataclysm/Screen/HelpMenuScreen.hpp"
 #include "Cataclysm/files.h"
-#include "Cataclysm/stringfunc.h"
+#include <Cataclysm/Util/String/stringfunc.h>
 #include <Cuss/Interface.hpp>
 
 void help_screen(std::string file, std::string term)

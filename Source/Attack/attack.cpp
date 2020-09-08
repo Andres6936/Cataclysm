@@ -2,7 +2,7 @@
 #include <Cataclysm/Entity/Stats.hpp>
 #include "Cataclysm/Attack/attack.h"
 #include "Cataclysm/Attack/Verbs.hpp"
-#include "Cataclysm/stringfunc.h"
+#include <Cataclysm/Util/String/stringfunc.h>
 #include "Cataclysm/Random/rng.h"
 
 Attack::Attack()

@@ -1,5 +1,5 @@
 #include "Cataclysm/keybind.h"
-#include "Cataclysm/stringfunc.h"
+#include <Cataclysm/Util/String/stringfunc.h>
 #include "Cataclysm/globals.h"
 #include <vector>
 

@@ -1,7 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include "Cataclysm/World/Biome/Enum/BiomeFlag.hpp"
-#include <Cataclysm/stringfunc.h>
+#include <Cataclysm/Util/String/stringfunc.h>
 
 Biome_flag lookup_biome_flag(std::string name)
 {

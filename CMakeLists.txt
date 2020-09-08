@@ -25,8 +25,8 @@ ADD_LIBRARY(Cuss
         Source/Cuss/Interface.cpp
         Source/Graphics/glyph.cpp
         Source/Graphics/color.cpp
+        Source/Util/String/stringfunc.cpp
         Source/window.cpp
-        Source/stringfunc.cpp
         Source/files.cpp
         )
 
@@ -119,6 +119,7 @@ ADD_EXECUTABLE(Cataclysm
         Source/Screen/NewGame/ProfessionScreen.cpp
         Source/Screen/NewGame/DescriptionScreen.cpp
         Source/Screen/NewGame/Interface/INewGameScreen.cpp
+        Source/Util/String/stringfunc.cpp
         Source/Visual/Item/DictionaryItem.cpp
         Source/Visual/Item/DictionaryClothing.cpp
         Source/Visual/Screen/Message.cpp
@@ -139,7 +140,6 @@ ADD_EXECUTABLE(Cataclysm
         Source/World/Terrain/FlagBonus.cpp
         Source/World/Terrain/SignalHandler.cpp
         Source/field.cpp
-        Source/stringfunc.cpp
         Source/files.cpp
         Source/tool.cpp
         Source/globals.cpp

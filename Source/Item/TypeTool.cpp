@@ -1,6 +1,6 @@
 // Joan Andrés (@Andres6936) Github.
 
-#include <Cataclysm/stringfunc.h>
+#include <Cataclysm/Util/String/stringfunc.h>
 #include "Cataclysm/Item/TypeTool.hpp"
 #include <Cataclysm/Screen/Debugger.hpp>
 

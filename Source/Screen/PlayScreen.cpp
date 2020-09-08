@@ -1,6 +1,6 @@
 #include "Cataclysm/files.h"
 #include "Cataclysm/globals.h"
-#include "Cataclysm/stringfunc.h"
+#include <Cataclysm/Util/String/stringfunc.h>
 #include <Cataclysm/Random/rng.h>
 #include <Cataclysm/Screen/PlayScreen.hpp>
 #include <Cataclysm/Entity/Monster/monster.h>

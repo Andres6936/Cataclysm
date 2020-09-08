@@ -1,7 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include "Cuss/Menu.hpp"
-#include <Cataclysm/stringfunc.h>
+#include <Cataclysm/Util/String/stringfunc.h>
 #include <Cataclysm/Screen/Debugger.hpp>
 #include <sstream>
 

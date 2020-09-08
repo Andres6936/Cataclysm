@@ -2,7 +2,7 @@
 
 #include <Cataclysm/files.h>
 #include <Cataclysm/globals.h>
-#include <Cataclysm/stringfunc.h>
+#include <Cataclysm/Util/String/stringfunc.h>
 #include "Cataclysm/Screen/NewGame/ProfessionScreen.hpp"
 
 using namespace Cataclysm;

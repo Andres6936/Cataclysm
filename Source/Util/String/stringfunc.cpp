@@ -1,6 +1,6 @@
 #include <sstream>
-#include "Cataclysm/stringfunc.h"
 #include <Cataclysm/Screen/Debugger.hpp>
+#include "Cataclysm/Util/String/stringfunc.h"
 
 /*
 std::vector<std::string> break_into_lines(const std::string& text, int linesize)

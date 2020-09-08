@@ -1,7 +1,7 @@
 #include <sstream>
 
 #include "Cataclysm/World/world_terrain.h"
-#include "Cataclysm/stringfunc.h"
+#include <Cataclysm/Util/String/stringfunc.h>
 #include "Cataclysm/globals.h"
 
 World_terrain::World_terrain()

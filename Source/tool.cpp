@@ -1,5 +1,5 @@
 #include "Cataclysm/tool.h"
-#include "Cataclysm/stringfunc.h" // For trim() and no_caps()
+#include <Cataclysm/Util/String/stringfunc.h> // For trim() and no_caps()
 #include "Cataclysm/globals.h"
 #include <Cataclysm/Visual/Screen/MessageQueue.hpp>
 

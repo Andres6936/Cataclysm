@@ -1,4 +1,4 @@
-#include "Cataclysm/stringfunc.h"
+#include <Cataclysm/Util/String/stringfunc.h>
 #include "Cataclysm/Entity/entity_ai.h"
 #include <Cataclysm/Screen/Debugger.hpp>
 

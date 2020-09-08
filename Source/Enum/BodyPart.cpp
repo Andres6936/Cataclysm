@@ -1,7 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include "Cataclysm/Enum/BodyPart.hpp"
-#include "Cataclysm/stringfunc.h" // For no_caps
+#include <Cataclysm/Util/String/stringfunc.h> // For no_caps
 #include "Cataclysm/Random/rng.h"
 
 Body_part lookup_body_part(std::string name)

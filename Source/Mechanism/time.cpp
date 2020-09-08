@@ -1,5 +1,5 @@
 #include <sstream>
-#include "Cataclysm/stringfunc.h"
+#include <Cataclysm/Util/String/stringfunc.h>
 #include "Cataclysm/Mechanism/time.h"
 
 Time::Time()
