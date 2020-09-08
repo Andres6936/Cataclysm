@@ -1,7 +1,5 @@
 #include <Cataclysm/Util/files.h>
 #include <Cataclysm/Util/globals.h>
-#include <Cataclysm/Util/String/stringfunc.h>
-#include <Cataclysm/Random/rng.h>
 #include <Cataclysm/Screen/PlayScreen.hpp>
 #include <Cataclysm/Mechanism/Projectile.hpp>
 #include <Cataclysm/Entity/Monster/monster.h>
@@ -9,8 +7,6 @@
 #include <Cataclysm/Item/ActiveItemsManager.hpp>
 #include <Cataclysm/Mechanism/NextItemManager.hpp>
 #include <Cataclysm/Visual/Screen/MessageQueue.hpp>
-
-#include <stdarg.h>
 
 std::vector<std::string> get_pickup_strings(std::vector<Item>* items,
 		std::vector<bool>* picking_up);
