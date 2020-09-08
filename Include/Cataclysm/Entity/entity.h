@@ -4,13 +4,13 @@
 #include <string>
 
 #include <Cataclysm/map.h>
-#include <Cataclysm/mission.h>
-#include <Cataclysm/Attack/attack.h>
-#include <Cataclysm/status_effect.h>
-#include "Cataclysm/Entity/Stats.hpp"
 #include "Cataclysm/Entity/Plan.hpp"
+#include <Cataclysm/Attack/attack.h>
+#include "Cataclysm/Entity/Stats.hpp"
 #include <Cataclysm/Enum/BodyPart.hpp>
 #include <Cataclysm/Enum/SenseType.hpp>
+#include <Cataclysm/Mechanism/mission.h>
+#include <Cataclysm/Mechanism/status_effect.h>
 #include <Cataclysm/Entity/Player/player_activity.h>
 #include <Cataclysm/Entity/Player/Enum/ActivityType.hpp>
 #include <Cataclysm/tool.h>

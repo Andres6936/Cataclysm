@@ -1,7 +1,6 @@
 #ifndef _MONSTER_ABILITY_H_
 #define _MONSTER_ABILITY_H_
 
-#include <Cataclysm/status_effect.h>
 #include <Cataclysm/Enum/BodyPart.hpp>
 #include "Cataclysm/Entity/Monster/Ability.hpp"
 

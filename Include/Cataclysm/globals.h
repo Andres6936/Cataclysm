@@ -4,7 +4,6 @@
 #include "datapool.h"
 #include "mapgen.h"
 #include "keybind.h"
-#include "mission.h"
 
 #include "Cataclysm/Screen/PlayScreen.hpp"
 #include "Cataclysm/Entity/profession.h"

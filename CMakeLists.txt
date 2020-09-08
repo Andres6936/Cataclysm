@@ -91,7 +91,9 @@ ADD_EXECUTABLE(Cataclysm
         Source/Item/TypeLauncher.cpp
         Source/Item/TypeContainer.cpp
         Source/Mechanism/time.cpp
+        Source/Mechanism/mission.cpp
         Source/Mechanism/explosion.cpp
+        Source/Mechanism/status_effect.cpp
         Source/Random/rng.cpp
         Source/Random/dice.cpp
         Source/Screen/IScreen.cpp
@@ -134,7 +136,6 @@ ADD_EXECUTABLE(Cataclysm
         Source/World/Terrain/FlagBonus.cpp
         Source/World/Terrain/SignalHandler.cpp
         Source/field.cpp
-        Source/mission.cpp
         Source/stringfunc.cpp
         Source/files.cpp
         Source/tool.cpp
@@ -148,7 +149,6 @@ ADD_EXECUTABLE(Cataclysm
         Source/map.cpp
         Source/skill.cpp
         Source/mapgen.cpp
-        Source/status_effect.cpp
         )
 
 # Compile Cataclysm with Support to C++17
