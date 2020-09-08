@@ -1069,32 +1069,24 @@ void PlayScreen::launch_projectile(Entity* shooter, Item it, Ranged_attack attac
 					if (hit_type == RANGED_HIT_HEADSHOT)
 					{
 						shooter_name = capitalize(shooter_name);
-						add_msg("<c=ltred>Headshot!  %s %s %s for %d damage!<c=/>",
-								shooter_name.c_str(), verb.c_str(),
-								entity_hit->get_name_to_player().c_str(),
-								dam);
+						messageQueue.addMessage({ Doryen::format("<c=ltred>Headshot!  {} {} {} for {d} damage!<c=/>",
+												  shooter_name, verb, entity_hit->get_name_to_player(),dam) });
 					}
 					else if (hit_type == RANGED_HIT_CRITICAL)
 					{
 						shooter_name = capitalize(shooter_name);
-						add_msg("<c=ltred>Critical!  %s %s %s for %d damage!<c=/>",
-								shooter_name.c_str(), verb.c_str(),
-								entity_hit->get_name_to_player().c_str(),
-								dam);
+						messageQueue.addMessage({ Doryen::format("<c=ltred>Critical!  {} {} {} for {d} damage!<c=/>",
+												  shooter_name, verb, entity_hit->get_name_to_player(), dam) });
 					}
 					else if (hit_type == RANGED_HIT_GRAZE)
 					{
-						add_msg("<c=ltred>%s %s %s for %d damage!<c=/>",
-								shooter_name.c_str(), graze_verb.c_str(),
-								entity_hit->get_name_to_player().c_str(),
-								dam);
+						messageQueue.addMessage({ Doryen::format("<c=ltred>{} {} {} for {d} damage!<c=/>",
+												  shooter_name, graze_verb, entity_hit->get_name_to_player(),dam) });
 					}
 					else
 					{
-						add_msg("<c=ltred>%s %s %s for %d damage!<c=/>",
-								shooter_name.c_str(), verb.c_str(),
-								entity_hit->get_name_to_player().c_str(),
-								dam);
+						messageQueue.addMessage({ Doryen::format("<c=ltred>{} {} {} for {d} damage!<c=/>",
+								shooter_name, verb, entity_hit->get_name_to_player(),dam) });
 					}
 // Figure out the part hit, in case it's the player or NPC
 					Body_part part_hit;
