@@ -90,6 +90,8 @@ ADD_EXECUTABLE(Cataclysm
         Source/Item/TypeClothing.cpp
         Source/Item/TypeLauncher.cpp
         Source/Item/TypeContainer.cpp
+        Source/Mechanism/time.cpp
+        Source/Mechanism/explosion.cpp
         Source/Random/rng.cpp
         Source/Random/dice.cpp
         Source/Screen/IScreen.cpp
@@ -135,7 +137,6 @@ ADD_EXECUTABLE(Cataclysm
         Source/mission.cpp
         Source/stringfunc.cpp
         Source/files.cpp
-        Source/time.cpp
         Source/tool.cpp
         Source/globals.cpp
         Source/newcharacter.cpp
@@ -146,7 +147,6 @@ ADD_EXECUTABLE(Cataclysm
         Source/main.cpp
         Source/map.cpp
         Source/skill.cpp
-        Source/explosion.cpp
         Source/mapgen.cpp
         Source/status_effect.cpp
         )

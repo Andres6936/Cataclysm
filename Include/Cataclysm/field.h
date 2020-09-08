@@ -4,7 +4,7 @@
 #include "Cataclysm/Entity/damage_set.h"
 #include <Cataclysm/Geometry/geometry.h>
 #include "Cataclysm/Graphics/glyph.h"
-#include "explosion.h"  // For fuel explosions
+#include <Cataclysm/Mechanism/explosion.h>
 
 #include <string>
 #include <vector>

@@ -1,6 +1,6 @@
 #include <sstream>
-#include "Cataclysm/time.h"
 #include "Cataclysm/stringfunc.h"
+#include "Cataclysm/Mechanism/time.h"
 
 Time::Time()
 {

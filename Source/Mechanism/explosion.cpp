@@ -1,4 +1,4 @@
-#include "Cataclysm/explosion.h"
+#include "Cataclysm/Mechanism/explosion.h"
 #include "Cataclysm/stringfunc.h" // For no_caps() and trim()
 #include "Cataclysm/globals.h"
 #include <Cataclysm/Random/rng.h>
