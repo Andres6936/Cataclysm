@@ -186,7 +186,7 @@ bool Player::add_item(Item item)
 				else if (weapon.is_real())
 				{
 					messageQueue.addMessage({ drop_item_message(weapon) });
-					GAME.map->add_item(weapon, pos);
+					map->add_item(weapon, pos);
 					remove_item_uid(weapon.get_uid());
 				}
 				inventory.push_back(item);

@@ -118,7 +118,7 @@ Entity* Entity_pool::closest_seen_by(Entity* observer, int range)
 		Entity* target = *it;
 		int dist = rl_dist(pos, target->pos);
 		if (target != observer && (best_range == -1 || dist <= best_range) &&
-			GAME.map->senses(pos, target->pos, range, SENSE_SIGHT))
+			map->senses(pos, target->pos, range, SENSE_SIGHT))
 		{
 			best_range = dist;
 			ret = target;

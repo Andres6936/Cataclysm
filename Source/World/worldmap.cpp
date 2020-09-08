@@ -569,7 +569,7 @@ std::vector<Point> Worldmap::find_terrain(std::string name,
 // origin defaults to (-1, -1) and range defaults to -1
 	if (origin.x == -1)
 	{ // Default; use player's position
-		origin = GAME.map->get_center_point();
+		origin = map->get_center_point();
 	}
 	int x0, x1, y0, y1; // Area to search in
 	if (range < 0)

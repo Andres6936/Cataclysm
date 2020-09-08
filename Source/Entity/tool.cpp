@@ -416,7 +416,7 @@ bool Tool_action::activate(Item* it, Entity* user)
 
 bool Tool_action::activate(Item* it, Entity* user, Tripoint pos)
 {
-	bool seen_by_player = GAME.player->can_see(GAME.map.get(), pos);
+	bool seen_by_player = GAME.player->can_see(map.get(), pos);
 	if (!seen_by_player && user && user->is_you())
 	{
 		seen_by_player = true;
@@ -462,11 +462,11 @@ bool Tool_action::activate(Item* it, Entity* user, Tripoint pos)
 			verb = user->conjugate(verb);
 		}
 
-		std::string old_name = GAME.map->get_name(pos);
+		std::string old_name = map->get_name(pos);
 		for (int i = 0; i < pos_list.size(); i++)
 		{
 			Tripoint cur_pos = pos_list[i];
-			if (GAME.map->apply_signal(signal, cur_pos, user))
+			if (map->apply_signal(signal, cur_pos, user))
 			{
 				had_effect = true;
 			}

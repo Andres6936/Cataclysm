@@ -56,8 +56,6 @@ namespace Cataclysm
 		// Note that player should always == &(entities[0])
 		inline static std::unique_ptr<Player> player {nullptr};
 
-		inline static std::unique_ptr<Map> map {nullptr};
-
 		inline static Entity_pool entities {};
 
 		inline static Time time {};

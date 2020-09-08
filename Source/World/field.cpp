@@ -633,14 +633,14 @@ void Field_pool::drop(Tripoint pos, std::string creator)
 	{
 		tmp.creator = creator;
 	}
-	GAME.map->add_field(tmp, pos);
+	map->add_field(tmp, pos);
 
 	for (int i = 0; i < num_tiles; i++)
 	{
 		Tripoint next_pos(pos.x + rng(-1, 1), pos.y + rng(-1, 1), pos.z);
 		dur = duration.roll();
 		tmp.set_duration(dur);
-		GAME.map->add_field(tmp, next_pos);
+		map->add_field(tmp, next_pos);
 	}
 }
 

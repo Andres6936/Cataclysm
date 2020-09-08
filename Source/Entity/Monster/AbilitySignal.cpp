@@ -71,7 +71,7 @@ bool Monster_ability_signal::effect(Monster* user)
 		for (pos.y = user->pos.y - range; pos.y <= user->pos.y + range; pos.y++)
 		{
 			pos.z = user->pos.z;
-			GAME.map->apply_signal(sig, pos, user);
+			map->apply_signal(sig, pos, user);
 		}
 	}
 	return true;

@@ -467,4 +467,6 @@ private:
 
 };
 
+inline std::unique_ptr<Map> map {nullptr};
+
 #endif

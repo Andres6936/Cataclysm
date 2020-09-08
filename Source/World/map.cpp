@@ -668,7 +668,7 @@ bool Tile::apply_signal(std::string signal, Entity* user)
 	{
 // Terrain bonuses - check the flags for the terrain the user is on
 // Kind of weird to check GAME.map from a tile, but... eh
-		Tile* user_tile = GAME.map->get_tile(user->pos);
+		Tile* user_tile = map->get_tile(user->pos);
 		if (user_tile)
 		{
 			for (std::list<Terrain_flag_bonus>::iterator it =

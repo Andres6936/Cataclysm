@@ -1,7 +1,8 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include "Cataclysm/Entity/Plan.hpp"
-#include <Cataclysm/Util/globals.h>
+#include <Cataclysm/Entity/entity.h>
+#include <Cataclysm/World/map.h>
 
 Entity_plan::Entity_plan()
 {
@@ -53,8 +54,8 @@ void Entity_plan::generate_path_to_target(Entity_AI AI, Tripoint origin)
 		return;
 	}
 
-	Generic_map map = GAME.map->get_movement_map(AI, origin, target_point);
-	Pathfinder pf(map);
+	Generic_map genericMap = map->get_movement_map(AI, origin, target_point);
+	Pathfinder pf(genericMap);
 
 	path = pf.get_path(PATH_A_STAR, origin, target_point);
 

@@ -158,7 +158,7 @@ void Explosion::explode(Tripoint epicenter)
 			}
 // TODO: Explosive items explode recursively?
 // Damage the terrain there.  This may cause an explosion!
-			GAME.map->damage(pos, dam_set);
+			map->damage(pos, dam_set);
 // Plant a field, perhaps?
 			if (ftype && rng(1, 100) <= field_chance)
 			{
@@ -172,7 +172,7 @@ void Explosion::explode(Tripoint epicenter)
 					field_creator << ", created by " << reason;
 				}
 				field_placed.creator = field_creator.str();
-				GAME.map->add_field(field_placed, pos);
+				map->add_field(field_placed, pos);
 			}
 		} // y-loop
 	} // x-loop

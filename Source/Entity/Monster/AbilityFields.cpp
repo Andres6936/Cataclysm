@@ -132,7 +132,7 @@ bool Monster_ability_fields::effect(Monster* user)
 		{
 			Field field(type);
 			field.set_duration(dur);  // This will set its level appropriately
-			GAME.map->add_field(field, target);
+			map->add_field(field, target);
 		}
 	}
 

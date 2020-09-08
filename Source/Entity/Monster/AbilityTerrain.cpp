@@ -137,7 +137,7 @@ bool Monster_ability_terrain::effect(Monster* user)
 			}
 		}
 
-		Tile* tile_hit = GAME.map->get_tile(ter_pos);
+		Tile* tile_hit = map->get_tile(ter_pos);
 		if (!tile_hit)
 		{
 			debugmsg("%s used Monster_ability_terrain and hit a NULL tile at %s!",
@@ -153,7 +153,7 @@ bool Monster_ability_terrain::effect(Monster* user)
 		{
 			tile_hit->set_terrain(ter_used);
 // Check if we need to list the terrain
-			if (GAME.player->can_see(GAME.map.get(), ter_pos))
+			if (GAME.player->can_see(map.get(), ter_pos))
 			{
 				if (effects.count(ter_name) == 0)
 				{

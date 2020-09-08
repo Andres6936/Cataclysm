@@ -74,15 +74,15 @@ void Entity::die()
 {
 	for (int i = 0; i < inventory.size(); i++)
 	{
-		GAME.map->add_item(inventory[i], pos.x, pos.y, pos.z);
+		map->add_item(inventory[i], pos.x, pos.y, pos.z);
 	}
 	for (int i = 0; i < items_worn.size(); i++)
 	{
-		GAME.map->add_item(items_worn[i], pos.x, pos.y, pos.z);
+		map->add_item(items_worn[i], pos.x, pos.y, pos.z);
 	}
 	if (weapon.is_real())
 	{
-		GAME.map->add_item(weapon, pos.x, pos.y, pos.z);
+		map->add_item(weapon, pos.x, pos.y, pos.z);
 	}
 // Tell any monsters that're targeting us to QUIT IT
 	for (std::list<Entity*>::iterator it = GAME.entities.instances.begin();
@@ -979,13 +979,13 @@ bool Entity::can_sense(Entity* entity)
 	}
 // TODO: Use a range other than 15
 	if (has_sense(SENSE_SIGHT) &&
-		GAME.map->senses(pos, entity->pos, 15, SENSE_SIGHT))
+		map->senses(pos, entity->pos, 15, SENSE_SIGHT))
 	{
 		return true;
 	}
 // TODO:  Use a range other than 10
 	if (has_sense(SENSE_SMELL) &&
-		GAME.map->senses(pos, entity->pos, entity->get_smell(), SENSE_SMELL))
+		map->senses(pos, entity->pos, entity->get_smell(), SENSE_SMELL))
 	{
 		return true;
 	}
@@ -2605,7 +2605,7 @@ void Entity::attack(Entity* target)
 
 	use_ap(att.speed);
 
-	bool you_see = GAME.player->can_sense(GAME.map.get(), pos.x, pos.y);
+	bool you_see = GAME.player->can_sense(map.get(), pos.x, pos.y);
 	bool attacker_is_you = is_you();
 
 	std::string miss_verb = conjugate("miss");
@@ -2924,10 +2924,10 @@ void Entity::attack_ranged(Entity* target, Ranged_attack ra)
 	special_timer = ra.charge_time;
 	GAME.launch_projectile(this, ra, pos, target->pos);
 	action_points -= ra.speed;
-	if (GAME.player->can_see(GAME.map.get(), pos))
+	if (GAME.player->can_see(map.get(), pos))
 	{
 		std::string target_name;
-		if (GAME.player->can_see(GAME.map.get(), target->pos))
+		if (GAME.player->can_see(map.get(), target->pos))
 		{
 			target_name = target->get_name_to_player();
 		}
