@@ -3,7 +3,7 @@
 #ifndef CATACLYSM_TYPETOOL_HPP
 #define CATACLYSM_TYPETOOL_HPP
 
-#include <Cataclysm/tool.h>
+#include <Cataclysm/Entity/tool.h>
 #include "Cataclysm/Item/item_type.h"
 
 class Item_type_tool : public Item_type

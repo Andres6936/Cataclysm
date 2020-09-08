@@ -47,6 +47,7 @@ ADD_EXECUTABLE(Cataclysm
         Source/Attack/attack.cpp
         Source/Attack/Ranged.cpp
         Source/Entity/Plan.cpp
+        Source/Entity/tool.cpp
         Source/Entity/Pool.cpp
         Source/Entity/Stats.cpp
         Source/Entity/entity.cpp
@@ -95,6 +96,7 @@ ADD_EXECUTABLE(Cataclysm
         Source/Item/TypeContainer.cpp
         Source/Mechanism/time.cpp
         Source/Mechanism/mission.cpp
+        Source/Mechanism/keybind.cpp
         Source/Mechanism/explosion.cpp
         Source/Mechanism/status_effect.cpp
         Source/Random/rng.cpp
@@ -142,12 +144,10 @@ ADD_EXECUTABLE(Cataclysm
         Source/World/Terrain/FlagBonus.cpp
         Source/World/Terrain/SignalHandler.cpp
         Source/field.cpp
-        Source/tool.cpp
         Source/globals.cpp
         Source/newcharacter.cpp
         Source/pathfind.cpp
         Source/window.cpp
-        Source/keybind.cpp
         Source/main.cpp
         Source/map.cpp
         Source/skill.cpp

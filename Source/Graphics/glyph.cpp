@@ -1,6 +1,7 @@
-#include <Cataclysm/options.h>
 #include "Cataclysm/Graphics/glyph.h"
 #include <Cataclysm/Screen/Debugger.hpp>
+
+#define NO_BRIGHT_BG false
 
 std::string glyph::save_data()
 {

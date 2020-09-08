@@ -3,8 +3,8 @@
 
 #include "datapool.h"
 #include "mapgen.h"
-#include "keybind.h"
 
+#include "Cataclysm/Mechanism/keybind.h"
 #include "Cataclysm/Screen/PlayScreen.hpp"
 #include "Cataclysm/Entity/profession.h"
 #include <Cataclysm/World/Biome/biome.h>

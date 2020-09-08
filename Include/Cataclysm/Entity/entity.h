@@ -13,7 +13,7 @@
 #include <Cataclysm/Mechanism/status_effect.h>
 #include <Cataclysm/Entity/Player/player_activity.h>
 #include <Cataclysm/Entity/Player/Enum/ActivityType.hpp>
-#include <Cataclysm/tool.h>
+#include <Cataclysm/Entity/tool.h>
 #include <Cataclysm/Enum/trait.h>
 #include <Cataclysm/Enum/enum.h>
 
