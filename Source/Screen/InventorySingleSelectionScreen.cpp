@@ -111,7 +111,7 @@ void InventorySingleSelectionScreen::updated()
 		DictionaryAny& dictionary = dictionaryItems.at(iclass);
 
 		const std::uint16_t key = letter;
-		const std::string name = player->inventory[i].get_name();
+		const std::string name = player->inventory[i].get_name_full();
 		const int weight = player->inventory[i].get_weight();
 		const int volume = player->inventory[i].get_volume();
 
