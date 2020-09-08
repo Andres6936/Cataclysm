@@ -24,10 +24,6 @@ INewGameScreen::INewGameScreen()
 		worldmap->generate();
 	}
 
-	// Need to set time BEFORE creating a new character - because creating a new
-	// character uses time to set mission deadlines!
-	time = Time(0, 0, 8, 1, SEASON_SPRING, STARTING_YEAR);
-
 	map = std::make_unique<Map>();
 	player = std::make_unique<Player>();
 

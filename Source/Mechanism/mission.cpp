@@ -2,6 +2,7 @@
 #include <Cataclysm/Random/rng.h>
 #include <Cataclysm/Util/String/stringfunc.h>
 #include <Cataclysm/Util/globals.h>
+#include <Cataclysm/Mechanism/TimeManager.hpp>
 
 void Mission_template::assign_uid(int ID)
 {
@@ -197,7 +198,7 @@ Mission::Mission(Mission_type T, std::string T_N, int T_C, int X, Time D,
 	status = MISSION_STATUS_ACTIVE;
 	if (deadline.get_turn() == -1)
 	{
-		deadline = GAME.time + HOURS(1);
+		deadline = timeManager.addHours(1);
 	}
 }
 
@@ -219,7 +220,8 @@ bool Mission::set_from_template(Mission_template* temp)
 		xp += temp->count_xp_bonus * (target_count - 1);
 	}
 	int time_to_finish = rng(temp->time_min, temp->time_max);
-	deadline = GAME.time + HOURS(time_to_finish);
+
+	deadline = timeManager.addHours(time_to_finish);
 	deadline.standardize();
 //debugmsg("%s (%d) + %d hours = %s (%d)", GAME.time.get_text().c_str(), GAME.time.get_turn(), time_to_finish, deadline.get_text().c_str(), deadline.get_turn());
 
@@ -228,7 +230,7 @@ bool Mission::set_from_template(Mission_template* temp)
 
 Time Mission::get_time_left()
 {
-	Time ret = deadline - GAME.time;
+	Time ret = deadline - timeManager.getTime();
 	ret.standardize();
 	return ret;
 }

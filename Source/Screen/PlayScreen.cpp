@@ -4,6 +4,7 @@
 #include <Cataclysm/Random/rng.h>
 #include <Cataclysm/Screen/PlayScreen.hpp>
 #include <Cataclysm/Entity/Monster/monster.h>
+#include <Cataclysm/Mechanism/TimeManager.hpp>
 #include <Cataclysm/Visual/Screen/MessageQueue.hpp>
 
 #include <stdarg.h>
@@ -1231,7 +1232,7 @@ bool PlayScreen::msg_query_yn(std::string msg, ...)
 	colorized << "<c=ltgreen>" << text << "<c=/>";
 	text = colorized.str();
 
-	messageQueue.addMessage({text, static_cast<uint32_t>(time.get_turn())});
+	messageQueue.addMessage({text, static_cast<uint32_t>(timeManager.getTime().get_turn())});
 	new_messages += 1;
 
 	draw_all();
@@ -1340,7 +1341,7 @@ void PlayScreen::update_hud()
 //debugmsg("update_hud(); mes %d, new %d", messages.size(), new_messages);
 	print_messages();
 // Update date
-	i_hud.set_data("text_date", time.get_text());
+	i_hud.set_data("text_date", timeManager.getTime().get_text());
 // Update location description
 	Submap* sm = map->get_center_submap();
 // TODO: This prints the DATA name of the World_ter; we want the DISPLAY name
@@ -2016,28 +2017,9 @@ int PlayScreen::get_furniture_uid()
 	return next_furniture_uid++;
 }
 
-bool PlayScreen::minute_timer(int minutes)
-{
-	if (minutes <= 0)
-	{
-		return true;
-	}
-	int turns = (minutes * 60) / SECONDS_IN_TURN;
-	return turn_timer(turns);
-}
-
-bool PlayScreen::turn_timer(int turns)
-{
-	if (turns <= 0)
-	{
-		return true;
-	}
-	return (time.get_turn() % turns == 0);
-}
-
 int PlayScreen::get_light_level()
 {
-	int ret = time.get_light_level();
+	int ret = timeManager.getTime().get_light_level();
 	if (temp_light_level > ret)
 	{
 		return temp_light_level;
@@ -2178,7 +2160,7 @@ Cataclysm::ScreenType PlayScreen::processInput()
 		return Cataclysm::ScreenType::QUIT;
 	}
 	// Advance the turn
-	time.increment();
+	timeManager.getTime().increment();
 	// This keeps the game going
 	return Cataclysm::ScreenType::NONE;
 }

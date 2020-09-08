@@ -108,8 +108,8 @@ public:
 /**** Data - Universal access functions ****/
 	int get_item_uid();     // Get the next available UID (and increment)
 	int get_furniture_uid();// Get the next available UID (and increment)
-	bool minute_timer(int minutes); // Returns true once every $minutes minutes
-	bool turn_timer(int turns);     // Returns true once every $turns turns
+	// Returns true once every $minutes minutes
+	// Returns true once every $turns turns
 	int get_light_level();          // Current light distance, based on the time
 
 	bool is_empty(Tripoint pos);

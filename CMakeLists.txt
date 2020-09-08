@@ -101,6 +101,7 @@ ADD_EXECUTABLE(Cataclysm
         Source/Mechanism/mission.cpp
         Source/Mechanism/keybind.cpp
         Source/Mechanism/explosion.cpp
+        Source/Mechanism/TimeManager.cpp
         Source/Mechanism/newcharacter.cpp
         Source/Mechanism/status_effect.cpp
         Source/Random/rng.cpp

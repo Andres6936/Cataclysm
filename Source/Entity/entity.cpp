@@ -1,4 +1,5 @@
 #include <Cataclysm/Visual/Screen/MessageQueue.hpp>
+#include <Cataclysm/Mechanism/TimeManager.hpp>
 #include <Cataclysm/Entity/entity.h>
 #include <Cataclysm/Random/rng.h>
 #include <Cataclysm/Util/globals.h>
@@ -100,13 +101,13 @@ void Entity::start_turn()
 {
 	stats.reset();  // Reset all to their max values
 
-	if (GAME.minute_timer(30))
+	if (timeManager.minuteTimer(30))
 	{
 		adjust_morale();  // Adjust morale before doing other stuff.
 	}
 
 // Move food/water from stomach to body
-	if (GAME.minute_timer(1))
+	if (timeManager.minuteTimer(1))
 	{
 		if (stomach_food > 0)
 		{
@@ -141,15 +142,15 @@ void Entity::start_turn()
 	{
 		thirst_interval += 2;
 	}
-	if (GAME.minute_timer(hunger_interval))
+	if (timeManager.minuteTimer(hunger_interval))
 	{
 		hunger++;
 	}
-	if (GAME.minute_timer(thirst_interval))
+	if (timeManager.minuteTimer(thirst_interval))
 	{
 		thirst++;
 	}
-	if (GAME.minute_timer(fatigue_interval))
+	if (timeManager.minuteTimer(fatigue_interval))
 	{
 		fatigue++;
 	}
@@ -184,7 +185,7 @@ void Entity::process_status_effects()
 		{
 
 		case STATUS_SLEEP_AID:
-			if (GAME.minute_timer(1))
+			if (timeManager.minuteTimer(1))
 			{
 				fatigue++;
 			}
@@ -193,7 +194,7 @@ void Entity::process_status_effects()
 		case STATUS_PAINKILL_MILD:
 		{
 			int pkill = (level > 2 ? 20 : 10 * level);
-			if (GAME.turn_timer(24 - level * 4) && painkill < pkill)
+			if (timeManager.turnTimer(24 - level * 4) && painkill < pkill)
 			{
 				painkill++;
 			}
@@ -203,7 +204,7 @@ void Entity::process_status_effects()
 		case STATUS_PAINKILL_MED:
 		{
 			int pkill = (level > 4 ? 90 : 30 + 15 * level);
-			if (GAME.turn_timer(17 - level * 2) && painkill < pkill)
+			if (timeManager.turnTimer(17 - level * 2) && painkill < pkill)
 			{
 				painkill++;
 			}
@@ -213,7 +214,7 @@ void Entity::process_status_effects()
 		case STATUS_PAINKILL_LONG:
 		{
 			int pkill = (level > 3 ? 60 : 30 + 10 * level);
-			if (GAME.minute_timer(2) && painkill < pkill)
+			if (timeManager.minuteTimer(2) && painkill < pkill)
 			{
 				painkill++;
 			}
@@ -223,7 +224,7 @@ void Entity::process_status_effects()
 		case STATUS_PAINKILL_HEAVY:
 		{
 			int pkill = (level > 6 ? 200 : 80 + 20 * level);
-			if (GAME.turn_timer(11 - level) && painkill < pkill)
+			if (timeManager.turnTimer(11 - level) && painkill < pkill)
 			{
 				painkill++;
 			}
