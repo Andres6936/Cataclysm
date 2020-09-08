@@ -1566,11 +1566,6 @@ void PlayScreen::pickup_items(Tripoint pos)
 	pickup_items(pos.x, pos.y);
 }
 
-void PlayScreen::pickup_items(Point pos)
-{
-	pickup_items(pos.x, pos.y);
-}
-
 void PlayScreen::pickup_items(int posx, int posy)
 {
 	if (map->has_flag(TF_SEALED, posx, posy))
@@ -2048,11 +2043,6 @@ int PlayScreen::get_light_level()
 		return temp_light_level;
 	}
 	return ret;
-}
-
-bool PlayScreen::is_empty(int x, int y, int z)
-{
-	return is_empty(Tripoint(x, y, z));
 }
 
 bool PlayScreen::is_empty(Tripoint pos)

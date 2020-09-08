@@ -92,8 +92,6 @@ public:
 
 	void pickup_items(Tripoint pos);
 
-	void pickup_items(Point pos);
-
 	void pickup_items(int posx, int posy);
 
 // TODO: Both are limited in that they can not return a point that the player
@@ -113,12 +111,6 @@ public:
 	bool minute_timer(int minutes); // Returns true once every $minutes minutes
 	bool turn_timer(int turns);     // Returns true once every $turns turns
 	int get_light_level();          // Current light distance, based on the time
-
-/* is_empty() returns true if and only if the specified tile has a move_cost > 0
- * and there are no entities there.
- * TODO: Other requirements?
- */
-	bool is_empty(int x, int y, int z);
 
 	bool is_empty(Tripoint pos);
 
