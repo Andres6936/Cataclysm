@@ -51,8 +51,6 @@ namespace Cataclysm
 
 	public:
 
-		inline static std::unique_ptr<Worldmap> worldmap {nullptr};
-
 		// Virtual Methods
 
 		virtual void draw() = 0;

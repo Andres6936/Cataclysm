@@ -91,4 +91,6 @@ private:
 	std::string name;
 };
 
+inline std::unique_ptr<Worldmap> worldmap {nullptr};
+
 #endif

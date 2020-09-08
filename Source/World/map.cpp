@@ -1592,7 +1592,7 @@ void Submap_pool::remove_submap(Submap* sm)
 
 void Submap_pool::clear_submaps(int sector_x, int sector_y)
 {
-	std::string map_dir = SAVE_DIR + "/" + GAME.worldmap->get_name();
+	std::string map_dir = SAVE_DIR + "/" + worldmap->get_name();
 	if (!directory_exists(map_dir))
 	{
 		if (!create_directory(map_dir))
@@ -1667,7 +1667,7 @@ void Submap_pool::clear_submaps(int sector_x, int sector_y)
 
 void Submap_pool::init_submaps(int sector_x, int sector_y)
 {
-	std::string map_dir = SAVE_DIR + "/" + GAME.worldmap->get_name();
+	std::string map_dir = SAVE_DIR + "/" + worldmap->get_name();
 /* The first time we use a new world, the directory won't even exist!  This will
  * be remedied the first time we have to SAVE Submaps, but for now, we'll take
  * it as a sign that we need to generate ALL of them.
@@ -1691,7 +1691,7 @@ void Submap_pool::init_submaps(int sector_x, int sector_y)
 				std::stringstream filename;
 				if (!gen_all)
 				{
-					filename << SAVE_DIR << "/" << GAME.worldmap->get_name() << "/map." <<
+					filename << SAVE_DIR << "/" << worldmap->get_name() << "/map." <<
 							 sx << "." << sy;
 				}
 				if (gen_all || !load_submaps(filename.str()))
@@ -1795,7 +1795,7 @@ Submap* Submap_pool::generate_submap(Tripoint p)
 	if (p.z > 0)
 	{
 		Submap* below = at_location(p.x, p.y, p.z - 1);
-		Worldmap_tile* tile = GAME.worldmap->get_tile(p.x, p.y);
+		Worldmap_tile* tile = worldmap->get_tile(p.x, p.y);
 		if (!tile)
 		{
 			sub->generate_empty();
@@ -1807,7 +1807,7 @@ Submap* Submap_pool::generate_submap(Tripoint p)
 		point_map[p] = sub;
 		return sub;
 	}
-	sub->generate(GAME.worldmap.get(), p.x, p.y, p.z);
+	sub->generate(worldmap.get(), p.x, p.y, p.z);
 	point_map[p] = sub;
 	return sub;
 }
