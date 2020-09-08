@@ -1478,16 +1478,6 @@ bool Submap::load_data(std::istream& data)
 	return true;
 }
 
-Submap_pool::~Submap_pool()
-{
-	for (std::list<Submap*>::iterator it = instances.begin();
-		 it != instances.end();
-		 it++)
-	{
-		delete (*it);
-	}
-}
-
 Submap* Submap_pool::at_location(int x, int y, int z)
 {
 	return at_location(Tripoint(x, y, z));
@@ -1573,20 +1563,6 @@ void Submap_pool::load_area_centered_on(int center_x, int center_y)
 	load_area(sector_x, sector_y);
 }
 
-int Submap_pool::size()
-{
-	return instances.size();
-}
-
-std::string Submap_pool::all_size()
-{
-	std::stringstream ret;
-	ret << "instances: " << instances.size() << " point_map: " <<
-		point_map.size();
-	return ret.str();
-}
-
-
 void Submap_pool::remove_point(Tripoint p)
 {
 	if (point_map.count(p) == 0)
@@ -1611,7 +1587,6 @@ void Submap_pool::remove_submap(Submap* sm)
 		return;
 	}
 	delete sm;
-	instances.remove(sm);
 }
 
 void Submap_pool::clear_submaps(int sector_x, int sector_y)
@@ -1785,7 +1760,6 @@ bool Submap_pool::load_submaps(std::string filename)
             debugmsg("Using it!");
           }
 */
-					instances.push_back(sm);
 					point_map[smpos] = sm;
 				}
 				else
@@ -1830,12 +1804,10 @@ Submap* Submap_pool::generate_submap(Tripoint p)
 			sub->generate_above(tile->terrain, below);
 		}
 		point_map[p] = sub;
-		instances.push_back(sub);
 		return sub;
 	}
 	sub->generate(GAME.worldmap.get(), p.x, p.y, p.z);
 	point_map[p] = sub;
-	instances.push_back(sub);
 	return sub;
 }
 

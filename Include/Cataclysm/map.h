@@ -209,8 +209,6 @@ struct Submap
 
 #define SECTOR_SIZE 15
 
-using namespace Doryen;
-
 /**
  * So: We need to limit how many submaps are in memory at any given time,
  * because they use a lot of memory and we'll quickly run out.
@@ -224,7 +222,7 @@ class Submap_pool final
 
 private:
 
-	Geometry::Point2D<> sector {-1, -1};
+	Doryen::Geometry::Point2D<> sector {-1, -1};
 
 	std::map<Tripoint, Submap*, Tripointcomp> point_map;
 
@@ -244,10 +242,6 @@ private:
 
 public:
 
-	Submap_pool() noexcept = default;
-
-	~Submap_pool();
-
 	Submap* at_location(int x, int y, int z = 0);
 
 	Submap* at_location(Tripoint p);
@@ -266,11 +260,6 @@ public:
 	 */
 	void load_area_centered_on(int center_x, int center_y);
 
-	int size();
-
-	std::string all_size();
-
-	std::list<Submap*> instances;
 };
 
 class Map

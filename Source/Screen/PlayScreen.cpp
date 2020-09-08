@@ -1593,9 +1593,7 @@ void PlayScreen::debug_command()
 		break;
 
 	case DEBUG_ACTION_MEMORY_INFO:
-		popup("Submaps: %s\nSizeof(Submap): %d\nEntities: %d",
-				SUBMAP_POOL.all_size().c_str(), sizeof(Submap),
-				entities.instances.size());
+		popup("Sizeof(Submap): %d\nEntities: %d", sizeof(Submap), entities.instances.size());
 		break;
 
 	case DEBUG_ACTION_PLACE_BONUS:
