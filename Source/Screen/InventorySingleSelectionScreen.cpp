@@ -214,9 +214,18 @@ ScreenType InventorySingleSelectionScreen::processInput()
 	}
 	else if (ch == '\n')
 	{
-		setItemSelected();
+		try
+		{
+			setItemSelected();
 
-		return ScreenType::INFORMATION_ITEM;
+			return ScreenType::INFORMATION_ITEM;
+		}
+		catch (std::domain_error& exception)
+		{
+			showDebugMessage(exception.what());
+
+			return ScreenType::PLAY;
+		}
 	}
 	else
 	{ // Anything else warrants a check for the matching key!
@@ -271,9 +280,18 @@ ScreenType InventorySingleSelectionScreen::processInput()
 
 		if (found)
 		{
-			setItemSelected();
+			try
+			{
+				setItemSelected();
 
-			return ScreenType::INFORMATION_ITEM;
+				return ScreenType::INFORMATION_ITEM;
+			}
+			catch (std::domain_error& exception)
+			{
+				showDebugMessage(exception.what());
+
+				return ScreenType::PLAY;
+			}
 		}
 	}
 
@@ -327,6 +345,11 @@ void InventorySingleSelectionScreen::setItemSelected()
 
 	// Change of screen with the next action, needed update
 	isNeededUpdate = true;
+
+	if (stateInventory.isEmpty())
+	{
+		throw std::domain_error("State Inventory is empty, post-condition not satisfied");
+	}
 }
 
 void InventorySingleSelectionScreen::printDictionaryClothing()

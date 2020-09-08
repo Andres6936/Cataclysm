@@ -57,6 +57,9 @@ namespace Cataclysm
 		 */
 		std::uint32_t totalHeadersInsertedInLastUpdate = 0;
 
+		/**
+		 * @post State Inventory have almost 1 item.
+		 */
 		void setItemSelected();
 
 		void printDictionaryItems();
