@@ -143,6 +143,7 @@ ADD_EXECUTABLE(Cataclysm
         Source/World/field.cpp
         Source/World/mapgen.cpp
         Source/World/worldmap.cpp
+        Source/World/ObserverMap.cpp
         Source/World/world_terrain.cpp
         Source/World/VariableTerrain.cpp
         Source/World/worldmap_generate.cpp

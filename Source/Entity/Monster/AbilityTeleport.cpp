@@ -3,6 +3,7 @@
 #include <Cataclysm/Util/globals.h>
 #include <Cataclysm/Random/rng.h>
 #include "Cataclysm/Screen/Debugger.hpp"
+#include <Cataclysm/World/ObserverMap.hpp>
 #include <Cataclysm/Entity/Monster/monster.h>
 #include "Cataclysm/Entity/Monster/AbilityTeleport.hpp"
 
@@ -101,7 +102,7 @@ bool Monster_ability_teleport::effect(Monster* user)
 					p.y = user->pos.y + diff;
 					break;
 				}
-				if (p != user->pos && GAME.is_empty(p) &&
+				if (p != user->pos && observerMap.isEmpty(p) &&
 					(phase || (user->can_see(map.get(), p) &&
 							   map->clear_path_exists(user->pos, p))))
 				{
@@ -135,7 +136,7 @@ bool Monster_ability_teleport::effect(Monster* user)
 				{ // Skip central tile
 					p.y++;
 				}
-				if (GAME.is_empty(p) &&
+				if (observerMap.isEmpty(p) &&
 					(phase || (user->can_see(map.get(), p) &&
 							   map->clear_path_exists(user->pos, p))))
 				{

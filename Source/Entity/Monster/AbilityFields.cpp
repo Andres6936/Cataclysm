@@ -2,6 +2,7 @@
 
 #include <Cataclysm/Util/globals.h>
 #include <Cataclysm/Random/rng.h>
+#include <Cataclysm/World/ObserverMap.hpp>
 #include <Cataclysm/Entity/Monster/monster.h>
 #include "Cataclysm/Entity/Monster/AbilityFields.hpp"
 
@@ -95,7 +96,7 @@ bool Monster_ability_fields::effect(Monster* user)
 		for (p.y = user->pos.y - range; p.y <= user->pos.y + range; p.y++)
 		{
 			p.z = user->pos.z;
-			if (GAME.is_empty(p) && (affect_self || p != user->pos))
+			if (observerMap.isEmpty(p) && (affect_self || p != user->pos))
 			{
 				valid_targets.push_back(p);
 			}

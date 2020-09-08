@@ -2,6 +2,7 @@
 
 #include <Cataclysm/Util/globals.h>
 #include <Cataclysm/Random/rng.h>
+#include <Cataclysm/World/ObserverMap.hpp>
 #include <Cataclysm/Entity/Monster/monster.h>
 #include <Cataclysm/Visual/Screen/MessageQueue.hpp>
 #include "Cataclysm/Entity/Monster/AbilitySummon.hpp"
@@ -99,7 +100,7 @@ bool Monster_ability_summon::effect(Monster* user)
 			{ // Skip central tile
 				p.y++;
 			}
-			if (GAME.is_empty(p))
+			if (observerMap.isEmpty(p))
 			{
 				valid_targets.push_back(p);
 			}
