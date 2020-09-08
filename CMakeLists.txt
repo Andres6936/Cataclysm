@@ -43,6 +43,7 @@ TARGET_LINK_LIBRARIES(Cuss PRIVATE ncurses)
 SET_PROPERTY(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CMAKE_COMMAND} -E time")
 
 ADD_EXECUTABLE(Cataclysm
+        Source/Main.cpp
         Source/Attack/Verbs.cpp
         Source/Attack/attack.cpp
         Source/Attack/Ranged.cpp
@@ -100,6 +101,7 @@ ADD_EXECUTABLE(Cataclysm
         Source/Mechanism/mission.cpp
         Source/Mechanism/keybind.cpp
         Source/Mechanism/explosion.cpp
+        Source/Mechanism/newcharacter.cpp
         Source/Mechanism/status_effect.cpp
         Source/Random/rng.cpp
         Source/Random/dice.cpp
@@ -150,8 +152,6 @@ ADD_EXECUTABLE(Cataclysm
         Source/World/Terrain/terrain.cpp
         Source/World/Terrain/FlagBonus.cpp
         Source/World/Terrain/SignalHandler.cpp
-        Source/newcharacter.cpp
-        Source/main.cpp
         )
 
 # Compile Cataclysm with Support to C++17
