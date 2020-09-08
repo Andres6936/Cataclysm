@@ -277,59 +277,6 @@ Cataclysm::ScreenType PlayScreen::do_action(Interface_action act)
 		break;
 
 	case IACTION_INVENTORY:
-	{
-		Item it = player->inventory_single();
-		Item_action act = it.show_info();
-
-		switch (act)
-		{
-
-		case IACT_WIELD:
-			messageQueue.addMessage({ player->wield_item_message(it) });
-			player->wield_item_uid(it.get_uid());
-			break;
-
-		case IACT_WEAR:
-			messageQueue.addMessage({ player->wear_item_message(it) });
-			player->wear_item_uid(it.get_uid());
-			break;
-
-		case IACT_DROP:
-			messageQueue.addMessage({ player->drop_item_message(it) });
-			player->remove_item_uid(it.get_uid());
-// TODO: Dropping may fail sometimes(?), so don't automatically add the item
-			map->add_item(it, player->pos);
-			break;
-
-		case IACT_EAT:
-			messageQueue.addMessage({ player->eat_item_message(it) });
-			player->eat_item_uid(it.get_uid());
-			break;
-
-		case IACT_APPLY:
-			messageQueue.addMessage({ player->apply_item_message(it) });
-			player->apply_item_uid(it.get_uid());
-			break;
-
-		case IACT_READ:
-			messageQueue.addMessage({ player->read_item_message(it) });
-			player->read_item_uid(it.get_uid());
-			break;
-
-		case IACT_UNLOAD:
-// TODO: Put unload code here
-			break;
-
-		case IACT_RELOAD:
-			player->reload_prep(it.get_uid());
-			break;
-
-		case IACT_BUTCHER:
-// TODO: Put butcher code here
-			break;
-		} // switch (act)
-
-	}
 		return Cataclysm::ScreenType::INVENTORY_SINGLE_SELECTION;
 
 	case IACTION_DROP:
