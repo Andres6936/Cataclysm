@@ -205,52 +205,25 @@ struct Submap
 
 };
 
-/* So: We need to limit how many submaps are in memory at any given time,
+
+
+#define SECTOR_SIZE 15
+
+/**
+ * So: We need to limit how many submaps are in memory at any given time,
  * because they use a lot of memory and we'll quickly run out.
  * The idea here is to divide the world into "sectors," and have nine sectors -
  * a 3x3 grid - in memory at once.  Once the player moves out of the center
  * sector, we move/reload sectors so that the player is repositioned in the
  * center.
  */
-
-#define SECTOR_SIZE 15
-
-struct Submap_pool
+class Submap_pool final
 {
-public:
-	Submap_pool();
-
-	~Submap_pool();
-
-	Submap* at_location(int x, int y, int z = 0);
-
-	Submap* at_location(Point p);
-
-	Submap* at_location(Tripoint p);
-
-/* load_area() loads nine sectors, with the upper-left corner at
- * [SECTOR_SIZE * sector_x][SECTOR_SIZE * sector_y].  It saves all current data,
- * runs through (instances) o find any submaps which aren't in that area, and
- * removes them; it then loads or generates any missing submaps.
- */
-	void load_area(int sector_x, int sector_y);
-
-/* load_area_centered_on() calls load_area(), passing a sector_x and sectory_y
- * which will place [center_x][center_y] in the center sector.
- */
-	void load_area_centered_on(int center_x, int center_y);
-
-	int size();
-
-	std::string all_size();
-
-// For debugging purposes.
-	std::string get_range_text();
-
-	std::list<Submap*> instances;
-	Point sector;
 
 private:
+
+	Doryen::Geometry::Point2D<> sector {-1, -1};
+
 	std::map<Tripoint, Submap*, Tripointcomp> point_map;
 
 	void remove_point(Tripoint p);
@@ -267,6 +240,35 @@ private:
 
 	Submap* generate_submap(Tripoint p);
 
+public:
+
+	Submap_pool() noexcept = default;
+
+	~Submap_pool();
+
+	Submap* at_location(int x, int y, int z = 0);
+
+	Submap* at_location(Tripoint p);
+
+	/**
+	 * load_area() loads nine sectors, with the upper-left corner at
+	 * [SECTOR_SIZE * sector_x][SECTOR_SIZE * sector_y].  It saves all current data,
+	 * runs through (instances) o find any submaps which aren't in that area, and
+	 * removes them; it then loads or generates any missing submaps.
+	 */
+	void load_area(int sector_x, int sector_y);
+
+	/**
+	 * load_area_centered_on() calls load_area(), passing a sector_x and sectory_y
+	 * which will place [center_x][center_y] in the center sector.
+	 */
+	void load_area_centered_on(int center_x, int center_y);
+
+	int size();
+
+	std::string all_size();
+
+	std::list<Submap*> instances;
 };
 
 class Map

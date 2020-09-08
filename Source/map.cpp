@@ -1478,11 +1478,6 @@ bool Submap::load_data(std::istream& data)
 	return true;
 }
 
-Submap_pool::Submap_pool()
-{
-	sector = Point(-1, -1);
-}
-
 Submap_pool::~Submap_pool()
 {
 	for (std::list<Submap*>::iterator it = instances.begin();
@@ -1496,12 +1491,6 @@ Submap_pool::~Submap_pool()
 Submap* Submap_pool::at_location(int x, int y, int z)
 {
 	return at_location(Tripoint(x, y, z));
-}
-
-Submap* Submap_pool::at_location(Point p)
-{
-	Tripoint trip(p.x, p.y, 0);
-	return at_location(trip);
 }
 
 Submap* Submap_pool::at_location(Tripoint p)
@@ -1530,28 +1519,28 @@ void Submap_pool::load_area(int sector_x, int sector_y)
 		return;
 	}
 
-// Check if we're loading what we already have - if so, skip all this work
-	if (sector_x == sector.x && sector_y == sector.y)
+	// Check if we're loading what we already have - if so, skip all this work
+	if (sector.equals({sector_x, sector_y}))
 	{
 		return;
 	}
 
-// Start by clearing out existing submaps which we don't need...
-// (unless we're brand-new)
-	if (sector.x != -1 && sector.y != -1)
+	// Start by clearing out existing submaps which we don't need...
+	// (unless we're brand-new)
+	if (not sector.equals({-1, -1}))
 	{
 		clear_submaps(sector_x, sector_y);
 	}
 
-/* At this point, we've saved and deleted all submaps which won't be in the
- * updated pool.  The next step is to load (or generate if need be) all the
- * submaps which WILL be in the updated pool.
- */
+	/* At this point, we've saved and deleted all submaps which won't be in the
+	 * updated pool.  The next step is to load (or generate if need be) all the
+	 * submaps which WILL be in the updated pool.
+	 */
 	init_submaps(sector_x, sector_y);
 
-// Finally, set sector.
-	sector = Point(sector_x, sector_y);
-
+	// Finally, set sector.
+	sector.setX(sector_x);
+	sector.setY(sector_y);
 }
 
 void Submap_pool::load_area_centered_on(int center_x, int center_y)
@@ -1594,28 +1583,6 @@ std::string Submap_pool::all_size()
 	std::stringstream ret;
 	ret << "instances: " << instances.size() << " point_map: " <<
 		point_map.size();
-	return ret.str();
-}
-
-std::string Submap_pool::get_range_text()
-{
-	std::stringstream ret;
-	Point lower = sector;
-	Point upper = lower;
-	lower.x *= SECTOR_SIZE;
-	lower.y *= SECTOR_SIZE;
-	upper.x += 3;
-	upper.y += 3;
-	upper.x *= SECTOR_SIZE;
-	upper.y *= SECTOR_SIZE;
-	upper.x += SECTOR_SIZE - 1;
-	upper.y += SECTOR_SIZE - 1;
-	ret << lower.str() << " to " << upper.str() << " (center ";
-	lower.x += SECTOR_SIZE;
-	lower.y += SECTOR_SIZE;
-	upper.x -= SECTOR_SIZE;
-	upper.y -= SECTOR_SIZE;
-	ret << lower.str() << " to " << upper.str() << ")";
 	return ret.str();
 }
 
