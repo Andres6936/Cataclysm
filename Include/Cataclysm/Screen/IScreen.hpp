@@ -53,8 +53,6 @@ namespace Cataclysm
 
 		inline static std::unique_ptr<Worldmap> worldmap {nullptr};
 
-		inline static Entity_pool entities {};
-
 		inline static Time time {};
 
 		// Virtual Methods

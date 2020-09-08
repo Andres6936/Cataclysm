@@ -135,7 +135,7 @@ bool Monster_ability_summon::effect(Monster* user)
 		int index = rng(0, valid_targets.size() - 1);
 		mon->pos = valid_targets[index];
 		valid_targets.erase(valid_targets.begin() + index);
-		GAME.entities.add_entity(mon);
+		entities.add_entity(mon);
 
 // Track spawn counts, for the monster below.
 		if (player->can_sense(mon))

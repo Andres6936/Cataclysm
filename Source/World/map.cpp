@@ -1966,7 +1966,7 @@ debugmsg("Spawning monsters at World[%d:%d](%s), Submap[%d:%d:%d](%s)",
 debugmsg("Placed at [%d:%d:%d] - '%s'", pos.x, pos.y, posz,
          get_name(pos.x, pos.y, posz).c_str());
 */
-			GAME.entities.add_entity(mon);
+			entities.add_entity(mon);
 			(*monsters)[i].population--;
 		}
 	}
@@ -2582,7 +2582,7 @@ void Map::process_fields()
 		}
 		if (field->is_valid())
 		{
-			Entity* ent = GAME.entities.entity_at(pos);
+			Entity* ent = entities.entity_at(pos);
 			if (ent)
 			{
 				field->hit_entity(ent);

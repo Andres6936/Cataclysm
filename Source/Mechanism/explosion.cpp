@@ -149,7 +149,7 @@ void Explosion::explode(Tripoint epicenter)
 // Scale damage with distance.
 			int dam = (damage * (rad - distance + 1)) / (rad + 1);
 // Damage any entity there.
-			Entity* ent = GAME.entities.entity_at(pos);
+			Entity* ent = entities.entity_at(pos);
 			Damage_set dam_set;
 			dam_set.set_damage(DAMAGE_BASH, dam);
 			if (ent)

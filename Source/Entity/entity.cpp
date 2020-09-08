@@ -85,8 +85,8 @@ void Entity::die()
 		map->add_item(weapon, pos.x, pos.y, pos.z);
 	}
 // Tell any monsters that're targeting us to QUIT IT
-	for (std::list<Entity*>::iterator it = GAME.entities.instances.begin();
-		 it != GAME.entities.instances.end();
+	for (std::list<Entity*>::iterator it = entities.instances.begin();
+		 it != entities.instances.end();
 		 it++)
 	{
 		if ((*it)->plan.target_entity == this)
@@ -1031,7 +1031,7 @@ bool Entity::can_move_to(Map* map, int x, int y, int z)
 	{
 		return false;
 	}
-	if (GAME.entities.entity_at(x, y, z) != NULL)
+	if (entities.entity_at(x, y, z) != NULL)
 	{
 		return false;
 	}
@@ -1080,7 +1080,7 @@ bool Entity::can_drag_furniture_to(Map* map, int x, int y, int z)
 			return false;
 		}
 // No displacing entities (except us!)
-		Entity* blocker_ent = GAME.entities.entity_at(test);
+		Entity* blocker_ent = entities.entity_at(test);
 		if (blocker_ent != NULL && blocker_ent != this)
 		{
 			return false;

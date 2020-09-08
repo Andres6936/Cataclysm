@@ -102,7 +102,7 @@ bool Monster_ability_terrain::effect(Monster* user)
 			{ // Skip terrain the caster is on!
 				pos.y++;
 			}
-			if (!GAME.entities.entity_at(pos))
+			if (!entities.entity_at(pos))
 			{
 				valid_targets.push_back(pos);
 			}

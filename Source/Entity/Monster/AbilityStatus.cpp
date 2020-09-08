@@ -133,7 +133,7 @@ bool Monster_ability_status::effect(Monster* user)
 		for (p.y = user->pos.y - range; p.y <= user->pos.y + range; p.y++)
 		{
 			p.z = user->pos.z;
-			Entity* ent = GAME.entities.entity_at(p);
+			Entity* ent = entities.entity_at(p);
 			if (ent)
 			{
 				std::string ent_name = ent->get_name();

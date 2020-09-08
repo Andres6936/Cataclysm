@@ -137,7 +137,7 @@ void Monster::die()
 
 	if (parent_uid >= 0)
 	{  // Reduce the parent's summons_used
-		Entity* parent = GAME.entities.lookup_uid(parent_uid);
+		Entity* parent = entities.lookup_uid(parent_uid);
 		if (parent && parent->summons_used > 0)
 		{
 			parent->summons_used--;
@@ -247,7 +247,7 @@ bool Monster::pick_attack_victim()
 // TODO: Differentiate between "attacking aggresors" and "preying upon randos"
 	int closest = 0;
 	std::vector<Entity*> best;
-	Entity_pool* pool = &(GAME.entities);
+	Entity_pool* pool = &(entities);
 	for (std::list<Entity*>::iterator it = pool->instances.begin();
 		 it != pool->instances.end();
 		 it++)

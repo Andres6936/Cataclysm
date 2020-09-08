@@ -50,4 +50,6 @@ private:
 	int next_uid;
 };
 
+inline Entity_pool entities {};
+
 #endif //CATACLYSM_POOL_HPP
