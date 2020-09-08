@@ -512,13 +512,11 @@ void PlayScreen::move_entities()
 	clean_up_dead_entities();
 	//scent_map = map->get_dijkstra_map(player->pos, 15);
 // First, give all entities action points
-	for (std::list<Entity*>::iterator it = entities.instances.begin();
-		 it != entities.instances.end();
-		 it++)
+	for (auto& entity : entities)
 	{
-		if (!(*it)->is_player())
+		if (!entity->is_player())
 		{
-			(*it)->gain_action_points();
+			entity->gain_action_points();
 		}
 	}
 /* Loop through the entities, giving each one a single turn at a time.
@@ -529,14 +527,11 @@ void PlayScreen::move_entities()
 	do
 	{
 		all_done = true;
-		for (std::list<Entity*>::iterator it = entities.instances.begin();
-			 it != entities.instances.end();
-			 it++)
+		for (auto& entity : entities)
 		{
-			Entity* ent = *it;
-			if (!ent->is_player() && ent->action_points > 0 && !ent->dead)
+			if (!entity->is_player() && entity->action_points > 0 && !entity->dead)
 			{
-				ent->take_turn();
+				entity->take_turn();
 				all_done = false;
 			}
 		}
@@ -548,8 +543,8 @@ void PlayScreen::move_entities()
 
 void PlayScreen::clean_up_dead_entities()
 {
-	std::list<Entity*>::iterator it = entities.instances.begin();
-	while (it != entities.instances.end())
+	std::list<Entity*>::iterator it = entities.begin();
+	while (it != entities.end())
 	{
 		Entity* ent = (*it);
 		if (ent->dead)
@@ -674,11 +669,9 @@ void PlayScreen::shift_if_needed()
 	map->shift(worldmap.get(), shiftx, shifty);
 	//Point p = map->get_center_point();
 	//SUBMAP_POOL.load_area_centered_on( p.x, p.y );
-	for (std::list<Entity*>::iterator it = entities.instances.begin();
-		 it != entities.instances.end();
-		 it++)
+	for (auto& entity : entities)
 	{
-		(*it)->shift(shiftx, shifty);
+		entity->shift(shiftx, shifty);
 	}
 }
 
@@ -1032,7 +1025,7 @@ void PlayScreen::debug_command()
 	case DEBUG_ACTION_MONSTER_PATH:
 		if (!entities.empty())
 		{
-			Entity* ent = *(entities.instances.begin());
+			Entity* ent = *(entities.begin());
 			Monster* mon = static_cast<Monster*>(ent);
 			mon->make_plans();
 			std::stringstream path_info;
@@ -1050,7 +1043,7 @@ void PlayScreen::debug_command()
 		break;
 
 	case DEBUG_ACTION_MEMORY_INFO:
-		popup("Sizeof(Submap): %d\nEntities: %d", sizeof(Submap), entities.instances.size());
+		popup("Sizeof(Submap): %d\nEntities: %d", sizeof(Submap), entities.size());
 		break;
 
 	case DEBUG_ACTION_PLACE_BONUS:
@@ -1301,11 +1294,9 @@ std::vector<Tripoint> PlayScreen::path_selector(int startx, int starty, int rang
 	if (target_entities)
 	{
 // Set up list of targets.
-		for (std::list<Entity*>::iterator it = entities.instances.begin();
-			 it != entities.instances.end();
-			 it++)
+		for (auto& entity : entities)
 		{
-			Entity* ent_target = (*it);
+			Entity* ent_target = entity;
 			int ent_range = rl_dist(player->pos, ent_target->pos);
 			if (ent_target != player.get() && ent_range <= range &&
 				player->is_enemy(ent_target) && player->can_sense(ent_target))

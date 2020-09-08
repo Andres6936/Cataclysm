@@ -11,11 +11,9 @@ Entity_pool::Entity_pool()
 
 Entity_pool::~Entity_pool()
 {
-	for (std::list<Entity*>::iterator it = instances.begin();
-		 it != instances.end();
-		 it++)
+	for (auto& entity : entities)
 	{
-		delete (*it);
+		delete entity;
 	}
 }
 
@@ -28,7 +26,7 @@ void Entity_pool::add_entity(Entity* ent)
 	}
 	ent->uid = next_uid;
 	next_uid++;
-	instances.push_back(ent);
+	push_back(ent);
 	uid_map[ent->uid] = ent;
 }
 
@@ -39,25 +37,14 @@ void Entity_pool::push_back(Entity* ent)
 		debugmsg("Tried to push_back NULL to Entity_pool");
 		return;
 	}
-	instances.push_back(ent);
+	push_back(ent);
 	uid_map[ent->uid] = ent;
-}
-
-void Entity_pool::clear()
-{
-	instances.clear();
-	uid_map.clear();
 }
 
 std::list<Entity*>::iterator Entity_pool::erase(std::list<Entity*>::iterator it)
 {
 	uid_map.erase((*it)->uid);
-	return instances.erase(it);
-}
-
-bool Entity_pool::empty()
-{
-	return instances.empty();
+	return erase(it);
 }
 
 Entity* Entity_pool::lookup_uid(int uid)
@@ -71,15 +58,14 @@ Entity* Entity_pool::lookup_uid(int uid)
 
 Entity* Entity_pool::entity_at(int posx, int posy)
 {
-	for (std::list<Entity*>::iterator it = instances.begin();
-		 it != instances.end();
-		 it++)
+	for (auto& entity : entities)
 	{
-		if ((*it)->pos.x == posx && (*it)->pos.y == posy)
+		if (entity->pos.x == posx && entity->pos.y == posy)
 		{
-			return (*it);
+			return entity;
 		}
 	}
+
 	return NULL;
 }
 
@@ -90,13 +76,11 @@ Entity* Entity_pool::entity_at(Tripoint pos)
 
 Entity* Entity_pool::entity_at(int posx, int posy, int posz)
 {
-	for (std::list<Entity*>::iterator it = instances.begin();
-		 it != instances.end();
-		 it++)
+	for (auto& entity : entities)
 	{
-		if ((*it)->pos.x == posx && (*it)->pos.y == posy && (*it)->pos.z == posz)
+		if (entity->pos.x == posx && entity->pos.y == posy && entity->pos.z == posz)
 		{
-			return (*it);
+			return entity;
 		}
 	}
 	return NULL;
@@ -112,11 +96,10 @@ Entity* Entity_pool::closest_seen_by(Entity* observer, int range)
 	Tripoint pos = observer->pos;
 	int best_range = range;
 	Entity* ret = NULL;
-	for (std::list<Entity*>::iterator it = instances.begin();
-		 it != instances.end();
-		 it++)
+
+	for (auto& entity : entities)
 	{
-		Entity* target = *it;
+		Entity* target = entity;
 		int dist = rl_dist(pos, target->pos);
 		if (target != observer && (best_range == -1 || dist <= best_range) &&
 			map->senses(pos, target->pos, range, SENSE_SIGHT))
@@ -137,7 +120,7 @@ bool Entity_pool::destroyItem(Item* item, std::int32_t _uid)
 	}
 
 	// Check entities first - almost certainly faster than the map
-	for (auto& entity : instances)
+	for (auto& entity : *this)
 	{
 		Item check = entity->remove_item(item, _uid);
 
@@ -164,7 +147,7 @@ Tripoint Entity_pool::findItem(Item* item, std::int32_t _uid)
 	}
 
 	// Check entities first - almost certainly faster than the map
-	for (auto& entity : instances)
+	for (auto& entity : *this)
 	{
 		if (entity->has_item(item, _uid))
 		{

@@ -19,20 +19,20 @@
  * potentially slow, but what can you do.
  */
 
-class Entity_pool
+class Entity_pool : public std::list<Entity*>
 {
+
 public:
+
 	Entity_pool();
 
-	~Entity_pool();
+	virtual ~Entity_pool();
 
 	void add_entity(Entity* ent); // Assigns a UID
+
 	void push_back(Entity* ent); // Same, except don't re-assign UID
-	void clear();
 
 	std::list<Entity*>::iterator erase(std::list<Entity*>::iterator it);
-
-	bool empty();
 
 	bool destroyItem(Item* item, std::int32_t _uid = -1);
 
@@ -52,9 +52,10 @@ public:
 
 	Entity* closest_seen_by(Entity* observer, int range = -1);
 
-	std::list<Entity*> instances;
 private:
+
 	std::map<int, Entity*> uid_map;
+
 	int next_uid;
 };
 

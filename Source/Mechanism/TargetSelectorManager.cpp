@@ -42,11 +42,9 @@ TargetSelectorManager::pathSelector(int startx, int starty, int range, bool targ
 	if (target_entities)
 	{
 // Set up list of targets.
-		for (std::list<Entity*>::iterator it = entities.instances.begin();
-			 it != entities.instances.end();
-			 it++)
+		for (auto& entity : entities)
 		{
-			Entity* ent_target = (*it);
+			Entity* ent_target = entity;
 			int ent_range = rl_dist(player->pos, ent_target->pos);
 			if (ent_target != player.get() && ent_range <= range &&
 				player->is_enemy(ent_target) && player->can_sense(ent_target))

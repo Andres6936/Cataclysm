@@ -88,14 +88,13 @@ void Entity::die()
 	{
 		map->add_item(weapon, pos.x, pos.y, pos.z);
 	}
-// Tell any monsters that're targeting us to QUIT IT
-	for (std::list<Entity*>::iterator it = entities.instances.begin();
-		 it != entities.instances.end();
-		 it++)
+
+	// Tell any monsters that're targeting us to QUIT IT
+	for (auto& entity : entities)
 	{
-		if ((*it)->plan.target_entity == this)
+		if (entity->plan.target_entity == this)
 		{
-			(*it)->plan.clear();
+			entity->plan.clear();
 		}
 	}
 }

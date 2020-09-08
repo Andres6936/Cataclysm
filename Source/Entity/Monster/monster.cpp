@@ -250,24 +250,22 @@ bool Monster::pick_attack_victim()
 	int closest = 0;
 	std::vector<Entity*> best;
 	Entity_pool* pool = &(entities);
-	for (std::list<Entity*>::iterator it = pool->instances.begin();
-		 it != pool->instances.end();
-		 it++)
+
+	for (auto& entity : entities)
 	{
-		Entity* tmp = (*it);
-// Not us, not in our genus, and we can sense them
-		if (is_enemy(tmp) && can_sense(tmp))
+		// Not us, not in our genus, and we can sense them
+		if (is_enemy(entity) && can_sense(entity))
 		{
-			int dist = rl_dist(pos, tmp->pos);
+			int dist = rl_dist(pos, entity->pos);
 			if (closest == 0 || dist < closest)
 			{
 				closest = dist;
 				best.clear();
-				best.push_back(tmp);
+				best.push_back(entity);
 			}
 			else if (dist == closest)
 			{
-				best.push_back(tmp);
+				best.push_back(entity);
 			}
 		}
 	}
