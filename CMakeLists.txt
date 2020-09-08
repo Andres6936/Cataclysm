@@ -68,6 +68,7 @@ ADD_EXECUTABLE(Cataclysm
         Source/Entity/Player/player_activity.cpp
         Source/Entity/Player/Enum/ActivityType.cpp
         Source/Geometry/geometry.cpp
+        Source/Enum/enum.cpp
         Source/Enum/trait.cpp
         Source/Enum/BodyPart.cpp
         Source/Enum/StatType.cpp
@@ -143,7 +144,6 @@ ADD_EXECUTABLE(Cataclysm
         Source/window.cpp
         Source/keybind.cpp
         Source/main.cpp
-        Source/enum.cpp
         Source/map.cpp
         Source/skill.cpp
         Source/explosion.cpp
