@@ -69,13 +69,9 @@ MenuScreen::MenuScreen()
 
 void MenuScreen::draw()
 {
-	i_menu.draw(w_menu);
-	i_menu.draw(screenMenu);
+	i_menu.draw(console);
 
-	w_menu->refresh();
-
-	screenMenu.blit({0, 0}, console, {0, 0});
-	screenMenu.draw();
+	console.draw();
 }
 
 void MenuScreen::updated()
