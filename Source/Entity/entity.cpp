@@ -2605,7 +2605,7 @@ void Entity::attack(Entity* target)
 
 	use_ap(att.speed);
 
-	bool you_see = GAME.player->can_sense(map.get(), pos.x, pos.y);
+	bool you_see = player->can_sense(map.get(), pos.x, pos.y);
 	bool attacker_is_you = is_you();
 
 	std::string miss_verb = conjugate("miss");
@@ -2924,10 +2924,10 @@ void Entity::attack_ranged(Entity* target, Ranged_attack ra)
 	special_timer = ra.charge_time;
 	GAME.launch_projectile(this, ra, pos, target->pos);
 	action_points -= ra.speed;
-	if (GAME.player->can_see(map.get(), pos))
+	if (player->can_see(map.get(), pos))
 	{
 		std::string target_name;
-		if (GAME.player->can_see(map.get(), target->pos))
+		if (player->can_see(map.get(), target->pos))
 		{
 			target_name = target->get_name_to_player();
 		}

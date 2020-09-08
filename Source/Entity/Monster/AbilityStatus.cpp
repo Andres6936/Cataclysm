@@ -137,7 +137,7 @@ bool Monster_ability_status::effect(Monster* user)
 			if (ent)
 			{
 				std::string ent_name = ent->get_name();
-				if (ent == GAME.player.get())
+				if (ent == player.get())
 				{
 					ent_name = "you";
 				}

@@ -123,4 +123,7 @@ public:
 	std::map<std::string, int> chapters_read;
 };
 
+// Note that player should always == &(entities[0])
+inline std::unique_ptr<Player> player {nullptr};
+
 #endif

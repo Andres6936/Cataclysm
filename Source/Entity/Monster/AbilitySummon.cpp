@@ -138,7 +138,7 @@ bool Monster_ability_summon::effect(Monster* user)
 		GAME.entities.add_entity(mon);
 
 // Track spawn counts, for the monster below.
-		if (GAME.player->can_sense(mon))
+		if (player->can_sense(mon))
 		{
 			if (actual_spawns.count(mon_name) == 0)
 			{
@@ -154,7 +154,7 @@ bool Monster_ability_summon::effect(Monster* user)
 
 // Display a message if the player sees us.
 	int nspn = actual_spawns.size();
-	bool see_user = GAME.player->can_sense(user);
+	bool see_user = player->can_sense(user);
 	if (nspn > 0)
 	{
 		std::stringstream message;

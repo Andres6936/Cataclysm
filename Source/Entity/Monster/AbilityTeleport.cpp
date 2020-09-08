@@ -164,13 +164,13 @@ bool Monster_ability_teleport::effect(Monster* user)
 		return false; // No valid teleport points, so cancel the attempt.
 	}
 
-	bool see_orig = GAME.player->can_sense(user);
+	bool see_orig = player->can_sense(user);
 
 	int index = rng(0, valid_targets.size() - 1);
 	Tripoint new_pos = valid_targets[index];
 	user->pos = new_pos;
 
-	bool see_new = GAME.player->can_sense(user);
+	bool see_new = player->can_sense(user);
 
 	std::stringstream message;
 	if (see_orig)
@@ -178,7 +178,7 @@ bool Monster_ability_teleport::effect(Monster* user)
 		message << user->get_name_to_player() << " " << verb;
 		if (see_new)
 		{
-			if (rl_dist(user->pos, GAME.player->pos) == 1)
+			if (rl_dist(user->pos, player->pos) == 1)
 			{
 				message << " right next to you!";
 			}
@@ -195,7 +195,7 @@ bool Monster_ability_teleport::effect(Monster* user)
 	else if (see_new)
 	{
 		message << user->get_name_indefinite() << " " << verb << " ";
-		if (rl_dist(user->pos, GAME.player->pos) == 1)
+		if (rl_dist(user->pos, player->pos) == 1)
 		{
 			message << "right next to you!";
 		}
