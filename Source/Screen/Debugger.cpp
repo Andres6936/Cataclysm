@@ -4,7 +4,7 @@
 #include <cstring>
 #include <curses.h>
 
-#include <Cataclysm/globals.h>
+#include <Cataclysm/Util/globals.h>
 #include "Cataclysm/Screen/Debugger.hpp"
 
 void init_display()

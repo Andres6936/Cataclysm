@@ -3,7 +3,7 @@
 #include <Cataclysm/World/Tile.hpp>
 #include <Cataclysm/Random/rng.h>
 #include <Cataclysm/Util/String/stringfunc.h>
-#include "Cataclysm/globals.h"
+#include <Cataclysm/Util/globals.h>
 #include <Cataclysm/Util/files.h>
 
 #include <sstream>

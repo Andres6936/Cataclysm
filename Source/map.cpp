@@ -1,6 +1,6 @@
 #include "Cataclysm/field.h"
 #include "Cataclysm/map.h"
-#include "Cataclysm/globals.h"
+#include <Cataclysm/Util/globals.h>
 #include <Cataclysm/Util/files.h>    // For SAVE_DIR
 #include <Cataclysm/Random/rng.h>
 #include <Cataclysm/Entity/Monster/monster.h>

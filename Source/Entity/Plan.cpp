@@ -1,7 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include "Cataclysm/Entity/Plan.hpp"
-#include "Cataclysm/globals.h"
+#include <Cataclysm/Util/globals.h>
 
 Entity_plan::Entity_plan()
 {

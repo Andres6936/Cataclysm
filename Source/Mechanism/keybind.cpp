@@ -1,6 +1,6 @@
 #include "Cataclysm/Mechanism/keybind.h"
 #include <Cataclysm/Util/String/stringfunc.h>
-#include "Cataclysm/globals.h"
+#include <Cataclysm/Util/globals.h>
 #include <vector>
 
 bool Keybinding_pool::bind_key(long key, Interface_action action)

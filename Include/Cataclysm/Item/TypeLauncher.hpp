@@ -3,7 +3,7 @@
 #ifndef CATACLYSM_TYPELAUNCHER_HPP
 #define CATACLYSM_TYPELAUNCHER_HPP
 
-#include <Cataclysm/skill.h>
+#include <Cataclysm/Entity/skill.h>
 #include "Cataclysm/Item/item_type.h"
 
 class Item_type_launcher : public Item_type

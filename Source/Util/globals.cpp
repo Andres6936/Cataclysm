@@ -1,6 +1,6 @@
 #include "Cataclysm/field.h"
-#include "Cataclysm/globals.h"
-#include "Cataclysm/datapool.h"
+#include "Cataclysm/Util/globals.h"
+#include "Cataclysm/Mechanism/datapool.h"
 #include <Cataclysm/Util/files.h>
 #include "Cataclysm/map.h"
 

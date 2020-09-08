@@ -1,6 +1,6 @@
 // Joan Andrés (@Andres6936) Github.
 
-#include <Cataclysm/globals.h>
+#include <Cataclysm/Util/globals.h>
 #include <Cataclysm/Random/rng.h>
 #include "Cataclysm/Screen/Debugger.hpp"
 #include <Cataclysm/Entity/Monster/monster.h>

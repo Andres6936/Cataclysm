@@ -2,7 +2,7 @@
 #define _HELP_H_
 
 #include <string>
-#include "Cataclysm/skill.h"
+#include "Cataclysm/Entity/skill.h"
 #include <Cataclysm/Screen/IScreen.hpp>
 #include <Cuss/Interface.hpp>
 

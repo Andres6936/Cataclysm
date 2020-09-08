@@ -1,5 +1,5 @@
 #include <Cataclysm/Util/files.h>  // For CUSS_DIR
-#include "Cataclysm/globals.h"
+#include <Cataclysm/Util/globals.h>
 
 enum New_char_screen
 {

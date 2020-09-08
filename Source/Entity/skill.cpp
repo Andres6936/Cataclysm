@@ -1,4 +1,4 @@
-#include "Cataclysm/skill.h"
+#include "Cataclysm/Entity/skill.h"
 #include <Cataclysm/Util/String/stringfunc.h>
 #include <Cataclysm/Screen/Debugger.hpp>
 

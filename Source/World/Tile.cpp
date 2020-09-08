@@ -1,7 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include "Cataclysm/World/Tile.hpp"
-#include "Cataclysm/globals.h"
+#include <Cataclysm/Util/globals.h>
 
 glyph Worldmap_tile::top_glyph()
 {

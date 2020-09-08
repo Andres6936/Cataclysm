@@ -1,6 +1,6 @@
 // Joan Andrés (@Andres6936) Github.
 
-#include <Cataclysm/globals.h>
+#include <Cataclysm/Util/globals.h>
 #include <Cataclysm/Screen/MenuScreen.hpp>
 #include <Cataclysm/Screen/TourScreen.hpp>
 #include <Cataclysm/Screen/SkillScreen.hpp>

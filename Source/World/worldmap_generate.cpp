@@ -2,7 +2,7 @@
 #include <Cataclysm/World/Biome/Enum/LakeStatus.hpp>
 #include <Cataclysm/World/Biome/Enum/CityStatus.hpp>
 #include "Cataclysm/Random/rng.h"
-#include "Cataclysm/globals.h"
+#include <Cataclysm/Util/globals.h>
 
 void Worldmap::generate()
 {

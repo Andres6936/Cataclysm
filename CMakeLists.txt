@@ -50,6 +50,7 @@ ADD_EXECUTABLE(Cataclysm
         Source/Entity/tool.cpp
         Source/Entity/Pool.cpp
         Source/Entity/Stats.cpp
+        Source/Entity/skill.cpp
         Source/Entity/entity.cpp
         Source/Entity/entity_ai.cpp
         Source/Entity/damage_set.cpp
@@ -122,6 +123,7 @@ ADD_EXECUTABLE(Cataclysm
         Source/Screen/NewGame/DescriptionScreen.cpp
         Source/Screen/NewGame/Interface/INewGameScreen.cpp
         Source/Util/files.cpp
+        Source/Util/globals.cpp
         Source/Util/String/stringfunc.cpp
         Source/Util/String/var_string.cpp
         Source/Visual/Item/DictionaryItem.cpp
@@ -144,13 +146,11 @@ ADD_EXECUTABLE(Cataclysm
         Source/World/Terrain/FlagBonus.cpp
         Source/World/Terrain/SignalHandler.cpp
         Source/field.cpp
-        Source/globals.cpp
         Source/newcharacter.cpp
         Source/pathfind.cpp
         Source/window.cpp
         Source/main.cpp
         Source/map.cpp
-        Source/skill.cpp
         Source/mapgen.cpp
         )
 

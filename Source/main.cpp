@@ -1,4 +1,4 @@
-#include "Cataclysm/globals.h"
+#include <Cataclysm/Util/globals.h>
 #include <Cataclysm/Util/files.h>
 
 #include <Cataclysm/Screen/ScreenManager.hpp>

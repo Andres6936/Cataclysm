@@ -1,7 +1,7 @@
 #include <Cataclysm/Visual/Screen/MessageQueue.hpp>
 #include <Cataclysm/Entity/entity.h>
 #include <Cataclysm/Random/rng.h>
-#include <Cataclysm/globals.h>
+#include <Cataclysm/Util/globals.h>
 
 Entity::Entity()
 {

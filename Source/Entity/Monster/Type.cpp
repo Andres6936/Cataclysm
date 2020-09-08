@@ -9,7 +9,7 @@
 #include "Cataclysm/Entity/Monster/Genus.hpp"
 #include <Cataclysm/Random/rng.h>
 #include <Cataclysm/Util/String/stringfunc.h>
-#include "Cataclysm/globals.h"
+#include <Cataclysm/Util/globals.h>
 
 Monster_type::Monster_type()
 {

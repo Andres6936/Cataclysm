@@ -1,7 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include "Cataclysm/Entity/Pool.hpp"
-#include "Cataclysm/globals.h"
+#include <Cataclysm/Util/globals.h>
 
 Entity_pool::Entity_pool()
 {

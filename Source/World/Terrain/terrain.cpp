@@ -1,6 +1,6 @@
 #include "Cataclysm/World/Terrain/terrain.h"
 #include <Cataclysm/Util/String/stringfunc.h>
-#include "Cataclysm/globals.h"
+#include <Cataclysm/Util/globals.h>
 
 Terrain::Terrain()
 {

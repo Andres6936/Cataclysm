@@ -1,9 +1,8 @@
 #ifndef _GLOBALS_H_
 #define _GLOBALS_H_
 
-#include "datapool.h"
-#include "mapgen.h"
-
+#include "Cataclysm/mapgen.h"
+#include "Cataclysm/Mechanism/datapool.h"
 #include "Cataclysm/Mechanism/keybind.h"
 #include "Cataclysm/Screen/PlayScreen.hpp"
 #include "Cataclysm/Entity/profession.h"

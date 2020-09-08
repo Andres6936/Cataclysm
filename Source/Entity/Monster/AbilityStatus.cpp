@@ -1,5 +1,5 @@
 #include <Cataclysm/Util/String/stringfunc.h>
-#include <Cataclysm/globals.h>
+#include <Cataclysm/Util/globals.h>
 #include "Cataclysm/Screen/Debugger.hpp"
 #include <Cataclysm/Entity/Monster/monster.h>
 #include <Cataclysm/Visual/Screen/MessageQueue.hpp>

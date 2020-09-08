@@ -1,7 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include <Cataclysm/Util/files.h>
-#include <Cataclysm/globals.h>
+#include <Cataclysm/Util/globals.h>
 #include "Cataclysm/Screen/NewGame/Interface/INewGameScreen.hpp"
 
 using namespace Cataclysm;

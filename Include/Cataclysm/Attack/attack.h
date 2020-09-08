@@ -3,8 +3,8 @@
 
 #include <string>
 
-#include <Cataclysm/skill.h>
 #include <Cataclysm/Item/item.h>
+#include <Cataclysm/Entity/skill.h>
 #include <Cataclysm/Entity/damage_set.h>
 #include "Cataclysm/Attack/Enum/MeleHitType.hpp"
 
