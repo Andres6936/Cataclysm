@@ -216,7 +216,7 @@ ScreenType InventorySingleSelectionScreen::processInput()
 	{
 		setItemSelected();
 
-		return ScreenType::PLAY;
+		return ScreenType::INFORMATION_ITEM;
 	}
 	else
 	{ // Anything else warrants a check for the matching key!
@@ -273,7 +273,7 @@ ScreenType InventorySingleSelectionScreen::processInput()
 		{
 			setItemSelected();
 
-			return ScreenType::PLAY;
+			return ScreenType::INFORMATION_ITEM;
 		}
 	}
 
