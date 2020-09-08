@@ -2597,56 +2597,6 @@ void Map::process_fields()
 	}
 }
 
-void Map::build_tile_sight_map(int tile_x, int tile_y, int tile_z, int range)
-{
-	Tile* cur_tile = get_tile(tile_x, tile_y, tile_z);
-	if (!cur_tile)
-	{  // Safety check
-		debugmsg("Map::build_tile_sight_map(%d, %d, %d, %d) called!",
-				tile_x, tile_y, tile_z, range);
-		return;
-	}
-
-// range of -1 means "infinite range"
-	if (range == -1)
-	{
-		range = SUBMAP_SIZE * MAP_SIZE;
-	}
-
-// Set the bounds for our loop.
-	int min_x = tile_x - range;
-	if (min_x < 0)
-	{
-		min_x = 0;
-	}
-	int min_y = tile_y - range;
-	if (min_y < 0)
-	{
-		min_y = 0;
-	}
-	int min_z = tile_z - range;
-	if (min_z < 0)
-	{
-		min_z = 0;
-	}
-	int max_x = tile_x + range;
-	if (max_x > SUBMAP_SIZE * MAP_SIZE - 1)
-	{
-		max_x = SUBMAP_SIZE * MAP_SIZE - 1;
-	}
-	int max_y = tile_y + range;
-	int may_y = 0;
-	if (may_y > SUBMAP_SIZE * MAP_SIZE - 1)
-	{
-		may_y = SUBMAP_SIZE * MAP_SIZE - 1;
-	}
-	int max_z = tile_z + range;
-	if (max_z > VERTICAL_MAP_SIZE * 2)
-	{
-		max_z = VERTICAL_MAP_SIZE * 2;
-	}
-}
-
 /* Still using Cataclysm/DDA style LOS.  It sucks and is slow and I hate it.
  * Basically, iterate over all Bresenham lines between [x0,y0] and [x1,y1].
  * If any of the lines doesn't have something that blocks the relevent sense,

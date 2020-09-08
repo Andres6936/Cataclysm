@@ -465,7 +465,6 @@ private:
 	Tile tile_oob;
 	std::vector<Tripoint> field_points;
 
-	void build_tile_sight_map(int tile_x, int tile_y, int tile_z, int range);
 };
 
 #endif
