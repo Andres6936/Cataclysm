@@ -52,10 +52,6 @@ public:
 	// msg_query_yn adds a message, refreshes the HUD, and accepts Y/N input
 	bool msg_query_yn(std::string msg, ...);
 
-	void add_active_item(Item* it);
-
-	void remove_active_item(Item* it);
-
 	void remove_active_item_uid(int uid);
 
 	bool destroy_item(Item* it, int uid = -1);
@@ -106,9 +102,6 @@ private:
 
 	Doryen::Console screenMap {24, 24};
 	Doryen::Console screenHUD {56, 24};
-
-	std::vector<Item*> active_items;
-
 
 	int next_item_uid;
 	int next_furniture_uid;

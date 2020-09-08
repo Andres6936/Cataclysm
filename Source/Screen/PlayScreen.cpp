@@ -6,6 +6,7 @@
 #include <Cataclysm/Mechanism/Projectile.hpp>
 #include <Cataclysm/Entity/Monster/monster.h>
 #include <Cataclysm/Mechanism/TimeManager.hpp>
+#include <Cataclysm/Item/ActiveItemsManager.hpp>
 #include <Cataclysm/Visual/Screen/MessageQueue.hpp>
 
 #include <stdarg.h>
@@ -644,9 +645,9 @@ void PlayScreen::complete_player_activity()
 
 void PlayScreen::process_active_items()
 {
-	for (int i = 0; i < active_items.size(); i++)
+	for (auto& item : activeItemsManager)
 	{
-		active_items[i]->process_active();
+		item->process_active();
 	}
 }
 
@@ -863,38 +864,13 @@ bool PlayScreen::msg_query_yn(std::string msg, ...)
 	return (ch == 'Y');
 }
 
-void PlayScreen::add_active_item(Item* it)
-{
-	if (!it)
-	{
-		return;
-	}
-	active_items.push_back(it);
-}
-
-void PlayScreen::remove_active_item(Item* it)
-{
-	if (!it)
-	{
-		return;
-	}
-	for (int i = 0; i < active_items.size(); i++)
-	{
-		if (active_items[i] == it)
-		{
-			active_items.erase(active_items.begin() + i);
-			return;
-		}
-	}
-}
-
 void PlayScreen::remove_active_item_uid(int uid)
 {
-	for (int i = 0; i < active_items.size(); i++)
+	for (int i = 0; i < activeItemsManager.size(); i++)
 	{
-		if (active_items[i]->get_uid() == uid)
+		if (activeItemsManager[i]->get_uid() == uid)
 		{
-			active_items.erase(active_items.begin() + i);
+			activeItemsManager.erase(activeItemsManager.begin() + i);
 			return;
 		}
 	}

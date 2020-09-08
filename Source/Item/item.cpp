@@ -1,7 +1,8 @@
-#include <Cataclysm/Item/TypeTool.hpp>
+#include <Cataclysm/Item/ActiveItemsManager.hpp>
 #include <Cataclysm/Item/TypeContainer.hpp>
 #include <Cataclysm/Item/TypeClothing.hpp>
 #include <Cataclysm/Item/TypeLauncher.hpp>
+#include <Cataclysm/Item/TypeTool.hpp>
 #include <Cataclysm/Item/TypeAmmo.hpp>
 #include <Cataclysm/Random/rng.h>
 #include "Cataclysm/Item/item.h"
@@ -978,7 +979,8 @@ bool Item::power_on()
 		return false;
 	}
 	active = ITEM_ACTIVE_POWERED;
-	GAME.add_active_item(this);
+
+	activeItemsManager.addItem(this);
 	return true;
 }
 
@@ -989,7 +991,8 @@ bool Item::power_off()
 		return false;
 	}
 	active = ITEM_ACTIVE_OFF;
-	GAME.remove_active_item(this);
+
+	activeItemsManager.removeItem(this);
 	return true;
 }
 
@@ -1010,7 +1013,8 @@ bool Item::start_countdown()
 	}
 	charges = tool->countdown_timer;
 	active = ITEM_ACTIVE_TIMER;
-	GAME.add_active_item(this);
+
+	activeItemsManager.addItem(this);
 	return true;
 }
 
@@ -1026,7 +1030,8 @@ bool Item::finish_countdown()
 	}
 	Item_type_tool* tool = static_cast<Item_type_tool*>(type);
 	tool->countdown_action.activate(this);
-	GAME.remove_active_item(this);
+
+	activeItemsManager.removeItem(this);
 	active = ITEM_ACTIVE_OFF;
 	if (tool->countdown_action.destroy_if_chargeless)
 	{
