@@ -1,64 +1,36 @@
 // Joan Andrés (@Andres6936) Github.
 
+#include <Cataclysm/World/map.h>
 #include "Cataclysm/Entity/Pool.hpp"
-#include <Cataclysm/Util/globals.h>
+#include <Cataclysm/Entity/Player/player.h>
 #include <Cataclysm/Mechanism/NextItemManager.hpp>
 
-Entity_pool::Entity_pool()
-{
-	next_uid = 0;
-}
-
-Entity_pool::~Entity_pool()
-{
-	for (auto& entity : entities)
-	{
-		delete entity;
-	}
-}
-
-void Entity_pool::add_entity(Entity* ent)
+void Entity_pool::add_entity(std::shared_ptr<Entity> ent)
 {
 	if (!ent)
 	{
-		debugmsg("Tried to add_entity NULL to Entity_pool");
-		return;
+		throw std::logic_error("Tried to add_entity NULL to Entity_pool");
 	}
+
 	ent->uid = next_uid;
 	next_uid++;
-	push_back(ent);
-	uid_map[ent->uid] = ent;
+
+	(*this)[ent->uid] = ent;
 }
 
-void Entity_pool::push_back(Entity* ent)
+std::shared_ptr<Entity> Entity_pool::lookup_uid(int uid)
 {
-	if (!ent)
+	if (count(uid) == 0)
 	{
-		debugmsg("Tried to push_back NULL to Entity_pool");
-		return;
+		return nullptr;
 	}
-	push_back(ent);
-	uid_map[ent->uid] = ent;
+
+	return (*this)[uid];
 }
 
-std::list<Entity*>::iterator Entity_pool::erase(std::list<Entity*>::iterator it)
+std::shared_ptr<Entity> Entity_pool::entity_at(int posx, int posy)
 {
-	uid_map.erase((*it)->uid);
-	return erase(it);
-}
-
-Entity* Entity_pool::lookup_uid(int uid)
-{
-	if (uid_map.count(uid) == 0)
-	{
-		return NULL;
-	}
-	return uid_map[uid];
-}
-
-Entity* Entity_pool::entity_at(int posx, int posy)
-{
-	for (auto& entity : entities)
+	for (auto& [uid, entity] : entities)
 	{
 		if (entity->pos.x == posx && entity->pos.y == posy)
 		{
@@ -66,48 +38,46 @@ Entity* Entity_pool::entity_at(int posx, int posy)
 		}
 	}
 
-	return NULL;
+	return nullptr;
 }
 
-Entity* Entity_pool::entity_at(Tripoint pos)
+std::shared_ptr<Entity> Entity_pool::entity_at(Tripoint pos)
 {
 	return entity_at(pos.x, pos.y, pos.z);
 }
 
-Entity* Entity_pool::entity_at(int posx, int posy, int posz)
+std::shared_ptr<Entity> Entity_pool::entity_at(int posx, int posy, int posz)
 {
-	for (auto& entity : entities)
+	for (auto& [uid, entity] : entities)
 	{
 		if (entity->pos.x == posx && entity->pos.y == posy && entity->pos.z == posz)
 		{
 			return entity;
 		}
 	}
-	return NULL;
+	return nullptr;
 }
 
 // range defaults to -1, which means "no range cap"
-Entity* Entity_pool::closest_seen_by(Entity* observer, int range)
+std::shared_ptr<Entity> Entity_pool::closest_seen_by(int range)
 {
-	if (!observer)
-	{
-		return NULL;
-	}
-	Tripoint pos = observer->pos;
+	Tripoint pos = player->pos;
 	int best_range = range;
-	Entity* ret = NULL;
 
-	for (auto& entity : entities)
+	std::shared_ptr<Entity> ret { nullptr };
+
+	for (auto& [uid, entity] : entities)
 	{
-		Entity* target = entity;
+		std::shared_ptr<Entity> target = entity;
 		int dist = rl_dist(pos, target->pos);
-		if (target != observer && (best_range == -1 || dist <= best_range) &&
-			map->senses(pos, target->pos, range, SENSE_SIGHT))
+		if (target.get() != player.get() && (best_range == -1 || dist <= best_range) &&
+			::map->senses(pos, target->pos, range, SENSE_SIGHT))
 		{
 			best_range = dist;
 			ret = target;
 		}
 	}
+
 	return ret; // Might be NULL!
 }
 
@@ -120,7 +90,7 @@ bool Entity_pool::destroyItem(Item* item, std::int32_t _uid)
 	}
 
 	// Check entities first - almost certainly faster than the map
-	for (auto& entity : *this)
+	for (auto& [uid, entity] : *this)
 	{
 		Item check = entity->remove_item(item, _uid);
 
@@ -130,7 +100,7 @@ bool Entity_pool::destroyItem(Item* item, std::int32_t _uid)
 		}
 	}
 
-	return map->remove_item(item, _uid);
+	return ::map->remove_item(item, _uid);
 }
 
 bool Entity_pool::destroyItemByUID(const std::int32_t _uid)
@@ -147,7 +117,7 @@ Tripoint Entity_pool::findItem(Item* item, std::int32_t _uid)
 	}
 
 	// Check entities first - almost certainly faster than the map
-	for (auto& entity : *this)
+	for (auto& [uid, entity] : *this)
 	{
 		if (entity->has_item(item, _uid))
 		{
@@ -155,7 +125,7 @@ Tripoint Entity_pool::findItem(Item* item, std::int32_t _uid)
 		}
 	}
 
-	Tripoint ret = map->find_item(item, _uid);
+	Tripoint ret = ::map->find_item(item, _uid);
 	return ret;
 }
 

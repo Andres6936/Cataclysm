@@ -69,7 +69,7 @@ bool Monster_ability_terrain::handle_data(std::string ident, std::istream& data,
 	return true;
 }
 
-bool Monster_ability_terrain::effect(Monster* user)
+bool Monster_ability_terrain::effect(std::shared_ptr<Monster> user)
 {
 	if (!user)
 	{

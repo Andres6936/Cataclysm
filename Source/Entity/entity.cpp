@@ -90,9 +90,9 @@ void Entity::die()
 	}
 
 	// Tell any monsters that're targeting us to QUIT IT
-	for (auto& entity : entities)
+	for (auto& [uid, entity] : entities)
 	{
-		if (entity->plan.target_entity == this)
+		if (entity->plan.target_entity.get() == this)
 		{
 			entity->plan.clear();
 		}
@@ -824,7 +824,7 @@ void Entity::take_turn()
 {
 }
 
-bool Entity::is_enemy(Entity* ent)
+bool Entity::is_enemy(std::shared_ptr<Entity> ent)
 {
 	if (!ent)
 	{
@@ -851,7 +851,7 @@ bool Entity::pick_flee_target()
 
 bool Entity::has_target()
 {
-	return (plan.target_entity);
+	return (plan.target_entity not_eq nullptr);
 }
 
 bool Entity::is_fleeing()
@@ -864,7 +864,7 @@ std::vector<Ranged_attack> Entity::get_ranged_attacks()
 	return std::vector<Ranged_attack>();
 }
 
-Ranged_attack Entity::pick_ranged_attack(Entity* target)
+Ranged_attack Entity::pick_ranged_attack(std::shared_ptr<Entity> target)
 {
 	std::vector<Ranged_attack> ra = get_ranged_attacks();
 	if (ra.empty())
@@ -964,7 +964,7 @@ int Entity::sight_range(int light_level)
 	return ret;
 }
 
-bool Entity::can_sense(Entity* entity)
+bool Entity::can_sense(std::shared_ptr<Entity> entity)
 {
 	if (!entity)
 	{
@@ -1083,8 +1083,8 @@ bool Entity::can_drag_furniture_to(Map* map, int x, int y, int z)
 			return false;
 		}
 // No displacing entities (except us!)
-		Entity* blocker_ent = entities.entity_at(test);
-		if (blocker_ent != NULL && blocker_ent != this)
+		std::shared_ptr<Entity> blocker_ent = entities.entity_at(test);
+		if (blocker_ent != NULL && blocker_ent.get() != this)
 		{
 			return false;
 		}
@@ -1693,7 +1693,11 @@ void Entity::apply_item_action(Item* it, Tool_action* action)
 		return;
 	}
 
-	if (!action->activate(it, this, tool_pos))
+	std::shared_ptr<Entity> entity {nullptr};
+
+	entity.reset(this);
+
+	if (!action->activate(it, entity, tool_pos))
 	{
 		return;
 	}
@@ -2576,7 +2580,7 @@ Attack Entity::std_attack()
 	return att;
 }
 
-bool Entity::can_attack(Entity* target)
+bool Entity::can_attack(std::shared_ptr<Entity> target)
 {
 	if (!target)
 	{
@@ -2593,7 +2597,7 @@ bool Entity::can_attack(Entity* target)
 	return false;
 }
 
-void Entity::attack(Entity* target)
+void Entity::attack(std::shared_ptr<Entity> target)
 {
 	if (!target)
 	{
@@ -2890,7 +2894,7 @@ bool Entity::can_fire_weapon()
 	return true;
 }
 
-bool Entity::can_attack_ranged(Entity* target)
+bool Entity::can_attack_ranged(std::shared_ptr<Entity> target)
 {
 	if (!target)
 	{
@@ -2912,7 +2916,7 @@ bool Entity::can_attack_ranged(Entity* target)
 	return false;
 }
 
-void Entity::attack_ranged(Entity* target, Ranged_attack ra)
+void Entity::attack_ranged(std::shared_ptr<Entity> target, Ranged_attack ra)
 {
 	if (!target)
 	{

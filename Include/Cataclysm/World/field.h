@@ -227,7 +227,7 @@ public:
 
 	void set_duration(int dur);
 
-	void hit_entity(Entity* entity);
+	void hit_entity(std::shared_ptr<Entity> entity);
 
 	void process(Map* map, Tripoint pos);
 

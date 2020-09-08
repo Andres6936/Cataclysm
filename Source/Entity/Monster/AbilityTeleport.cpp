@@ -54,7 +54,7 @@ bool Monster_ability_teleport::handle_data(std::string ident,
 	return true;
 }
 
-bool Monster_ability_teleport::effect(Monster* user)
+bool Monster_ability_teleport::effect(std::shared_ptr<Monster> user)
 {
 	if (!user)
 	{

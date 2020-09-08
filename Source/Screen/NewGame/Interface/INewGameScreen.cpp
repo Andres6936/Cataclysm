@@ -351,7 +351,7 @@ void INewGameScreen::verifyInvariantPlayer()
 	player->assign_personal_missions();
 
 	// entities[0] should always be the player!
-	entities.add_entity(player.get());
+	entities.add_entity(player);
 
 	// The second argument of 0 means "on the main island"
 	Point start = worldmap->random_tile_with_terrain("beach", 0);

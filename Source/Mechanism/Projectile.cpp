@@ -64,7 +64,7 @@ void Projectile::launch(Entity* shooter, Item it, Ranged_attack attack, Tripoint
 /* If we're NOT targeting an entity, then we are probably shooting at scenery
  * and we should not use our retargeting ability!
  */
-	bool targeting_entity = entities.entity_at(target);
+	bool targeting_entity = entities.entity_at(target) not_eq nullptr;
 
 	for (int round = 0; round < attack.rounds; round++)
 	{
@@ -82,7 +82,7 @@ void Projectile::launch(Entity* shooter, Item it, Ranged_attack attack, Tripoint
  * vectors; since we may hit more than one enemy and we want messages for all.
  */
 
-		std::vector<Entity*> entities_hit;
+		std::vector<std::shared_ptr<Entity>> entities_hit;
 		std::vector<int> total_damage;
 		std::vector<Ranged_hit_type> best_hit;
 /* We track all the tiles_hit by all pellets.  After we finish processing all
@@ -142,7 +142,8 @@ void Projectile::launch(Entity* shooter, Item it, Ranged_attack attack, Tripoint
 								shooter_name);
 					}
 // Did we hit an entity?
-					Entity* entity_hit = entities.entity_at(path[i].x, path[i].y);
+					std::shared_ptr<Entity> entity_hit = entities.entity_at(path[i].x, path[i].y);
+
 					if (entity_hit)
 					{
 						bool hit;
@@ -201,7 +202,7 @@ void Projectile::launch(Entity* shooter, Item it, Ranged_attack attack, Tripoint
 								 !found_entity && entity_index < entities_hit.size();
 								 entity_index++)
 							{
-								if (entities_hit[entity_index] == entity_hit)
+								if (entities_hit[entity_index].get() == entity_hit.get())
 								{
 									found_entity = true;
 								}
@@ -274,7 +275,7 @@ void Projectile::launch(Entity* shooter, Item it, Ranged_attack attack, Tripoint
 			{
 				for (int i = 0; i < entities_hit.size(); i++)
 				{
-					Entity* entity_hit = entities_hit[i];
+					std::shared_ptr<Entity> entity_hit = entities_hit[i];
 					Ranged_hit_type hit_type = best_hit[i];
 					int dam = total_damage[i];
 					if (hit_type == RANGED_HIT_HEADSHOT)
@@ -355,7 +356,7 @@ void Projectile::launch(Entity* shooter, Item it, Ranged_attack attack, Tripoint
 				for (int nty = new_y - retarget_range; nty <= new_y + retarget_range;
 					 nty++)
 				{
-					Entity* new_target = entities.entity_at(ntx, nty, target.z);
+					std::shared_ptr<Entity> new_target = entities.entity_at(ntx, nty, target.z);
 // TODO: Ensure that the new target isn't friendly!
 					if (new_target)
 					{

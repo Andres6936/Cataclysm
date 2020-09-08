@@ -20,7 +20,7 @@ struct Monster_ability_status : public Monster_ability
 	virtual bool handle_data(std::string ident, std::istream& data,
 			std::string owner);
 
-	virtual bool effect(Monster* user);
+	virtual bool effect(std::shared_ptr<Monster> user);
 
 	Status_effect_type status;  // Status effect imparted
 	int range;  // Range of effect; defaults to 0

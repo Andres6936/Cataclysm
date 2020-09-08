@@ -42,12 +42,11 @@ TargetSelectorManager::pathSelector(int startx, int starty, int range, bool targ
 	if (target_entities)
 	{
 // Set up list of targets.
-		for (auto& entity : entities)
+		for (auto& [uid, entity] : entities)
 		{
-			Entity* ent_target = entity;
-			int ent_range = rl_dist(player->pos, ent_target->pos);
-			if (ent_target != player.get() && ent_range <= range &&
-				player->is_enemy(ent_target) && player->can_sense(ent_target))
+			int ent_range = rl_dist(player->pos, entity->pos);
+			if (entity.get() != player.get() && ent_range <= range &&
+				player->is_enemy(entity) && player->can_sense(entity))
 			{
 // They should be included; figure out where to place them in the list
 				bool found = false;
@@ -57,19 +56,19 @@ TargetSelectorManager::pathSelector(int startx, int starty, int range, bool targ
 					{
 						found = true;
 						target_range.insert(target_range.begin() + i, ent_range);
-						target_list.insert(target_list.begin() + i, ent_target->pos);
+						target_list.insert(target_list.begin() + i, entity->pos);
 					}
 				}
 				if (!found)
 				{ // Stick them on the end
 					target_range.push_back(ent_range);
-					target_list.push_back(ent_target->pos);
+					target_list.push_back(entity->pos);
 				}
 			}
 		}
 		if (last_target == -1)
 		{  // No previous target to snap to, pick the closest
-			Entity* new_target = entities.closest_seen_by(player.get(), range);
+			std::shared_ptr<Entity> new_target = entities.closest_seen_by( range);
 			if (new_target)
 			{ // It'll be NULL if no one is in range
 				target = new_target->pos;
@@ -86,7 +85,7 @@ TargetSelectorManager::pathSelector(int startx, int starty, int range, bool targ
 		}
 		else
 		{
-			Entity* old_target = entities.lookup_uid(last_target);
+			std::shared_ptr<Entity> old_target = entities.lookup_uid(last_target);
 // It'll be NULL if the old target's dead, etc.
 			if (old_target && player->can_sense(old_target))
 			{
@@ -105,7 +104,7 @@ TargetSelectorManager::pathSelector(int startx, int starty, int range, bool targ
 			{
 // Reset last_target
 				last_target = -1;
-				Entity* new_target = entities.closest_seen_by(player.get(), range);
+				std::shared_ptr<Entity> new_target = entities.closest_seen_by( range);
 				if (new_target)
 				{ // It'll be NULL if no one is in range
 					target = new_target->pos;

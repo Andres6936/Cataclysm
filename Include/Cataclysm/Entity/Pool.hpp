@@ -4,8 +4,9 @@
 #define CATACLYSM_POOL_HPP
 
 
-#include <list>
 #include <map>
+#include <memory>
+#include <cstdint>
 
 #include "Cataclysm/Entity/entity.h"
 
@@ -19,20 +20,12 @@
  * potentially slow, but what can you do.
  */
 
-class Entity_pool : public std::list<Entity*>
+class Entity_pool : public std::map<int, std::shared_ptr<Entity>>
 {
 
 public:
 
-	Entity_pool();
-
-	virtual ~Entity_pool();
-
-	void add_entity(Entity* ent); // Assigns a UID
-
-	void push_back(Entity* ent); // Same, except don't re-assign UID
-
-	std::list<Entity*>::iterator erase(std::list<Entity*>::iterator it);
+	void add_entity(std::shared_ptr<Entity> ent); // Assigns a UID
 
 	bool destroyItem(Item* item, std::int32_t _uid = -1);
 
@@ -42,21 +35,19 @@ public:
 
 	Tripoint findItemByUID(const std::int32_t _uid);
 
-	Entity* lookup_uid(int uid);
+	std::shared_ptr<Entity> lookup_uid(int uid);
 
-	Entity* entity_at(int posx, int posy);
+	std::shared_ptr<Entity> entity_at(int posx, int posy);
 
-	Entity* entity_at(Tripoint pos);
+	std::shared_ptr<Entity> entity_at(Tripoint pos);
 
-	Entity* entity_at(int posx, int posy, int posz);
+	std::shared_ptr<Entity> entity_at(int posx, int posy, int posz);
 
-	Entity* closest_seen_by(Entity* observer, int range = -1);
+	std::shared_ptr<Entity> closest_seen_by( int range = -1);
 
 private:
 
-	std::map<int, Entity*> uid_map;
-
-	int next_uid;
+	int next_uid = 0;
 };
 
 inline Entity_pool entities {};

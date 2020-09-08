@@ -82,7 +82,7 @@ bool Monster_ability::handle_data(std::string ident, std::istream& data,
 	return false;
 }
 
-bool Monster_ability::effect(Monster* user)
+bool Monster_ability::effect(std::shared_ptr<Monster> user)
 {
 	debugmsg("Monster_ability::effect() called!  This is a NULL ability!");
 	return false;

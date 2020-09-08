@@ -64,7 +64,7 @@ bool Monster_ability_summon::handle_data(std::string ident, std::istream& data,
 	return true;
 }
 
-bool Monster_ability_summon::effect(Monster* user)
+bool Monster_ability_summon::effect(std::shared_ptr<Monster> user)
 {
 	if (!user)
 	{
@@ -126,12 +126,12 @@ bool Monster_ability_summon::effect(Monster* user)
 
 		std::string mon_name = monster.pick();
 
-		Monster* mon = new Monster(mon_name);
+		std::shared_ptr<Monster> mon = std::make_shared<Monster>(mon_name);
+
 		if (!mon->type)
 		{
 			debugmsg("%s tried to summon a '%s' but that doesn't exist.",
 					user->get_data_name().c_str(), mon_name.c_str());
-			delete mon;
 			return false;
 		}
 

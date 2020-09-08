@@ -829,7 +829,7 @@ void Field::set_duration(int dur)
 	adjust_level();
 }
 
-void Field::hit_entity(Entity* entity)
+void Field::hit_entity(std::shared_ptr<Entity> entity)
 {
 	if (!entity || !type)
 	{

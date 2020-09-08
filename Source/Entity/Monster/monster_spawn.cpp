@@ -11,13 +11,14 @@ Monster_spawn::~Monster_spawn()
 {
 }
 
-Monster* Monster_spawn::generate_monster()
+std::shared_ptr<Monster> Monster_spawn::generate_monster()
 {
 	if (!genus || population <= 0)
 	{
 		return NULL;
 	}
-	Monster* ret = new Monster();
+	std::shared_ptr<Monster> ret = std::make_shared<Monster>();
+
 	ret->set_type(genus->random_member());
 	return ret;
 }

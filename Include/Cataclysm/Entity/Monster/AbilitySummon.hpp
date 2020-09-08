@@ -23,7 +23,7 @@ struct Monster_ability_summon : public Monster_ability
 	virtual bool handle_data(std::string ident, std::istream& data,
 			std::string owner);
 
-	virtual bool effect(Monster* user);
+	virtual bool effect(std::shared_ptr<Monster> user);
 
 	Variable_string monster; // So that summons may vary.
 	Dice number;  // How many monsters to place.  Defaults to 1.

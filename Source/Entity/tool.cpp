@@ -95,7 +95,7 @@ bool Tool_special_light::load_data(std::istream& data, std::string owner_name)
 	return true;
 }
 
-bool Tool_special_light::effect(Entity* user)
+bool Tool_special_light::effect(std::shared_ptr<Entity> user)
 {
 	timeManager.setCalculateLightLevel(light);
 	return true;
@@ -186,7 +186,7 @@ bool Tool_special_heal::load_data(std::istream& data, std::string owner_name)
 	return true;
 }
 
-bool Tool_special_heal::effect(Entity* user)
+bool Tool_special_heal::effect(std::shared_ptr<Entity> user)
 {
 	if (!user)
 	{
@@ -219,12 +219,14 @@ bool Tool_special_heal::effect(Entity* user)
 		skill_lvl -= skill_min;
 		amount_healed += (skill_lvl * (max_amount - min_amount)) / range;
 	}
-// TODO: If user is an NPC, auto-choose
-// TODO: Allow us to target things (monsters/NPCs) other than ourselves
-	Player* player = NULL;
+
+	// TODO: If user is an NPC, auto-choose
+	// TODO: Allow us to target things (monsters/NPCs) other than ourselves
+	Player* pPlayer { nullptr};
+
 	if (user->is_you())
 	{
-		player = static_cast<Player*>(user);
+		pPlayer = static_cast<Player*>(user.get());
 	}
 	std::vector<std::string> options;
 	options.push_back("Cancel");
@@ -232,13 +234,13 @@ bool Tool_special_heal::effect(Entity* user)
 	{
 		std::stringstream option_ss;
 		option_ss << HP_part_name(HP_part(i));
-		if (player)
+		if (pPlayer)
 		{
-			option_ss << ": " << player->hp_text(HP_part(i));
-			int result = player->current_hp[i] + amount_healed;
-			if (result > player->max_hp[i])
+			option_ss << ": " << pPlayer->hp_text(HP_part(i));
+			int result = pPlayer->current_hp[i] + amount_healed;
+			if (result > pPlayer->max_hp[i])
 			{
-				result = player->max_hp[i];
+				result = pPlayer->max_hp[i];
 			}
 			option_ss << " => " << result;
 		}
@@ -403,7 +405,7 @@ bool Tool_action::activate(Item* it)
 	return activate(it, NULL);
 }
 
-bool Tool_action::activate(Item* it, Entity* user)
+bool Tool_action::activate(Item* it, std::shared_ptr<Entity> user)
 {
 	if (!it)
 	{
@@ -420,7 +422,7 @@ bool Tool_action::activate(Item* it, Entity* user)
 	return activate(it, user, pos);
 }
 
-bool Tool_action::activate(Item* it, Entity* user, Tripoint pos)
+bool Tool_action::activate(Item* it, std::shared_ptr<Entity> user, Tripoint pos)
 {
 	bool seen_by_player = player->can_see(map.get(), pos);
 	if (!seen_by_player && user && user->is_you())

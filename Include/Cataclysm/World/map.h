@@ -143,7 +143,7 @@ struct Tile
 	void destroy(); // Happens if hp <= 0
 	bool signal_applies(std::string signal);
 
-	bool apply_signal(std::string signal, Entity* user = NULL);
+	bool apply_signal(std::string signal, std::shared_ptr<Entity> user = NULL);
 
 	std::string save_data();
 
@@ -398,10 +398,10 @@ public:
 
 	void damage(Tripoint pos, Damage_set dam);
 
-	bool apply_signal(std::string signal, Tripoint pos, Entity* user = NULL);
+	bool apply_signal(std::string signal, Tripoint pos, std::shared_ptr<Entity> user = NULL);
 
 	bool apply_signal(std::string signal, int x, int y, int z,
-			Entity* user = NULL);
+			std::shared_ptr<Entity> user = NULL);
 
 // Regularly-run functions
 	void process_fields();

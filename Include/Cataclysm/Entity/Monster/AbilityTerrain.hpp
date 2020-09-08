@@ -22,7 +22,7 @@ struct Monster_ability_terrain : public Monster_ability
 	virtual bool handle_data(std::string ident, std::istream& data,
 			std::string owner);
 
-	virtual bool effect(Monster* user);
+	virtual bool effect(std::shared_ptr<Monster> user);
 
 	bool always_replace;  // Defaults to false; if true, always replace terrain
 

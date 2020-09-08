@@ -139,7 +139,8 @@ void Monster::die()
 
 	if (parent_uid >= 0)
 	{  // Reduce the parent's summons_used
-		Entity* parent = entities.lookup_uid(parent_uid);
+		std::shared_ptr<Entity> parent = entities.lookup_uid(parent_uid);
+
 		if (parent && parent->summons_used > 0)
 		{
 			parent->summons_used--;
@@ -248,10 +249,10 @@ bool Monster::pick_attack_victim()
 // TODO: Include an estimate of the target's strength relative to our own
 // TODO: Differentiate between "attacking aggresors" and "preying upon randos"
 	int closest = 0;
-	std::vector<Entity*> best;
+	std::vector<std::shared_ptr<Entity>> best;
 	Entity_pool* pool = &(entities);
 
-	for (auto& entity : entities)
+	for (auto& [uid, entity] : entities)
 	{
 		// Not us, not in our genus, and we can sense them
 		if (is_enemy(entity) && can_sense(entity))
@@ -415,7 +416,12 @@ void Monster::use_ability()
 	{
 		return;
 	}
-	if (abil->effect(this))
+
+	std::shared_ptr<Monster> monster{ nullptr };
+
+	monster.reset(this);
+
+	if (abil->effect(monster))
 	{
 		action_points -= abil->AP_cost;
 		current_hp -= abil->HP_cost;

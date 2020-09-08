@@ -73,7 +73,7 @@ bool Monster_ability_fields::handle_data(std::string ident, std::istream& data,
 	return true;
 }
 
-bool Monster_ability_fields::effect(Monster* user)
+bool Monster_ability_fields::effect(std::shared_ptr<Monster> user)
 {
 	if (!user)
 	{

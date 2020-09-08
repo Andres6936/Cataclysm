@@ -49,7 +49,7 @@ struct Tool_special
 		return false;
 	}
 
-	virtual bool effect(Entity* user)
+	virtual bool effect(std::shared_ptr<Entity> user)
 	{
 		return false;
 	}
@@ -70,7 +70,7 @@ struct Tool_special_explosion : public Tool_special
 
 	virtual bool load_data(std::istream& data, std::string owner_name);
 
-	virtual bool effect(Entity* user)
+	virtual bool effect(std::shared_ptr<Entity> user)
 	{
 		return false;
 	}; // TODO: This
@@ -95,7 +95,7 @@ struct Tool_special_light : public Tool_special
 
 	virtual bool load_data(std::istream& data, std::string owner_name);
 
-	virtual bool effect(Entity* user);  // TODO: This
+	virtual bool effect(std::shared_ptr<Entity> user);  // TODO: This
 
 	int light;
 };
@@ -115,7 +115,7 @@ struct Tool_special_heal : public Tool_special
 
 	virtual bool load_data(std::istream& data, std::string owner_name);
 
-	virtual bool effect(Entity* user);
+	virtual bool effect(std::shared_ptr<Entity> user);
 
 	int min_amount, max_amount;
 // min_skill is the minimum requirement; max_skill is what's required to reach
@@ -144,10 +144,10 @@ struct Tool_action
 
 	bool activate(Item* it);  // Uses NULL user
 // Uses Game::find_item to create pos for activate() below
-	bool activate(Item* it, Entity* user);
+	bool activate(Item* it, std::shared_ptr<Entity> user);
 
 // Send signal, create field, activate special!
-	bool activate(Item* it, Entity* user, Tripoint pos);
+	bool activate(Item* it, std::shared_ptr<Entity> user, Tripoint pos);
 };
 
 #endif

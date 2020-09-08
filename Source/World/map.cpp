@@ -644,7 +644,7 @@ bool Tile::signal_applies(std::string signal)
 	return true;
 }
 
-bool Tile::apply_signal(std::string signal, Entity* user)
+bool Tile::apply_signal(std::string signal, std::shared_ptr<Entity> user)
 {
 	signal = no_caps(signal);
 	signal = trim(signal);
@@ -1963,7 +1963,7 @@ debugmsg("Spawning monsters at World[%d:%d](%s), Submap[%d:%d:%d](%s)",
 			Point pos = available_tiles[index];
 			available_tiles.erase(available_tiles.begin() + index);
 // Create a monster and place it there
-			Monster* mon = (*monsters)[i].generate_monster();
+			std::shared_ptr<Monster> mon = (*monsters)[i].generate_monster();
 //debugmsg("Generating '%s'", mon->get_name().c_str());
 			mon->pos = Tripoint(pos.x, pos.y, zlevel);
 /*
@@ -2546,12 +2546,12 @@ void Map::damage(Tripoint pos, Damage_set dam)
 	damage(pos.x, pos.y, pos.z, dam);
 }
 
-bool Map::apply_signal(std::string signal, Tripoint pos, Entity* user)
+bool Map::apply_signal(std::string signal, Tripoint pos, std::shared_ptr<Entity> user)
 {
 	return apply_signal(signal, pos.x, pos.y, pos.z, user);
 }
 
-bool Map::apply_signal(std::string signal, int x, int y, int z, Entity* user)
+bool Map::apply_signal(std::string signal, int x, int y, int z, std::shared_ptr<Entity> user)
 {
 	Tile* target = get_tile(x, y, z);
 	if (target->signal_applies(signal))
@@ -2586,7 +2586,7 @@ void Map::process_fields()
 		}
 		if (field->is_valid())
 		{
-			Entity* ent = entities.entity_at(pos);
+			std::shared_ptr<Entity> ent = entities.entity_at(pos);
 			if (ent)
 			{
 				field->hit_entity(ent);
@@ -3007,7 +3007,7 @@ void Map::draw_tile(std::shared_ptr<Window> w, Entity_pool* entities,
 	{
 		if (entities)
 		{
-			Entity* ent = entities->entity_at(tilex, tiley, curz);
+			std::shared_ptr<Entity> ent = entities->entity_at(tilex, tiley, curz);
 			if (ent)
 			{
 				output = ent->get_glyph();
@@ -3240,7 +3240,7 @@ void Map::draw_tile(Doryen::Console& w, Entity_pool* entities, int tilex, int ti
 	{
 		if (entities)
 		{
-			Entity* ent = entities->entity_at(tilex, tiley, curz);
+			std::shared_ptr<Entity> ent = entities->entity_at(tilex, tiley, curz);
 			if (ent)
 			{
 				output = ent->get_glyph();

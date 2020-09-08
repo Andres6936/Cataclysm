@@ -118,7 +118,7 @@ bool Monster_ability_status::handle_data(std::string ident, std::istream& data,
 	return true;
 }
 
-bool Monster_ability_status::effect(Monster* user)
+bool Monster_ability_status::effect(std::shared_ptr<Monster> user)
 {
 	if (!user)
 	{
@@ -127,7 +127,7 @@ bool Monster_ability_status::effect(Monster* user)
 	}
 
 // Detect all valid targets.
-	std::vector<Entity*> targets;
+	std::vector<std::shared_ptr<Entity>> targets;
 	Tripoint p;
 	std::map<std::string, int> target_types; // For messages below
 	for (p.x = user->pos.x - range; p.x <= user->pos.x + range; p.x++)
@@ -135,16 +135,16 @@ bool Monster_ability_status::effect(Monster* user)
 		for (p.y = user->pos.y - range; p.y <= user->pos.y + range; p.y++)
 		{
 			p.z = user->pos.z;
-			Entity* ent = entities.entity_at(p);
+			std::shared_ptr<Entity> ent = entities.entity_at(p);
 			if (ent)
 			{
 				std::string ent_name = ent->get_name();
-				if (ent == player.get())
+				if (ent.get() == player.get())
 				{
 					ent_name = "you";
 				}
 				bool use_ent = false;
-				if (ent == user)
+				if (ent.get() == user.get())
 				{  // It's us!
 					if (affect_self)
 					{

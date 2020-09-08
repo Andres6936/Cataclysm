@@ -22,7 +22,7 @@ struct Monster_ability_fields : public Monster_ability
 	virtual bool handle_data(std::string ident, std::istream& data,
 			std::string owner);
 
-	virtual bool effect(Monster* user);
+	virtual bool effect(std::shared_ptr<Monster> user);
 
 	int range;  // Radius of affected tiles; defaults to 1
 	bool affect_all_tiles;  // If true, all tiles affected; defaults to false

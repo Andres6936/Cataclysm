@@ -15,6 +15,7 @@
 
 #include <istream>
 #include <Cataclysm/Entity/Monster/Enum/AbilityType.hpp>
+#include <memory>
 
 class Monster;
 
@@ -35,7 +36,7 @@ struct Monster_ability
 	virtual bool handle_data(std::string ident, std::istream& data,
 			std::string owner);
 
-	virtual bool effect(Monster* user);
+	virtual bool effect(std::shared_ptr<Monster> user);
 
 	int frequency;    // How much using this increases the monster's special_timer
 	int weight;       // How likely we are to used this (compared to other abils)

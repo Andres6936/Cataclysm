@@ -21,7 +21,7 @@ struct Monster_ability_teleport : public Monster_ability
 	virtual bool handle_data(std::string ident, std::istream& data,
 			std::string owner);
 
-	virtual bool effect(Monster* user);
+	virtual bool effect(std::shared_ptr<Monster> user);
 
 	int range;  // Max range of teleport.
 /* If <always_use_max_range> is true, we'll use a random open tile exactly

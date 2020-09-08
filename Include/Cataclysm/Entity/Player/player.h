@@ -124,6 +124,6 @@ public:
 };
 
 // Note that player should always == &(entities[0])
-inline std::unique_ptr<Player> player {nullptr};
+inline std::shared_ptr<Player> player {nullptr};
 
 #endif

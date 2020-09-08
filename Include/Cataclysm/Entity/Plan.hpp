@@ -3,7 +3,7 @@
 #ifndef CATACLYSM_PLAN_HPP
 #define CATACLYSM_PLAN_HPP
 
-
+#include <memory>
 #include <Cataclysm/Entity/entity_ai.h>
 #include <Cataclysm/Util/pathfind.h>
 
@@ -17,7 +17,7 @@ struct Entity_plan
 
 	void set_target(AI_goal goal, Tripoint target, int att = -1);
 
-	void set_target(AI_goal goal, Entity* target, int att = -1);
+	void set_target(AI_goal goal, std::shared_ptr<Entity> target, int att = -1);
 
 	void generate_path_to_target(Entity_AI AI, Tripoint origin);
 
@@ -36,7 +36,7 @@ struct Entity_plan
 	void shift(int shiftx, int shifty);
 
 	Tripoint target_point;
-	Entity* target_entity;
+	std::shared_ptr<Entity> target_entity;
 	Pathfinder pf;
 	Path path;
 	int attention;

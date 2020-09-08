@@ -137,7 +137,7 @@ public:
 // AI
 	virtual void take_turn();
 
-	virtual bool is_enemy(Entity* ent);
+	virtual bool is_enemy(std::shared_ptr<Entity> ent);
 
 	virtual bool try_goal(AI_goal goal);
 
@@ -167,7 +167,7 @@ public:
 // World interaction
 	int sight_range(int light_level = 50);
 
-	virtual bool can_sense(Entity* entity);
+	virtual bool can_sense(std::shared_ptr<Entity> entity);
 
 	virtual bool can_see(Map* map, Tripoint target);
 
@@ -322,9 +322,9 @@ public:
 	virtual Attack base_attack();
 
 	virtual Attack std_attack(); // With weapon if it exists
-	virtual bool can_attack(Entity* target);
+	virtual bool can_attack(std::shared_ptr<Entity> target);
 
-	virtual void attack(Entity* target);
+	virtual void attack(std::shared_ptr<Entity> target);
 
 	virtual int hit_roll(int bonus);
 
@@ -360,13 +360,13 @@ public:
 
 	virtual std::vector<Ranged_attack> get_ranged_attacks();
 
-	virtual Ranged_attack pick_ranged_attack(Entity* target);
+	virtual Ranged_attack pick_ranged_attack(std::shared_ptr<Entity> target);
 
 	virtual bool can_fire_weapon();
 
-	virtual bool can_attack_ranged(Entity* target);
+	virtual bool can_attack_ranged(std::shared_ptr<Entity> target);
 
-	virtual void attack_ranged(Entity* target, Ranged_attack ra);
+	virtual void attack_ranged(std::shared_ptr<Entity> target, Ranged_attack ra);
 
 	virtual bool can_sense(Map* map, int x, int y, int z = 999);
 

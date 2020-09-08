@@ -122,7 +122,7 @@ Cataclysm::ScreenType PlayScreen::do_action(Interface_action act)
 		else
 		{
 			Tripoint open = player->pos + dir;
-			if (map->apply_signal("open", open, player.get()))
+			if (map->apply_signal("open", open, player))
 			{
 				player->use_ap(100);
 			}
@@ -142,8 +142,8 @@ Cataclysm::ScreenType PlayScreen::do_action(Interface_action act)
 		else
 		{
 			Tripoint close = player->pos + dir;
-			Entity* ent = entities.entity_at(close);
-			if (ent == player.get())
+			std::shared_ptr<Entity> ent = entities.entity_at(close);
+			if (ent.get() == player.get())
 			{
 				messageQueue.addMessage({ "Maybe you should move out of the doorway first." });
 			}
@@ -155,7 +155,7 @@ Cataclysm::ScreenType PlayScreen::do_action(Interface_action act)
 			{
 				messageQueue.addMessage({ "There's some furniture in the way." });
 			}
-			else if (map->apply_signal("close", close, player.get()))
+			else if (map->apply_signal("close", close, player))
 			{
 				player->use_ap(100);
 			}
@@ -393,7 +393,7 @@ Cataclysm::ScreenType PlayScreen::do_action(Interface_action act)
 			else
 			{
 // If we actually targeted an entity, set that to our last target.
-				Entity* targeted_entity = entities.entity_at(target);
+				std::shared_ptr<Entity> targeted_entity = entities.entity_at(target);
 				if (targeted_entity)
 				{
 					last_target = targeted_entity->uid;
@@ -422,7 +422,7 @@ Cataclysm::ScreenType PlayScreen::do_action(Interface_action act)
 					 msg_query_yn("Really target yourself?"))
 			{
 // If we actually targeted an entity, set that to our last target.
-				Entity* targeted_entity = entities.entity_at(target);
+				std::shared_ptr<Entity> targeted_entity = entities.entity_at(target);
 				if (targeted_entity)
 				{
 					last_target = targeted_entity->uid;
@@ -512,7 +512,7 @@ void PlayScreen::move_entities()
 	clean_up_dead_entities();
 	//scent_map = map->get_dijkstra_map(player->pos, 15);
 // First, give all entities action points
-	for (auto& entity : entities)
+	for (auto& [uid, entity] : entities)
 	{
 		if (!entity->is_player())
 		{
@@ -527,7 +527,7 @@ void PlayScreen::move_entities()
 	do
 	{
 		all_done = true;
-		for (auto& entity : entities)
+		for (auto& [uid, entity] : entities)
 		{
 			if (!entity->is_player() && entity->action_points > 0 && !entity->dead)
 			{
@@ -543,10 +543,11 @@ void PlayScreen::move_entities()
 
 void PlayScreen::clean_up_dead_entities()
 {
-	std::list<Entity*>::iterator it = entities.begin();
+	auto it = entities.begin();
+
 	while (it != entities.end())
 	{
-		Entity* ent = (*it);
+		std::shared_ptr<Entity> ent = (*it).second;
 		if (ent->dead)
 		{
 			if (player->can_see(map.get(), ent->pos))
@@ -561,7 +562,6 @@ void PlayScreen::clean_up_dead_entities()
 				}
 			}
 			ent->die();
-			delete ent;
 			it = entities.erase(it);
 		}
 		else
@@ -669,7 +669,7 @@ void PlayScreen::shift_if_needed()
 	map->shift(worldmap.get(), shiftx, shifty);
 	//Point p = map->get_center_point();
 	//SUBMAP_POOL.load_area_centered_on( p.x, p.y );
-	for (auto& entity : entities)
+	for (auto& [uid, entity] : entities)
 	{
 		entity->shift(shiftx, shifty);
 	}
@@ -685,7 +685,7 @@ void PlayScreen::player_move(int xdif, int ydif)
 	}
 
 	int newx = player->pos.x + xdif, newy = player->pos.y + ydif;
-	Entity* ent = entities.entity_at(newx, newy, player->pos.z);
+	std::shared_ptr<Entity> ent = entities.entity_at(newx, newy, player->pos.z);
 	std::string tername = map->get_name(newx, newy, player->pos.z);
 
 // If we bump an entity, attack it.
@@ -744,7 +744,7 @@ void PlayScreen::player_move(int xdif, int ydif)
 
 // Otherwise, try to open it?
 	}
-	else if (map->apply_signal("open", newx, newy, player->pos.z, player.get()))
+	else if (map->apply_signal("open", newx, newy, player->pos.z, player))
 	{
 		player->use_ap(100);
 		return; // Don't list items
@@ -1015,7 +1015,7 @@ void PlayScreen::debug_command()
 		}
 		else
 		{
-			Monster* mon = new Monster(type);
+			std::shared_ptr<Monster> mon = std::make_shared< Monster>(type);
 			mon->pos = target_selector();
 			entities.add_entity(mon);
 		}
@@ -1025,8 +1025,8 @@ void PlayScreen::debug_command()
 	case DEBUG_ACTION_MONSTER_PATH:
 		if (!entities.empty())
 		{
-			Entity* ent = *(entities.begin());
-			Monster* mon = static_cast<Monster*>(ent);
+			std::shared_ptr<Entity> ent = entities.begin()->second;
+			Monster* mon = static_cast<Monster*>(ent.get());
 			mon->make_plans();
 			std::stringstream path_info;
 			path_info << "Monster: " << mon->pos.str() << std::endl;
@@ -1294,11 +1294,11 @@ std::vector<Tripoint> PlayScreen::path_selector(int startx, int starty, int rang
 	if (target_entities)
 	{
 // Set up list of targets.
-		for (auto& entity : entities)
+		for (auto& [uid, entity] : entities)
 		{
-			Entity* ent_target = entity;
+			std::shared_ptr<Entity> ent_target = entity;
 			int ent_range = rl_dist(player->pos, ent_target->pos);
-			if (ent_target != player.get() && ent_range <= range &&
+			if (ent_target.get() != player.get() && ent_range <= range &&
 				player->is_enemy(ent_target) && player->can_sense(ent_target))
 			{
 // They should be included; figure out where to place them in the list
@@ -1321,7 +1321,7 @@ std::vector<Tripoint> PlayScreen::path_selector(int startx, int starty, int rang
 		}
 		if (last_target == -1)
 		{  // No previous target to snap to, pick the closest
-			Entity* new_target = entities.closest_seen_by(player.get(), range);
+			std::shared_ptr<Entity> new_target = entities.closest_seen_by( range);
 			if (new_target)
 			{ // It'll be NULL if no one is in range
 				target = new_target->pos;
@@ -1338,7 +1338,7 @@ std::vector<Tripoint> PlayScreen::path_selector(int startx, int starty, int rang
 		}
 		else
 		{
-			Entity* old_target = entities.lookup_uid(last_target);
+			std::shared_ptr<Entity> old_target = entities.lookup_uid(last_target);
 // It'll be NULL if the old target's dead, etc.
 			if (old_target && player->can_sense(old_target))
 			{
@@ -1357,7 +1357,7 @@ std::vector<Tripoint> PlayScreen::path_selector(int startx, int starty, int rang
 			{
 // Reset last_target
 				last_target = -1;
-				Entity* new_target = entities.closest_seen_by(player.get(), range);
+				std::shared_ptr<Entity> new_target = entities.closest_seen_by( range);
 				if (new_target)
 				{ // It'll be NULL if no one is in range
 					target = new_target->pos;
@@ -1394,7 +1394,7 @@ std::vector<Tripoint> PlayScreen::path_selector(int startx, int starty, int rang
 	}
 
 // TODO: No no no remove this!  Won't work for tiles!
-	Entity* ent_targeted = entities.entity_at(target);
+	std::shared_ptr<Entity> ent_targeted = entities.entity_at(target);
 	if (ent_targeted)
 	{
 		w_map->putglyph(w_map->sizex() / 2 - player->pos.x + target.x,

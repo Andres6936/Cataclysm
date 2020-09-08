@@ -28,7 +28,7 @@ void Entity_plan::set_target(AI_goal goal, Tripoint target, int att)
 	goal_type = goal;
 }
 
-void Entity_plan::set_target(AI_goal goal, Entity* target, int att)
+void Entity_plan::set_target(AI_goal goal, std::shared_ptr<Entity> target, int att)
 {
 	if (!target)
 	{

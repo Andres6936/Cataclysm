@@ -42,7 +42,7 @@ bool Monster_ability_signal::handle_data(std::string ident, std::istream& data,
 	return true;
 }
 
-bool Monster_ability_signal::effect(Monster* user)
+bool Monster_ability_signal::effect(std::shared_ptr<Monster> user)
 {
 	if (!user)
 	{
