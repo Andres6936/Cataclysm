@@ -42,6 +42,26 @@ TARGET_LINK_LIBRARIES(Cuss PRIVATE ncurses)
 # For measure the time that take the compilation process
 SET_PROPERTY(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CMAKE_COMMAND} -E time")
 
+# Start Component {Visual}
+
+ADD_LIBRARY(Cataclysm.Visual
+        Source/Visual/Item/DictionaryItem.cpp
+        Source/Visual/Item/DictionaryClothing.cpp
+        Source/Visual/Screen/Message.cpp
+        Source/Visual/Screen/MessageQueue.cpp
+        )
+
+ADD_LIBRARY(Cataclysm::Visual ALIAS Cataclysm.Visual)
+
+# Compile Cataclysm with Support to C++17
+SET_TARGET_PROPERTIES(Cataclysm.Visual PROPERTIES CXX_STANDARD 17)
+# Find the headers in the directory Cataclysm without path to Include
+TARGET_INCLUDE_DIRECTORIES(Cataclysm.Visual PRIVATE
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Include/>
+        $<INSTALL_INTERFACE:/Include/>)
+
+# End Component {Visual}
+
 ADD_EXECUTABLE(Cataclysm
         Source/Main.cpp
         Source/Attack/Verbs.cpp
@@ -132,10 +152,6 @@ ADD_EXECUTABLE(Cataclysm
         Source/Util/pathfind.cpp
         Source/Util/String/stringfunc.cpp
         Source/Util/String/var_string.cpp
-        Source/Visual/Item/DictionaryItem.cpp
-        Source/Visual/Item/DictionaryClothing.cpp
-        Source/Visual/Screen/Message.cpp
-        Source/Visual/Screen/MessageQueue.cpp
         Source/World/Biome/Enum/BiomeFlag.cpp
         Source/World/Biome/biome.cpp
         Source/World/Biome/VariableMonsterGenus.cpp
@@ -164,6 +180,7 @@ TARGET_INCLUDE_DIRECTORIES(Cataclysm PRIVATE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Include/>
         $<INSTALL_INTERFACE:/Include/>)
 # Link the libraries needed
+TARGET_LINK_LIBRARIES(Cataclysm PRIVATE Cataclysm::Visual)
 TARGET_LINK_LIBRARIES(Cataclysm PRIVATE Doryen::Framework)
 TARGET_LINK_LIBRARIES(Cataclysm PRIVATE Cuss)
 TARGET_LINK_LIBRARIES(Cataclysm PRIVATE ncurses)
