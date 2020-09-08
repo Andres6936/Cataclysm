@@ -77,8 +77,6 @@ public:
 	bool destroy_item(Item* it, int uid = -1);
 
 	bool destroy_item_uid(int uid); // destroy_item(NULL, uid)
-// Temp value mutators
-	void set_temp_light_level(int level);
 
 /**** UI - Output functions ****/
 	void draw_all();
@@ -112,9 +110,7 @@ public:
 	// Returns true once every $turns turns
 	int get_light_level();          // Current light distance, based on the time
 
-	bool is_empty(Tripoint pos);
-
-/* find_item() returns the location of the item.  If it == NULL, use the uid;
+	/* find_item() returns the location of the item.  If it == NULL, use the uid;
  * otherwise, use it.  If it == NULL and uid == -1, just fail immediately.
  * Returns [-1, -1, -1] on fail.
  */
@@ -132,9 +128,6 @@ private:
 
 	int next_item_uid;
 	int next_furniture_uid;
-
-// Temp values; all reset in reset_temp_values()
-	int temp_light_level;
 };
 
 #endif

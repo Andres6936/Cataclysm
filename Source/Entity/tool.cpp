@@ -1,6 +1,7 @@
 #include "Cataclysm/Entity/tool.h"
 #include <Cataclysm/Util/String/stringfunc.h> // For trim() and no_caps()
 #include <Cataclysm/Util/globals.h>
+#include <Cataclysm/Mechanism/TimeManager.hpp>
 #include <Cataclysm/Visual/Screen/MessageQueue.hpp>
 
 Tool_special_explosion::Tool_special_explosion()
@@ -93,7 +94,7 @@ bool Tool_special_light::load_data(std::istream& data, std::string owner_name)
 
 bool Tool_special_light::effect(Entity* user)
 {
-	GAME.set_temp_light_level(light);
+	timeManager.setCalculateLightLevel(light);
 	return true;
 }
 

@@ -1009,7 +1009,7 @@ bool Entity::can_see(Map* map, int x, int y, int z)
 	{
 		return false;
 	}
-	int range = sight_range(GAME.get_light_level());
+	int range = sight_range(timeManager.calculateLightLevel());
 	return map->senses(pos.x, pos.y, pos.z, x, y, z, range, SENSE_SIGHT);
 }
 

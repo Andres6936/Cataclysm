@@ -22,13 +22,12 @@ PlayScreen::PlayScreen()
 	new_messages = 0;
 	next_item_uid = 0;
 	next_furniture_uid = 0;
-	temp_light_level = 0;
 	game_over = false;
 }
 
 void PlayScreen::reset_temp_values()
 {
-	temp_light_level = 0;
+	timeManager.setLightLevel(0);
 }
 
 Cataclysm::ScreenType PlayScreen::do_action(Interface_action act)
@@ -1312,14 +1311,6 @@ bool PlayScreen::destroy_item_uid(int uid)
 	return destroy_item(NULL, uid);
 }
 
-void PlayScreen::set_temp_light_level(int level)
-{
-	if (level > temp_light_level)
-	{
-		temp_light_level = level;
-	}
-}
-
 void PlayScreen::draw_all()
 {
 	update_hud();
@@ -2020,16 +2011,11 @@ int PlayScreen::get_furniture_uid()
 int PlayScreen::get_light_level()
 {
 	int ret = timeManager.getTime().get_light_level();
-	if (temp_light_level > ret)
+	if (timeManager.getLightLevel() > ret)
 	{
-		return temp_light_level;
+		return timeManager.getLightLevel();
 	}
 	return ret;
-}
-
-bool PlayScreen::is_empty(Tripoint pos)
-{
-	return (!(entities.entity_at(pos)) && map->move_cost(pos) > 0);
 }
 
 // UID defaults to -1

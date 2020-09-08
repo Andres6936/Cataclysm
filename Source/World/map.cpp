@@ -4,6 +4,7 @@
 #include <Cataclysm/Util/files.h>    // For SAVE_DIR
 #include <Cataclysm/Random/rng.h>
 #include <Cataclysm/Entity/Monster/monster.h>
+#include <Cataclysm/Mechanism/TimeManager.hpp>
 #include <Cataclysm/Visual/Screen/MessageQueue.hpp>
 
 Furniture::Furniture()
@@ -2933,7 +2934,7 @@ void Map::draw_area(std::shared_ptr<Window> w, Entity_pool* entities,
 // Range defaults to -1; which means use light level
 	if (range == -1)
 	{
-		range = GAME.get_light_level();
+		range = timeManager.calculateLightLevel();
 	}
 
 	int winx = w->sizex(), winy = w->sizey();
@@ -3171,7 +3172,7 @@ Map::draw_area(Doryen::Console& w, Entity_pool* entities, int refx, int refy, in
 	// Range defaults to -1; which means use light level
 	if (range == -1)
 	{
-		range = GAME.get_light_level();
+		range = timeManager.calculateLightLevel();
 	}
 
 	int winx = w.getWidth(), winy = w.getHeight();

@@ -5,6 +5,8 @@
 
 #include <cstdint>
 #include <Cataclysm/Mechanism/time.h>
+#include <zconf.h>
+#include <stdint-gcc.h>
 
 namespace Cataclysm
 {
@@ -16,6 +18,8 @@ namespace Cataclysm
 
 		// Variables
 
+		std::int32_t lightLevel = 0;
+
 		Time time {0, 0, 8, 1, SEASON_SPRING, STARTING_YEAR};
 
 	public:
@@ -26,11 +30,21 @@ namespace Cataclysm
 
 		bool minuteTimer(const std::int32_t _minutes);
 
+		const std::int32_t calculateLightLevel();
+
 		Time addHours(const std::int32_t _hours);
 
 		// Getters
 
+		const std::int32_t getLightLevel() const noexcept;
+
 		Time& getTime() noexcept;
+
+		// Setters
+
+		void setLightLevel(const std::int32_t _lightLevel) noexcept;
+
+		void setCalculateLightLevel(const std::int32_t _lightLevel) noexcept;
 
 	};
 

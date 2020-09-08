@@ -1,5 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
+#include <stdint-gcc.h>
+#include <zconf.h>
 #include "Cataclysm/Mechanism/TimeManager.hpp"
 
 using namespace Cataclysm;
@@ -30,6 +32,20 @@ bool TimeManager::minuteTimer(const std::int32_t _minutes)
 	}
 }
 
+const std::int32_t TimeManager::calculateLightLevel()
+{
+	const int ret = time.get_light_level();
+
+	if (getLightLevel() > ret)
+	{
+		return getLightLevel();
+	}
+	else
+	{
+		return ret;
+	}
+}
+
 Time TimeManager::addHours(const std::int32_t _hours)
 {
 	return time + HOURS(_hours);
@@ -37,7 +53,27 @@ Time TimeManager::addHours(const std::int32_t _hours)
 
 // Getters
 
+const std::int32_t TimeManager::getLightLevel() const noexcept
+{
+	return lightLevel;
+}
+
 Time& TimeManager::getTime() noexcept
 {
 	return time;
+}
+
+// Setters
+
+void TimeManager::setLightLevel(const std::int32_t _lightLevel) noexcept
+{
+	lightLevel = _lightLevel;
+}
+
+void TimeManager::setCalculateLightLevel(const std::int32_t _lightLevel) noexcept
+{
+	if (_lightLevel > getLightLevel())
+	{
+		lightLevel = _lightLevel;
+	}
 }
