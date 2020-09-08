@@ -1540,18 +1540,18 @@ void PlayScreen::debug_command()
 			}
 			else
 			{
-				add_msg("Map::get_testing_submap() return NULL???");
+				messageQueue.addMessage({ "Map::get_testing_submap() return NULL???" });
 			}
 		}
 		else
 		{
-			add_msg("<c=dkgray>Layout '%s' does not exist.", name.c_str());
+			messageQueue.addMessage({ Doryen::format("<c=dkgray>Layout '{}}' does not exist.", name) });
 		}
 	}
 		break;
 
 	case DEBUG_ACTION_MAP_INFO:
-		add_msg(map->get_center_submap()->get_spec_name().c_str());
+		messageQueue.addMessage({ map->get_center_submap()->get_spec_name() });
 		break;
 
 	case DEBUG_ACTION_PLACE_FIELD:
@@ -1560,7 +1560,7 @@ void PlayScreen::debug_command()
 		Field_type* type = FIELDS.lookup_partial_name(name);
 		if (!type)
 		{
-			add_msg("<c=dkgray>'%s' did not match any fields.<c=/>", name.c_str());
+			messageQueue.addMessage({ Doryen::format("<c=dkgray>'{}' did not match any fields.<c=/>", name) });
 		}
 		else
 		{
