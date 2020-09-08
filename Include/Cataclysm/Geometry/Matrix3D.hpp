@@ -39,7 +39,7 @@ namespace Cataclysm
 			return Height;
 		}
 
-		const std::uint32_t getDeep() const noexcept
+		const std::uint32_t getDepth() const noexcept
 		{
 			return Depth;
 		}
