@@ -38,13 +38,6 @@ public:
 
 /**** Engine - Called-as-needed ****/
 	void shift_if_needed();  // Shift the map, if the player's not in the center
-	void make_sound(std::string desc, int volume, Tripoint pos);
-
-	void make_sound(std::string desc, int volume, Point pos);
-
-	void make_sound(std::string desc, int volume, int x, int y);
-
-	void make_sound(Sound snd, Tripoint pos);
 
 	void player_move(int xdif, int ydif); // Handles all aspects of moving player
 	void player_move_vertical(int zdif);

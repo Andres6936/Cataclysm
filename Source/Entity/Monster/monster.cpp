@@ -1,3 +1,4 @@
+#include <Cataclysm/Mechanism/SoundManager.hpp>
 #include "Cataclysm/Entity/Monster/monster.h"
 #include <Cataclysm/Random/rng.h>
 #include <Cataclysm/Util/globals.h>
@@ -341,7 +342,8 @@ void Monster::take_turn()
 			{
 				snd.description += ".";
 			}
-			GAME.make_sound(snd, pos);
+
+			soundManager.makeSound(snd, pos);
 		}
 	}
 

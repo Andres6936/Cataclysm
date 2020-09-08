@@ -5,6 +5,7 @@
 #include <Cataclysm/Random/rng.h>
 #include <Cataclysm/Entity/Monster/monster.h>
 #include <Cataclysm/Mechanism/TimeManager.hpp>
+#include <Cataclysm/Mechanism/SoundManager.hpp>
 #include <Cataclysm/Visual/Screen/MessageQueue.hpp>
 
 Furniture::Furniture()
@@ -2495,8 +2496,8 @@ void Map::smash(int x, int y, int z, Damage_set dam, bool make_sound)
 		std::string sound = hit->smash(dam);
 		if (make_sound)
 		{
-// TODO: Don't hardcode volume (12)?
-			GAME.make_sound(sound, 12, x, y);
+			// TODO: Don't hardcode volume (12)?
+			soundManager.makeSound(sound, 12, x, y);
 		}
 	}
 }

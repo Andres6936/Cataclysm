@@ -687,48 +687,6 @@ void PlayScreen::shift_if_needed()
 	}
 }
 
-void PlayScreen::make_sound(std::string desc, int volume, Tripoint pos)
-{
-	make_sound(Sound(desc, volume), pos);
-}
-
-void PlayScreen::make_sound(std::string desc, int volume, Point pos)
-{
-	make_sound(desc, volume, Tripoint(pos.x, pos.y, 0));
-}
-
-void PlayScreen::make_sound(std::string desc, int volume, int x, int y)
-{
-	make_sound(desc, volume, Point(x, y));
-}
-
-void PlayScreen::make_sound(Sound snd, Tripoint pos)
-{
-	if (snd.description.empty())
-	{
-		return;
-	}
-// TODO: Alert monsters
-	Direction_full dir = get_general_direction(player->pos, pos);
-	snd.volume -= rl_dist(pos, player->pos);
-	if (snd.volume <= 0)
-	{
-		return; // To quiet to hear!
-	}
-// TODO: Don't hardcode color
-// We don't punctuate the messages below - that's for the sound to do!
-	if (dir == DIRFULL_NULL)
-	{ // On top of the player!
-		messageQueue.addMessage({ Doryen::format("<c=ltblue>You hear {}<c=/>", snd.description) });
-	}
-	else
-	{
-		messageQueue.addMessage(
-				{ Doryen::format("<c=ltblue>To the <c=ltred>{}<c=ltblue>, you hear {}<c=/>", Direction_name(dir).c_str(),
-				  snd.description.c_str()) });
-	}
-}
-
 void PlayScreen::player_move(int xdif, int ydif)
 {
 // TODO: Remove this?

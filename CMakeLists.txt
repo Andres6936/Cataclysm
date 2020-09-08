@@ -125,6 +125,7 @@ ADD_EXECUTABLE(Cataclysm
         Source/Mechanism/Projectile.cpp
         Source/Mechanism/TimeManager.cpp
         Source/Mechanism/newcharacter.cpp
+        Source/Mechanism/SoundManager.cpp
         Source/Mechanism/status_effect.cpp
         Source/Random/rng.cpp
         Source/Random/dice.cpp
