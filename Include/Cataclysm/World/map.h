@@ -269,10 +269,6 @@ public:
 
 	~Map();
 
-// Generation
-	void generate_empty();
-
-	//void test_generate(std::string terrain_name);
 	void generate(Worldmap* world, int wposx = -999, int wposy = -999,
 			int wposz = -999);
 
@@ -281,15 +277,7 @@ public:
 	void spawn_monsters(Worldmap* world, int worldx, int worldy,
 			int subx, int suby, int zlevel);
 
-// Mapping, pathing, LoS
-	Generic_map get_dijkstra_map(Tripoint target, int weight,
-			bool include_smashable = true);
-
 	Generic_map get_movement_map(Entity_AI AI, Tripoint origin, Tripoint target);
-
-// If force_rebuild is false, we skip any tiles for which the Sight_map is
-// already initialized.
-	void build_sight_map(int range = -1, bool force_rebuild = false);
 
 	bool senses(int x0, int y0, int x1, int y1, int range, Sense_type sense);
 
@@ -300,13 +288,10 @@ public:
 
 	bool senses(Tripoint origin, Tripoint target, int range, Sense_type sense);
 
-// clear_path() uses line_of_sight() to detemine if there's an movement path
 	bool clear_path_exists(Tripoint origin, Tripoint target, int range = -1);
 
 	bool clear_path_exists(int x0, int y0, int z0,
 			int x1, int y1, int z1, int range = -1);
-
-	std::vector<Tripoint> clear_path(Tripoint origin, Tripoint target);
 
 	std::vector<Tripoint> clear_path(int x0, int y0, int z0,
 			int x1, int y1, int z1);
@@ -316,11 +301,10 @@ public:
 	std::vector<Tripoint> line_of_sight(int x0, int y0, int z0,
 			int x1, int y1, int z1);
 
-	std::vector<Tripoint> line_of_sight(Point origin, Point target);
-
 	std::vector<Tripoint> line_of_sight(Tripoint origin, Tripoint target);
 
-// Tile information
+	// Tile information
+
 	int move_cost(Tripoint pos);
 
 	int move_cost(int x, int y, int z = 999);
@@ -347,8 +331,6 @@ public:
 
 	void clear_items(); // Clears ALL items!
 	bool remove_item(Item* it, int uid = -1);
-
-	bool remove_item_uid(int uid);  // remove_item(NULL, uid);
 
 	bool add_field(Field_type* type, Tripoint pos, std::string creator = "");
 
@@ -383,15 +365,11 @@ public:
 
 	void clear_furniture(int x, int y, int z = 999);
 
-	bool contains_field(Tripoint pos);
-
 	bool contains_field(int x, int y, int z = 999);
 
 	Field* field_at(Tripoint pos);
 
 	Field* field_at(int x, int y, int z = 999);
-
-	int field_uid_at(Tripoint pos);
 
 	int field_uid_at(int x, int y, int z = 999);
 
@@ -479,8 +457,6 @@ public:
 	Tripoint find_item(Item* it, int uid = -1);
 
 	Tripoint find_item_uid(int uid); // find_item(NULL, uid)
-
-	std::string get_range_text(); // For debugging purposes.
 
 	int posx, posy, posz; // Worldmap coordinates of the upper-left submap.
 
