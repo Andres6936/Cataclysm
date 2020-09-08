@@ -837,12 +837,13 @@ void PlayScreen::remove_active_item_uid(int uid)
 // Bit of a duplication of code from find_item(), but what can ya do
 bool PlayScreen::destroy_item(Item* it, int uid)
 {
-// Sanity check
+	// Sanity check
 	if (it == NULL && (uid < 0 || uid >= nextItemManager.getNextItemUid()))
 	{
 		return false;
 	}
-// Check entities first - almost certainly faster than the map
+
+	// Check entities first - almost certainly faster than the map
 	for (std::list<Entity*>::iterator iter = entities.instances.begin();
 		 iter != entities.instances.end();
 		 iter++)

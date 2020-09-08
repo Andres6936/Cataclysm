@@ -34,6 +34,10 @@ public:
 
 	bool empty();
 
+	bool destroyItem(Item* item, std::int32_t _uid = -1);
+
+	bool destroyItemByUID(const std::int32_t _uid);
+
 	Entity* lookup_uid(int uid);
 
 	Entity* entity_at(int posx, int posy);

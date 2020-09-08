@@ -2,6 +2,7 @@
 
 #include "Cataclysm/Entity/Pool.hpp"
 #include <Cataclysm/Util/globals.h>
+#include <Cataclysm/Mechanism/NextItemManager.hpp>
 
 Entity_pool::Entity_pool()
 {
@@ -125,6 +126,33 @@ Entity* Entity_pool::closest_seen_by(Entity* observer, int range)
 		}
 	}
 	return ret; // Might be NULL!
+}
+
+bool Entity_pool::destroyItem(Item* item, std::int32_t _uid)
+{
+	// Sanity check
+	if (item == NULL && (_uid < 0 || _uid >= nextItemManager.getNextItemUid()))
+	{
+		return false;
+	}
+
+	// Check entities first - almost certainly faster than the map
+	for (auto& entity : instances)
+	{
+		Item check = entity->remove_item(item, _uid);
+
+		if (check.is_real())
+		{
+			return true;
+		}
+	}
+
+	return map->remove_item(item, _uid);
+}
+
+bool Entity_pool::destroyItemByUID(const std::int32_t _uid)
+{
+	return destroyItem(nullptr, _uid);
 }
 
 

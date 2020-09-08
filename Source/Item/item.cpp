@@ -1036,7 +1036,7 @@ bool Item::finish_countdown()
 	active = ITEM_ACTIVE_OFF;
 	if (tool->countdown_action.destroy_if_chargeless)
 	{
-		if (!GAME.destroy_item_uid(get_uid()))
+		if (!entities.destroyItemByUID(get_uid()))
 		{
 			debugmsg("Couldn't destroy item!");
 		}
@@ -1090,7 +1090,7 @@ bool Item::process_active()
 // We have to destroy the item AFTER removing it from Game:active_items!
 				if (tool->powered_action.destroy_if_chargeless)
 				{
-					GAME.destroy_item(this);
+					entities.destroyItem(this);
 					return true;
 				}
 				return false;
