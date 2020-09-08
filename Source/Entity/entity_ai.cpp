@@ -1,5 +1,5 @@
-#include "Cataclysm/entity_ai.h"
 #include "Cataclysm/stringfunc.h"
+#include "Cataclysm/Entity/entity_ai.h"
 #include <Cataclysm/Screen/Debugger.hpp>
 
 Entity_AI::Entity_AI()

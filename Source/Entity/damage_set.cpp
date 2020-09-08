@@ -1,4 +1,4 @@
-#include "Cataclysm/damage_set.h"
+#include "Cataclysm/Entity/damage_set.h"
 
 Damage_set::Damage_set()
 {

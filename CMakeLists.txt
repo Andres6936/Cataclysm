@@ -47,6 +47,8 @@ ADD_EXECUTABLE(Cataclysm
         Source/Entity/Pool.cpp
         Source/Entity/Stats.cpp
         Source/Entity/entity.cpp
+        Source/Entity/entity_ai.cpp
+        Source/Entity/damage_set.cpp
         Source/Entity/profession.cpp
         Source/Entity/Monster/Type.cpp
         Source/Entity/Monster/Size.cpp
@@ -139,8 +141,6 @@ ADD_EXECUTABLE(Cataclysm
         Source/var_string.cpp
         Source/pathfind.cpp
         Source/window.cpp
-        Source/damage_set.cpp
-        Source/entity_ai.cpp
         Source/keybind.cpp
         Source/main.cpp
         Source/enum.cpp
