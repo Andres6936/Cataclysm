@@ -39,6 +39,9 @@ TARGET_INCLUDE_DIRECTORIES(Cuss PRIVATE
 TARGET_LINK_LIBRARIES(Cuss PRIVATE Doryen::Framework)
 TARGET_LINK_LIBRARIES(Cuss PRIVATE ncurses)
 
+# For measure the time that take the compilation process
+SET_PROPERTY(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CMAKE_COMMAND} -E time")
+
 ADD_EXECUTABLE(Cataclysm
         Source/Attack/Verbs.cpp
         Source/Attack/attack.cpp
