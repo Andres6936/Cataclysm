@@ -8,12 +8,7 @@
 
 namespace Cataclysm
 {
-
-	class DictionaryClothing : public std::multimap<DictionaryItem, bool, DictionaryItemCompare>
-	{
-
-	};
-
+	using DictionaryClothing = std::multimap<DictionaryItem, bool, DictionaryItemCompare>;
 }
 
 #endif //CATACLYSM_DICTIONARYCLOTHING_HPP
