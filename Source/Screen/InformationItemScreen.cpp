@@ -1,6 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include <Cataclysm/files.h>
+#include <Cataclysm/Visual/Screen/MessageQueue.hpp>
 #include <Cataclysm/Entity/Player/StateInventory.hpp>
 #include "Cataclysm/Screen/InformationItemScreen.hpp"
 
@@ -94,32 +95,38 @@ ScreenType InformationItemScreen::processInput()
 	case 'd':
 	case 'D':
 		// TODO: Dropping may fail sometimes(?), so don't automatically add the item
+		messageQueue.addMessage({ player->drop_item_message(item) });
 		player->remove_item_uid(item.get_uid());
 		map->add_item(item, player->pos);
 		isNeededUpdate = true;
 		return ScreenType::PLAY;
 
 	case 'w':
+		messageQueue.addMessage({ player->wield_item_message(item) });
 		player->wield_item_uid(item.get_uid());
 		isNeededUpdate = true;
 		return ScreenType::PLAY;
 
 	case 'W':
+		messageQueue.addMessage({ player->wear_item_message(item) });
 		player->wear_item_uid(item.get_uid());
 		isNeededUpdate = true;
 		return ScreenType::PLAY;
 
 	case 'e':
+		messageQueue.addMessage({ player->eat_item_message(item) });
 		player->eat_item_uid(item.get_uid());
 		isNeededUpdate = true;
 		return ScreenType::PLAY;
 
 	case 'a':
+		messageQueue.addMessage({ player->apply_item_message(item) });
 		player->apply_item_uid(item.get_uid());
 		isNeededUpdate = true;
 		return ScreenType::PLAY;
 
 	case 'r':
+		messageQueue.addMessage({ player->read_item_message(item) });
 		player->read_item_uid(item.get_uid());
 		isNeededUpdate = true;
 		return ScreenType::PLAY;
