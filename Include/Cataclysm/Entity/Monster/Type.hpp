@@ -7,10 +7,10 @@
 #include <string>
 
 #include <Cataclysm/sound.h>
-#include <Cataclysm/entity_ai.h>
 #include <Cataclysm/var_string.h>
 #include <Cataclysm/Attack/attack.h>
 #include <Cataclysm/Attack/Ranged.hpp>
+#include <Cataclysm/Entity/entity_ai.h>
 #include <Cataclysm/Enum/SenseType.hpp>
 #include <Cataclysm/Entity/Monster/Ability.hpp>
 #include "Size.h"

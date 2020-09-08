@@ -15,6 +15,7 @@
 #include <Cataclysm/Entity/Player/Enum/ActivityType.hpp>
 #include <Cataclysm/tool.h>
 #include <Cataclysm/Enum/trait.h>
+#include <Cataclysm/Enum/enum.h>
 
 class Entity
 {

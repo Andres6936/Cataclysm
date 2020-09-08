@@ -1,10 +1,10 @@
 #ifndef _FIELD_H_
 #define _FIELD_H_
 
-#include "Cataclysm/Graphics/glyph.h"
+#include "Cataclysm/Entity/damage_set.h"
 #include <Cataclysm/Geometry/geometry.h>
+#include "Cataclysm/Graphics/glyph.h"
 #include "explosion.h"  // For fuel explosions
-#include "damage_set.h"
 
 #include <string>
 #include <vector>

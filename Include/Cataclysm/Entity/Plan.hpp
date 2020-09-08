@@ -4,7 +4,7 @@
 #define CATACLYSM_PLAN_HPP
 
 
-#include <Cataclysm/entity_ai.h>
+#include <Cataclysm/Entity/entity_ai.h>
 #include <Cataclysm/pathfind.h>
 
 class Entity;

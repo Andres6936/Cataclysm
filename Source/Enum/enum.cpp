@@ -1,4 +1,4 @@
-#include "Cataclysm/enum.h"
+#include "Cataclysm/Enum/enum.h"
 #include "Cataclysm/stringfunc.h"
 
 HP_part lookup_HP_part(std::string name)
