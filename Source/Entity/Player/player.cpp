@@ -1,3 +1,4 @@
+#include <Cataclysm/Mechanism/TargetSelectorManager.hpp>
 #include <Cataclysm/Entity/Player/StateInventory.hpp>
 #include <Cataclysm/Visual/Screen/MessageQueue.hpp>
 #include "Cataclysm/Screen/HelpMenuScreen.hpp"   // For help_skill_desc()
@@ -691,7 +692,7 @@ Tripoint Player::pick_target_for(Item* it)
 	case TOOL_TARGET_ADJACENT:
 	{
 		messageQueue.addMessage({ "<c=ltgreen>" + verb + " where? (Press direction key)<c=/>" });
-		GAME.draw_all();
+//		GAME.draw_all();
 		Point dir = input_direction(input());
 		if (dir.x == -2)
 		{  // We canceled
@@ -709,7 +710,9 @@ Tripoint Player::pick_target_for(Item* it)
 		{
 			range = -1; // -1 means "No range limit" for Game::target_selector()
 		}
-		ret = GAME.target_selector(pos.x, pos.y, range);
+
+		ret = targetSelectorManager.select(pos.x, pos.y, range);
+
 		if (ret.x == -1)
 		{ // We canceled
 			return Tripoint(-1, -1, -1);

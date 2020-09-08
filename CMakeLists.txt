@@ -129,6 +129,7 @@ ADD_EXECUTABLE(Cataclysm
         Source/Mechanism/SoundManager.cpp
         Source/Mechanism/status_effect.cpp
         Source/Mechanism/NextItemManager.cpp
+        Source/Mechanism/TargetSelectorManager.cpp
         Source/Random/rng.cpp
         Source/Random/dice.cpp
         Source/Screen/IScreen.cpp
