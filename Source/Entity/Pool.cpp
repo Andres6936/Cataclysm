@@ -155,4 +155,30 @@ bool Entity_pool::destroyItemByUID(const std::int32_t _uid)
 	return destroyItem(nullptr, _uid);
 }
 
+Tripoint Entity_pool::findItem(Item* item, std::int32_t _uid)
+{
+	// Sanity check
+	if (item == NULL && (_uid < 0 || _uid >= nextItemManager.getNextItemUid()))
+	{
+		return Tripoint(-1, -1, -1);
+	}
+
+	// Check entities first - almost certainly faster than the map
+	for (auto& entity : instances)
+	{
+		if (entity->has_item(item, _uid))
+		{
+			return entity->pos;
+		}
+	}
+
+	Tripoint ret = map->find_item(item, _uid);
+	return ret;
+}
+
+Tripoint Entity_pool::findItemByUID(const std::int32_t _uid)
+{
+	return findItem(nullptr, _uid);
+}
+
 

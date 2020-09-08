@@ -38,6 +38,10 @@ public:
 
 	bool destroyItemByUID(const std::int32_t _uid);
 
+	Tripoint findItem(Item* item, std::int32_t _uid = -1);
+
+	Tripoint findItemByUID(const std::int32_t _uid);
+
 	Entity* lookup_uid(int uid);
 
 	Entity* entity_at(int posx, int posy);

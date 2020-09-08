@@ -406,7 +406,9 @@ bool Tool_action::activate(Item* it, Entity* user)
 	{
 		return false;
 	}
-	Tripoint pos = GAME.find_item_uid(it->get_uid());
+
+	Tripoint pos = entities.findItemByUID(it->get_uid());
+
 	if (pos.x == -1)
 	{  // Couldn't find item!
 		debugmsg("Couldn't find item.");

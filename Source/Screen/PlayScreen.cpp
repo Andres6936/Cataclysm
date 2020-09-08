@@ -833,34 +833,6 @@ void PlayScreen::remove_active_item_uid(int uid)
 	}
 }
 
-// Bit of a duplication of code from find_item(), but what can ya do
-bool PlayScreen::destroy_item(Item* it, int uid)
-{
-	// Sanity check
-	if (it == NULL && (uid < 0 || uid >= nextItemManager.getNextItemUid()))
-	{
-		return false;
-	}
-
-	// Check entities first - almost certainly faster than the map
-	for (std::list<Entity*>::iterator iter = entities.instances.begin();
-		 iter != entities.instances.end();
-		 iter++)
-	{
-		Item check = (*iter)->remove_item(it, uid);
-		if (check.is_real())
-		{
-			return true;
-		}
-	}
-	return map->remove_item(it, uid);
-}
-
-bool PlayScreen::destroy_item_uid(int uid)
-{
-	return destroy_item(NULL, uid);
-}
-
 void PlayScreen::draw_all()
 {
 	update_hud();
@@ -1556,33 +1528,6 @@ int PlayScreen::get_light_level()
 		return timeManager.getLightLevel();
 	}
 	return ret;
-}
-
-// UID defaults to -1
-Tripoint PlayScreen::find_item(Item* it, int uid)
-{
-// Sanity check
-	if (it == NULL && (uid < 0 || uid >= nextItemManager.getNextItemUid()))
-	{
-		return Tripoint(-1, -1, -1);
-	}
-// Check entities first - almost certainly faster than the map
-	for (std::list<Entity*>::iterator iter = entities.instances.begin();
-		 iter != entities.instances.end();
-		 iter++)
-	{
-		if ((*iter)->has_item(it, uid))
-		{
-			return (*iter)->pos;
-		}
-	}
-	Tripoint ret = map->find_item(it, uid);
-	return ret;
-}
-
-Tripoint PlayScreen::find_item_uid(int uid)
-{
-	return find_item(NULL, uid);
 }
 
 std::vector<std::string>

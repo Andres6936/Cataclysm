@@ -47,11 +47,7 @@ public:
 
 	void remove_active_item_uid(int uid);
 
-	bool destroy_item(Item* it, int uid = -1);
-
-	bool destroy_item_uid(int uid); // destroy_item(NULL, uid)
-
-/**** UI - Output functions ****/
+	/**** UI - Output functions ****/
 	void draw_all();
 
 	void update_hud();
@@ -78,13 +74,6 @@ public:
 
 	int get_light_level();          // Current light distance, based on the time
 
-	/* find_item() returns the location of the item.  If it == NULL, use the uid;
- * otherwise, use it.  If it == NULL and uid == -1, just fail immediately.
- * Returns [-1, -1, -1] on fail.
- */
-	Tripoint find_item(Item* it, int uid = -1);
-
-	Tripoint find_item_uid(int uid);  // find_item(NULL, uid)
 
 private:
 
