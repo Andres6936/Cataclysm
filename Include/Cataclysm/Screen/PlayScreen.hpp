@@ -76,8 +76,6 @@ public:
 			bool target_entities = false,
 			bool show_path = true);
 
-/**** Data - Universal access functions ****/
-	int get_item_uid();     // Get the next available UID (and increment)
 	int get_furniture_uid();// Get the next available UID (and increment)
 	// Returns true once every $minutes minutes
 	// Returns true once every $turns turns
@@ -96,7 +94,6 @@ private:
 	Doryen::Console screenMap {24, 24};
 	Doryen::Console screenHUD {56, 24};
 
-	int next_item_uid;
 	int next_furniture_uid;
 };
 

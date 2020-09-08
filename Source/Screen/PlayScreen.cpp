@@ -7,6 +7,7 @@
 #include <Cataclysm/Entity/Monster/monster.h>
 #include <Cataclysm/Mechanism/TimeManager.hpp>
 #include <Cataclysm/Item/ActiveItemsManager.hpp>
+#include <Cataclysm/Mechanism/NextItemManager.hpp>
 #include <Cataclysm/Visual/Screen/MessageQueue.hpp>
 
 #include <stdarg.h>
@@ -21,7 +22,6 @@ PlayScreen::PlayScreen()
 	player = NULL;
 	last_target = -1;
 	new_messages = 0;
-	next_item_uid = 0;
 	next_furniture_uid = 0;
 	game_over = false;
 }
@@ -838,7 +838,7 @@ void PlayScreen::remove_active_item_uid(int uid)
 bool PlayScreen::destroy_item(Item* it, int uid)
 {
 // Sanity check
-	if (it == NULL && (uid < 0 || uid >= next_item_uid))
+	if (it == NULL && (uid < 0 || uid >= nextItemManager.getNextItemUid()))
 	{
 		return false;
 	}
@@ -989,7 +989,7 @@ void PlayScreen::debug_command()
 			map->add_item(spawned, player->pos);
 			messageQueue.addMessage(
 					{ Doryen::format("Spawned {} (UID {d}, next UID {}).", spawned.get_name_indefinite(), spawned.get_uid(),
-					  next_item_uid) });
+					  nextItemManager.getNextItemUid()) });
 		}
 	}
 		break;
@@ -1548,11 +1548,6 @@ std::vector<Tripoint> PlayScreen::path_selector(int startx, int starty, int rang
 	}
 }
 
-int PlayScreen::get_item_uid()
-{
-	return next_item_uid++;
-}
-
 int PlayScreen::get_furniture_uid()
 {
 	return next_furniture_uid++;
@@ -1572,7 +1567,7 @@ int PlayScreen::get_light_level()
 Tripoint PlayScreen::find_item(Item* it, int uid)
 {
 // Sanity check
-	if (it == NULL && (uid < 0 || uid >= next_item_uid))
+	if (it == NULL && (uid < 0 || uid >= nextItemManager.getNextItemUid()))
 	{
 		return Tripoint(-1, -1, -1);
 	}

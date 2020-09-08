@@ -1,3 +1,4 @@
+#include <Cataclysm/Mechanism/NextItemManager.hpp>
 #include <Cataclysm/Item/ActiveItemsManager.hpp>
 #include <Cataclysm/Item/TypeContainer.hpp>
 #include <Cataclysm/Item/TypeClothing.hpp>
@@ -22,7 +23,7 @@ Item::Item(Item_type* T)
 	active = ITEM_ACTIVE_OFF;
 	if (type)
 	{
-		uid = GAME.get_item_uid();
+		uid = nextItemManager.getItemUID();
 		charges = type->default_charges();
 		if (charges > 0 && get_item_class() == ITEM_CLASS_TOOL)
 		{
@@ -104,7 +105,7 @@ void Item::set_type(Item_type* T)
 		return;
 	}
 	type = T;
-	uid = GAME.get_item_uid();
+	uid = nextItemManager.getItemUID();
 // TODO: The rest of the type setup?
 }
 
