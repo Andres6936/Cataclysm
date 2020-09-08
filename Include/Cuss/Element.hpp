@@ -6,10 +6,10 @@
 #include <string>
 #include <vector>
 #include <Doryen/Doryen.hpp>
-#include <Cataclysm/window.h>
 #include <Cuss/Enum/Alignment.hpp>
 #include <Cuss/Enum/ElementType.hpp>
 #include <Cataclysm/Graphics/color.h>
+#include <Cataclysm/Graphics/window.h>
 #include <Cuss/Enum/VerticalAligment.hpp>
 
 namespace cuss

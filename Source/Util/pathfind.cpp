@@ -1,6 +1,6 @@
-#include "Cataclysm/pathfind.h"
+#include "Cataclysm/Util/pathfind.h"
 #include "Cataclysm/Random/rng.h"
-#include "Cataclysm/map.h"  // For SUBMAP_SIZE
+#include "Cataclysm/World/map.h"  // For SUBMAP_SIZE
 #include <math.h>
 #include <algorithm>
 #include <Cataclysm/Screen/Debugger.hpp>

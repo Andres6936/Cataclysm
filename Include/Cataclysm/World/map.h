@@ -5,7 +5,7 @@
 #define MAP_SIZE 13
 #define VERTICAL_MAP_SIZE 3
 
-#include "Cataclysm/mapgen.h"
+#include "Cataclysm/World/mapgen.h"
 #include <Cataclysm/World/worldmap.h>
 #include "Cataclysm/World/Terrain/terrain.h"
 

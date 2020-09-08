@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include <Cataclysm/map.h>
+#include <Cataclysm/World/map.h>
 #include "Cataclysm/Entity/Plan.hpp"
 #include <Cataclysm/Attack/attack.h>
 #include "Cataclysm/Entity/Stats.hpp"

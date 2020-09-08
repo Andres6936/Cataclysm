@@ -3,7 +3,7 @@
 
 #include <string>
 #include <Cataclysm/Entity/skill.h>
-#include "Cataclysm/mapgen.h"
+#include "Cataclysm/World/mapgen.h"
 
 struct Profession
 {

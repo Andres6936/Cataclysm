@@ -5,7 +5,7 @@
 
 
 #include <Cataclysm/Entity/entity_ai.h>
-#include <Cataclysm/pathfind.h>
+#include <Cataclysm/Util/pathfind.h>
 
 class Entity;
 

@@ -5,7 +5,7 @@
 #include <string>
 
 #include <Cuss/Element.hpp>
-#include <Cataclysm/pathfind.h>
+#include <Cataclysm/Util/pathfind.h>
 #include "Cataclysm/World/Tile.hpp"
 #include <Cataclysm/World/world_terrain.h>
 #include <Cataclysm/World/Biome/biome.h>

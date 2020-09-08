@@ -1,7 +1,7 @@
 #ifndef _TOOL_H_
 #define _TOOL_H_
 
-#include "Cataclysm/field.h"
+#include "Cataclysm/World/field.h"
 #include "Cataclysm/Entity/skill.h"  // Some actions are affected by skill
 #include <string>
 #include <istream>

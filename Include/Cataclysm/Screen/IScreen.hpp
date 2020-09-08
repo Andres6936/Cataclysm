@@ -3,11 +3,11 @@
 #ifndef CATACLYSM_SCREEN_HPP
 #define CATACLYSM_SCREEN_HPP
 
-#include <Cataclysm/map.h>
 #include <Doryen/Doryen.hpp>
-#include <Cataclysm/window.h>
 #include <Cuss/Interface.hpp>
+#include <Cataclysm/World/map.h>
 #include <Cataclysm/World/worldmap.h>
+#include <Cataclysm/Graphics/window.h>
 #include <Cataclysm/Screen/Enum/ScreenType.hpp>
 #include <Cataclysm/Entity/Player/player.h>
 #include <Cataclysm/Entity/Pool.hpp>

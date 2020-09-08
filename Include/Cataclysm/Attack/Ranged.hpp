@@ -5,7 +5,7 @@
 
 #include <string>
 
-#include <Cataclysm/field.h>
+#include <Cataclysm/World/field.h>
 #include <Cataclysm/Random/dice.h>
 #include <Cataclysm/Attack/Enum/RangedHitType.hpp>
 #include "Cataclysm/Attack/Enum/RangedAttackType.hpp"

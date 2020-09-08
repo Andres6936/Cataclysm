@@ -1,8 +1,8 @@
-#include "Cataclysm/field.h"
+#include "Cataclysm/World/field.h"
 #include "Cataclysm/Util/globals.h"
 #include "Cataclysm/Mechanism/datapool.h"
 #include <Cataclysm/Util/files.h>
-#include "Cataclysm/map.h"
+#include "Cataclysm/World/map.h"
 
 int TESTING_MODE;
 

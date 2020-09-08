@@ -4,7 +4,7 @@
 #define CATACLYSM_MENUSCREEN_HPP
 
 #include <Cuss/Interface.hpp>
-#include <Cataclysm/window.h>
+#include <Cataclysm/Graphics/window.h>
 #include <Cataclysm/Screen/IScreen.hpp>
 
 namespace Cataclysm

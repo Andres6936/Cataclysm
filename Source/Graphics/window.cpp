@@ -1,6 +1,6 @@
 #include <list>
 
-#include "Cataclysm/window.h"
+#include "Cataclysm/Graphics/window.h"
 #include <Cataclysm/Screen/Debugger.hpp>
 
 bool parse_color_tags(std::string text, std::vector<std::string>& segments,
