@@ -4,7 +4,7 @@
 #include "Cataclysm/Entity/Player/player.h"
 #include <Cataclysm/Random/rng.h>
 #include "Cataclysm/globals.h"
-#include "Cataclysm/files.h"  // For CUSS_DIR
+#include <Cataclysm/Util/files.h>  // For CUSS_DIR
 
 void populate_item_lists(Player* p, int offset_size,
 		std::vector<int> item_indices[ITEM_CLASS_MAX],

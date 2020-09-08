@@ -1,7 +1,7 @@
 #include "Cataclysm/field.h"
 #include "Cataclysm/globals.h"
 #include "Cataclysm/datapool.h"
-#include "Cataclysm/files.h"
+#include <Cataclysm/Util/files.h>
 #include "Cataclysm/map.h"
 
 int TESTING_MODE;

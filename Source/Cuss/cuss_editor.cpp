@@ -2,7 +2,7 @@
 #include <sstream>
 #include <unistd.h>
 #include <iostream> // For displaying messages to the terminal
-#include "Cataclysm/files.h"
+#include <Cataclysm/Util/files.h>
 #include <Cataclysm/Util/String/stringfunc.h>
 #include <Cataclysm/Screen/Debugger.hpp>
 #include <Cuss/Interface.hpp>

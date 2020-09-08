@@ -6,7 +6,7 @@
 #include <Cataclysm/Random/rng.h>
 #include "Cataclysm/Item/item.h"
 #include "Cataclysm/globals.h"
-#include "Cataclysm/files.h"    // For CUSS_DIR
+#include <Cataclysm/Util/files.h>    // For CUSS_DIR
 
 Item::Item(Item_type* T)
 {

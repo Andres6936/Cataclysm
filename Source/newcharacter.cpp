@@ -1,4 +1,4 @@
-#include "Cataclysm/files.h"  // For CUSS_DIR
+#include <Cataclysm/Util/files.h>  // For CUSS_DIR
 #include "Cataclysm/globals.h"
 
 enum New_char_screen

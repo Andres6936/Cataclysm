@@ -4,7 +4,7 @@
 #include <Cataclysm/Random/rng.h>
 #include <Cataclysm/Util/String/stringfunc.h>
 #include "Cataclysm/globals.h"
-#include "Cataclysm/files.h"
+#include <Cataclysm/Util/files.h>
 
 #include <sstream>
 

@@ -1,5 +1,5 @@
 #include "Cataclysm/Screen/HelpMenuScreen.hpp"
-#include "Cataclysm/files.h"
+#include <Cataclysm/Util/files.h>
 #include <Cataclysm/Util/String/stringfunc.h>
 #include <Cuss/Interface.hpp>
 
