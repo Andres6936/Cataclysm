@@ -1265,26 +1265,6 @@ void PlayScreen::player_move_vertical(int zdif)
 	player->pos.z += zdif;
 }
 
-void PlayScreen::add_msg(std::string msg, ...)
-{
-	if (msg.empty())
-	{
-		return;
-	}
-	char buff[2048];
-// Set up variadic stuff
-	va_list ap;
-	va_start(ap, msg);
-// sprintf the full message into buff
-	vsprintf(buff, msg.c_str(), ap);
-	va_end(ap);
-// Make buff back into a string, and capitalize it
-	std::string text(buff);
-	text = capitalize(text);
-
-	messageQueue.addMessage({text, static_cast<uint32_t>(time.get_turn())});
-}
-
 bool PlayScreen::msg_query_yn(std::string msg, ...)
 {
 // This duplicates all the code of add_msg(), but there's no other option!
@@ -1572,8 +1552,7 @@ void PlayScreen::debug_command()
 
 	case DEBUG_ACTION_CLEAR_ITEMS:
 		map->clear_items();
-		add_msg("Items cleared.  Note; this may cause a crash if there were \
-active items!");
+		messageQueue.addMessage({ "Items cleared.  Note; this may cause a crash if there were active items!" });
 		break;
 
 	case DEBUG_ACTION_SPAWN_MONSTER:
@@ -1582,8 +1561,7 @@ active items!");
 		Monster_type* type = MONSTER_TYPES.lookup_partial_name(name);
 		if (!type)
 		{
-			add_msg("<c=dkgray>'%s' did not match any monsters.<c=/>",
-					name.c_str());
+			messageQueue.addMessage({ Doryen::format("<c=dkgray>'{}' did not match any monsters.<c=/>", name) });
 		}
 		else
 		{
@@ -1633,7 +1611,7 @@ active items!");
 		break;
 
 	default:
-		add_msg("Nothing coded for %s yet.", debug_action_name(act).c_str());
+		messageQueue.addMessage({ Doryen::format("Nothing coded for {} yet.", debug_action_name(act)) });
 	}
 }
 
@@ -1652,8 +1630,8 @@ void PlayScreen::pickup_items(int posx, int posy)
 {
 	if (map->has_flag(TF_SEALED, posx, posy))
 	{
-		add_msg("<c=ltred>That %s is sealed; you cannot retrieve items there.<c=/>",
-				map->get_name(posx, posy).c_str());
+		messageQueue.addMessage({ Doryen::format("<c=ltred>That {} is sealed; you cannot retrieve items there.<c=/>",
+								  map->get_name(posx, posy)) });
 		return;
 	}
 	if (!w_hud)
@@ -1823,8 +1801,7 @@ void PlayScreen::pickup_items(int posx, int posy)
 	}
 
 	std::string message = "You pick up " + list_items(&items_gotten);
-	add_msg(message);
-
+	messageQueue.addMessage({ message });
 }
 
 Tripoint PlayScreen::target_selector(int startx, int starty, int range,

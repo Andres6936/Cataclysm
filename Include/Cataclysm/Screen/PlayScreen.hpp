@@ -65,9 +65,7 @@ public:
 	void player_move(int xdif, int ydif); // Handles all aspects of moving player
 	void player_move_vertical(int zdif);
 
-	void add_msg(std::string msg, ...);
-
-// msg_query_yn adds a message, refreshes the HUD, and accepts Y/N input
+	// msg_query_yn adds a message, refreshes the HUD, and accepts Y/N input
 	bool msg_query_yn(std::string msg, ...);
 
 	void add_active_item(Item* it);
