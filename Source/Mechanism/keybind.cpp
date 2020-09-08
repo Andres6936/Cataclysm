@@ -3,6 +3,10 @@
 #include <Cataclysm/Util/globals.h>
 #include <vector>
 
+#include <curses.h>
+
+#define KEY_ESC 27
+
 bool Keybinding_pool::bind_key(long key, Interface_action action)
 {
 	bindings[key] = action;

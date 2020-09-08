@@ -255,6 +255,8 @@ TargetSelectorManager::pathSelector(int startx, int starty, int range, bool targ
 //			w_map->refresh();
 //		}
 //	}
+
+	throw std::logic_error("Not implemented");
 }
 
 Tripoint TargetSelectorManager::select(int startx, int starty, int range, bool target_entities, bool show_path)

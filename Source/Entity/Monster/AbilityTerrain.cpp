@@ -2,6 +2,8 @@
 
 #include <Cataclysm/Util/globals.h>
 #include <Cataclysm/Random/rng.h>
+#include <Cataclysm/Entity/Pool.hpp>
+#include <Cataclysm/Entity/Player/player.h>
 #include <Cataclysm/Entity/Monster/monster.h>
 #include <Cataclysm/Visual/Screen/MessageQueue.hpp>
 #include "Cataclysm/Entity/Monster/AbilityTerrain.hpp"

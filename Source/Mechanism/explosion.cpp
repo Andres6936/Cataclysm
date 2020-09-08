@@ -2,7 +2,9 @@
 #include <Cataclysm/Util/String/stringfunc.h> // For no_caps() and trim()
 #include "Cataclysm/Mechanism/explosion.h"
 #include <Cataclysm/Util/globals.h>
+#include <Cataclysm/Entity/entity.h>
 #include <Cataclysm/Random/rng.h>
+#include <Cataclysm/Entity/Pool.hpp>
 
 Explosion::Explosion()
 {

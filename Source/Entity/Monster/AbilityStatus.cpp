@@ -1,7 +1,9 @@
-#include <Cataclysm/Util/String/stringfunc.h>
 #include <Cataclysm/Util/globals.h>
+#include <Cataclysm/Entity/Pool.hpp>
 #include "Cataclysm/Screen/Debugger.hpp"
 #include <Cataclysm/Entity/Monster/monster.h>
+#include <Cataclysm/Entity/Player/player.h>
+#include <Cataclysm/Util/String/stringfunc.h>
 #include <Cataclysm/Visual/Screen/MessageQueue.hpp>
 #include "Cataclysm/Entity/Monster/AbilityStatus.h"
 

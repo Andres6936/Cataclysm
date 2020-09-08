@@ -2,7 +2,10 @@
 #include <Cataclysm/Util/String/stringfunc.h> // For trim() and no_caps()
 #include <Cataclysm/Util/globals.h>
 #include <Cataclysm/Mechanism/TimeManager.hpp>
+#include <Cataclysm/Entity/entity.h>
+#include <Cataclysm/Entity/Pool.hpp>
 #include <Cataclysm/Visual/Screen/MessageQueue.hpp>
+#include <Cataclysm/Entity/Player/player.h>
 
 Tool_special_explosion::Tool_special_explosion()
 {

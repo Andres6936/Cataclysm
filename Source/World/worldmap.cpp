@@ -7,6 +7,8 @@
 #include <Cataclysm/Util/files.h>
 
 #include <sstream>
+#include <Cuss/Interface.hpp>
+#include <Cataclysm/World/map.h>
 
 Worldmap::Worldmap()
 {

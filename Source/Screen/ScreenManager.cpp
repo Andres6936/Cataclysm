@@ -17,6 +17,7 @@ using namespace Cataclysm;
 ScreenManager::ScreenManager()
 {
 	this->menuScreen = std::make_shared<MenuScreen>();
+	this->playScreen = std::make_shared<PlayScreen>();
 	this->tourScreen = std::make_shared<TourScreen>();
 	this->skillScreen = std::make_shared<SkillScreen>();
 	this->worldScreen = std::make_shared<WorldScreen>();
@@ -25,7 +26,6 @@ ScreenManager::ScreenManager()
 	this->createWorldScreen = std::make_shared<CreateWorldScreen>();
 	this->informationItemScreen = std::make_shared<InformationItemScreen>();
 	this->inventorySingleSelectionScreen = std::make_shared<InventorySingleSelectionScreen>();
-	this->playScreen.reset(&GAME);
 
 	// The first Screen to show is the Menu
 	this->actualScreen = menuScreen;

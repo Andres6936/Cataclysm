@@ -5,10 +5,13 @@
 #include <Cataclysm/Item/TypeLauncher.hpp>
 #include <Cataclysm/Item/TypeTool.hpp>
 #include <Cataclysm/Item/TypeAmmo.hpp>
-#include <Cataclysm/Random/rng.h>
-#include "Cataclysm/Item/item.h"
+#include <Cataclysm/Entity/Pool.hpp>
+#include <Cataclysm/Entity/entity.h>
 #include <Cataclysm/Util/globals.h>
+#include <Cataclysm/Random/rng.h>
 #include <Cataclysm/Util/files.h>    // For CUSS_DIR
+#include <Cuss/Interface.hpp>
+#include "Cataclysm/Item/item.h"
 
 Item::Item(Item_type* T)
 {

@@ -2,8 +2,10 @@
 #include <Cataclysm/Mechanism/TimeManager.hpp>
 #include <Cataclysm/Mechanism/Projectile.hpp>
 #include <Cataclysm/Entity/entity.h>
+#include <Cataclysm/Entity/Pool.hpp>
 #include <Cataclysm/Random/rng.h>
 #include <Cataclysm/Util/globals.h>
+#include <Cataclysm/Entity/Player/player.h>
 
 Entity::Entity()
 {

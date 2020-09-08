@@ -4,9 +4,9 @@
 #include "Cataclysm/World/mapgen.h"
 #include "Cataclysm/Mechanism/datapool.h"
 #include "Cataclysm/Mechanism/keybind.h"
-#include "Cataclysm/Screen/PlayScreen.hpp"
 #include "Cataclysm/Entity/profession.h"
 #include <Cataclysm/World/Biome/biome.h>
+#include <Cataclysm/Mechanism/mission.h>
 
 class Submap_pool;
 
@@ -14,7 +14,6 @@ class Field_type;
 
 extern int TESTING_MODE;
 
-extern PlayScreen GAME;
 extern Data_pool<Terrain> TERRAIN;
 extern Data_pool<World_terrain> WORLD_TERRAIN;
 extern Data_pool<Item_type> ITEM_TYPES;
@@ -35,7 +34,6 @@ void load_global_data();
 void load_mapgen_specs();
 
 void init_missions(); // Autogenerate missions pool from existing items/monsters
-void init_default_keybindings();
 
 /* For now, prep_directories() just handles SAVE_DIR & its subfolders; CUSS_DIR
  * and DATA_DIR actually need their contents to be there before the game starts,
