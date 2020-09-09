@@ -22,26 +22,25 @@ void Worldmap::generate()
 			city[x][y] = CITY_NOTCITY;
 		}
 	}
-// Randomly seed biomes
-	for (std::list<Biome*>::iterator it = BIOMES.instances.begin();
-		 it != BIOMES.instances.end();
-		 it++)
+
+	// Randomly seed biomes
+	for (auto& biome : BIOMES)
 	{
 		for (int n = 0; n < WORLDMAP_SIZE / 10; n++)
 		{
 			Point p(rng(0, WORLDMAP_SIZE - 1), rng(0, WORLDMAP_SIZE - 1));
 			points_live.push_back(p);
-			if ((*it)->has_flag(BIOME_FLAG_LAKE))
+			if (biome->has_flag(BIOME_FLAG_LAKE))
 			{
 				lake_seeds.push_back(p);
 				lake[p.x][p.y] = LAKE_UNCHECKED;
 			}
-			if ((*it)->has_flag(BIOME_FLAG_CITY))
+			if (biome->has_flag(BIOME_FLAG_CITY))
 			{
 				city_seeds.push_back(p);
 				city[p.x][p.y] = CITY_HUB;
 			}
-			biomes[p.x][p.y] = (*it);
+			biomes[p.x][p.y] = biome;
 		}
 	}
 

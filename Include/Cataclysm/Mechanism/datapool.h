@@ -33,23 +33,26 @@
 // Everything is inline cause compilers are dumb etc. etc.
 
 template<class T>
-struct Data_pool
+struct Data_pool : public std::list<T*>
 {
+
+private:
+
+	std::map<int, T*> uid_map;
+	std::map<std::string, T*> name_map;
+	int next_uid = 0;
+
 public:
-	Data_pool()
-	{
-		next_uid = 0;
-	}
+
+	Data_pool() = default;
 
 	virtual ~Data_pool()
 	{
-		for (typename std::list<T*>::iterator it = instances.begin();
-			 it != instances.end();
-			 it++)
+		for (auto& type : *this)
 		{
-			if (*it)
+			if (type)
 			{
-				delete (*it);
+				delete type;
 			}
 		}
 	}
@@ -99,7 +102,7 @@ public:
 			return false;
 		}
 		tmp->assign_uid(next_uid);
-		instances.push_back(tmp);
+		this->push_back(tmp);
 		name_map[name] = tmp;
 		uid_map[next_uid] = tmp;
 		next_uid++;
@@ -128,18 +131,18 @@ public:
 		return name_map[name];
 	}
 
-// Return the first result that partially matches name
+	// Return the first result that partially matches name
 	T* lookup_partial_name(std::string name)
 	{
 		name = no_caps(name);
-		for (typename std::list<T*>::iterator it = instances.begin();
-			 it != instances.end();
-			 it++)
+
+		for (auto& type : *this)
 		{
-			std::string item_name = no_caps((*it)->get_name());
+			std::string item_name = no_caps(type->get_name());
+
 			if (item_name.find(name) != std::string::npos)
 			{
-				return *it;
+				return type;
 			}
 		}
 		return NULL;
@@ -147,45 +150,34 @@ public:
 
 	T* random_instance()
 	{
-		if (size() == 0)
+		if (this->size() == 0)
 		{
 			return NULL;
 		}
-		int roll = rng(0, size() - 1);
-		typename std::list<T*>::iterator it = instances.begin();
-		for (int i = 0; i < roll; i++)
-		{
-			it++;
-		}
-		return *it;
+
+		int roll = rng(0, this->size() - 1);
+
+		// The method std::next return to n-th
+		// successor of first iterator (1 position)
+		// Advance to the roll (random element)
+		// *() des-reference the iterator, return
+		// the type.
+		return *(std::next(this->begin(), roll));
 	}
-
-	int size()
-	{
-		return instances.size();
-	}
-
-// We have a single public data member.
-	std::list<T*> instances;
-
-private:
-	std::map<int, T*> uid_map;
-	std::map<std::string, T*> name_map;
-	int next_uid;
 };
 
 template<>
 inline
 Data_pool<Item_type>::~Data_pool()
 {
-	std::list<Item_type*>::iterator it = instances.begin();
-	while (it != instances.end())
+	std::list<Item_type*>::iterator it = begin();
+	while (it != end())
 	{
 		if (*it)
 		{
 			delete (*it);
 		}
-		it = instances.erase(it);
+		it = erase(it);
 	}
 }
 
@@ -270,7 +262,8 @@ bool Data_pool<Item_type>::load_element(std::istream& data,
 		return false;
 	}
 	tmp->assign_uid(next_uid);
-	instances.push_back(tmp);
+
+	push_back(tmp);
 	uid_map[next_uid] = tmp;
 	name_map[no_caps(tmp->get_data_name())] = tmp;
 	next_uid++;

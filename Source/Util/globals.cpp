@@ -4,6 +4,8 @@
 #include <Cataclysm/Util/files.h>
 #include "Cataclysm/World/map.h"
 
+int TESTING_MODE = 0;
+
 Data_pool<Terrain> TERRAIN;
 Data_pool<World_terrain> WORLD_TERRAIN;
 Data_pool<Item_type> ITEM_TYPES;
@@ -42,11 +44,9 @@ void load_global_data()
 void init_missions()
 {
 // First, generate missions based on existing items.
-	for (std::list<Item_type*>::iterator it = ITEM_TYPES.instances.begin();
-		 it != ITEM_TYPES.instances.end();
-		 it++)
+	for (auto& item : ITEM_TYPES)
 	{
-		Item_type* itype = (*it);
+		Item_type* itype = item;
 		Mission_template* temp = new Mission_template;
 		if (temp->base_on_item_type(itype))
 		{
@@ -95,13 +95,11 @@ void load_mapgen_specs()
 	}
 
 // Now confirm we have a mapgen_spec for every WORLD_TERRAIN
-	for (std::list<World_terrain*>::iterator it = WORLD_TERRAIN.instances.begin();
-		 it != WORLD_TERRAIN.instances.end();
-		 it++)
+	for (auto& terrain : WORLD_TERRAIN)
 	{
-		if (MAPGEN_SPECS.lookup_terrain_ptr((*it)).empty())
+		if (MAPGEN_SPECS.lookup_terrain_ptr(terrain).empty())
 		{
-			debugmsg("No mapgen specs for %s!", (*it)->name.c_str());
+			debugmsg("No mapgen specs for %s!", terrain->name.c_str());
 		}
 	}
 }

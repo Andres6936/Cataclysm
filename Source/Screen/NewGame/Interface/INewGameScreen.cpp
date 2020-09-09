@@ -109,13 +109,11 @@ std::vector<std::string> INewGameScreen::getProfessionList()
 {
 	std::vector<std::string> ret;
 
-	for (std::list<Profession*>::iterator it = PROFESSIONS.instances.begin();
-		 it != PROFESSIONS.instances.end();
-		 it++)
+	for (auto& profession : PROFESSIONS)
 	{
 		std::stringstream text;
 
-		if ((*it) == player->get_profession())
+		if (profession == player->get_profession())
 		{
 			text << "<c=white>";
 		}
@@ -124,7 +122,7 @@ std::vector<std::string> INewGameScreen::getProfessionList()
 			text << "<c=ltblue>";
 		}
 
-		text << (*it)->name << "<c=/>";
+		text << profession->name << "<c=/>";
 
 		ret.push_back(text.str());
 	}

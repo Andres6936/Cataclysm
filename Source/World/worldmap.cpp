@@ -20,13 +20,11 @@ Worldmap::Worldmap()
 		}
 	}
 
-	for (std::list<World_terrain*>::iterator it = WORLD_TERRAIN.instances.begin();
-		 it != WORLD_TERRAIN.instances.end();
-		 it++)
+	for (auto& terrain : WORLD_TERRAIN)
 	{
-		if ((*it)->has_flag(WTF_SHOP))
+		if (terrain->has_flag(WTF_SHOP))
 		{
-			shops.push_back((*it));
+			shops.push_back(terrain);
 		}
 	}
 
