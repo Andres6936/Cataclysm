@@ -24,6 +24,8 @@ void InventorySingleSelectionScreen::updated()
 
 	updateDictionaries();
 
+	i_inv.set_data("text_instructions", "<c=magenta>Press Esc to cancel.\nPress - to select nothing.<c=/>");
+
 	printDictionaryItems();
 	printDictionaryClothing();
 

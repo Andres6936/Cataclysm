@@ -138,8 +138,6 @@ void InventorySelection::updateDictionaries()
 	i_inv.set_data("weight_maximum", player->maximum_weight());
 	i_inv.set_data("volume_current", player->current_volume());
 	i_inv.set_data("volume_maximum", player->maximum_volume());
-
-	i_inv.set_data("text_instructions", "<c=magenta>Press Esc to cancel.\nPress - to select nothing.<c=/>");
 }
 
 void InventorySelection::printDictionaryItems()
