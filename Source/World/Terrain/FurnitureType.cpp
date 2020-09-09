@@ -7,6 +7,8 @@
 
 Furniture_type::Furniture_type()
 {
+	components = new Item_group;
+
 	for (int i = 0; i < TF_MAX; i++)
 	{
 		flags.push_back(false);

@@ -34,7 +34,7 @@ struct Furniture_type
 	/**
 	 * Items dropped when we destroy it.
 	 */
-	Item_group* components = new Item_group;
+	Item_group* components;
 
 	Furniture_type();
 
