@@ -171,7 +171,13 @@ ScreenType InventoryMultipleSelectionScreen::processInput()
 
 		if (found)
 		{
-			isNeededUpdate = true;
+			markObjectsSelected();
+
+			i_inv.clear_data("list_clothing");
+			i_inv.clear_data("list_clothing_weight");
+			i_inv.clear_data("list_clothing_volume");
+
+			printDictionaryClothing();
 		}
 	}
 

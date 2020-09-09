@@ -315,3 +315,43 @@ const DictionaryItem& InventorySelection::getItemAt(const std::uint32_t _index) 
 	// This line of code is unreachable
 	throw std::out_of_range("Cannot found the element with the index: " + std::to_string(_index));
 }
+
+void InventorySelection::markObjectsSelected()
+{
+	using Node = std::multimap<DictionaryItem, bool, DictionaryItemCompare>::node_type;
+
+	std::vector<Node> nodes;
+
+	for (auto& dictionary : dictionaryItems)
+	{
+		for (auto& [item, selected] : dictionary)
+		{
+			if (selected)
+			{
+				selected = false;
+				nodes.push_back(dictionary.extract(item));
+			}
+		}
+	}
+
+	for (auto& [clothing, selected] : dictionaryClothing)
+	{
+		if (selected)
+		{
+			selected = false;
+			nodes.push_back(dictionaryClothing.extract(clothing));
+		}
+	}
+
+	for (Node& node : nodes)
+	{
+		DictionaryItem& item = node.key();
+
+		const std::string nameOriginal = item.getName();
+
+		item.setName("<c=green>" + nameOriginal + "<c=/>");
+		item.setKey('-');
+
+		dictionaryClothing.insert(std::move(node));
+	}
+}

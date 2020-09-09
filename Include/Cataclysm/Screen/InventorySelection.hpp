@@ -73,6 +73,8 @@ namespace Cataclysm
 
 		void updateDictionaries();
 
+		void markObjectsSelected();
+
 		void printDictionaryItems();
 
 		void printDictionaryClothing();
