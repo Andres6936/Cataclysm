@@ -15,7 +15,6 @@ std::string pickup_string(Item* item, char letter, bool picking_up);
 
 PlayScreen::PlayScreen()
 {
-	player = NULL;
 	last_target = -1;
 	new_messages = 0;
 	game_over = false;
