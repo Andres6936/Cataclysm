@@ -7,6 +7,7 @@
 #include "Cataclysm/Entity/profession.h"
 #include <Cataclysm/World/Biome/biome.h>
 #include <Cataclysm/Mechanism/mission.h>
+#include <Cataclysm/World/Terrain/FurnitureType.hpp>
 
 class Submap_pool;
 
