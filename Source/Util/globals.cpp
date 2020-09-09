@@ -4,8 +4,6 @@
 #include <Cataclysm/Util/files.h>
 #include "Cataclysm/World/map.h"
 
-int TESTING_MODE;
-
 Data_pool<Terrain> TERRAIN;
 Data_pool<World_terrain> WORLD_TERRAIN;
 Data_pool<Item_type> ITEM_TYPES;

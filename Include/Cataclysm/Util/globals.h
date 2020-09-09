@@ -12,7 +12,7 @@ class Submap_pool;
 
 class Field_type;
 
-extern int TESTING_MODE;
+int TESTING_MODE = 0;
 
 extern Data_pool<Terrain> TERRAIN;
 extern Data_pool<World_terrain> WORLD_TERRAIN;

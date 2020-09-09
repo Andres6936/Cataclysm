@@ -15,11 +15,15 @@ namespace Cataclysm
 
 	private:
 
+		void printVersion() const noexcept;
+
 		void parserArguments() const noexcept;
+
+		void printMessageHelp() const noexcept;
 
 	public:
 
-		Parser(const std::uint8_t argc, char* argv[]);
+		Parser(const std::int32_t argc, char* argv[]);
 
 	};
 
