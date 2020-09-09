@@ -176,6 +176,7 @@ ADD_EXECUTABLE(Cataclysm
         Source/World/Terrain/Smash.cpp
         Source/World/Terrain/terrain.cpp
         Source/World/Terrain/FlagBonus.cpp
+        Source/World/Terrain/FurnitureType.cpp
         Source/World/Terrain/SignalHandler.cpp
         )
 
