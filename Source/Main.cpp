@@ -7,8 +7,6 @@
 #include <getopt.h>
 #include <string>
 
-//#include "stringfunc.h"
-
 const char* VERSION = "Cataclysm v2.0.0 alpha";
 
 bool parse_options(int argc, char* argv[]);
@@ -16,8 +14,6 @@ bool parse_options(int argc, char* argv[]);
 void print_cli_help(std::string program_name);
 
 void print_version();
-
-bool prep_folders();
 
 int main(int argc, char* argv[])
 {

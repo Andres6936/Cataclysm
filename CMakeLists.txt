@@ -155,6 +155,7 @@ ADD_EXECUTABLE(Cataclysm
         Source/Util/files.cpp
         Source/Util/globals.cpp
         Source/Util/pathfind.cpp
+        Source/Util/Command/Parser.cpp
         Source/Util/String/stringfunc.cpp
         Source/Util/String/var_string.cpp
         Source/World/Biome/Enum/BiomeFlag.cpp
