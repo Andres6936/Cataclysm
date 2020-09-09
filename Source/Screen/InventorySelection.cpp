@@ -316,20 +316,32 @@ const DictionaryItem& InventorySelection::getItemAt(const std::uint32_t _index) 
 	throw std::out_of_range("Cannot found the element with the index: " + std::to_string(_index));
 }
 
+
+using Node = std::multimap<DictionaryItem, bool, DictionaryItemCompare>::node_type;
+
+void markObject(Node& node)
+{
+	DictionaryItem& item = node.key();
+
+	const std::string nameOriginal = item.getName();
+
+	item.setName("<c=green>" + nameOriginal + "<c=/>");
+	item.setKey('-');
+}
+
 void InventorySelection::markObjectsSelected()
 {
-	using Node = std::multimap<DictionaryItem, bool, DictionaryItemCompare>::node_type;
-
-	std::vector<Node> nodes;
-
 	for (auto& dictionary : dictionaryItems)
 	{
 		for (auto& [item, selected] : dictionary)
 		{
 			if (selected)
 			{
-				selected = false;
-				nodes.push_back(dictionary.extract(item));
+				Node node = dictionary.extract(item);
+
+				markObject(node);
+
+				dictionary.insert(std::move(node));
 			}
 		}
 	}
@@ -338,20 +350,11 @@ void InventorySelection::markObjectsSelected()
 	{
 		if (selected)
 		{
-			selected = false;
-			nodes.push_back(dictionaryClothing.extract(clothing));
+			Node node = dictionaryClothing.extract(clothing);
+
+			markObject(node);
+
+			dictionaryClothing.insert(std::move(node));
 		}
-	}
-
-	for (Node& node : nodes)
-	{
-		DictionaryItem& item = node.key();
-
-		const std::string nameOriginal = item.getName();
-
-		item.setName("<c=green>" + nameOriginal + "<c=/>");
-		item.setKey('-');
-
-		dictionaryClothing.insert(std::move(node));
 	}
 }

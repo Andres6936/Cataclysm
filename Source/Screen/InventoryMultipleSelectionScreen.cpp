@@ -178,6 +178,12 @@ ScreenType InventoryMultipleSelectionScreen::processInput()
 			i_inv.clear_data("list_clothing_volume");
 
 			printDictionaryClothing();
+
+			i_inv.clear_data("list_items");
+			i_inv.clear_data("list_weight");
+			i_inv.clear_data("list_volume");
+
+			printDictionaryItems();
 		}
 	}
 
