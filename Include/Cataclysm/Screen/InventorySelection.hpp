@@ -32,7 +32,18 @@ namespace Cataclysm
 		 */
 		inline static int MAXIMUM_ELEMENTS_PER_PAGE = 0;
 
+		/**
+		 * A bool marked true if we selected our weapon.
+		 */
+		inline static bool include_weapon = false;
+
 		inline static char weapon_letter = 0;
+
+		/**
+		 * If have much elements in the inventory of player, is needed use page for
+		 * see all the items.
+		 */
+		inline static int page = 0;
 
 		/**
 		 * Is needed have in count the amount of headers for print correctly the items.
@@ -45,11 +56,23 @@ namespace Cataclysm
 
 		// Methods
 
+		/**
+		 * @post State Inventory have almost 1 item.
+		 */
+		void setItemSelected();
+
 		void updateDictionaries();
 
 		void printDictionaryItems();
 
 		void printDictionaryClothing();
+
+		/**
+		 * @return The total of elements in the dictionary items
+		 */
+		const std::uint32_t getTotalElementInDictionaryItems() const noexcept;
+
+		const DictionaryItem& getItemAt(const std::uint32_t _index) const;
 
 	};
 

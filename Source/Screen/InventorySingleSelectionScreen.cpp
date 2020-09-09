@@ -2,7 +2,6 @@
 
 #include <Cataclysm/Item/TypeClothing.hpp>
 #include "Cataclysm/Screen/InventorySingleSelectionScreen.hpp"
-#include <Cataclysm/Entity/Player/StateInventory.hpp>
 
 using namespace Cataclysm;
 
@@ -180,101 +179,4 @@ ScreenType InventorySingleSelectionScreen::processInput()
 	}
 
 	return ScreenType::NONE;
-}
-
-void InventorySingleSelectionScreen::setItemSelected()
-{
-	/**
-	 * Important always reset the state of inventory
-	 */
-	stateInventory.resetState();
-
-	if (include_weapon)
-	{
-		stateInventory.addItem(player->weapon);
-	}
-
-	for (const auto& dictionary : dictionaryItems)
-	{
-		for (const auto& [item, selected] : dictionary)
-		{
-			if (selected)
-			{
-				for (auto& itemInventory: player->inventory)
-				{
-					if (item.getName() == itemInventory.get_name_full())
-					{
-						stateInventory.addItem(itemInventory);
-					}
-				}
-			}
-		}
-	}
-
-	for (const auto& [clothing, selected] : dictionaryClothing)
-	{
-		if (selected)
-		{
-			// Search the object in the inventory of player that
-			// is represent in the dictionary
-			for (auto& item : player->items_worn)
-			{
-				if (item.get_name_full() == clothing.getName())
-				{
-					stateInventory.addItem(static_cast<Item_type_clothing*>(item.get_type()));
-				}
-			}
-		}
-	}
-
-	// Change of screen with the next action, needed update
-	isNeededUpdate = true;
-
-	if (stateInventory.isEmpty())
-	{
-		throw std::domain_error("State Inventory is empty, post-condition not satisfied");
-	}
-}
-
-const std::uint32_t InventorySingleSelectionScreen::getTotalElementInDictionaryItems() const noexcept
-{
-	std::uint32_t totalElements = 0;
-
-	for (const auto& dictionary: dictionaryItems)
-	{
-		totalElements += dictionary.size();
-	}
-
-	// Is important remember that the header too count as a element in the dictionary
-	// So that for each dictionary not empty exist a header
-	return totalElements + totalHeadersInsertedInLastUpdate;
-}
-
-const DictionaryItem& InventorySingleSelectionScreen::getItemAt(const std::uint32_t _index) const
-{
-	// Verify that _index is in the range of dictionary
-	if (_index > getTotalElementInDictionaryItems())
-	{
-		throw std::out_of_range("Try access to index: " + std::to_string(_index));
-	}
-
-	std::uint32_t elementVisited = 0;
-
-	for (const auto& dictionary: dictionaryItems)
-	{
-		for(const auto& [item, selected] : dictionary)
-		{
-			if (_index == elementVisited)
-			{
-				return item;
-			}
-			else
-			{
-				elementVisited += 1;
-			}
-		}
-	}
-
-	// This line of code is unreachable
-	throw std::out_of_range("Cannot found the element with the index: " + std::to_string(_index));
 }
