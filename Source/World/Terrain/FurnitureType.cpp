@@ -7,15 +7,6 @@
 
 Furniture_type::Furniture_type()
 {
-	uid = -1;
-	name = "ERROR";
-	move_cost = 100;
-	height = -1;
-	weight = 0;
-	hp = 0;
-	smashable = false;
-	components = new Item_group;
-	owns_components = true;
 	for (int i = 0; i < TF_MAX; i++)
 	{
 		flags.push_back(false);
