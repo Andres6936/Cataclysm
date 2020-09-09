@@ -4,25 +4,15 @@
 #define CATACLYSM_INVENTORYSINGLESELECTIONSCREEN_HPP
 
 #include <Cataclysm/Screen/IScreen.hpp>
-#include <Cataclysm/Visual/Item/DictionaryAny.hpp>
-#include <Cataclysm/Visual/Item/DictionaryItem.hpp>
-#include <Cataclysm/Visual/Item/DictionaryClothing.hpp>
+#include <Cataclysm/Screen/InventorySelection.hpp>
 
 namespace Cataclysm
 {
 
-	class InventorySingleSelectionScreen : public IScreen
+	class InventorySingleSelectionScreen : public IScreen, private InventorySelection
 	{
 
 	private:
-
-		cuss::element* ele_list_items;
-
-		cuss::interface i_inv;
-
-		DictionaryClothing dictionaryClothing;
-
-		std::array<DictionaryAny, ITEM_CLASS_MAX> dictionaryItems;
 
 		/**
 		 * A bool marked true if we selected our weapon.
@@ -46,25 +36,9 @@ namespace Cataclysm
 		int page = 0;
 
 		/**
-		 * Maximum of elements per each page.
-		 */
-		int MAXIMUM_ELEMENTS_PER_PAGE = 0;
-
-		char weapon_letter = 0;
-
-		/**
-		 * Is needed have in count the amount of headers for print correctly the items.
-		 */
-		std::uint32_t totalHeadersInsertedInLastUpdate = 0;
-
-		/**
 		 * @post State Inventory have almost 1 item.
 		 */
 		void setItemSelected();
-
-		void printDictionaryItems();
-
-		void printDictionaryClothing();
 
 		/**
 		 * @return The total of elements in the dictionary items
