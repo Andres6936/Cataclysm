@@ -40,6 +40,16 @@ namespace Cataclysm
 		inline static char weapon_letter = 0;
 
 		/**
+		 * For avoid duplicate the elements in the inventory of player, is needed
+		 * determine when is needed update the screen for show the content of way
+		 * consistent, it action too allow a better performance.
+		 *
+		 * The change of a screen to another too trigger the action of update the
+		 * action of update the this screen.
+		 */
+		inline static bool isNeededUpdate = true;
+
+		/**
 		 * If have much elements in the inventory of player, is needed use page for
 		 * see all the items.
 		 */

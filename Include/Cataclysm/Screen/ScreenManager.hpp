@@ -18,27 +18,29 @@ namespace Cataclysm
 
 		bool running = true;
 
-		std::shared_ptr<IScreen> menuScreen {};
+		std::shared_ptr<IScreen> menuScreen {nullptr};
 
-		std::shared_ptr<IScreen> tourScreen {};
+		std::shared_ptr<IScreen> tourScreen {nullptr};
 
-		std::shared_ptr<IScreen> playScreen {};
+		std::shared_ptr<IScreen> playScreen {nullptr};
 
-		std::shared_ptr<IScreen> worldScreen {};
+		std::shared_ptr<IScreen> worldScreen {nullptr};
 
-		std::shared_ptr<IScreen> skillScreen {};
+		std::shared_ptr<IScreen> skillScreen {nullptr};
 
-		std::shared_ptr<IScreen> actualScreen {};
+		std::shared_ptr<IScreen> actualScreen {nullptr};
 
-		std::shared_ptr<IScreen> newGameScreen {};
+		std::shared_ptr<IScreen> newGameScreen {nullptr};
 
-		std::shared_ptr<IScreen> helpMenuScreen {};
+		std::shared_ptr<IScreen> helpMenuScreen {nullptr};
 
-		std::shared_ptr<IScreen> createWorldScreen {};
+		std::shared_ptr<IScreen> createWorldScreen {nullptr};
 
-		std::shared_ptr<IScreen> informationItemScreen {};
+		std::shared_ptr<IScreen> informationItemScreen {nullptr};
 
-		std::shared_ptr<IScreen> inventorySingleSelectionScreen {};
+		std::shared_ptr<IScreen> inventorySingleSelectionScreen {nullptr};
+
+		std::shared_ptr<IScreen> inventoryMultipleSelectionScreen {nullptr};
 
 		void nextScene(ScreenType _next);
 

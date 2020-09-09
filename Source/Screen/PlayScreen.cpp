@@ -286,7 +286,7 @@ Cataclysm::ScreenType PlayScreen::do_action(Interface_action act)
 		}
 		messageQueue.addMessage({ message.str() });
 	}
-		break;
+		return Cataclysm::ScreenType::INVENTORY_MULTIPLE_SELECTION;
 
 	case IACTION_WIELD:
 	{
