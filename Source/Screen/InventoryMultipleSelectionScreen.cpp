@@ -119,7 +119,60 @@ ScreenType InventoryMultipleSelectionScreen::processInput()
 	}
 	else
 	{
+		// Anything else warrants a check for the matching key!
+		bool found = false;
 
+		if (ch == weapon_letter)
+		{
+			found = true;
+			include_weapon = !include_weapon;
+			std::stringstream weapon_ss;
+			weapon_ss << (include_weapon ? "<c=green>" : "<c=ltgray>") <<
+					  weapon_letter << (include_weapon ? " + " : " - ") <<
+					  player->weapon.get_name_full();
+			i_inv.set_data("text_weapon", weapon_ss.str());
+		}
+
+		// The user has been pressed an key that represent a shortcut to
+		// a object in the inventory, in this moment each object have
+		// a unique letter or key, is needed found the item that user
+		// select
+		if (not found)
+		{
+			for (auto& [clothing, selected] : dictionaryClothing)
+			{
+				if (clothing.getKey() == ch)
+				{
+					found = true;
+
+					// Mark the object as selected for the user
+					selected = true;
+				}
+			}
+		}
+
+		if (not  found)
+		{ // Not the weapon, not clothing - let's check inventory
+
+			for (auto& dictionary : dictionaryItems)
+			{
+				for (auto& [item, selected] : dictionary)
+				{
+					if (item.getKey() == ch)
+					{
+						found = true;
+
+						// Mark the object as selected for the user
+						selected = true;
+					}
+				}
+			}
+		}
+
+		if (found)
+		{
+			isNeededUpdate = true;
+		}
 	}
 
 	return ScreenType::NONE;

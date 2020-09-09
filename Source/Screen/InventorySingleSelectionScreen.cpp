@@ -111,7 +111,8 @@ ScreenType InventorySingleSelectionScreen::processInput()
 		}
 	}
 	else
-	{ // Anything else warrants a check for the matching key!
+	{
+		// Anything else warrants a check for the matching key!
 		bool found = false;
 
 		if (ch == weapon_letter)
