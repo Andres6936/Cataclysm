@@ -60,6 +60,8 @@ void InventorySelection::setItemSelected()
 					if (item.getName() == itemInventory.get_name_full())
 					{
 						stateInventory.addItem(itemInventory);
+						// For avoid select two or more object with the same name
+						break;
 					}
 				}
 			}
@@ -77,6 +79,8 @@ void InventorySelection::setItemSelected()
 				if (item.get_name_full() == clothing.getName())
 				{
 					stateInventory.addItem(static_cast<Item_type_clothing*>(item.get_type()));
+					// For avoid select two or more object with the same name
+					break;
 				}
 			}
 		}
