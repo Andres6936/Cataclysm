@@ -1,0 +1,1 @@
+ADD_CATACLYSM_TEST(Cataclysm.Unit.String TestString.cpp)
