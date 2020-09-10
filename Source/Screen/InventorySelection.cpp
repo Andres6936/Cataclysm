@@ -321,6 +321,7 @@ const DictionaryItem& InventorySelection::getItemAt(const std::uint32_t _index) 
 }
 
 
+// https://www.fluentcpp.com/2020/05/01/how-to-change-a-key-in-a-map-or-set-in-cpp/
 using Node = std::multimap<DictionaryItem, bool, DictionaryItemCompare>::node_type;
 
 void markObject(Node& node)
