@@ -1096,8 +1096,8 @@ void PlayScreen::pickup_items(int posx, int posy)
 	for (int i = 0; i < available->size(); i++)
 	{
 		pick_up.push_back(false);
-		weight_strings.push_back(itos((*available)[i].get_weight()));
-		volume_strings.push_back(itos((*available)[i].get_volume()));
+		weight_strings.push_back(std::to_string((*available)[i].get_weight()));
+		volume_strings.push_back(std::to_string((*available)[i].get_volume()));
 	}
 
 	int offset = 0;

@@ -341,7 +341,7 @@ void Player::inventory_ui(bool single, bool remove)
 		clothing_ss << letter << " - " << items_worn[i].get_name_full();
 		clothing_name.push_back(clothing_ss.str());
 
-		clothing_weight.push_back(itos(items_worn[i].get_weight()));
+		clothing_weight.push_back(std::to_string(items_worn[i].get_weight()));
 
 		int capacity = clothing->carry_capacity;
 		if (capacity == 0)

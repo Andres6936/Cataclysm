@@ -262,13 +262,6 @@ std::string Cataclysm::removeColorTags(std::string_view _text)
 	return result;
 }
 
-std::string itos(int num)
-{
-	std::stringstream ret;
-	ret << num;
-	return ret.str();
-}
-
 bool is_vowel(char ch)
 {
 	return (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' ||
