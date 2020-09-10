@@ -47,7 +47,7 @@ void help_screen(std::string file, std::string term)
 				int line = -1;
 				for (int i = 0; line == -1 && i < str_list.size(); i++)
 				{
-					std::string clipped = trim(no_caps(remove_color_tags(str_list[i])));
+					std::string clipped = trim(no_caps(Cataclysm::removeColorTags(str_list[i])));
 					if (clipped.find(term) == 0)
 					{
 						line = i;

@@ -214,7 +214,7 @@ int find_line_starting_with(const std::string& filename, std::string term,
 		}
 		if (ignore_flags)
 		{
-			line = remove_color_tags(line);
+			line = Cataclysm::removeColorTags(line);
 		}
 		if (!match_case)
 		{

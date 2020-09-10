@@ -1,6 +1,8 @@
 #include <sstream>
 #include "Cataclysm/Util/String/stringfunc.h"
 
+using namespace Cataclysm;
+
 std::vector<std::string> break_into_lines(const std::string& text, int linesize)
 {
 	std::vector<std::string> ret;
@@ -224,7 +226,7 @@ std::string capitalize(const std::string& orig)
 	return ret; // All blank spaces??
 }
 
-std::string remove_color_tags(const std::string& _text)
+std::string Cataclysm::removeColorTags(std::string_view _text)
 {
 	std::string result;
 
