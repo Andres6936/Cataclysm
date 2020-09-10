@@ -2,7 +2,7 @@
 
 #include "Cataclysm/Entity/Monster/Ability.hpp"
 #include "Cataclysm/Screen/Debugger.hpp"
-#include <Cataclysm/Util/String/stringfunc.h>
+#include <Cataclysm/Util/String/String.hpp>
 
 Monster_ability::Monster_ability()
 {

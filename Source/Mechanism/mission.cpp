@@ -1,6 +1,6 @@
 #include "Cataclysm/Mechanism/mission.h"
 #include <Cataclysm/Random/rng.h>
-#include <Cataclysm/Util/String/stringfunc.h>
+#include <Cataclysm/Util/String/String.hpp>
 #include <Cataclysm/Util/globals.h>
 #include <Cataclysm/Mechanism/TimeManager.hpp>
 

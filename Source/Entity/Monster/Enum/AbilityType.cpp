@@ -1,7 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include "Cataclysm/Entity/Monster/Enum/AbilityType.hpp"
-#include <Cataclysm/Util/String/stringfunc.h>
+#include <Cataclysm/Util/String/String.hpp>
 
 Monster_ability_type lookup_monster_ability_type(std::string name)
 {

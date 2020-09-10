@@ -1,5 +1,5 @@
 #include <sstream>
-#include "Cataclysm/Util/String/stringfunc.h"
+#include "Cataclysm/Util/String/String.hpp"
 
 using namespace Cataclysm;
 

@@ -1,5 +1,5 @@
 #include "Cataclysm/Enum/enum.h"
-#include <Cataclysm/Util/String/stringfunc.h>
+#include <Cataclysm/Util/String/String.hpp>
 
 HP_part lookup_HP_part(std::string name)
 {

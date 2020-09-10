@@ -1,6 +1,6 @@
 // Joan Andrés (@Andres6936) Github.
 
-#include <Cataclysm/Util/String/stringfunc.h>
+#include <Cataclysm/Util/String/String.hpp>
 #include <Cataclysm/Screen/Debugger.hpp>
 #include <sstream>
 #include "Cataclysm/Item/TypeContainer.hpp"

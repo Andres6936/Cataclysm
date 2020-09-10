@@ -2,7 +2,7 @@
 
 #include "Cataclysm/Entity/Monster/Genus.hpp"
 #include <Cataclysm/Screen/Debugger.hpp>
-#include <Cataclysm/Util/String/stringfunc.h>
+#include <Cataclysm/Util/String/String.hpp>
 #include "Cataclysm/Random/rng.h"
 
 Monster_genus::Monster_genus()

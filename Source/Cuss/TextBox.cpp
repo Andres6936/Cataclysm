@@ -3,7 +3,7 @@
 #include <sstream>
 #include "Cuss/TextBox.hpp"
 #include <Cataclysm/Screen/Debugger.hpp>
-#include <Cataclysm/Util/String/stringfunc.h>
+#include <Cataclysm/Util/String/String.hpp>
 #include <Cuss/String/Utility.hpp>
 
 using namespace cuss;

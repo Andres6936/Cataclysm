@@ -1,7 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include "Cataclysm/Enum/SenseType.hpp"
-#include <Cataclysm/Util/String/stringfunc.h> // For no_caps
+#include <Cataclysm/Util/String/String.hpp> // For no_caps
 
 Sense_type lookup_sense_type(std::string name)
 {

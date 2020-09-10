@@ -1,7 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include <sstream>
-#include <Cataclysm/Util/String/stringfunc.h>
+#include <Cataclysm/Util/String/String.hpp>
 #include "Cataclysm/Item/TypeFood.hpp"
 #include <Cataclysm/Screen/Debugger.hpp>
 

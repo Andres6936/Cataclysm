@@ -2,7 +2,7 @@
 
 #include "Cataclysm/World/Terrain/SignalHandler.hpp"
 #include <Cataclysm/Screen/Debugger.hpp>
-#include <Cataclysm/Util/String/stringfunc.h>
+#include <Cataclysm/Util/String/String.hpp>
 
 Terrain_signal_handler::Terrain_signal_handler()
 {
