@@ -1,7 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include <doctest/doctest.h>
-#include <Cataclysm/Util/String/stringfunc.h>
+#include "../../Include/Cataclysm/Util/String/stringfunc.h"
 
 TEST_CASE("Remove tags color to string")
 {
