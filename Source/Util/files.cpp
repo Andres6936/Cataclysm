@@ -182,62 +182,6 @@ std::string slurp_file(const std::string& filename)
 	return ret;
 }
 
-int find_line_starting_with(const std::string& filename, std::string term,
-		bool match_case, bool ignore_flags)
-{
-	if (!match_case)
-	{
-		term = no_caps(term);
-	}
-// Should we also trim term?  I say, no.  The user can trim it themselves, and
-// we might WANT to search for whitespace.
-
-	std::ifstream fin;
-	fin.open(filename.c_str());
-	if (!fin.is_open())
-	{
-		return -1;
-	}
-
-	int line_number = 1;
-	std::string line;
-
-	while (std::getline(fin, line))
-	{
-		if (fin.bad())
-		{
-			return -1;
-		}
-		else if (fin.eof())
-		{
-			return -1;
-		}
-		if (ignore_flags)
-		{
-			line = Cataclysm::removeColorTags(line);
-		}
-		if (!match_case)
-		{
-			line = no_caps(line);
-		}
-		if (line.find(term) == 0)
-		{
-			return line_number;
-		}
-		line_number++;
-	}
-	return -1;
-}
-
-void chomp(std::istream& data)
-{
-	if (data.peek() == '\n')
-	{
-		std::string junk;
-		std::getline(data, junk);
-	}
-}
-
 void set_default_dirs()
 {
 	if (DATA_DIR.empty())
