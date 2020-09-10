@@ -15,7 +15,7 @@ CPMAddPackage(
 # Start Component {String}
 
 ADD_LIBRARY(Cataclysm.Util.String
-        Source/Util/String/String.cpp
+        Source/Util/String.cpp
         )
 
 # Compile Cataclysm with Support to C++17
