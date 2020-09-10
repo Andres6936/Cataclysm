@@ -1,3 +1,4 @@
+#include <sstream>
 #include <Cataclysm/Screen/Debugger.hpp>
 #include "Cataclysm/Util/String/stringfunc.h"
 
