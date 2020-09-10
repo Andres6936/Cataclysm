@@ -1,7 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include "Cataclysm/Enum/ItemFlag.hpp"
-#include <Cataclysm/Util/String/String.hpp>
+#include <Cataclysm/Util/String.hpp>
 
 
 Item_flag lookup_item_flag(std::string name)

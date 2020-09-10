@@ -1,6 +1,6 @@
 // Joan Andrés (@Andres6936) Github.
 
-#include <Cataclysm/Util/String/String.hpp>
+#include <Cataclysm/Util/String.hpp>
 #include "Cataclysm/Item/TypeTool.hpp"
 #include <Cataclysm/Screen/Debugger.hpp>
 

@@ -1,7 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include "Cataclysm/World/Enum/TerrainFlag.hpp"
-#include <Cataclysm/Util/String/String.hpp>
+#include <Cataclysm/Util/String.hpp>
 
 World_terrain_flag lookup_world_terrain_flag(std::string name)
 {

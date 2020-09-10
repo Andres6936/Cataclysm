@@ -1,4 +1,4 @@
-#include <Cataclysm/Util/String/String.hpp>
+#include <Cataclysm/Util/String.hpp>
 #include <Cataclysm/Item/item_type.h>
 #include <Cataclysm/Screen/Debugger.hpp>
 #include <sstream>

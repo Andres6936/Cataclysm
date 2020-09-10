@@ -1,5 +1,5 @@
 #include <sstream>
-#include <Cataclysm/Util/String/String.hpp> // For no_caps and trim
+#include <Cataclysm/Util/String.hpp> // For no_caps and trim
 #include <Cataclysm/Entity/Stats.hpp>
 #include <Cataclysm/Screen/Debugger.hpp>
 #include "Cataclysm/Mechanism/status_effect.h"

@@ -1,7 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include "Cataclysm/Item/Enum/Class.hpp"
-#include <Cataclysm/Util/String/String.hpp>
+#include <Cataclysm/Util/String.hpp>
 
 Item_class lookup_item_class(std::string name)
 {

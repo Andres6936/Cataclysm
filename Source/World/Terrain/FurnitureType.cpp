@@ -2,7 +2,7 @@
 
 #include <Cataclysm/Util/globals.h>
 #include <Cataclysm/World/mapgen.h>
-#include <Cataclysm/Util/String/String.hpp>
+#include <Cataclysm/Util/String.hpp>
 #include "Cataclysm/World/Terrain/FurnitureType.hpp"
 
 Furniture_type::Furniture_type()

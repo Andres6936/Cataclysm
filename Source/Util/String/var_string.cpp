@@ -1,5 +1,5 @@
 #include "Cataclysm/Util/String/var_string.h"
-#include <Cataclysm/Util/String/String.hpp>
+#include <Cataclysm/Util/String.hpp>
 #include "Cataclysm/Random/rng.h"
 
 Variable_string::Variable_string()

@@ -1,5 +1,5 @@
 #include "Cataclysm/Entity/tool.h"
-#include <Cataclysm/Util/String/String.hpp> // For trim() and no_caps()
+#include <Cataclysm/Util/String.hpp> // For trim() and no_caps()
 #include <Cataclysm/Util/globals.h>
 #include <Cataclysm/Mechanism/TimeManager.hpp>
 #include <Cataclysm/Entity/entity.h>

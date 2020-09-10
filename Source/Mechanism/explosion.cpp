@@ -1,5 +1,5 @@
 #include <Cataclysm/Mechanism/Projectile.hpp>
-#include <Cataclysm/Util/String/String.hpp> // For no_caps() and trim()
+#include <Cataclysm/Util/String.hpp> // For no_caps() and trim()
 #include "Cataclysm/Mechanism/explosion.h"
 #include <Cataclysm/Util/globals.h>
 #include <Cataclysm/Entity/entity.h>

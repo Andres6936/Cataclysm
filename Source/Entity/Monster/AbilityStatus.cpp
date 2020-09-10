@@ -3,7 +3,7 @@
 #include "Cataclysm/Screen/Debugger.hpp"
 #include <Cataclysm/Entity/Monster/monster.h>
 #include <Cataclysm/Entity/Player/player.h>
-#include <Cataclysm/Util/String/String.hpp>
+#include <Cataclysm/Util/String.hpp>
 #include <Cataclysm/Visual/Screen/MessageQueue.hpp>
 #include "Cataclysm/Entity/Monster/AbilityStatus.h"
 

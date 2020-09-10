@@ -2,7 +2,7 @@
 
 #include "Cataclysm/World/Terrain/Smash.hpp"
 #include <Cataclysm/Screen/Debugger.hpp>
-#include <Cataclysm/Util/String/String.hpp>
+#include <Cataclysm/Util/String.hpp>
 
 Terrain_smash::Terrain_smash()
 {

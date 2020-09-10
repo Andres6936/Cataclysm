@@ -1,5 +1,5 @@
 #include "Cataclysm/Entity/skill.h"
-#include <Cataclysm/Util/String/String.hpp>
+#include <Cataclysm/Util/String.hpp>
 #include <Cataclysm/Screen/Debugger.hpp>
 
 #include <string>

@@ -1,7 +1,7 @@
 #ifndef _DATAPOOL_H_
 #define _DATAPOOL_H_
 
-#include "Cataclysm/Util/String/String.hpp"
+#include "Cataclysm/Util/String.hpp"
 #include <string>
 #include <istream>
 #include <list>

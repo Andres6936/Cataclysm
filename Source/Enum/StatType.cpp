@@ -1,7 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include "Cataclysm/Enum/StatType.hpp"
-#include <Cataclysm/Util/String/String.hpp>
+#include <Cataclysm/Util/String.hpp>
 
 Stat_id lookup_stat_id(std::string name)
 {

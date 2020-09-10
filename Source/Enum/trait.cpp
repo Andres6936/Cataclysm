@@ -1,5 +1,5 @@
 #include "Cataclysm/Enum/trait.h"
-#include <Cataclysm/Util/String/String.hpp>
+#include <Cataclysm/Util/String.hpp>
 
 Trait_id lookup_trait_id(std::string name)
 {

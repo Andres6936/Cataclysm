@@ -2,7 +2,7 @@
 
 #include <sstream>
 #include "Cuss/Element.hpp"
-#include <Cataclysm/Util/String/String.hpp>
+#include <Cataclysm/Util/String.hpp>
 
 using namespace cuss;
 

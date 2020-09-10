@@ -3,7 +3,7 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 
 #include <doctest/doctest.h>
-#include "Cataclysm/Util/String/String.hpp"
+#include "Cataclysm/Util/String.hpp"
 
 using namespace Cataclysm;
 

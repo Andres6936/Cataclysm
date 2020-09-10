@@ -1,7 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include "Cataclysm/Screen/WorldScreen.hpp"
-#include <Cataclysm/Util/String/String.hpp>
+#include <Cataclysm/Util/String.hpp>
 #include <Cataclysm/Util/files.h>
 
 using namespace Cataclysm;

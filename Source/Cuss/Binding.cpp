@@ -2,7 +2,7 @@
 
 #include <sstream>
 #include "Cuss/Binding.hpp"
-#include <Cataclysm/Util/String/String.hpp>
+#include <Cataclysm/Util/String.hpp>
 
 using namespace cuss;
 

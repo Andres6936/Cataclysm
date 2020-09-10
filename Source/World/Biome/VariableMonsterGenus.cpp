@@ -2,7 +2,7 @@
 
 #include "Cataclysm/World/Biome/VariableMonsterGenus.hpp"
 #include <Cataclysm/Screen/Debugger.hpp>
-#include <Cataclysm/Util/String/String.hpp>
+#include <Cataclysm/Util/String.hpp>
 #include <Cataclysm/Util/globals.h>
 #include <Cataclysm/Random/rng.h>
 

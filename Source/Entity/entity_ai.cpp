@@ -1,4 +1,4 @@
-#include <Cataclysm/Util/String/String.hpp>
+#include <Cataclysm/Util/String.hpp>
 #include "Cataclysm/Entity/entity_ai.h"
 #include <Cataclysm/Screen/Debugger.hpp>
 

@@ -1,5 +1,5 @@
 #include "Cataclysm/Entity/profession.h"
-#include <Cataclysm/Util/String/String.hpp>
+#include <Cataclysm/Util/String.hpp>
 #include <Cataclysm/Screen/Debugger.hpp>
 
 

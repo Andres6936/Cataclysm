@@ -4,7 +4,7 @@
 #include <Cataclysm/Entity/Pool.hpp>
 #include <Cataclysm/Item/TypeLauncher.hpp>
 #include <Cataclysm/Entity/Player/player.h>
-#include <Cataclysm/Util/String/String.hpp>
+#include <Cataclysm/Util/String.hpp>
 #include "Cataclysm/Mechanism/Projectile.hpp"
 #include <Cataclysm/Visual/Screen/MessageQueue.hpp>
 
