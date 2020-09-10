@@ -225,32 +225,40 @@ std::string capitalize(const std::string& orig)
 	return ret; // All blank spaces??
 }
 
-std::string remove_color_tags(const std::string& orig)
+std::string remove_color_tags(const std::string& _text)
 {
-	std::string ret;
+	std::string result;
+
+	// Preallocate the estimated amount of storage.
+	// This improves the cache locality of the data accessed.
+	result.reserve(_text.size());
+
 	bool in_tag = false;
-	for (int i = 0; i < orig.size(); i++)
+
+	// Eliminate Pointer Dereference Using Iterators
+	for (const auto& character : _text)
 	{
 		if (in_tag)
 		{
-			if (orig[i] == '>')
+			if (character == '>')
 			{
 				in_tag = false;
 			}
 		}
 		else
 		{
-			if (orig[i] == '<')
+			if (character == '<')
 			{
 				in_tag = true;
 			}
 			else
 			{
-				ret += orig[i];
+				result += character;
 			}
 		}
 	}
-	return ret;
+
+	return result;
 }
 
 std::string itos(int num)
