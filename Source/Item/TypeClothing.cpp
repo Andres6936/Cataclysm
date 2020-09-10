@@ -1,7 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include <sstream>
-#include <Cataclysm/Util/String/stringfunc.h>
+
 #include <Cataclysm/Screen/Debugger.hpp>
 #include "Cataclysm/Item/TypeClothing.hpp"
 
@@ -18,6 +18,37 @@ Item_type_clothing::Item_type_clothing()
 	{
 		covers[i] = false;
 	}
+}
+
+
+std::string color_gradient(int value, std::vector<int> breakpoints,
+		std::vector<nc_color> colors)
+{
+/* We need one more color than breakpoints, since breakpoints are the spots
+ * BETWEEN colors:
+ *  gray  <split: 5>  white  <split: 12>  green
+ */
+	if (breakpoints.size() + 1 != colors.size())
+	{
+		debugmsg("color_gradient() called with mismatched breakpoints/colors!");
+		return "";
+	}
+
+	nc_color col = c_null;
+	for (int i = 0; i < breakpoints.size(); i++)
+	{
+		if (value <= breakpoints[i])
+		{
+			col = colors[i];
+		}
+	}
+	if (col == c_null)
+	{
+		col = colors.back();
+	}
+	std::stringstream ret;
+	ret << "<c=" << color_tag(col) << ">";
+	return ret.str();
 }
 
 std::string Item_type_clothing::get_property_description()
