@@ -21,7 +21,7 @@ ADD_LIBRARY(Cataclysm.Util.String
 # Compile Cataclysm with Support to C++17
 SET_TARGET_PROPERTIES(Cataclysm.Util.String PROPERTIES CXX_STANDARD 17)
 # Find the headers in the directory Cataclysm without path to Include
-TARGET_INCLUDE_DIRECTORIES(Cataclysm.Util.String PRIVATE
+TARGET_INCLUDE_DIRECTORIES(Cataclysm.Util.String PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Include/>
         $<INSTALL_INTERFACE:/Include/>)
 
