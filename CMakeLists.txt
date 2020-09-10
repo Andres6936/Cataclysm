@@ -11,6 +11,22 @@ CPMAddPackage(
         VERSION 2020.0901
 )
 
+
+# Start Component {String}
+
+ADD_LIBRARY(Cataclysm.Util.String
+        Source/Util/String/stringfunc.cpp
+        )
+
+# Compile Cataclysm with Support to C++17
+SET_TARGET_PROPERTIES(Cataclysm.Util.String PROPERTIES CXX_STANDARD 17)
+# Find the headers in the directory Cataclysm without path to Include
+TARGET_INCLUDE_DIRECTORIES(Cataclysm.Util.String PRIVATE
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Include/>
+        $<INSTALL_INTERFACE:/Include/>)
+
+# End Component {String}
+
 ADD_LIBRARY(Cuss
         Source/Cuss/Enum/ActionID.cpp
         Source/Cuss/String/Utility.cpp
@@ -27,7 +43,6 @@ ADD_LIBRARY(Cuss
         Source/Graphics/color.cpp
         Source/Graphics/window.cpp
         Source/Util/files.cpp
-        Source/Util/String/stringfunc.cpp
         )
 
 # Compile Cataclysm with Support to C++17
@@ -37,6 +52,7 @@ TARGET_INCLUDE_DIRECTORIES(Cuss PRIVATE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Include/>
         $<INSTALL_INTERFACE:/Include/>)
 TARGET_LINK_LIBRARIES(Cuss PRIVATE Doryen::Framework)
+TARGET_LINK_LIBRARIES(Cuss PRIVATE Cataclysm.Util.String)
 TARGET_LINK_LIBRARIES(Cuss PRIVATE ncurses)
 
 # For measure the time that take the compilation process
@@ -158,7 +174,6 @@ ADD_EXECUTABLE(Cataclysm
         Source/Util/globals.cpp
         Source/Util/pathfind.cpp
         Source/Util/Command/Parser.cpp
-        Source/Util/String/stringfunc.cpp
         Source/Util/String/var_string.cpp
         Source/World/Biome/Enum/BiomeFlag.cpp
         Source/World/Biome/biome.cpp
@@ -189,6 +204,7 @@ TARGET_INCLUDE_DIRECTORIES(Cataclysm PRIVATE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Include/>
         $<INSTALL_INTERFACE:/Include/>)
 # Link the libraries needed
+TARGET_LINK_LIBRARIES(Cataclysm PRIVATE Cataclysm.Util.String)
 TARGET_LINK_LIBRARIES(Cataclysm PRIVATE Cataclysm::Visual)
 TARGET_LINK_LIBRARIES(Cataclysm PRIVATE Doryen::Framework)
 TARGET_LINK_LIBRARIES(Cataclysm PRIVATE Cuss)
