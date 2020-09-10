@@ -11,26 +11,11 @@
 std::vector<std::string> break_into_lines(const std::string& text,
 		int linesize);
 
-std::vector<std::string> split_string(const std::string& text, char split,
-		bool keep_split);
-
-std::vector<std::string> split_string(const std::string& text,
-		const std::string& split,
-		bool keep_split);
-
 std::string load_to_delim(std::istream& datastream, std::string delim);
-
-std::string load_to_character(std::istream& datastream, char ch,
-		bool _trim = false);
-
-std::string load_to_character(std::istream& datastream, std::string chars,
-		bool _trim = false);
 
 std::string slurp_file(const std::string& filename);
 
 std::string trim(const std::string& orig);
-
-std::string all_caps(const std::string& orig);
 
 std::string no_caps(const std::string& orig);
 
