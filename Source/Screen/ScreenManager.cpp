@@ -9,6 +9,7 @@
 #include "Cataclysm/Screen/ScreenManager.hpp"
 #include <Cataclysm/Screen/HelpMenuScreen.hpp>
 #include <Cataclysm/Screen/CreateWorldScreen.hpp>
+#include <Cataclysm/Screen/ShowWorldmapScreen.hpp>
 #include <Cataclysm/Screen/InformationItemScreen.hpp>
 #include <Cataclysm/Screen/InventorySingleSelectionScreen.hpp>
 #include <Cataclysm/Screen/InventoryMultipleSelectionScreen.hpp>
@@ -118,6 +119,16 @@ void ScreenManager::nextScene(ScreenType _next)
 		}
 
 		actualScreen = createWorldScreen;
+	}
+	else if (_next == ScreenType::SHOW_WORLDMAP)
+	{
+		// Lazy evaluation
+		if (showWorldmapScreen == nullptr)
+		{
+			this->showWorldmapScreen = std::make_shared<ShowWorldmapScreen>();
+		}
+
+		actualScreen = showWorldmapScreen;
 	}
 	else if (_next == ScreenType::INFORMATION_ITEM)
 	{

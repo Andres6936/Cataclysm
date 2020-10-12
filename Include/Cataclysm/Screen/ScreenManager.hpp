@@ -36,6 +36,8 @@ namespace Cataclysm
 
 		std::shared_ptr<IScreen> createWorldScreen {nullptr};
 
+		std::shared_ptr<IScreen> showWorldmapScreen {nullptr};
+
 		std::shared_ptr<IScreen> informationItemScreen {nullptr};
 
 		std::shared_ptr<IScreen> inventorySingleSelectionScreen {nullptr};
