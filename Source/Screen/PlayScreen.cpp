@@ -473,7 +473,7 @@ Cataclysm::ScreenType PlayScreen::do_action(Interface_action act)
 			//debugmsg("Worldmap %s, map %s", got.str().c_str(), mp.str().c_str());
 		}
 	}
-		break;
+		return Cataclysm::ScreenType::SHOW_WORLDMAP;
 
 	case IACTION_CHAR_STATUS:
 		player->status_interface();
