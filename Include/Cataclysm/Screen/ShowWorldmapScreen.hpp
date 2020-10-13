@@ -11,6 +11,14 @@ namespace Cataclysm
 	class ShowWorldmapScreen : public IScreen
 	{
 
+	private:
+
+		cuss::interface i_legend;
+
+		Doryen::Console legendConsole {20, 24};
+
+		Doryen::Console worldmapConsole {60, 24};
+
 	public:
 
 		ShowWorldmapScreen();
