@@ -28,5 +28,13 @@ void ShowWorldmapScreen::updated()
 
 ScreenType ShowWorldmapScreen::processInput()
 {
-	return ScreenType::PLAY;
+	flushinp();
+	long ch = getch();
+
+	if (ch == 'q' or ch == 'Q')
+	{
+		return ScreenType::PLAY;
+	}
+
+	return ScreenType::NONE;
 }
