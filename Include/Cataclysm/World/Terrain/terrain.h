@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-#include <Cataclysm/Graphics/glyph.h>
+#include <Cuss/Graphics/glyph.h>
 #include "Cataclysm/World/Terrain/Smash.hpp"
 #include "Cataclysm/World/Terrain/SignalHandler.hpp"
 

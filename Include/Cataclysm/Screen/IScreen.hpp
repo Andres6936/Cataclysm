@@ -7,7 +7,7 @@
 #include <Cuss/Interface.hpp>
 #include <Cataclysm/World/map.h>
 #include <Cataclysm/World/worldmap.h>
-#include <Cataclysm/Graphics/window.h>
+#include <Cuss/Graphics/window.h>
 #include <Cataclysm/Screen/Enum/ScreenType.hpp>
 #include <Cataclysm/Entity/Player/player.h>
 #include <Cataclysm/Entity/Pool.hpp>

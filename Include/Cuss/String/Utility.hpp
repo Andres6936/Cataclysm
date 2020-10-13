@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 #include <Doryen/Doryen.hpp>
-#include <Cataclysm/Graphics/color.h>
+#include <Cuss/Graphics/color.h>
 
 namespace cuss
 {

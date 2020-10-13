@@ -39,9 +39,9 @@ ADD_LIBRARY(Cuss
         Source/Cuss/TextBox.cpp
         Source/Cuss/TextEntry.cpp
         Source/Cuss/Interface.cpp
-        Source/Graphics/glyph.cpp
-        Source/Graphics/color.cpp
-        Source/Graphics/window.cpp
+        Source/Cuss/Graphics/glyph.cpp
+        Source/Cuss/Graphics/color.cpp
+        Source/Cuss/Graphics/window.cpp
         Source/Util/files.cpp
         )
 
@@ -118,9 +118,6 @@ ADD_EXECUTABLE(Cataclysm
         Source/Enum/SenseType.cpp
         Source/Enum/DamageType.cpp
         Source/Enum/MathOperator.cpp
-        Source/Graphics/color.cpp
-        Source/Graphics/glyph.cpp
-        Source/Graphics/window.cpp
         Source/Item/Enum/Class.cpp
         Source/Item/Enum/BookGenre.cpp
         Source/Item/item.cpp

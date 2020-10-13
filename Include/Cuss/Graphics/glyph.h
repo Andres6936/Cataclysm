@@ -1,7 +1,7 @@
 #ifndef _GLYPH_H_
 #define _GLYPH_H_
 
-#include "Cataclysm/Graphics/color.h"
+#include "Cuss/Graphics/color.h"
 
 #define HILITE_COLOR c_blue
 

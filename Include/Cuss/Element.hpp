@@ -8,8 +8,8 @@
 #include <Doryen/Doryen.hpp>
 #include <Cuss/Enum/Alignment.hpp>
 #include <Cuss/Enum/ElementType.hpp>
-#include <Cataclysm/Graphics/color.h>
-#include <Cataclysm/Graphics/window.h>
+#include <Cuss/Graphics/color.h>
+#include <Cuss/Graphics/window.h>
 #include <Cuss/Enum/VerticalAligment.hpp>
 
 namespace cuss

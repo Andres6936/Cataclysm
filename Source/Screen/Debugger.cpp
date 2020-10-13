@@ -5,7 +5,7 @@
 #include <curses.h>
 
 #include <Cataclysm/Util/globals.h>
-#include <Cataclysm/Graphics/window.h>
+#include <Cuss/Graphics/window.h>
 #include <Cuss/Interface.hpp>
 #include "Cataclysm/Screen/Debugger.hpp"
 

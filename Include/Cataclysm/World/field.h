@@ -3,7 +3,7 @@
 
 #include "Cataclysm/Entity/damage_set.h"
 #include <Cataclysm/Geometry/geometry.h>
-#include "Cataclysm/Graphics/glyph.h"
+#include "Cuss/Graphics/glyph.h"
 #include <Cataclysm/Mechanism/explosion.h>
 
 #include <string>

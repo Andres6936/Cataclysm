@@ -8,7 +8,7 @@
 #include <istream>
 #include <cstdint>
 
-#include <Cataclysm/Graphics/glyph.h>
+#include <Cuss/Graphics/glyph.h>
 #include <Cataclysm/Enum/TerrainFlag.hpp>
 #include "Cataclysm/World/Terrain/Smash.hpp"
 
