@@ -6,8 +6,6 @@
 #include <istream>
 #include <string_view>
 
-#define STD_DELIM "</>"
-
 std::string slurp_file(const std::string& filename);
 
 std::string trim(const std::string& orig);

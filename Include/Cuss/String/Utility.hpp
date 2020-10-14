@@ -8,6 +8,8 @@
 #include <Doryen/Doryen.hpp>
 #include <Cuss/Graphics/color.h>
 
+#define STD_DELIM "</>"
+
 namespace cuss
 {
 
