@@ -2,11 +2,21 @@
 
 #include <sstream>
 #include "Cuss/TextBox.hpp"
-#include <Cataclysm/Screen/Debugger.hpp>
-#include <Cataclysm/Util/String.hpp>
 #include <Cuss/String/Utility.hpp>
 
 using namespace cuss;
+
+#define LINE_XOXO 4194424
+#define LINE_OXOX 4194417
+#define LINE_XXOO 4194413
+#define LINE_OXXO 4194412
+#define LINE_OOXX 4194411
+#define LINE_XOOX 4194410
+#define LINE_XXXO 4194420
+#define LINE_XXOX 4194422
+#define LINE_XOXX 4194421
+#define LINE_OXXX 4194423
+#define LINE_XXXX 4194414
 
 #define SELECTCOLOR c_blue
 
