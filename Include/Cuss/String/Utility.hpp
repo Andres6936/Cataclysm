@@ -16,6 +16,14 @@ namespace cuss
 
 	public:
 
+		/**
+		 * Remove the color tags of text.
+		 *
+		 * @param _text Text to delete the color tags
+		 * @return The text without color tags.
+		 */
+		static std::string removeColorTags(std::string_view _text);
+
 		static std::string stripTags(std::string _text);
 
 		static std::vector<std::pair<Doryen::Color, Doryen::Color>> parseColorTags(

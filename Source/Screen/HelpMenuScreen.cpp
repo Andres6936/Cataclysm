@@ -2,6 +2,7 @@
 #include <Cataclysm/Util/files.h>
 #include <Cataclysm/Util/String.hpp>
 #include <Cuss/Interface.hpp>
+#include <Cuss/String/Utility.hpp>
 
 void help_screen(std::string file, std::string term)
 {
@@ -47,7 +48,7 @@ void help_screen(std::string file, std::string term)
 				int line = -1;
 				for (int i = 0; line == -1 && i < str_list.size(); i++)
 				{
-					std::string clipped = trim(no_caps(Cataclysm::removeColorTags(str_list[i])));
+					std::string clipped = trim(no_caps(cuss::Utility::removeColorTags(str_list[i])));
 					if (clipped.find(term) == 0)
 					{
 						line = i;

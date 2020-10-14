@@ -1,6 +1,7 @@
 #include <Cataclysm/Util/files.h>  // For CUSS_DIR
 #include <Cataclysm/Util/globals.h>
 #include <Cataclysm/Entity/Player/player.h>
+#include <Cuss/String/Utility.hpp>
 
 enum New_char_screen
 {
@@ -345,7 +346,7 @@ bool Player::create_new_character()
 				{
 					i_newch.add_data("list_professions", 1);
 					std::string prof_name = i_newch.get_str("list_professions");
-					prof_name = Cataclysm::removeColorTags(prof_name);
+					prof_name = cuss::Utility::removeColorTags(prof_name);
 					Profession* cur_prof = PROFESSIONS.lookup_name(prof_name);
 					if (!cur_prof)
 					{
@@ -362,7 +363,7 @@ bool Player::create_new_character()
 				{
 					i_newch.add_data("list_professions", -1);
 					std::string prof_name = i_newch.get_str("list_professions");
-					prof_name = Cataclysm::removeColorTags(prof_name);
+					prof_name = cuss::Utility::removeColorTags(prof_name);
 					Profession* cur_prof = PROFESSIONS.lookup_name(prof_name);
 					if (!cur_prof)
 					{
@@ -377,7 +378,7 @@ bool Player::create_new_character()
 				case ' ':
 				{
 					std::string prof_name = i_newch.get_str("list_professions");
-					prof_name = Cataclysm::removeColorTags(prof_name);
+					prof_name = cuss::Utility::removeColorTags(prof_name);
 					Profession* cur_prof = PROFESSIONS.lookup_name(prof_name);
 					if (!cur_prof)
 					{
@@ -503,7 +504,7 @@ bool Player::create_new_character()
 				i_newch.select("list_professions");
 				i_newch.ref_data("list_professions", &profession_list);
 				std::string prof_name = i_newch.get_str("list_professions");
-				prof_name = Cataclysm::removeColorTags(prof_name);
+				prof_name = cuss::Utility::removeColorTags(prof_name);
 				Profession* cur_prof = PROFESSIONS.lookup_name(prof_name);
 				if (!cur_prof)
 				{

@@ -1,8 +1,6 @@
 #include <sstream>
 #include "Cataclysm/Util/String.hpp"
 
-using namespace Cataclysm;
-
 std::vector<std::string> break_into_lines(const std::string& text, int linesize)
 {
 	std::vector<std::string> ret;
@@ -224,42 +222,6 @@ std::string capitalize(const std::string& orig)
 		}
 	}
 	return ret; // All blank spaces??
-}
-
-std::string Cataclysm::removeColorTags(std::string_view _text)
-{
-	std::string result;
-
-	// Preallocate the estimated amount of storage.
-	// This improves the cache locality of the data accessed.
-	result.reserve(_text.size());
-
-	bool in_tag = false;
-
-	// Eliminate Pointer Dereference Using Iterators
-	for (const auto& character : _text)
-	{
-		if (in_tag)
-		{
-			if (character == '>')
-			{
-				in_tag = false;
-			}
-		}
-		else
-		{
-			if (character == '<')
-			{
-				in_tag = true;
-			}
-			else
-			{
-				result += character;
-			}
-		}
-	}
-
-	return result;
 }
 
 bool is_vowel(char ch)

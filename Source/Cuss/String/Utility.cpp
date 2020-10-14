@@ -4,6 +4,42 @@
 
 using namespace cuss;
 
+std::string Utility::removeColorTags(std::string_view _text)
+{
+	std::string result;
+
+	// Preallocate the estimated amount of storage.
+	// This improves the cache locality of the data accessed.
+	result.reserve(_text.size());
+
+	bool in_tag = false;
+
+	// Eliminate Pointer Dereference Using Iterators
+	for (const auto& character : _text)
+	{
+		if (in_tag)
+		{
+			if (character == '>')
+			{
+				in_tag = false;
+			}
+		}
+		else
+		{
+			if (character == '<')
+			{
+				in_tag = true;
+			}
+			else
+			{
+				result += character;
+			}
+		}
+	}
+
+	return result;
+}
+
 std::string Utility::stripTags(std::string _text)
 {
 	std::size_t tag;
