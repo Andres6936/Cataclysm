@@ -24,6 +24,9 @@ namespace cuss
 		 */
 		static std::string removeColorTags(std::string_view _text);
 
+		static std::vector<std::string> break_into_lines(
+				const std::string& text, int linesize);
+
 		static std::string stripTags(std::string _text);
 
 		static std::vector<std::pair<Doryen::Color, Doryen::Color>> parseColorTags(

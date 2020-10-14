@@ -37,7 +37,7 @@ void print_scrollbar(std::shared_ptr<Window> win, int posx, int posy, int length
 
 void ele_textbox::draw(Doryen::Console& _console)
 {
-	std::vector<std::string> broken = break_into_lines(*text, sizex);
+	std::vector<std::string> broken = Utility::break_into_lines(*text, sizex);
 
 	// TODO: Clear Area
 	//win->clear_area(posx, posy, posx + sizex - 1, posy + sizey - 1);
@@ -87,7 +87,7 @@ void ele_textbox::draw(Doryen::Console& _console)
 // *** TEXTBOX ELEMENT ***
 void ele_textbox::draw(std::shared_ptr<Window> win)
 {
-	std::vector<std::string> broken = break_into_lines(*text, sizex);
+	std::vector<std::string> broken = Utility::break_into_lines(*text, sizex);
 
 	win->clear_area(posx, posy, posx + sizex - 1, posy + sizey - 1);
 
@@ -188,7 +188,7 @@ bool ele_textbox::ref_data(std::string* data)
 
 bool ele_textbox::set_data(int data)
 {
-	std::vector<std::string> broken = break_into_lines(*text, sizex);
+	std::vector<std::string> broken = Utility::break_into_lines(*text, sizex);
 	if (data <= 0)
 		offset = 0;
 	else if (data > broken.size() - 1)
@@ -209,5 +209,5 @@ bool ele_textbox::add_data(int data)
 
 std::vector<std::string> ele_textbox::get_str_list()
 {
-	return break_into_lines(*text, sizex);
+	return Utility::break_into_lines(*text, sizex);
 }

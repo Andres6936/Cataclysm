@@ -8,9 +8,6 @@
 
 #define STD_DELIM "</>"
 
-std::vector<std::string> break_into_lines(const std::string& text,
-		int linesize);
-
 std::string load_to_delim(std::istream& datastream, std::string delim);
 
 std::string slurp_file(const std::string& filename);
