@@ -5,11 +5,25 @@
 
 #include <map>
 #include <string>
-#include <Cataclysm/Geometry/geometry.h>
 #include "Element.hpp"
+#include <Doryen/Geometry/Point2D.hpp>
 
 namespace cuss
 {
+
+	using Point = Doryen::Geometry::Point2D<>;
+
+	struct Pointcomp
+	{
+		bool operator()(const Point& lhs, const Point& rhs) const
+		{
+			if (lhs.x < rhs.x) return true;
+			if (lhs.x > rhs.x) return false;
+			if (lhs.y < rhs.y) return true;
+			if (lhs.y > rhs.y) return false;
+			return false;
+		}
+	};
 
 	struct ele_drawing : public element
 	{

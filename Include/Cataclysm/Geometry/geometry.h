@@ -230,18 +230,6 @@ inline Tripoint operator-(Tripoint lhs, const Point& rhs)
 	return lhs;
 }
 
-struct Pointcomp
-{
-	bool operator()(const Point& lhs, const Point& rhs) const
-	{
-		if (lhs.x < rhs.x) return true;
-		if (lhs.x > rhs.x) return false;
-		if (lhs.y < rhs.y) return true;
-		if (lhs.y > rhs.y) return false;
-		return false;
-	}
-};
-
 struct Tripointcomp
 {
 	bool operator()(const Tripoint& lhs, const Tripoint& rhs) const
