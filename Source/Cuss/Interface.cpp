@@ -1,15 +1,26 @@
-#include <Cuss/Drawing.hpp>
 #include <Cuss/List.hpp>
-#include <Cuss/TextBox.hpp>
 #include <Cuss/Menu.hpp>
+#include <Cuss/Number.hpp>
+#include <Cuss/Drawing.hpp>
+#include <Cuss/TextBox.hpp>
 #include <Cuss/TextEntry.hpp>
 #include "Cuss/Interface.hpp"
-#include <Cataclysm/Screen/Debugger.hpp>
-#include <Cataclysm/Util/String.hpp>
-#include <Cuss/Number.hpp>
+#include <Cuss/String/Utility.hpp>
+
 #include <sstream>
 #include <fstream>
-#include <Cuss/String/Utility.hpp>
+
+#define LINE_XOXO 4194424
+#define LINE_OXOX 4194417
+#define LINE_XXOO 4194413
+#define LINE_OXXO 4194412
+#define LINE_OOXX 4194411
+#define LINE_XOOX 4194410
+#define LINE_XXXO 4194420
+#define LINE_XXOX 4194422
+#define LINE_XOXX 4194421
+#define LINE_OXXX 4194423
+#define LINE_XXXX 4194414
 
 using namespace cuss;
 
@@ -131,7 +142,7 @@ void interface::add_element(element_type type, std::string name, int posx,
 		break;
 
 	default:
-		debugmsg("Unknown element type %d", type);
+		throw std::domain_error("Unknown element type " + std::to_string(type));
 		return;
 	}
 
@@ -281,7 +292,7 @@ void interface::load_data(std::istream& datastream)
 		{
 
 		case ELE_NULL:
-			debugmsg("Loaded NULL element!");
+			throw std::domain_error("Loaded NULL element!");
 			break;
 
 		case ELE_DRAWING:
@@ -365,7 +376,7 @@ bool interface::load_from_file(std::string filename, bool warn)
 	{
 		if (warn)
 		{
-			debugmsg("Can't load %s!", filename.c_str());
+			throw std::domain_error("Can't load " + filename);
 		}
 		return false;
 	}
@@ -777,12 +788,12 @@ bool interface::add_binding(long ch, action_id act, std::string target)
 {
 	if (bindings.count(ch))
 	{
-		debugmsg("Binding exists for %d!", ch);
+		throw std::domain_error("Binding exists for " + std::to_string(ch) + "!");
 		return false;
 	}
 	if (action_needs_element(act) && target != "<S>" && !find_by_name(target))
 	{
-		debugmsg("Couldn't find element \"%s\"!", target.c_str());
+		throw std::domain_error("Couldn't find element " + target + "!");
 		return false;
 	}
 
@@ -796,12 +807,12 @@ bool interface::add_binding(long ch, action_id act, std::string target,
 {
 	if (bindings.count(ch))
 	{
-		debugmsg("Binding exists for %d!", ch);
+		throw std::domain_error("Binding exists for " + std::to_string(ch) + "!");
 		return false;
 	}
 	if (action_needs_element(act) && target != "<S>" && !find_by_name(target))
 	{
-		debugmsg("Couldn't find element \"%s\"!", target.c_str());
+		throw std::domain_error("Couldn't find element " + target + "!");
 		return false;
 	}
 
