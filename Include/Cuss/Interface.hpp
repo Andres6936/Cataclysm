@@ -7,7 +7,6 @@
 #include "Cuss/Element.hpp"
 #include "Cuss/Binding.hpp"
 #include <Cuss/Graphics/window.h>
-#include <Cataclysm/Geometry/geometry.h>
 #include <Cuss/Enum/ElementType.hpp>
 #include <Cuss/Enum/ActionID.hpp>
 
