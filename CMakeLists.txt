@@ -51,7 +51,6 @@ TARGET_INCLUDE_DIRECTORIES(Cuss PRIVATE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Include/>
         $<INSTALL_INTERFACE:/Include/>)
 TARGET_LINK_LIBRARIES(Cuss PRIVATE Doryen::Framework)
-TARGET_LINK_LIBRARIES(Cuss PRIVATE Cataclysm.Util.String)
 TARGET_LINK_LIBRARIES(Cuss PRIVATE ncurses)
 
 # For measure the time that take the compilation process
