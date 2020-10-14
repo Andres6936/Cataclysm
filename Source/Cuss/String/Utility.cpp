@@ -7,6 +7,11 @@
 
 using namespace cuss;
 
+bool Utility::is_backspace(long ch)
+{
+	return (ch == KEY_BACKSPACE || ch == 127 || ch == 8);
+}
+
 std::string Utility::key_name(long ch)
 {
 	switch (ch)

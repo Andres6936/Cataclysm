@@ -2,7 +2,7 @@
 
 #include <sstream>
 #include "Cuss/Number.hpp"
-#include <Cataclysm/Screen/Debugger.hpp>
+#include <Cuss/String/Utility.hpp>
 
 using namespace cuss;
 
@@ -96,7 +96,7 @@ bool ele_number::handle_keypress(long ch)
 		}
 		return true;
 	}
-	else if (is_backspace(ch))
+	else if (Utility::is_backspace(ch))
 	{
 		(*value) /= 10;
 		return true;

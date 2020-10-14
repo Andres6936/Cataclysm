@@ -18,6 +18,8 @@ namespace cuss
 
 	public:
 
+		static bool is_backspace(long ch);
+
 		static std::string key_name(long ch);
 
 		/**
