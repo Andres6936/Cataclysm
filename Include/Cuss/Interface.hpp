@@ -9,9 +9,12 @@
 #include <Cuss/Graphics/window.h>
 #include <Cuss/Enum/ElementType.hpp>
 #include <Cuss/Enum/ActionID.hpp>
+#include <Doryen/Geometry/Point2D.hpp>
 
 namespace cuss
 {
+
+	using Point = Doryen::Geometry::Point2D<>;
 
 	class interface
 	{
