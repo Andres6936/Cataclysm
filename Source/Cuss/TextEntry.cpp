@@ -1,9 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
-#include "Cuss/TextEntry.hpp"
-#include <Cataclysm/Util/String.hpp>
-#include <Cataclysm/Screen/Debugger.hpp>
 #include <sstream>
+#include "Cuss/TextEntry.hpp"
 #include <Cuss/String/Utility.hpp>
 
 using namespace cuss;
@@ -93,7 +91,7 @@ bool ele_textentry::ref_data(std::string* data)
 
 bool ele_textentry::handle_keypress(long ch)
 {
-	if (is_backspace(ch) && !text->empty())
+	if (Utility::is_backspace(ch) && !text->empty())
 	{
 		(*text) = text->substr(0, text->length() - 1);
 		return true;
