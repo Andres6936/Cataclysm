@@ -18,6 +18,8 @@ namespace cuss
 
 	public:
 
+		static std::string key_name(long ch);
+
 		/**
 		 * Remove the color tags of text.
 		 *

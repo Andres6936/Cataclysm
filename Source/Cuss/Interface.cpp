@@ -765,7 +765,7 @@ std::vector<std::string> interface::binding_list()
 	for (it = bindings.begin(); it != bindings.end(); it++)
 	{
 		std::stringstream info;
-		info << key_name(it->first) << ": " << action_name(it->second.act);
+		info << Utility::key_name(it->first) << ": " << action_name(it->second.act);
 		if (it->second.act == ACT_SELECT_STR)
 			info << " " << it->second.target;
 		else if (it->second.act == ACT_SCROLL)

@@ -1,8 +1,50 @@
 // Joan Andrés (@Andres6936) Github.
 
+#include <curses.h>
 #include <Cuss/String/Utility.hpp>
 
+#define KEY_ESC 27
+
 using namespace cuss;
+
+std::string Utility::key_name(long ch)
+{
+	switch (ch)
+	{
+	case KEY_UP:
+		return "UP";
+	case KEY_RIGHT:
+		return "RIGHT";
+	case KEY_LEFT:
+		return "LEFT";
+	case KEY_DOWN:
+		return "DOWN";
+	case '\n':
+		return "ENTER";
+	case '\t':
+		return "TAB";
+	case KEY_ESC:
+		return "ESC";
+	case KEY_BACKSPACE:
+	case 127:
+	case 8:
+		return "BACKSPACE";
+	default:
+		if (ch < 256)
+		{
+			std::stringstream ret;
+			ret << char(ch);
+			return ret.str();
+		}
+		else
+		{
+			std::stringstream ret;
+			ret << "[" << int(ch) << "]";
+			return ret.str();
+		}
+	}
+	return "???";
+}
 
 std::string Utility::removeColorTags(std::string_view _text)
 {
