@@ -42,7 +42,6 @@ ADD_LIBRARY(Cuss
         Source/Cuss/Graphics/glyph.cpp
         Source/Cuss/Graphics/color.cpp
         Source/Cuss/Graphics/window.cpp
-        Source/Util/files.cpp
         )
 
 # Compile Cataclysm with Support to C++17
