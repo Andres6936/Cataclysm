@@ -148,7 +148,7 @@ void ele_list::load_data(std::istream& datastream)
 	datastream >> tmpsize;
 	for (int i = 0; i < tmpsize; i++)
 	{
-		std::string tmp = load_to_delim(datastream, STD_DELIM);
+		std::string tmp = Utility::load_to_delim(datastream, STD_DELIM);
 		list->push_back(tmp);
 	}
 }

@@ -9,6 +9,7 @@
 #include <Cuss/Number.hpp>
 #include <sstream>
 #include <fstream>
+#include <Cuss/String/Utility.hpp>
 
 using namespace cuss;
 
@@ -267,7 +268,7 @@ std::string interface::save_data()
 
 void interface::load_data(std::istream& datastream)
 {
-	name = load_to_delim(datastream, STD_DELIM);
+	name = Utility::load_to_delim(datastream, STD_DELIM);
 	datastream >> sizex >> sizey;
 	elements.clear();
 	int tmpcount, tmpbind;

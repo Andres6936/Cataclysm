@@ -3,6 +3,7 @@
 #include <sstream>
 #include "Cuss/Binding.hpp"
 #include <Cataclysm/Util/String.hpp>
+#include <Cuss/String/Utility.hpp>
 
 using namespace cuss;
 
@@ -18,7 +19,7 @@ void binding::load_data(std::istream& datastream)
 {
 	int tmpact;
 	datastream >> tmpact;
-	target = load_to_delim(datastream, STD_DELIM);
+	target = Utility::load_to_delim(datastream, STD_DELIM);
 	datastream >> a >> b;
 	act = action_id(tmpact);
 }

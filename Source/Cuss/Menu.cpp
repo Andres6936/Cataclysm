@@ -4,6 +4,7 @@
 #include <Cataclysm/Util/String.hpp>
 #include <Cataclysm/Screen/Debugger.hpp>
 #include <sstream>
+#include <Cuss/String/Utility.hpp>
 
 using namespace cuss;
 
@@ -174,12 +175,12 @@ std::string ele_menu::save_data()
 void ele_menu::load_data(std::istream& datastream)
 {
 	element::load_data(datastream);
-	title = load_to_delim(datastream, STD_DELIM);
+	title = Utility::load_to_delim(datastream, STD_DELIM);
 	int tmpsize;
 	datastream >> tmpsize;
 	for (int i = 0; i < tmpsize; i++)
 	{
-		std::string tmp = load_to_delim(datastream, STD_DELIM);
+		std::string tmp = Utility::load_to_delim(datastream, STD_DELIM);
 		list->push_back(tmp);
 	}
 }

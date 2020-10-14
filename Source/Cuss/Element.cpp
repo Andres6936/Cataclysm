@@ -3,6 +3,7 @@
 #include <sstream>
 #include "Cuss/Element.hpp"
 #include <Cataclysm/Util/String.hpp>
+#include <Cuss/String/Utility.hpp>
 
 using namespace cuss;
 
@@ -18,7 +19,7 @@ std::string element::save_data()
 
 void element::load_data(std::istream& datastream)
 {
-	name = load_to_delim(datastream, STD_DELIM);
+	name = Utility::load_to_delim(datastream, STD_DELIM);
 	int tmpalign, tmpvalign;
 
 	datastream >> posx >> posy >> sizex >> sizey >> selectable >> tmpalign >>

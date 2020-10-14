@@ -8,8 +8,6 @@
 
 #define STD_DELIM "</>"
 
-std::string load_to_delim(std::istream& datastream, std::string delim);
-
 std::string slurp_file(const std::string& filename);
 
 std::string trim(const std::string& orig);

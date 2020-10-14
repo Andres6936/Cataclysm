@@ -1,22 +1,6 @@
 #include <sstream>
 #include "Cataclysm/Util/String.hpp"
 
-std::string load_to_delim(std::istream& datastream, std::string delim)
-{
-	std::string ret, tmp;
-	do
-	{
-		datastream >> tmp;
-		if (tmp != delim)
-			ret += tmp + " ";
-	} while (tmp != delim && !(datastream.eof()));
-
-	if (!ret.empty() && ret[ret.size() - 1] == ' ')
-		ret = ret.substr(0, ret.size() - 1);
-
-	return ret;
-}
-
 std::string trim(const std::string& orig)
 {
 	std::string ret = orig;

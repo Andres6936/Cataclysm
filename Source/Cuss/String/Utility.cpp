@@ -191,6 +191,22 @@ linedraw += '_';
 	return ret;
 }
 
+std::string Utility::load_to_delim(std::istream& datastream, std::string delim)
+{
+	std::string ret, tmp;
+	do
+	{
+		datastream >> tmp;
+		if (tmp != delim)
+			ret += tmp + " ";
+	} while (tmp != delim && !(datastream.eof()));
+
+	if (!ret.empty() && ret[ret.size() - 1] == ' ')
+		ret = ret.substr(0, ret.size() - 1);
+
+	return ret;
+}
+
 std::vector<std::pair<Doryen::Color, Doryen::Color>> Utility::parseColorTags(
 		std::string text, std::vector<std::string>& segments,
 		std::vector<long>& color_pairs, nc_color fg, nc_color bg)

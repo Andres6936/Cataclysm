@@ -137,7 +137,7 @@ std::string ele_textbox::save_data()
 void ele_textbox::load_data(std::istream& datastream)
 {
 	element::load_data(datastream);
-	(*text) = load_to_delim(datastream, STD_DELIM);
+	(*text) = Utility::load_to_delim(datastream, STD_DELIM);
 }
 
 bool ele_textbox::self_reference()

@@ -4,6 +4,7 @@
 #include <Cataclysm/Util/String.hpp>
 #include <Cataclysm/Screen/Debugger.hpp>
 #include <sstream>
+#include <Cuss/String/Utility.hpp>
 
 using namespace cuss;
 
@@ -55,7 +56,7 @@ std::string ele_textentry::save_data()
 void ele_textentry::load_data(std::istream& datastream)
 {
 	element::load_data(datastream);
-	(*text) = load_to_delim(datastream, STD_DELIM);
+	(*text) = Utility::load_to_delim(datastream, STD_DELIM);
 }
 
 bool ele_textentry::self_reference()

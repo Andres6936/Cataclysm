@@ -27,6 +27,9 @@ namespace cuss
 		static std::vector<std::string> break_into_lines(
 				const std::string& text, int linesize);
 
+		static std::string load_to_delim(std::istream& datastream,
+				std::string delim);
+
 		static std::string stripTags(std::string _text);
 
 		static std::vector<std::pair<Doryen::Color, Doryen::Color>> parseColorTags(
