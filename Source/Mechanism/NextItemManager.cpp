@@ -1,6 +1,5 @@
 // Joan Andrés (@Andres6936) Github.
 
-#include <stdint-gcc.h>
 #include "Cataclysm/Mechanism/NextItemManager.hpp"
 
 using namespace Cataclysm;

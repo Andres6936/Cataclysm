@@ -14,7 +14,7 @@ void ele_number::draw(Doryen::Console& _console)
 
 	_console.setForegroundColor(Cataclysm::transformColor(fg));
 	_console.setBackgroundColor(Cataclysm::transformColor(hilite));
-	_console.write(posx, posy, std::to_string(*value));
+	_console.writeString(posx, posy, std::to_string(*value));
 }
 
 // *** NUMBER ELEMENT ***

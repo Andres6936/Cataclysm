@@ -6,7 +6,7 @@ using namespace Cataclysm;
 
 bool IScreen::showQueryYesNo(std::string_view _text)
 {
-	console.writeText({0, 0}, {80, 24}, Doryen::BlendModes::SET, _text);
+	console.writeWrapText({0, 0}, {80, 24}, Doryen::BlendModes::SET, _text);
 	console.draw();
 
 	flushinp();
@@ -34,7 +34,7 @@ bool IScreen::showQueryYesNo(std::string_view _text)
 
 void IScreen::showDebugMessage(std::string_view _text)
 {
-	console.writeText({0, 0}, {80, 24}, Doryen::BlendModes::SET, _text);
+	console.writeWrapText({0, 0}, {80, 24}, Doryen::BlendModes::SET, _text);
 	console.draw();
 
 	flushinp();
@@ -51,7 +51,7 @@ void IScreen::showDebugMessage(std::string_view _text)
 
 void IScreen::showMessagePopup(std::string_view _text)
 {
-	console.writeText({0, 0}, {80, 24}, Doryen::BlendModes::SET, _text);
+	console.writeWrapText({0, 0}, {80, 24}, Doryen::BlendModes::SET, _text);
 	console.draw();
 
 	flushinp();

@@ -78,7 +78,7 @@ void ele_list::draw(Doryen::Console& _console)
 			_console.setForegroundColor(foreground);
 			_console.setBackgroundColor(background);
 
-			_console.write(positionX, ypos, segments[indexActualString]);
+			_console.writeString(positionX, ypos, segments[indexActualString]);
 
 			// Move the position of x for avoid overlap
 			positionX += segments[indexActualString].size();

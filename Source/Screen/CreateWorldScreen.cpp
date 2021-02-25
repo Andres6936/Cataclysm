@@ -51,7 +51,7 @@ ScreenType CreateWorldScreen::processInput()
 		}
 		else
 		{
-			console.write(1, 1, "Generating world, please wait...");
+			console.writeString(1, 1, "Generating world, please wait...");
 
 			tmp_world.generate();
 

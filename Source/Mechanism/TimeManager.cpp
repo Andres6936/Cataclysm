@@ -1,6 +1,5 @@
 // Joan Andrés (@Andres6936) Github.
 
-#include <stdint-gcc.h>
 #include <zconf.h>
 #include "Cataclysm/Mechanism/TimeManager.hpp"
 

@@ -19,7 +19,7 @@ void ele_textentry::draw(Doryen::Console& _console)
 
 	std::string print = text->substr(start, length);
 
-	_console.write(posx, posy, print);
+	_console.writeString(posx, posy, print);
 
 	for (int x = posx + print.length(); x < posx + sizex; x++)
 	{

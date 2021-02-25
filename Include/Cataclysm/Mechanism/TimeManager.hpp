@@ -6,7 +6,6 @@
 #include <cstdint>
 #include <Cataclysm/Mechanism/time.h>
 #include <zconf.h>
-#include <stdint-gcc.h>
 
 namespace Cataclysm
 {

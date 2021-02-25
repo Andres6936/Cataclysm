@@ -31,15 +31,15 @@ void ele_menu::draw(Doryen::Console& _console)
 	{
 		if (align == ALIGN_RIGHT)
 		{
-			_console.write(posx + 1, posy, text);
+			_console.writeString(posx + 1, posy, text);
 		}
 		else if (align == ALIGN_CENTER)
 		{
-			_console.write(posx + 1, posy, text);
+			_console.writeString(posx + 1, posy, text);
 		}
 		else
 		{
-			_console.write(posx + 1, posy, text);
+			_console.writeString(posx + 1, posy, text);
 		}
 		return;
 	}
@@ -54,15 +54,15 @@ void ele_menu::draw(Doryen::Console& _console)
 // Then draw menu items
 	if (align == ALIGN_RIGHT)
 	{
-		_console.write(posx + 1, posy, title);
+		_console.writeString(posx + 1, posy, title);
 	}
 	else if (align == ALIGN_CENTER)
 	{
-		_console.write(posx + 1, posy, title);
+		_console.writeString(posx + 1, posy, title);
 	}
 	else
 	{
-		_console.write(posx + 1, posy, title);
+		_console.writeString(posx + 1, posy, title);
 	}
 }
 

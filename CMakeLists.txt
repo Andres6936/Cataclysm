@@ -1,15 +1,11 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.15 FATAL_ERROR)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.14 FATAL_ERROR)
 
 PROJECT(Cataclysm LANGUAGES CXX)
 
 # Content Package Manager
 INCLUDE(CMakeModules/CPM.cmake)
 
-CPMAddPackage(
-        NAME Doryen
-        GITHUB_REPOSITORY Andres6936/Doryen
-        VERSION 2020.0901
-)
+CPMAddPackage("gh:Andres6936/Doryen@2021.0131")
 
 
 # Start Component {String}
@@ -21,9 +17,7 @@ ADD_LIBRARY(Cataclysm.Util.String
 # Compile Cataclysm with Support to C++17
 SET_TARGET_PROPERTIES(Cataclysm.Util.String PROPERTIES CXX_STANDARD 17)
 # Find the headers in the directory Cataclysm without path to Include
-TARGET_INCLUDE_DIRECTORIES(Cataclysm.Util.String PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Include/>
-        $<INSTALL_INTERFACE:/Include/>)
+TARGET_INCLUDE_DIRECTORIES(Cataclysm.Util.String PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Include/>)
 
 # End Component {String}
 
