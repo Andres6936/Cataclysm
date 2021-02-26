@@ -112,6 +112,9 @@ namespace Cataclysm
 	 * Because of polymorphism, your SceneManager does not have to be aware of
 	 * the internals of each scene, just that each scene has those three
 	 * important methods [draw, updated, handleInput].
+	 * <br><br>
+	 *
+	 * Reference: https://rivermanmedia.com/object-oriented-game-programming-the-scene-system/
 	 */
 	class ScreenManager
 	{
