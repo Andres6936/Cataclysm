@@ -11,6 +11,12 @@
 namespace Cataclysm
 {
 
+	/**
+	 * The scene manager keeps track of the scenes in a game, allowing to switch
+	 * between them. At it's basic, it provides a centralized place to load and
+	 * unload the scenes, keeping track of which one is loaded and handle
+	 * unloading that scene when a new one is loaded.
+	 */
 	class ScreenManager
 	{
 
@@ -28,6 +34,9 @@ namespace Cataclysm
 
 		std::shared_ptr<IScreen> skillScreen {nullptr};
 
+		/**
+		 * A point to the current scene that is rendering.
+		 */
 		std::shared_ptr<IScreen> actualScreen {nullptr};
 
 		std::shared_ptr<IScreen> newGameScreen {nullptr};
@@ -50,6 +59,12 @@ namespace Cataclysm
 
 		// Construct
 
+		/**
+		 * Initialize the first scene and makes that {actualScreen} to point to
+		 * this first scene.
+		 *
+		 * Postcondition: The first scene has been initialized.
+		 */
 		ScreenManager();
 
 		// Methods
