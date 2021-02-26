@@ -15,11 +15,6 @@ ShowWorldmapScreen::ShowWorldmapScreen()
 
 void ShowWorldmapScreen::draw()
 {
-	i_legend.draw(legendConsole);
-
-	worldmapConsole.blit({0, 0}, console, {0, 0});
-	worldmapConsole.draw();
-
 	const Point centerPoint = map->get_center_point();
 	Point origin = worldmap->get_point(centerPoint.x, centerPoint.y);
 
@@ -41,6 +36,11 @@ void ShowWorldmapScreen::draw()
 			worldmapConsole.writeChar(x, y, symbol.symbol);
 		}
 	}
+
+	i_legend.draw(legendConsole);
+
+	worldmapConsole.blit({0, 0}, console, {0, 0});
+	worldmapConsole.draw();
 
 	legendConsole.blit({0, 0}, console, {60, 0});
 	legendConsole.draw();
