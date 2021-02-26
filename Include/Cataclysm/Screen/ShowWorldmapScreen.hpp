@@ -13,6 +13,12 @@ namespace Cataclysm
 
 	private:
 
+		bool updatePoints = true;
+
+		Doryen::Geometry::Point2D<> origin;
+
+		Doryen::Geometry::Point2D<> destination;
+
 		cuss::interface i_legend;
 
 		Doryen::Console legendConsole {20, 24};
