@@ -381,7 +381,8 @@ Point Worldmap::get_point(int posx, int posy)
 	std::shared_ptr<Window> w_worldmap = std::make_shared<Window>(0, 0, xdim - 20, ydim);
 	std::shared_ptr<Window> w_legend = std::make_shared<Window>(xdim - 20, 0, 20, ydim);
 
-	int origx = posx, origy = posy;
+	const int origx = posx;
+	const int origy = posy;
 // Size of the window
 	int winx = w_worldmap->sizex(), winy = w_worldmap->sizey();
 
@@ -403,8 +404,11 @@ Point Worldmap::get_point(int posx, int posy)
 		{
 			for (int y = 0; y < winy; y++)
 			{
-				int terx = posx + x - (winx / 2), tery = posy + y - (winy / 2);
+				int terx = posx + x - (winx / 2);
+				int tery = posy + y - (winy / 2);
+
 				glyph sym = get_glyph(terx, tery);
+
 				if ((terx == posx && tery == posy) ||
 					(terx == origx && tery == origy))
 				{

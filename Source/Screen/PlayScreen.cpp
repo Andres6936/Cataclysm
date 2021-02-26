@@ -459,9 +459,11 @@ Cataclysm::ScreenType PlayScreen::do_action(Interface_action act)
 	{
 		Point p = map->get_center_point();
 		Point got = worldmap->get_point(p.x, p.y);
-// Adjust to match the upper-left corner
+
+		// Adjust to match the upper-left corner
 		got.x -= MAP_SIZE / 2;
 		got.y -= MAP_SIZE / 2;
+
 		if (TESTING_MODE)
 		{
 			int posx = got.x, posy = got.y;
