@@ -95,6 +95,14 @@ namespace Cataclysm
 	 * There is also a class that manages the scenes, and tells the current
 	 * scene to update its game logic and redraw everything each frame.
 	 * <br><br>
+	 *
+	 * <h3>How Does It Work In Code?</h3>
+	 *
+	 * In Java or Slag, you have you have a SceneManager class (which is a
+	 * singleton for ease of use). This class contains a static reference to
+	 * the only instance of Scene Manager, and a reference to the currently
+	 * running scene. It needs this scene reference to update and redraw the
+	 * current scene, as well as change it.
 	 */
 	class ScreenManager
 	{
