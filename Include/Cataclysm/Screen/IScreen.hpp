@@ -15,6 +15,13 @@
 namespace Cataclysm
 {
 
+	/**
+	 * The Scene class is abstract and has four abstract methods that each scene
+	 * must implement. Overriding these abstract methods is what keeps your
+	 * scene code clean and avoids those nasty switches. Scenes can of course
+	 * have plenty of other methods that you override as well, but these are
+	 * the essentials.
+	 */
 	class IScreen
 	{
 
