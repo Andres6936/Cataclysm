@@ -1,5 +1,6 @@
 // Joan Andrés (@Andres6936) Github.
 
+#include <Cuss/Graphics/color.h>
 #include <Cataclysm/Util/files.h>
 #include <Cataclysm/World/map.h>
 #include <Cataclysm/World/worldmap.h>
@@ -35,6 +36,8 @@ void ShowWorldmapScreen::draw()
 
 			glyph symbol = worldmap->get_glyph(terx, tery);
 
+			worldmapConsole.setForegroundColor(Cataclysm::transformColor(symbol.fg));
+			worldmapConsole.setBackgroundColor(Cataclysm::transformColor(symbol.bg));
 			worldmapConsole.writeChar(x, y, symbol.symbol);
 		}
 	}
