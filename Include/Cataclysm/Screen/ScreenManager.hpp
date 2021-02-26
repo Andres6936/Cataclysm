@@ -18,7 +18,7 @@ namespace Cataclysm
 	 * unloading that scene when a new one is loaded.
 	 * <br><br>
 	 *
-	 * Problem
+	 * <h3>Problem</h3>
 	 *
 	 * You’re making a game that has a bunch of different screens. Even in just
 	 * a small game, you’ve probably got menu screens, a high score screen, a
@@ -43,7 +43,7 @@ namespace Cataclysm
 	 * correctly?
 	 * <br><br>
 	 *
-	 * Early ideas
+	 * <h3>Early ideas</h3>
 	 *
 	 * At first I thought, “Let’s keep all the data and control logic in a
 	 * single static class. We can divide up the game into states, one
@@ -72,7 +72,7 @@ namespace Cataclysm
 	 * Panic, we had a much better idea.
 	 * <br><br>
 	 *
-	 * Our Solution
+	 * <h3>Our Solution</h3>
 	 *
 	 * I call it “The Scene System.” Essentially, you divide the game up into
 	 * scenes, where a scene is (usually) defined by a change in the background
