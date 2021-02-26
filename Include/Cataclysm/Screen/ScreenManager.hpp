@@ -22,6 +22,10 @@ namespace Cataclysm
 
 	private:
 
+		/**
+		 * This variable will always be true as long as the user does not want
+		 * to exit of the application.
+		 */
 		bool running = true;
 
 		std::shared_ptr<IScreen> menuScreen {nullptr};
@@ -87,6 +91,9 @@ namespace Cataclysm
 
 		// Getters
 
+		/**
+		 * @return True if the user want to exit of the application, false otherwise.
+		 */
 		bool isRunning() const;
 
 	};
