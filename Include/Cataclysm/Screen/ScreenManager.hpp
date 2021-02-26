@@ -79,6 +79,10 @@ namespace Cataclysm
 		 */
 		void updated();
 
+		/**
+		 * Responsibility: Get the input of the current scene and change the
+		 * scene if is need.
+		 */
 		void processInput();
 
 		// Getters
