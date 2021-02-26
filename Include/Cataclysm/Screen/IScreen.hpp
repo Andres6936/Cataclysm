@@ -60,10 +60,23 @@ namespace Cataclysm
 
 		// Virtual Methods
 
+		/**
+		 * Draw everything on screen.
+		 */
 		virtual void draw() = 0;
 
+		/**
+		 * Update logic for this scene.
+		 */
 		virtual void updated() = 0;
 
+		/**
+		 * Depending on the actions taken by the user, a scene change may occur,
+		 * being this change the responsibility of SceneManager to handle it,
+		 * set the new scene.
+		 *
+		 * @return The new scene if the actions of user requires it, None in otherwise.
+		 */
 		virtual ScreenType processInput() = 0;
 
 	};
