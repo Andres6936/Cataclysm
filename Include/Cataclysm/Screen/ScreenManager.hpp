@@ -103,6 +103,15 @@ namespace Cataclysm
 	 * the only instance of Scene Manager, and a reference to the currently
 	 * running scene. It needs this scene reference to update and redraw the
 	 * current scene, as well as change it.
+	 * <br><br>
+	 *
+	 * <h3>How do you switch between screens? What is the easiest way to
+	 * organize all of these different sections of game logic?</h3>
+	 *
+	 * SceneManager just runs the currScene and can switch between scenes.
+	 * Because of polymorphism, your SceneManager does not have to be aware of
+	 * the internals of each scene, just that each scene has those three
+	 * important methods [draw, updated, handleInput].
 	 */
 	class ScreenManager
 	{
