@@ -5,7 +5,7 @@ PROJECT(Cataclysm LANGUAGES CXX)
 # Content Package Manager
 INCLUDE(CMakeModules/CPM.cmake)
 
-CPMAddPackage("gh:Andres6936/Doryen@2021.0131")
+CPMAddPackage("gh:Andres6936/Doryen@2021.0226")
 
 
 # Start Component {String}
