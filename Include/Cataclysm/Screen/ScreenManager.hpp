@@ -69,8 +69,14 @@ namespace Cataclysm
 
 		// Methods
 
+		/**
+		 * Responsibility: Call to method draw of the current scene.
+		 */
 		void draw();
 
+		/**
+		 * Responsibility: Call to method updated of the current the scene.
+		 */
 		void updated();
 
 		void processInput();
