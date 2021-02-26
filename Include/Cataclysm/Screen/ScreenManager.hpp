@@ -16,6 +16,7 @@ namespace Cataclysm
 	 * between them. At it's basic, it provides a centralized place to load and
 	 * unload the scenes, keeping track of which one is loaded and handle
 	 * unloading that scene when a new one is loaded.
+	 * <br><br>
 	 *
 	 * Problem
 	 *
@@ -24,19 +25,23 @@ namespace Cataclysm
 	 * “normal play” screen, maybe a shop screen, and more. There are four
 	 * separate issues here, but it turns out that they all are related enough
 	 * to have a common solution:
+	 * <br><br>
 	 *
 	 * 1. How do you manage the loading and unloading of the many screens,
 	 * assuming you can’t keep the data/graphics all loaded at once (and with
 	 * full screen background images, it’s not usually a good idea).
+	 * <br><br>
 	 *
 	 * 2. How do you switch between screens? What is the easiest way to organize
 	 * all of these different sections of game logic?
+	 * <br><br>
 	 *
-	 * 3. How do you switch between control schemes?
+	 * 3. How do you switch between control schemes? <br><br>
 	 *
 	 * 4. For ease of testing, how can you jump into a particular screen,
 	 * assuming that a bunch of stuff has to be loaded for the scene to run
 	 * correctly?
+	 * <br><br>
 	 *
 	 * Early ideas
 	 *
@@ -45,6 +50,7 @@ namespace Cataclysm
 	 * representing each different set of control logic, and do a switch
 	 * statement to decide which data, game logic, etc. to use at any give
 	 * time.”
+	 * <br><br>
 	 *
 	 * The problem here was that it isn’t very scalable. It works fine for a
 	 * very small number of simple screens/control schemes, but increasing the
@@ -54,6 +60,7 @@ namespace Cataclysm
 	 * each GUI? Are there only two states (just the play and menu)? Is it a
 	 * new state when only the control logic changes, but nothing new has to
 	 * be loaded?
+	 * <br><br>
 	 *
 	 * This is basically how I started coding Cash Cow, and because I was
 	 * answering all of those previous questions a different way each time,
@@ -63,6 +70,7 @@ namespace Cataclysm
 	 * made testing tedious because we had to navigate through menus to get to
 	 * any particular part of the game. By the time I started coding Primate
 	 * Panic, we had a much better idea.
+	 * <br><br>
 	 *
 	 * Our Solution
 	 *
@@ -74,6 +82,7 @@ namespace Cataclysm
 	 * amount of time to load (at least enough to cause the cursor to flinch).
 	 * The idea is that if you only load a new background between scenes when
 	 * the entire screen is black, the user won’t notice any delay from loading.
+	 * <br><br>
 	 *
 	 * This means that each scene should have a natural way to transition in and
 	 * transition out, and the unloading/loading takes place after the
@@ -81,9 +90,11 @@ namespace Cataclysm
 	 * In Primate Panic, you see the end of a scene when the screen fades to
 	 * black. This is when the next scene is being loaded, but on most computers
 	 * it is fast enough that you don’t notice any load time.
+	 * <br><br>
 	 *
 	 * There is also a class that manages the scenes, and tells the current
 	 * scene to update its game logic and redraw everything each frame.
+	 * <br><br>
 	 */
 	class ScreenManager
 	{
